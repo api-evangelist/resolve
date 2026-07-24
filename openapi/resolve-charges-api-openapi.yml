@@ -1,0 +1,542 @@
+openapi: 3.0.0
+info:
+  title: Resolve API Reference Access Keys Charges API
+  version: V5
+  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
+
+
+    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
+
+    '
+servers:
+- url: https://app-sandbox.resolvepay.com/api
+  description: Sandbox server
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Charges
+  x-displayName: Charges
+  description: 'A charge represents an agreement by the customer to accept credit terms for a transaction. It consists of a charge amount, term length (i.e. 30, 60, 90), and reference to the merchant''s original order or purchase order numbers.
+
+
+    These endpoints are intended for merchants using the [Checkout SDK](/guides/checkout-sdk).
+
+    If you are not using the Checkout SDK flow, these endpoints are generally not needed.
+
+    '
+paths:
+  /charges:
+    get:
+      summary: List charges
+      operationId: listCharges
+      description: Return a paginated list of charges.
+      parameters:
+      - name: limit
+        schema:
+          type: integer
+          default: 100
+          maximum: 100
+          minimum: 1
+        in: query
+        description: Limit the number of charges returned.
+      - name: page
+        schema:
+          type: string
+          default: '1'
+        in: query
+        description: Specify the page of charges returned.
+      - name: search
+        schema:
+          type: string
+        in: query
+        description: 'Search across supported charge fields.
+
+
+          Search is applied to charge and associated record values including:
+
+          `id`, `number`, `merchant_invoice.order_number`, `merchant_invoice.po_number`,
+
+          and customer/merchant identifying fields.
+
+          '
+      - name: order
+        schema:
+          type: string
+          default: -created_at
+        in: query
+        description: 'Sort charges by field. Prefix with `-` for descending order.
+
+
+          Examples:
+
+          - `order=-created_at`
+
+          - `order=amount`
+
+          '
+      - name: starting_at
+        schema:
+          type: string
+          format: date-time
+        in: query
+        description: Return charges created at or after this timestamp.
+      - name: ending_at
+        schema:
+          type: string
+          format: date-time
+        in: query
+        description: Return charges created at or before this timestamp.
+      responses:
+        '200':
+          $ref: '#/components/responses/ChargeListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Charges
+  /charges/{charge_id}:
+    get:
+      summary: Fetch a charge
+      operationId: fetchCharge
+      description: Retrieve an existing charge by its ID.
+      parameters:
+      - name: charge_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the charge to retrieve
+      responses:
+        '200':
+          $ref: '#/components/responses/ChargeResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Charges
+    put:
+      summary: Update a charge
+      operationId: updateCharge
+      description: Update a charge.
+      parameters:
+      - name: charge_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the charge to update
+      requestBody:
+        $ref: '#/components/requestBodies/ChargeUpdateRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/ChargeResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Charges
+  /charges/{charge_id}/capture:
+    post:
+      summary: Capture a charge
+      operationId: captureCharge
+      description: Capture an authorized charge.
+      parameters:
+      - name: charge_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the charge to capture
+      requestBody:
+        $ref: '#/components/requestBodies/ChargeCaptureRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/ChargeResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Charges
+  /charges/{charge_id}/cancel:
+    post:
+      summary: Cancel a charge
+      operationId: cancelCharge
+      description: Cancel an existing charge.
+      parameters:
+      - name: charge_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the charge to cancel
+      responses:
+        '200':
+          $ref: '#/components/responses/ChargeResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Charges
+components:
+  schemas:
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    ChargeUpdateRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          example: 1000
+          description: Updated amount for the charge.
+        invoice_url:
+          type: string
+          format: uri
+          example: https://example.com/invoice.pdf
+          description: Updated invoice URL.
+        order_number:
+          type: string
+          example: '5055'
+          description: Updated order number.
+        po_number:
+          type: string
+          example: PO-555
+          description: Updated PO number.
+        metadata:
+          type: object
+          additionalProperties: true
+          example:
+            source: checkout
+          description: Metadata to store on the charge.
+        user_id:
+          type: string
+          example: usr_123
+          description: Associated customer user ID.
+        captured:
+          type: boolean
+          example: true
+          description: Capture this charge.
+        canceled:
+          type: boolean
+          example: false
+          description: Cancel this charge.
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    Charge:
+      type: object
+      properties:
+        id:
+          type: string
+          example: PMMlaE5wbg0
+          description: Unique identifier for the charge.
+        amount:
+          type: number
+          format: double
+          example: 1000
+          description: Authorized amount of the charge in USD.
+        customer_id:
+          type: string
+          example: X50sgfRd
+          description: Unique identifier of the customer.
+        amount_refunded:
+          type: number
+          format: double
+          example: 0
+          description: Total refunded amount for the charge in USD.
+        canceled:
+          type: boolean
+          example: false
+          description: Indicates whether the charge is canceled.
+        canceled_at:
+          type: string
+          format: date-time
+          example: null
+          description: Date the charge was canceled.
+        captured:
+          type: boolean
+          example: true
+          description: Indicates whether the charge has been captured.
+        captured_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: Date the charge was captured.
+        created_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00.730Z'
+          description: Date the charge was created.
+        invoice_url:
+          type: string
+          format: uri
+          example: https://example.com/invoice.pdf
+          description: URL of the invoice document associated with this charge.
+        metadata:
+          type: object
+          additionalProperties: true
+          example:
+            source: checkout
+          description: Custom metadata attached to the charge.
+        number:
+          type: string
+          example: ch_100001
+          description: Charge number identifier.
+        terms:
+          type: string
+          enum:
+          - due_upon_receipt
+          - net7
+          - net10
+          - net10th
+          - net15
+          - net20
+          - net30
+          - net45
+          - net60
+          - net75
+          - net90
+          - net120
+          - net180
+          example: net30
+          description: Payment terms associated with the charge.
+        updated_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: Date the charge was last updated.
+        merchant_invoice_id:
+          type: string
+          example: INabc123
+          description: ID of the merchant invoice associated with the charge.
+        order_number:
+          type: string
+          example: '5055'
+          description: Order number associated with the charge.
+        po_number:
+          type: string
+          example: PO-555
+          description: PO number associated with the charge.
+        fee:
+          type: number
+          format: double
+          example: 25.5
+          description: Fee amount associated with the charge in USD.
+        fee_refunded:
+          type: number
+          format: double
+          example: 0
+          description: Refunded fee amount for the charge in USD.
+    ChargeListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Charge'
+    ChargeCaptureRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          example: 1000
+          description: Amount to capture. If omitted, full charge amount is captured.
+        order_number:
+          type: string
+          example: '5055'
+          description: Optional order number override applied during capture.
+        po_number:
+          type: string
+          example: PO-555
+          description: Optional PO number override applied during capture.
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+  responses:
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    ChargeListResponse:
+      description: A paginated list of charges.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ChargeListResponse'
+    ChargeResponse:
+      description: An object representing a charge.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Charge'
+  requestBodies:
+    ChargeCaptureRequestBody:
+      description: Fields used while capturing a charge.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ChargeCaptureRequest'
+    ChargeUpdateRequestBody:
+      description: Fields to update on a charge.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ChargeUpdateRequest'
+  securitySchemes:
+    basicAuth:
+      description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.
+      type: http
+      scheme: basic
+    bearerAuth:
+      description: Bearer token authentication using an OAuth access token minted for an API access key created in Merchant Dashboard.
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

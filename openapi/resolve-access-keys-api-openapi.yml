@@ -1,0 +1,268 @@
+openapi: 3.0.0
+info:
+  title: Resolve API Reference Access Keys API
+  version: V5
+  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
+
+
+    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
+
+    '
+servers:
+- url: https://app-sandbox.resolvepay.com/api
+  description: Sandbox server
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Access Keys
+  x-displayName: Access Keys
+  description: 'OAuth access keys are created in Merchant Dashboard and can be exchanged for bearer tokens.
+
+
+    Use the `/access-keys/token` endpoint to mint a bearer token from a valid `client_id` and `client_secret`.
+
+    '
+paths:
+  /access-keys/token:
+    post:
+      summary: Mint an access token
+      operationId: issueAccessKeyToken
+      description: 'Exchange an OAuth access key for a bearer token by providing its `client_id` and `client_secret` in the request body.
+
+        '
+      security: []
+      requestBody:
+        $ref: '#/components/requestBodies/IssueAccessKeyTokenRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/AccessKeyTokenResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '403':
+          $ref: '#/components/responses/ForbiddenResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Access Keys
+components:
+  schemas:
+    IssueAccessKeyTokenRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - client_id
+      - client_secret
+      properties:
+        client_id:
+          type: string
+          description: OAuth access key client ID returned when the access key was created.
+        client_secret:
+          type: string
+          description: OAuth access key client secret returned when the access key was created or rotated.
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+    ForbiddenError:
+      type: object
+      title: Forbidden error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: API access key expired
+            type:
+              type: string
+              description: A short string, describing error type
+              example: forbidden_error
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    AccessKeyTokenResponse:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+          description: Bearer token to include in the `Authorization` header.
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token lifetime in seconds.
+          example: 86400
+        scope:
+          type: string
+          description: Space-delimited scopes granted to the token.
+          example: merchant:read merchant:write
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+  responses:
+    ForbiddenResponse:
+      description: Forbidden error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    AccessKeyTokenResponse:
+      description: Successfully minted bearer token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessKeyTokenResponse'
+          examples:
+            default:
+              value:
+                access_token: eyJ...
+                token_type: Bearer
+                expires_in: 86400
+                scope: merchant:read merchant:write
+  requestBodies:
+    IssueAccessKeyTokenRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IssueAccessKeyTokenRequest'
+          examples:
+            default:
+              value:
+                client_id: abc123clientid
+                client_secret: secret-value
+  securitySchemes:
+    basicAuth:
+      description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.
+      type: http
+      scheme: basic
+    bearerAuth:
+      description: Bearer token authentication using an OAuth access token minted for an API access key created in Merchant Dashboard.
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

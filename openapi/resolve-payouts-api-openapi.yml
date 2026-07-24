@@ -1,0 +1,309 @@
+openapi: 3.0.0
+info:
+  title: Resolve API Reference Access Keys Payouts API
+  version: V5
+  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
+
+
+    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
+
+    '
+servers:
+- url: https://app-sandbox.resolvepay.com/api
+  description: Sandbox server
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Payouts
+  x-displayName: Payouts
+  description: 'A Payout is a transfer of money between the  Merchant and Resolve.
+
+    '
+paths:
+  /payouts:
+    get:
+      summary: List Payouts
+      operationId: listPayouts
+      parameters:
+      - name: filter
+        schema:
+          type: string
+        in: query
+        description: "Filter records by the specified fields.\n  \nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n  - `eq` - equal (=)\n  - `ne` - not equal (!=)\n  - `gt` - greater than (>)\n  - `gte` - greater than or equal (>=)\n  - `lt` - less than (<)\n  - `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `status` (`eq`)\n  - `expected_by` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[created_at][gt]=2022-10-30T14:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+      - name: sort
+        schema:
+          type: string
+        in: query
+        description: 'Sort records by the specified fields.
+
+
+          The sort order for each sort field is ascending unless it is prefixed with a minus,
+
+          in which case it is descending.
+
+
+          Multiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.
+
+
+          Sorting is allowed by the following fields: `id`, `created_at`.
+
+
+          Example: `sort=id,-created_at`
+
+          '
+      responses:
+        '200':
+          $ref: '#/components/responses/PayoutListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Payouts
+  /payouts/{payout_id}:
+    get:
+      summary: Get a Payout
+      operationId: getPayout
+      parameters:
+      - name: payout_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: ID of the Payout
+      responses:
+        '200':
+          $ref: '#/components/responses/PayoutResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Payouts
+components:
+  schemas:
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    PayoutObject:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the Payout.
+          example: PMMlaE5wbg0
+        amount_gross:
+          type: integer
+          description: Total gross amount of all payout transactions
+          example: 120
+        amount_fee:
+          type: integer
+          description: Total fee amount of all payout transactions
+          example: 20
+        amount_net:
+          type: integer
+          description: Total net amount of all payout transactions.
+          example: 100
+        status:
+          type: string
+          description: Current status of the Payout. <br><br> `pending` = the payout is created by Resolve, pending to be sent to our bank. <br> `in_transit` = the payment or payout has been sent to our bank and is pending their execution. <br> `paid` = the payment or payout amount was successfully deposited. <br> `failed` = the payment or payout amount did not successfully deposit. <br> `canceled` = the payment or payout in Resolve's system was not sent to or executed by the bank. <br>
+          enum:
+          - pending
+          - in_transit
+          - paid
+          - failed
+          - canceled
+          example: pending
+        retry_payout_id:
+          type: string
+          description: Payout id being retried.
+          example: PMMlaE5wbg0
+        failed_at:
+          type: string
+          description: Date time of when the Payout failed.
+          example: '2022-09-06T03:08:37.508Z'
+        expected_by:
+          type: string
+          description: Date time of when we expect the Payout to reach the participating entity's bank.
+          example: '2022-09-06T03:08:37.508Z'
+        transactions_starting_at:
+          type: string
+          description: This value is the earliest value for payout_transaction.created_at AND payout_transaction.payout_id = payout.id.
+        transactions_ending_at:
+          type: string
+          description: This value is the latest value for payout_transaction.created_at AND payout_transaction.payout_id = payout.id.
+        canceled_at:
+          type: string
+          description: Date time of when the Payout was canceled.
+          example: '2022-09-06T03:08:37.508Z'
+        created_at:
+          type: string
+          description: Date time of when the Payout was created.
+          example: '2022-09-06T03:08:37.508Z'
+        updated_at:
+          type: string
+          description: Date time of when the Payout was last updated.
+          example: '2022-09-06T03:08:37.508Z'
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    PayoutsLists:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          items:
+            $ref: '#/components/schemas/PayoutObject'
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+  responses:
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    PayoutResponse:
+      description: An object representing the created Payout.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PayoutObject'
+    PayoutListResponse:
+      description: An object with an array of Payouts up to the specified limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PayoutsLists'
+  securitySchemes:
+    basicAuth:
+      description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.
+      type: http
+      scheme: basic
+    bearerAuth:
+      description: Bearer token authentication using an OAuth access token minted for an API access key created in Merchant Dashboard.
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

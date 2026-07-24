@@ -1,0 +1,539 @@
+openapi: 3.0.0
+info:
+  title: Resolve API Reference Access Keys Credit Notes API
+  version: V5
+  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
+
+
+    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
+
+    '
+servers:
+- url: https://app-sandbox.resolvepay.com/api
+  description: Sandbox server
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Credit Notes
+  x-displayName: Credit Notes
+  description: 'Credit Notes are issued to customers to reduce the amount they owe.
+
+    '
+paths:
+  /credit-notes:
+    get:
+      summary: List credit notes
+      operationId: listCreditNotes
+      description: Return a list of credit notes.
+      parameters:
+      - name: limit
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+          minimum: 25
+        in: query
+        description: Limit the number of credit notes returned.
+      - name: page
+        schema:
+          type: string
+          default: '1'
+        in: query
+        description: Specify the page of credit notes returned.
+      - name: filter
+        explode: true
+        style: deepObject
+        schema:
+          type: object
+          properties:
+            number:
+              type: object
+              properties:
+                eq:
+                  type: string
+            customer_id:
+              type: object
+              properties:
+                eq:
+                  type: string
+            invoice_id:
+              type: object
+              properties:
+                eq:
+                  type: string
+            payment_id:
+              type: object
+              properties:
+                eq:
+                  type: string
+            amount:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            amount_balance:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            amount_paid:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+        in: query
+        description: "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+      - name: sort
+        schema:
+          type: string
+          enum:
+          - id
+          - -id
+          - created_at
+          - -created_at
+          - amount
+          - -amount
+          - amount_balance
+          - -amount_balance
+          default: -created_at
+        in: query
+        description: "Sort credit notes by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n  - `amount_balance`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n"
+      responses:
+        '200':
+          $ref: '#/components/responses/CreditNoteListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Credit Notes
+    post:
+      summary: Create a credit note
+      operationId: createCreditNote
+      description: Create a new credit note.
+      requestBody:
+        $ref: '#/components/requestBodies/CreditNoteCreateRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/CreditNoteActionResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Credit Notes
+  /credit-notes/{credit_note_id}/void:
+    post:
+      summary: Request to void a credit note
+      operationId: voidCreditNote
+      description: Request to void an existing credit note.
+      responses:
+        '200':
+          $ref: '#/components/responses/CreditNoteResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Credit Notes
+  /credit-notes/{credit_note_id}:
+    get:
+      summary: Fetch a credit note
+      operationId: fetchCreditNote
+      description: Retrieve an existing credit note by its ID.
+      parameters:
+      - name: credit_note_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the credit note to retrieve
+      responses:
+        '200':
+          $ref: '#/components/responses/CreditNoteResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Credit Notes
+components:
+  schemas:
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    CreditNoteCreateRequest:
+      type: object
+      required:
+      - invoice_id
+      - amount
+      - reason_code
+      properties:
+        invoice_id:
+          type: string
+          example: PMMlaE5wbg0
+          description: ID of the invoice
+        amount:
+          type: number
+          format: double
+          example: 2000
+          description: Amount of the credit note
+        number:
+          type: string
+          example: CN-001
+          description: Number of the credit note
+        reason_code:
+          type: string
+          example: reason_code
+          enum:
+          - chargeback
+          - duplicate
+          - fraudulent
+          - requested_by_customer
+          - missing_remittance
+          - overpayment_on_invoice
+          - invoice_was_refunded
+          - double_payment_on_invoice
+          - missing_invoice_in_resolve
+          - credit_transfer
+          - other
+          description: Reason code for the credit note
+        reason_message:
+          type: string
+          example: reason_message
+          description: Reason message for the credit note
+        credit_note_url:
+          type: string
+          example: https://example.com/credit_note_url.pdf
+          description: URL for the publicly-accessible credit note PDF.
+    CreditNoteAction:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - failed
+          - completed
+          example: pending
+          description: Status of the credit note action
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    CreditNoteListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreditNote'
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    CreditNote:
+      type: object
+      properties:
+        id:
+          type: string
+          example: CNMlaE5wbg0
+          description: Unique identifier for the credit note.
+        source:
+          type: string
+          enum:
+          - MERCHANT_USER
+          - ADMIN_USER
+          - API
+          example: MERCHANT_USER
+          description: Source of the credit note creation.
+        customer_id:
+          type: string
+          example: X50sgfRd
+          description: ID of the customer associated with the credit note.
+        merchant_id:
+          type: string
+          example: MER456789
+          description: ID of the merchant.
+        invoice_id:
+          type: string
+          example: PMMlaE5wbg0
+          description: ID of the invoice this credit note is associated with.
+        created_by_user_id:
+          type: string
+          example: USR123456
+          description: ID of the user who created the credit note.
+        number:
+          type: string
+          example: CN-001
+          description: Credit note number identifier.
+        amount:
+          type: number
+          format: double
+          example: 1000
+          description: Total amount of the credit note.
+        amount_balance:
+          type: number
+          format: double
+          example: 500
+          description: Remaining balance to be applied.
+        amount_paid:
+          type: number
+          format: double
+          example: 500
+          description: Amount that has been applied/paid out.
+        amount_voided:
+          type: number
+          format: double
+          example: 0
+          description: Amount that has been voided.
+        amount_payout:
+          type: number
+          format: double
+          example: 1000
+          description: Total payout amount for the credit note.
+        amount_payout_balance:
+          type: number
+          format: double
+          example: 500
+          description: Remaining payout balance.
+        amount_payout_paid:
+          type: number
+          format: double
+          example: 500
+          description: Amount that has been paid out.
+        credit_note_url:
+          type: string
+          example: https://www.example.com/credit-note.pdf
+          description: The credit note PDF that you've uploaded to Resolve.
+        resolve_credit_note_url:
+          type: string
+          example: https://www.example.com/resolve-credit-note.pdf
+          description: Resolve-issued credit note PDF.
+        reason_code:
+          type: string
+          enum:
+          - chargeback
+          - duplicate
+          - fraudulent
+          - requested_by_customer
+          - missing_remittance
+          - overpayment_on_invoice
+          - invoice_was_refunded
+          - double_payment_on_invoice
+          - missing_invoice_in_resolve
+          - credit_transfer
+          - other
+          example: requested_by_customer
+          description: The reason code for issuing this credit note.
+        reason_message:
+          type: string
+          example: Customer returned damaged goods
+          description: Additional details explaining the reason for the credit note.
+        voided:
+          type: boolean
+          example: false
+          description: Indicates whether the credit note is voided.
+        voided_at:
+          type: string
+          format: date-time
+          example: null
+          description: Date the credit note was voided.
+  responses:
+    CreditNoteActionResponse:
+      description: An object containing the status of the credit note creation request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditNoteAction'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    CreditNoteResponse:
+      description: The credit note object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditNote'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    CreditNoteListResponse:
+      description: A paginated list of credit notes.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditNoteListResponse'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+  requestBodies:
+    CreditNoteCreateRequestBody:
+      description: Issue a credit note for an invoice.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditNoteCreateRequest'
+  securitySchemes:
+    basicAuth:
+      description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.
+      type: http
+      scheme: basic
+    bearerAuth:
+      description: Bearer token authentication using an OAuth access token minted for an API access key created in Merchant Dashboard.
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

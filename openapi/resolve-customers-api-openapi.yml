@@ -1,0 +1,1042 @@
+openapi: 3.0.0
+info:
+  title: Resolve API Reference Access Keys Customers API
+  version: V5
+  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
+
+
+    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
+
+    '
+servers:
+- url: https://app-sandbox.resolvepay.com/api
+  description: Sandbox server
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Customers
+  x-displayName: Customers
+  description: 'A customer represents a company that you do business with. For larger companies, there may be several users with access to the customer account that can make purchases with their credit line. For smaller companies, a customer may represent a single individual. Retrieve a customer to get a summary of their total credit line and available credit balance.
+
+    '
+paths:
+  /customers:
+    get:
+      summary: List all customers
+      operationId: listCustomers
+      description: Return a list of customers.
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+          minimum: 25
+        description: Limit the number of customers returned.
+      - name: page
+        in: query
+        schema:
+          type: string
+          default: '1'
+        description: Specify the page of customers returned.
+      - name: filter
+        explode: true
+        style: deepObject
+        schema:
+          type: object
+          properties:
+            email:
+              type: object
+              properties:
+                eq:
+                  type: string
+            business_name:
+              type: object
+              properties:
+                eq:
+                  type: string
+            created_at:
+              type: object
+              properties:
+                eq:
+                  type: string
+                  format: date-time
+                gt:
+                  type: string
+                  format: date-time
+                lt:
+                  type: string
+                  format: date-time
+                gte:
+                  type: string
+                  format: date-time
+                lte:
+                  type: string
+                  format: date-time
+            amount_approved:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            amount_available:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            amount_authorized:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            amount_balance:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            amount_unapplied_payments:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            advance_rate:
+              type: object
+              properties:
+                eq:
+                  type: number
+                  format: double
+                  minimum: 0
+                  maximum: 1
+                gt:
+                  type: number
+                  format: double
+                  minimum: 0
+                  maximum: 1
+                lt:
+                  type: number
+                  format: double
+                  minimum: 0
+                  maximum: 1
+                gte:
+                  type: number
+                  format: double
+                  minimum: 0
+                  maximum: 1
+                lte:
+                  type: number
+                  format: double
+                  minimum: 0
+                  maximum: 1
+            archived:
+              type: object
+              properties:
+                eq:
+                  type: boolean
+                ne:
+                  type: boolean
+        in: query
+        description: "Filter customers by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `email` (`eq`)\n  - `business_name` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_approved` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_available` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_authorized` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_unapplied_payments` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `advance_rate` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[email][eq]=test@resolvepay.com`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+      - name: sort
+        schema:
+          type: string
+        in: query
+        description: 'Sort customers by the specified fields.
+
+
+          The sort order for each sort field is ascending unless it is prefixed with a minus,
+
+          in which case it is descending.
+
+
+          Multiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.
+
+
+          Sorting is allowed by the following fields: `id`, `created_at`, `amount_approved`, `amount_available`, `business_name`.
+
+
+          Example: `sort=business_name,-created_at`
+
+          '
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Customers
+    post:
+      summary: Create a customer
+      operationId: createCustomer
+      description: Create a customer.
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerPostRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Customers
+  /customers/{customer_id}:
+    get:
+      summary: Fetch a customer
+      operationId: fetchCustomer
+      description: 'Retrieve an existing customer by its ID.
+
+
+        A successful response to this request will be the Customer entity.
+
+        If customer enrollment is required, we will return `net_terms_status=''pending_enrollment''` and a not null `net_terms_enrollment_url`.
+
+        If customer enrollment is not required (customer applied through a direct application), we will return `net_terms_status=''enrolled''`.
+
+        '
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+      parameters:
+      - name: customer_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: ID of the customer to return
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Customers
+    put:
+      summary: Update a customer
+      operationId: updateCustomer
+      description: Update a customer.
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+      parameters:
+      - name: customer_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: ID of the customer to update
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerPutRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Customers
+  /customers/{customer_id}/enroll:
+    post:
+      summary: Enroll a customer
+      operationId: enroll-a-customer
+      deprecated: true
+      description: "<div style=\"border-sizing: border-box; padding: 10px; background-color: rgba(212, 31, 28, 0.07); color: rgb(212, 31, 28);\">\n  As of <strong>July 2023</strong>, this route has been replaced with a stub response and will soon be deprecated.\n  The <strong>`confirm_enrollment`</strong> status no longer exists and, once approved by Resolve, customers will either be <strong>`enrolled`</strong>\n  (if they applied through an application) or <strong>`pending_enrollment`</strong> (if credit checked).\n</div>\n"
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+      parameters:
+      - name: customer_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: ID of the customer to enroll
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntityResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Customers
+  /customers/{customer_id}/credit-check:
+    post:
+      summary: Request a credit check
+      operationId: requestCustomerCreditCheck
+      description: 'You may request a credit check on a customer who hasn''t previously been credit checked.
+
+        This endpoint returns no content. You''ll be able to see the date you requested the credit check
+
+        (`credit_check_requested_at`) and `credit_status` updated to `pending` or, in the case of an instant decision,
+
+        `approved` or `declined` by fetching the Customer entity.
+
+
+        A `hold` credit status represents when a customer''s credit account is over 15 days overdue.
+
+        A `deactivated` credit status represents when a customer''s credit account has been deactivated.
+
+
+        When a customer''s `credit_status` is `approved` - the customer''s `net_terms_status`  represents the current state of a customer''s enrollment in the approved net terms offer.
+
+        See <a href="#operation/fetchCustomer">#fetchCustomer</a> for more details.
+
+
+        Note: Except for instant decisions, a decision should be reflected on the Customer entity within 1 business day.
+
+        '
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+      parameters:
+      - name: customer_id
+        in: path
+        schema:
+          type: string
+        required: true
+        description: ID of the customer being submitted for a credit check
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerRequestCreditCheckBody'
+      responses:
+        '204':
+          description: Credit check request accepted.
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '422':
+          $ref: '#/components/responses/CreditCheckAlreadyExistsResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Customers
+components:
+  responses:
+    UnprocessableEntityResponse:
+      description: Unprocessable entity error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InvalidRequestError'
+    CustomerListResponse:
+      description: 'An object with an array of results containing up to the limit. If no customers are found, the results array will be empty.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerList'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    CreditCheckAlreadyExistsResponse:
+      description: Credit check already created for this customer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditCheckExistsError'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    CustomerResponse:
+      description: An object representing the customer.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Customer'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+  schemas:
+    Customer:
+      type: object
+      description: 'The customer object represents a company that you do business with. Retrieve a customer to get a summary of their total credit line and available credit balance.
+
+        '
+      properties:
+        id:
+          type: string
+          example: PMMlaE5wbg0
+        created_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00.750Z'
+          description: Date the customer was created.
+        updated_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00.750Z'
+          description: Date the customer was last updated.
+        source:
+          type: string
+          enum:
+          - QUICKBOOKS
+          - MERCHANT_USER
+          - ADMIN_USER
+          - APPLICATION
+          - CUSTOMER_USER
+          - API
+          example: MERCHANT_USER
+        business_address:
+          type: string
+          example: 111 Main Street
+          description: Street address of the business' primary location.
+        business_city:
+          type: string
+          example: San Francisco
+          description: City of the business' primary location.
+        business_state:
+          type: string
+          example: CA
+          description: State or province of the business' primary location.
+        business_zip:
+          type: string
+          example: '94104'
+          description: US zip code of the business' primary location.
+        business_country:
+          type: string
+          example: US
+          description: Country of the business' primary location according to the **ISO 3166-1 alpha 2** standard.
+        business_age_range:
+          type: string
+          example: 5-10
+          description: String indicating age of the business in years.
+          enum:
+          - 0-2
+          - 2-5
+          - 5-10
+          - 10+
+        business_ap_email:
+          type: string
+          example: ap@example.com
+          description: Email address of the business' accounts payable person or department.
+        business_ap_phone:
+          type: string
+          example: (202) 456-1414
+          description: Phone number of the business' accounts payable person or department.
+        business_ap_phone_extension:
+          type: string
+          example: '123'
+          description: Phone number extension of the business' accounts payable person or department.
+        business_name:
+          type: string
+          example: Example, Inc.
+          description: Full legal name of the business being applied for.
+        business_trade_name:
+          type: string
+          example: Example Trading Company
+          description: Trade name of the business, if different than `business_name.`
+        business_phone:
+          type: string
+          example: (202) 456-1414
+          description: Phone number of the business' primary location.
+        business_type:
+          type: string
+          example: corporation
+          description: String indicating the business' type of legal entity.
+          enum:
+          - sole_prop_or_partnership
+          - llc
+          - corporation
+          - nonprofit
+          - government
+        email:
+          type: string
+          format: email
+          example: user@example.com
+          description: Email of the customer applying for terms.
+        personal_name_first:
+          type: string
+          example: James
+          description: First name of the person applying on behalf of the business.
+        personal_name_last:
+          type: string
+          example: Bond
+          description: Last name of the person applying on behalf of the business.
+        personal_phone:
+          type: string
+          example: (202) 456-1414
+          description: Personal phone number of the customer representative applying for terms.
+        amount_approved:
+          type: integer
+          format: int64
+          example: 10000
+          description: Total amount of the credit approved.
+        amount_authorized:
+          type: integer
+          format: int64
+          example: 10000
+          description: Amount of the credit line reserved for authorized charges.
+        amount_available:
+          type: integer
+          format: int64
+          example: 10000
+          description: Current amount of the credit line available for purchases.
+        amount_balance:
+          type: integer
+          format: int64
+          example: 2000
+          description: Current balance on the customer's credit line.
+        amount_unapplied_payments:
+          type: integer
+          format: int64
+          example: 1000
+          description: Current amount of a customer's unapplied payments.
+        default_terms:
+          type: string
+          nullable: true
+          description: Set default terms that will apply to this customer's invoices. Can be overridden when requesting an advance.
+          enum:
+          - net7
+          - net10
+          - net10th
+          - net15
+          - net20
+          - net30
+          - net45
+          - net60
+          - net75
+          - net90
+          - net120
+          - net180
+          - null
+        advance_rate:
+          type: number
+          format: double
+          nullable: true
+          example: 0.75
+          minimum: 0
+          maximum: 1
+          description: The advance rate that will be used to determine the amount advanced for this customer's invoices.
+        credit_status:
+          type: string
+          nullable: true
+          description: Current credit status of this customer. See <a href="#operation/requestCustomerCreditCheck">#request-a-credit-check</a> for more details.
+          enum:
+          - approved
+          - hold
+          - declined
+          - pending
+          - deactivated
+          - null
+        net_terms_status:
+          type: string
+          nullable: true
+          description: Current net terms enrollment status of this customer. See <a href="#operation/fetchCustomer">#fetchCustomer</a> for more details.
+          enum:
+          - enrolled
+          - pending_enrollment
+          - enrollment_expired
+          - null
+        net_terms_enrollment_url:
+          type: string
+          nullable: true
+          example: www.app.resolvepay.com/merchant-id/activate/123456
+          description: The URL for a customer to complete enrollment requirements when net_terms_status is pending_enrollment. See <a href="#operation/fetchCustomer">#fetchCustomer</a> for more details.
+        net_terms_enrollment_expires_at:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2020-01-01T00:00:00.750Z'
+          description: The date by which the customer must be enrolled in this net terms offer, not null when net_terms_status is pending_enrollment.
+        credit_check_requested_at:
+          type: string
+          format: date-time
+          nullable: true
+          example: '2020-01-01T00:00:00.750Z'
+          description: The date a credit check was requested.
+        archived:
+          type: boolean
+          example: false
+          description: Boolean indicating if customer is archived.
+        duns_number:
+          type: string
+          nullable: true
+          example: 00-123-4567
+          description: Dun & Bradstreet unique nine-digit identifier for businesses that is associated with a business's Live Business Identity
+        credit_decisions:
+          type: array
+          description: Array of credit decisions made for this customer.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: abc123
+                description: Unique identifier for the credit decision.
+              created_at:
+                type: string
+                format: date-time
+                example: '2020-01-01T00:00:00.750Z'
+                description: Date the credit decision was created.
+              decision:
+                type: string
+                enum:
+                - approved
+                - declined
+                - hold
+                - line_adjustment
+                - deactivate
+                example: approved
+                description: The credit decision outcome.
+              amount:
+                type: integer
+                format: int64
+                example: 10000
+                description: The credit amount approved.
+              advance_rate:
+                type: number
+                format: double
+                example: 0.75
+                minimum: 0
+                maximum: 1
+                description: The advance rate for this credit decision.
+              decline_code:
+                type: string
+                enum:
+                - no_business_found
+                - thin_file
+                - failing_credit
+                - not_approved_need_more_info
+                - sole_prop
+                - applicant_business_association
+                - merchant_risk
+                - fraud
+                - no_us_address
+                - duplicate
+                - test_account
+                - email_verification_freemail
+                - email_verification_domain
+                - address_verification
+                - poor_cash_flow
+                - additional_info_not_provided
+                - other
+                nullable: true
+                example: no_business_found
+                description: Code indicating reason for decline, if applicable.
+              hold_code:
+                type: string
+                enum:
+                - past_due
+                - failed_payment
+                - requested_by_customer
+                - requested_by_merchant
+                - dispute
+                - fraud
+                - churned
+                - payment_plan
+                - inactive
+                - other
+                nullable: true
+                example: past_due
+                description: Code indicating reason for hold, if applicable.
+    CustomerPostRequest:
+      type: object
+      required:
+      - business_address
+      - business_city
+      - business_state
+      - business_zip
+      - business_country
+      - business_name
+      - email
+      - business_ap_email
+      properties:
+        business_address:
+          type: string
+          example: 111 Main Street
+          description: Street address of the business' primary location.
+        business_city:
+          type: string
+          example: San Francisco
+          description: City of the business' primary location.
+        business_state:
+          type: string
+          example: CA
+          description: State or province of the business' primary location.
+        business_zip:
+          type: string
+          example: '94104'
+          description: US zip code of the business' primary location.
+        business_country:
+          type: string
+          format: ISO 3166-1 alpha 2
+          example: US
+          description: 2-letter country code of the business' primary location, according to the **ISO 3166-1 alpha 2** standard.
+        business_ap_email:
+          type: string
+          format: email
+          example: ap@example.com
+          description: Email address of the business' accounts payable person or department.
+        business_ap_phone:
+          type: string
+          example: (202) 456-1414
+          description: Phone number of the business' accounts payable person or department.
+        business_ap_phone_extension:
+          type: string
+          example: '123'
+          description: Phone number extension of the business' accounts payable person or department.
+        business_name:
+          type: string
+          example: Example, Inc.
+          description: Full legal name of the business being applied for.
+        email:
+          type: string
+          format: email
+          example: user@example.com
+          description: Email of the customer applying for terms.
+        default_terms:
+          type: string
+          nullable: true
+          description: Default terms invoices will be advanced with.
+          enum:
+          - net7
+          - net10
+          - net10th
+          - net15
+          - net20
+          - net30
+          - net45
+          - net60
+          - net75
+          - net90
+          - net120
+          - net180
+          - null
+    CustomerPutRequest:
+      type: object
+      properties:
+        business_address:
+          type: string
+          example: 111 Main Street
+          description: Street address of the business' primary location.
+        business_city:
+          type: string
+          example: San Francisco
+          description: City of the business' primary location.
+        business_state:
+          type: string
+          example: CA
+          description: State or province of the business' primary location.
+        business_zip:
+          type: string
+          example: '94104'
+          description: US zip code of the business' primary location.
+        business_country:
+          type: string
+          example: US
+          description: Country of the business' primary location.
+        business_ap_email:
+          type: string
+          example: ap@example.com
+          description: Email address of the business' accounts payable person or department.
+        business_ap_phone:
+          type: string
+          example: (202) 456-1414
+          description: Phone number of the business' accounts payable person or department.
+        business_ap_phone_extension:
+          type: string
+          example: '123'
+          description: Phone number extension of the business' accounts payable person or department.
+        business_name:
+          type: string
+          example: Example, Inc.
+          description: Full legal name of the business being applied for.
+        email:
+          type: string
+          format: email
+          example: user@example.com
+          description: Email of the customer applying for terms.
+        default_terms:
+          type: string
+          nullable: true
+          description: Set default terms that will apply to this customer's invoices. Can be overridden when requesting an advance.
+          enum:
+          - net7
+          - net10
+          - net10th
+          - net15
+          - net20
+          - net30
+          - net45
+          - net60
+          - net75
+          - net90
+          - net120
+          - net180
+          - null
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+    CustomerList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          items:
+            $ref: '#/components/schemas/Customer'
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    CreditCheckExistsError:
+      type: object
+      title: Credit check exists error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Credit check already created for this customer.
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    CustomerCreditCheckRequest:
+      type: object
+      required:
+      - amount_requested
+      - has_purchase_history
+      properties:
+        amount_requested:
+          type: number
+          example: 50000
+          minimum: 1
+          description: Request an amount (plus buffer) to cover your customer's purchases over their payment term. This can be increased later.
+        business_description:
+          type: string
+          maxLength: 500
+          example: Put a description your customer's business here.
+          description: A description of your customer's business.
+          nullable: true
+        has_purchase_history:
+          type: boolean
+          example: true
+          description: Indicates whether this customer has prior purchase history with the merchant. When `true`, the merchant has prior purchase history with this customer.
+        has_purchase_terms_history:
+          type: boolean
+          example: false
+          description: Required if `has_purchase_history = true`. Indicates whether this customer has prior purchase history on net terms with the merchant. When `true`, the merchant has prior net terms purchase history with this customer.
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+  requestBodies:
+    CustomerPutRequestBody:
+      description: 'Fields to update a customer with.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerPutRequest'
+    CustomerRequestCreditCheckBody:
+      description: Request a credit check for a customer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerCreditCheckRequest'
+    CustomerPostRequestBody:
+      description: Customer to add to the system.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerPostRequest'
+  securitySchemes:
+    basicAuth:
+      description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.
+      type: http
+      scheme: basic
+    bearerAuth:
+      description: Bearer token authentication using an OAuth access token minted for an API access key created in Merchant Dashboard.
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

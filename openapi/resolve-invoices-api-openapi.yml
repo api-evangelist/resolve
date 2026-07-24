@@ -1,0 +1,909 @@
+openapi: 3.0.0
+info:
+  title: Resolve API Reference Access Keys Invoices API
+  version: V5
+  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
+
+
+    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
+
+    '
+servers:
+- url: https://app-sandbox.resolvepay.com/api
+  description: Sandbox server
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Invoices
+  x-displayName: Invoices
+  description: 'The invoice represents the business transaction between you and your customer. In Resolve, an invoice must be tied to a customer and an advance can be taken on the invoice.
+
+
+    For an advance to be taken on the invoice, a PDF of the invoice must be uploaded and the associated customer must be approved and have available credit for the amount of the invoice.
+
+    '
+paths:
+  /invoices:
+    get:
+      summary: List all invoices
+      operationId: listInvoices
+      description: Return a list of invoices.
+      parameters:
+      - name: limit
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+          minimum: 25
+        in: query
+        description: Limit the number of invoices returned.
+      - name: page
+        schema:
+          type: string
+          default: '1'
+        in: query
+        description: Specify the page of invoices returned.
+      - name: filter
+        explode: true
+        style: deepObject
+        schema:
+          type: object
+          properties:
+            number:
+              type: object
+              properties:
+                eq:
+                  type: string
+            order_number:
+              type: object
+              properties:
+                eq:
+                  type: string
+            po_number:
+              type: object
+              properties:
+                eq:
+                  type: string
+            customer_id:
+              type: object
+              properties:
+                eq:
+                  type: string
+            created_at:
+              type: object
+              properties:
+                eq:
+                  type: string
+                  format: date-time
+                gt:
+                  type: string
+                  format: date-time
+                lt:
+                  type: string
+                  format: date-time
+                gte:
+                  type: string
+                  format: date-time
+                lte:
+                  type: string
+                  format: date-time
+            fully_paid:
+              type: object
+              properties:
+                eq:
+                  type: boolean
+                ne:
+                  type: boolean
+            fully_paid_at:
+              type: object
+              properties:
+                eq:
+                  type: string
+                  format: date-time
+                gt:
+                  type: string
+                  format: date-time
+                lt:
+                  type: string
+                  format: date-time
+                gte:
+                  type: string
+                  format: date-time
+                lte:
+                  type: string
+                  format: date-time
+            amount_due:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            amount_balance:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            amount_pending:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            amount_refunded:
+              type: object
+              properties:
+                eq:
+                  type: number
+                gt:
+                  type: number
+                lt:
+                  type: number
+                gte:
+                  type: number
+                lte:
+                  type: number
+            archived:
+              type: object
+              properties:
+                eq:
+                  type: boolean
+                ne:
+                  type: boolean
+        in: query
+        description: "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceListResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Invoices
+    post:
+      summary: Create an invoice
+      operationId: createInvoice
+      description: Create a new advanced or non-advanced invoice with the desired terms.
+      requestBody:
+        $ref: '#/components/requestBodies/InvoiceCreateRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Invoices
+  /invoices/{invoice_id}:
+    get:
+      summary: Fetch an invoice
+      operationId: fetchInvoice
+      description: Retrieve an existing invoice by its ID.
+      parameters:
+      - name: invoice_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the invoice to retrieve
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Invoices
+    put:
+      summary: Update an invoice
+      operationId: updateInvoice
+      description: Update an invoice.
+      parameters:
+      - name: invoice_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the invoice to update
+      requestBody:
+        $ref: '#/components/requestBodies/InvoiceUpdateRequestBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Invoices
+    delete:
+      summary: Delete an invoice
+      operationId: deleteInvoice
+      description: Delete an invoice.
+      parameters:
+      - name: invoice_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the invoice to delete
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Invoices
+  /invoices/{invoice_id}/send:
+    put:
+      summary: Send an invoice
+      operationId: sendInvoice
+      description: Send an invoice to the customer.
+      parameters:
+      - name: invoice_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the invoice to send
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Invoices
+  /invoices/{invoice_id}/void:
+    post:
+      summary: Void an invoice
+      operationId: voidInvoice
+      description: Void an invoice.
+      parameters:
+      - name: invoice_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the invoice to void
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Invoices
+  /invoices/{invoice_id}/cancel:
+    post:
+      summary: Cancel an invoice
+      operationId: cancelInvoice
+      description: Cancel an invoice.
+      parameters:
+      - name: invoice_id
+        schema:
+          type: string
+        in: path
+        required: true
+        description: ID of the invoice to cancel
+      responses:
+        '200':
+          $ref: '#/components/responses/InvoiceResponse'
+        '400':
+          $ref: '#/components/responses/InvalidRequestOrValidationResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedResponse'
+        '404':
+          $ref: '#/components/responses/NotFoundResponse'
+        '429':
+          $ref: '#/components/responses/RateLimitResponse'
+      tags:
+      - Invoices
+components:
+  schemas:
+    InvoiceRequestBeforeSentBase:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          example: X50sgfRd
+          description: ID of the customer being charged
+        advance_requested:
+          type: boolean
+          example: 'false'
+          description: The type of invoice. This will determine if this is an advanced or non-advanced invoice.
+    InvoiceUpdateBeforeSent:
+      title: Not sent
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
+    InvoiceRequestAmountBase:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          example: 2000
+          description: Amount being charged from the customer
+    InvoiceUpdateAfterSentNonAdvanced:
+      title: Sent without advance
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
+    InvoiceListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: string
+          example: PMMlaE5wbg0
+          description: Unique identifier for the invoice.
+        source:
+          type: string
+          enum:
+          - QUICKBOOKS
+          - MERCHANT_USER
+          - ADMIN_USER
+          - CUSTOMER_USER
+          - API
+          example: MERCHANT_USER
+        customer_id:
+          type: string
+          description: ID of the customer being charged.
+        order_number:
+          type: string
+          example: '5055'
+          description: Order number identifier.
+        number:
+          type: string
+          example: 'Inv # 123'
+          description: Invoice number identifier.
+        po_number:
+          type: string
+          example: PO-555
+          description: PO number identifier.
+        notes:
+          type: string
+          example: Example of additional notes for Customer.
+          description: Additional notes for the Customer
+        line_items:
+          type: array
+          example: []
+          description: Line item data
+        merchant_invoice_url:
+          type: string
+          example: https://www.example.com/invoice.pdf
+          description: The invoice PDF that you've uploaded to Resolve.
+        resolve_invoice_url:
+          type: string
+          example: https://www.example.com/resolve-invoice.pdf
+          description: Resolve-issued invoice PDF with your invoice attached.
+        resolve_invoice_status:
+          type: string
+          example: completed
+          description: 'Shows current status of the Resolve-issued invoice PDF.
+
+
+            - `not_generated` - PDF wasn''t created or queued for creation. Resolve PDFs
+
+            are generated when an invoice is sent.
+
+            - `processing` - PDF is in the process of being generated. Try to refetch the invoice
+
+            in a minute to get a `resolve_invoice_url` link.
+
+            - `completed` - PDF is generated, `resolve_invoice_url` points to the generated file.
+
+            '
+          enum:
+          - not_generated
+          - processing
+          - completed
+        fully_paid:
+          type: boolean
+          example: true
+          description: Indicates whether the invoice is fully paid.
+        fully_paid_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00.730Z'
+          description: The date the invoice has been fully paid.
+        advanced:
+          type: boolean
+          example: false
+          description: Indicates whether the invoice has been advanced.
+        due_at:
+          type: string
+          format: date-time
+          example: '2020-02-01T00:00:00.750Z'
+          description: The current due date for this invoice's payment.
+        original_due_at:
+          type: string
+          format: date-time
+          example: '2020-02-01T00:00:00.750Z'
+          description: The due date for this invoice at the time an advance was issued.
+        invoiced_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00.750Z'
+          description: The date this invoice was created in your system of record (Resolve or Quickbooks).
+        advance_requested:
+          type: boolean
+          example: 'false'
+          description: Indicated if advance was requested.
+        terms:
+          type: string
+          enum:
+          - due_upon_receipt
+          - net7
+          - net10
+          - net10th
+          - net15
+          - net20
+          - net30
+          - net45
+          - net60
+          - net75
+          - net90
+          - net120
+          - net180
+          description: The terms selected for this invoice.
+        amount_payout_due:
+          type: number
+          format: double
+          example: 4000
+          description: The original amount that Resolve owed on this invoice on the advance date.
+        amount_payout_paid:
+          type: number
+          format: double
+          example: 2000
+          description: The amount that Resolve has paid out.
+        amount_payout_pending:
+          type: number
+          format: double
+          example: 1000
+          description: The amount that Resolve has currently pending to be paid out.
+        amount_payout_refunded:
+          type: number
+          format: double
+          example: 500
+          description: The amount that Resolve has debited from due to refunds.
+        amount_payout_balance:
+          type: number
+          format: double
+          example: 500
+          description: The amount remaining to be paid out.
+        payout_fully_paid:
+          type: boolean
+          example: false
+          description: The status of whether or not this invoice has been fully paid out.
+        payout_fully_paid_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: The date of when this invoice has been fully paid out.
+        amount_balance:
+          type: number
+          format: double
+          example: 2000
+          description: Current balance due.
+        amount_due:
+          type: number
+          format: double
+          example: 4000
+          description: Original amount due.
+        amount_refunded:
+          type: number
+          format: double
+          example: 0
+          description: Amount that has been refunded.
+        amount_pending:
+          type: number
+          format: double
+          example: 1000
+          description: Amount of total payments pending.
+        amount_paid:
+          type: number
+          format: double
+          example: 1000
+          description: Amount of total payments applied to this invoice.
+        amount_advance:
+          type: number
+          format: double
+          example: 4000
+          description: Amount of advance received.
+        amount_additional_advance:
+          type: number
+          format: double
+          example: 1000
+          description: Amount of additional advance received.
+        amount_advance_fee:
+          type: number
+          format: double
+          example: 10.75
+          description: Fee for the amount of advance.
+        amount_advance_fee_refund:
+          type: number
+          format: double
+          example: 10.75
+          description: Refunded fees for the amount of advance.
+        advance_rate:
+          type: number
+          format: double
+          example: 0.75
+          minimum: 0
+          maximum: 1
+          description: The advance rate that was used to determine amount of advance.
+        advanced_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: The date this invoice was advanced.
+        amount_customer_fee_total:
+          type: number
+          format: double
+          example: 500
+          description: The total amount of customer fees accrued.
+        amount_customer_fee_waived:
+          type: number
+          format: double
+          example: 120
+          description: The total amount of customer fees waived.
+        amount_customer_fee_paid:
+          type: number
+          format: double
+          example: 300
+          description: The total amount of customer fees paid.
+        amount_customer_fee_balance:
+          type: number
+          format: double
+          example: 80
+          description: The current amount of customer fees owed.
+        created_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: Date the invoice was created.
+        updated_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: Date the invoice was last updated.
+        archived:
+          type: boolean
+          example: false
+          description: Boolean indicating if invoice is archived.
+        invoice_payment_url:
+          type: string
+          example: https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0
+          description: Link to make invoice payments.
+        canceled:
+          type: boolean
+          example: false
+          description: Indicates whether the invoice is canceled.
+        canceled_at:
+          type: string
+          format: date-time
+          example: null
+          description: Date the invoice was canceled.
+        voided:
+          type: boolean
+          example: false
+          description: Indicates whether the invoice is voided.
+        voided_at:
+          type: string
+          format: date-time
+          example: null
+          description: Date the invoice was voided.
+        amount_canceled:
+          type: number
+          format: double
+          example: 0
+          description: Amount that has been canceled.
+        amount_voided:
+          type: number
+          format: double
+          example: 0
+          description: Amount that has been voided.
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    InvoiceRequestAfterSentBase:
+      type: object
+      properties:
+        terms:
+          type: string
+          description: The terms selected for this invoice. Terms selected must be available on your account and different terms will be available based on advance_requested.
+          example: due_upon_receipt
+          enum:
+          - due_upon_receipt
+          - net7
+          - net10
+          - net10th
+          - net15
+          - net20
+          - net30
+          - net45
+          - net60
+          - net75
+          - net90
+          - net120
+          - net180
+        merchant_invoice_url:
+          type: string
+          format: url
+          example: https://example.com/invoice.pdf
+          description: URL for the publicly-accessible invoice PDF.
+        number:
+          type: string
+          example: R334-097
+          description: Invoice number identifier.
+        order_number:
+          type: string
+          example: 09785
+          description: Order number identifier.
+        po_number:
+          type: string
+          example: PO-09785
+          description: PO number identifier.
+        notes:
+          type: string
+          example: Example of additional notes for Customer.
+          description: Additional notes for the Customer
+    InvoiceRequest:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
+    InvoiceCreateRequest:
+      allOf:
+      - type: object
+        required:
+        - amount
+        - customer_id
+        - number
+        - merchant_invoice_url
+      - $ref: '#/components/schemas/InvoiceRequest'
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    InvoiceUpdateAfterSentAdvanced:
+      title: Sent with advance
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+  requestBodies:
+    InvoiceCreateRequestBody:
+      description: Invoice to add to the system.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InvoiceCreateRequest'
+    InvoiceUpdateRequestBody:
+      description: 'Fields to update an invoice with. Please note, allowed fields depend on whether or not the invoice has been sent.
+
+        '
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/InvoiceUpdateBeforeSent'
+            - $ref: '#/components/schemas/InvoiceUpdateAfterSentAdvanced'
+            - $ref: '#/components/schemas/InvoiceUpdateAfterSentNonAdvanced'
+  responses:
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    InvoiceResponse:
+      description: An object representing an invoice.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Invoice'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    InvoiceListResponse:
+      description: 'An object with an array of results containing up to the limit. If no invoices are found, the results array will be empty.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InvoiceListResponse'
+  securitySchemes:
+    basicAuth:
+      description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.
+      type: http
+      scheme: basic
+    bearerAuth:
+      description: Bearer token authentication using an OAuth access token minted for an API access key created in Merchant Dashboard.
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
