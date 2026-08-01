@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/resolve-merchant-api-openapi.yaml
+docs: https://docs.resolvepay.com/guides/direct-api-access-and-authentication
+note: >-
+  The OpenAPI models auth as HTTP basic + bearer (JWT), but Resolve's OAuth
+  access keys (M2M) carry coarse-grained scopes documented in the auth guide and
+  the MCP tool reference. Read tools require merchant:read; write tools require
+  merchant:write.
+schemes:
+  - name: bearerAuth
+    source: openapi/resolve-merchant-api-openapi.yaml
+    type: oauth-access-key
+    token_url: https://app.resolvepay.com/api/access-keys/token
+    description: OAuth access keys created in Merchant Dashboard, exchanged for a JWT bearer token.
+scopes:
+  - scope: merchant:read
+    description: Read-only access to merchant resources (list/fetch customers, invoices, orders, charges, shipments, payments, payouts).
+    flows: [clientCredentials]
+    sources: [https://docs.resolvepay.com/guides/mcp-tools]
+  - scope: merchant:write
+    description: Write access to merchant resources (create/update/send/capture/void/cancel invoices, customers, orders, charges, shipments, credit checks, enrollment).
+    flows: [clientCredentials]
+    sources: [https://docs.resolvepay.com/guides/mcp-tools]

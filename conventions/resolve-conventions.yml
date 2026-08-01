@@ -1,0 +1,50 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.resolvepay.com/api-reference
+apis:
+  - openapi/resolve-merchant-api-openapi.yaml
+  - openapi/resolve-partners-api-openapi.yaml
+authentication:
+  styles:
+    - HTTP Basic Auth (merchant_id as username, merchant secret key as password)
+    - Bearer token (JWT) minted from an OAuth access key created in the Merchant Dashboard
+  cross_ref: authentication/resolve-authentication.yml
+idempotency:
+  supported: true
+  mechanism: >-
+    Capture operations accept an idempotency_key in the request body to safely
+    retry duplicate captures; webhook consumers are advised to implement
+    idempotency to handle duplicate event deliveries from automatic retries.
+  scope: request body field (idempotency_key) on capture operations
+  evidence: openapi/resolve-merchant-api-openapi.yaml
+pagination:
+  style: page-number
+  request_params:
+    - limit    # maximum records returned
+    - page     # position multiplier; offset = page * limit
+  response_fields:
+    - count    # total matching records
+    - results  # array of returned records
+versioning:
+  scheme: header + major bundle
+  header: resolve-api-version
+  current: V5 (merchant), partners-v1 (partners)
+  legacy: v2 documented at https://app.resolvepay.com/docs/api/v2
+rate_limiting:
+  algorithm: sliding window
+  limit: 100 requests/minute
+  status_on_exceed: 429
+  headers:
+    - X-Ratelimit-Limit
+    - X-Ratelimit-Remaining
+    - X-Ratelimit-Reset   # UNIX timestamp
+  cross_ref: rate-limits/resolve-rate-limits.yml
+error_envelope:
+  shape: '{ "error": { "type": "<error_type>", "message": "<detail>", "details": [ { "path": "...", "message": "..." } ] } }'
+  format: custom (not RFC 9457 problem+json)
+  types: [invalid_request, authentication_error, forbidden_error, not_found_error, validation_error, rate_limit_error]
+  cross_ref: errors/resolve-problem-types.yml
+webhooks:
+  supported: true
+  retry: automatic retry with backoff on delivery failure (non-2xx / connection error)
+  cross_ref: asyncapi/resolve-webhooks.yml

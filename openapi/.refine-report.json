@@ -1,0 +1,36 @@
+{
+  "provider": "resolve",
+  "sources": [
+    "resolve-access-keys-api-openapi.yml",
+    "resolve-charges-api-openapi.yml",
+    "resolve-credit-notes-api-openapi.yml",
+    "resolve-customers-api-openapi.yml",
+    "resolve-invoices-api-openapi.yml",
+    "resolve-merchants-api-openapi.yml",
+    "resolve-orders-api-openapi.yml",
+    "resolve-payments-api-openapi.yml",
+    "resolve-payout-transactions-api-openapi.yml",
+    "resolve-payouts-api-openapi.yml",
+    "resolve-shipments-api-openapi.yml",
+    "resolve-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "resolve-access-keys-api-openapi.yml",
+    "resolve-charges-api-openapi.yml",
+    "resolve-credit-notes-api-openapi.yml",
+    "resolve-customers-api-openapi.yml",
+    "resolve-invoices-api-openapi.yml",
+    "resolve-merchants-api-openapi.yml",
+    "resolve-orders-api-openapi.yml",
+    "resolve-payments-api-openapi.yml",
+    "resolve-payout-transactions-api-openapi.yml",
+    "resolve-payouts-api-openapi.yml",
+    "resolve-shipments-api-openapi.yml",
+    "resolve-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

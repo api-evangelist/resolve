@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Resolve Merchant API
+  version: 1.0.0
+extends: openapi/resolve-merchant-api-openapi.yaml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-20'
+      x-apievangelist-production-server: https://app.resolvepay.com/api
+      x-apievangelist-mcp: https://mcp.resolvepay.com/mcp
+      x-apievangelist-conventions: conventions/resolve-conventions.yml
+      x-apievangelist-errors: errors/resolve-problem-types.yml
+      x-apievangelist-webhooks: asyncapi/resolve-webhooks.yml
+  - target: $.servers
+    update:
+      - url: https://app.resolvepay.com/api
+        description: Production
+      - url: https://app-sandbox.resolvepay.com/api
+        description: Sandbox

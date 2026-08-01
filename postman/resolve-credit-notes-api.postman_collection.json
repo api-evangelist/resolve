@@ -1,0 +1,1705 @@
+{
+  "info": {
+    "_postman_id": "1997a2a0-d486-4723-a484-7eddc3aa9c01",
+    "name": "Resolve API Reference Access Keys Credit Notes API",
+    "description": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:46:42.000Z",
+    "updatedAt": "2026-07-28T02:46:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1997a2a0-d486-4723-a484-7eddc3aa9c01"
+  },
+  "item": [
+    {
+      "name": "credit-notes",
+      "item": [
+        {
+          "name": "{credit_note_id}",
+          "item": [
+            {
+              "name": "void",
+              "item": [
+                {
+                  "name": "Request to void a credit note",
+                  "id": "01dc1d11-2b66-4e93-9dde-11395d8a1da5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/credit-notes/:credit_note_id/void",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit-notes",
+                        ":credit_note_id",
+                        "void"
+                      ],
+                      "variable": [
+                        {
+                          "id": "44b4324c-4c98-4073-ad0f-c94615f1e0ca",
+                          "key": "credit_note_id"
+                        }
+                      ]
+                    },
+                    "description": "Request to void an existing credit note."
+                  },
+                  "response": [
+                    {
+                      "id": "a668d114-2ca4-4add-96da-bd88e7f0cff1",
+                      "name": "The credit note object.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/credit-notes/:credit_note_id/void",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "credit-notes",
+                            ":credit_note_id",
+                            "void"
+                          ],
+                          "variable": [
+                            {
+                              "key": "credit_note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"source\": \"API\",\n  \"customer_id\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"created_by_user_id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"amount_balance\": \"<double>\",\n  \"amount_paid\": \"<double>\",\n  \"amount_voided\": \"<double>\",\n  \"amount_payout\": \"<double>\",\n  \"amount_payout_balance\": \"<double>\",\n  \"amount_payout_paid\": \"<double>\",\n  \"credit_note_url\": \"<string>\",\n  \"resolve_credit_note_url\": \"<string>\",\n  \"reason_code\": \"double_payment_on_invoice\",\n  \"reason_message\": \"<string>\",\n  \"voided\": \"<boolean>\",\n  \"voided_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:46:43.000Z",
+                      "updatedAt": "2026-07-28T02:46:43.000Z",
+                      "uid": "35240-a668d114-2ca4-4add-96da-bd88e7f0cff1"
+                    },
+                    {
+                      "id": "a9943b9a-1f9b-4d5d-80b2-4259532be532",
+                      "name": "Bad request error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/credit-notes/:credit_note_id/void",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "credit-notes",
+                            ":credit_note_id",
+                            "void"
+                          ],
+                          "variable": [
+                            {
+                              "key": "credit_note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:43.000Z",
+                      "updatedAt": "2026-07-28T02:46:43.000Z",
+                      "uid": "35240-a9943b9a-1f9b-4d5d-80b2-4259532be532"
+                    },
+                    {
+                      "id": "3c1cdb21-c94a-463e-ace7-0ec9f4709978",
+                      "name": "Unauthorized error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/credit-notes/:credit_note_id/void",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "credit-notes",
+                            ":credit_note_id",
+                            "void"
+                          ],
+                          "variable": [
+                            {
+                              "key": "credit_note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:43.000Z",
+                      "updatedAt": "2026-07-28T02:46:43.000Z",
+                      "uid": "35240-3c1cdb21-c94a-463e-ace7-0ec9f4709978"
+                    },
+                    {
+                      "id": "42522a5a-1d6d-4218-838b-a14732ad528d",
+                      "name": "Not found error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/credit-notes/:credit_note_id/void",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "credit-notes",
+                            ":credit_note_id",
+                            "void"
+                          ],
+                          "variable": [
+                            {
+                              "key": "credit_note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:43.000Z",
+                      "updatedAt": "2026-07-28T02:46:43.000Z",
+                      "uid": "35240-42522a5a-1d6d-4218-838b-a14732ad528d"
+                    },
+                    {
+                      "id": "960d3c5a-9982-45bc-8dca-2931a9a8dad3",
+                      "name": "Rate limit error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/credit-notes/:credit_note_id/void",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "credit-notes",
+                            ":credit_note_id",
+                            "void"
+                          ],
+                          "variable": [
+                            {
+                              "key": "credit_note_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:43.000Z",
+                      "updatedAt": "2026-07-28T02:46:43.000Z",
+                      "uid": "35240-960d3c5a-9982-45bc-8dca-2931a9a8dad3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:46:43.000Z",
+                  "updatedAt": "2026-07-28T02:46:43.000Z",
+                  "uid": "35240-01dc1d11-2b66-4e93-9dde-11395d8a1da5"
+                }
+              ],
+              "id": "8ab32401-bf5b-4965-8458-27df747c19ac",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-8ab32401-bf5b-4965-8458-27df747c19ac"
+            },
+            {
+              "name": "Fetch a credit note",
+              "id": "8394db2e-f10d-4a94-a04b-af0b5b3c293b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes/:credit_note_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9a4a216e-c843-41be-96b2-1b866ac6a745",
+                      "key": "credit_note_id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the credit note to retrieve"
+                    }
+                  ]
+                },
+                "description": "Retrieve an existing credit note by its ID."
+              },
+              "response": [
+                {
+                  "id": "d29591bb-924d-4b31-a34e-76b85520f91f",
+                  "name": "The credit note object.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/credit-notes/:credit_note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit-notes",
+                        ":credit_note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "credit_note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"source\": \"API\",\n  \"customer_id\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"created_by_user_id\": \"<string>\",\n  \"number\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"amount_balance\": \"<double>\",\n  \"amount_paid\": \"<double>\",\n  \"amount_voided\": \"<double>\",\n  \"amount_payout\": \"<double>\",\n  \"amount_payout_balance\": \"<double>\",\n  \"amount_payout_paid\": \"<double>\",\n  \"credit_note_url\": \"<string>\",\n  \"resolve_credit_note_url\": \"<string>\",\n  \"reason_code\": \"double_payment_on_invoice\",\n  \"reason_message\": \"<string>\",\n  \"voided\": \"<boolean>\",\n  \"voided_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:46:43.000Z",
+                  "updatedAt": "2026-07-28T02:46:43.000Z",
+                  "uid": "35240-d29591bb-924d-4b31-a34e-76b85520f91f"
+                },
+                {
+                  "id": "2fd41cb2-454f-4d4a-a005-d9c8af019407",
+                  "name": "Bad request error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/credit-notes/:credit_note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit-notes",
+                        ":credit_note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "credit_note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:43.000Z",
+                  "updatedAt": "2026-07-28T02:46:43.000Z",
+                  "uid": "35240-2fd41cb2-454f-4d4a-a005-d9c8af019407"
+                },
+                {
+                  "id": "e6c143a9-c68d-45fc-8dea-587b44cf1be3",
+                  "name": "Unauthorized error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/credit-notes/:credit_note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit-notes",
+                        ":credit_note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "credit_note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:43.000Z",
+                  "updatedAt": "2026-07-28T02:46:43.000Z",
+                  "uid": "35240-e6c143a9-c68d-45fc-8dea-587b44cf1be3"
+                },
+                {
+                  "id": "63f81d9a-a4f9-4bd8-be17-c84a4e62852d",
+                  "name": "Not found error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/credit-notes/:credit_note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit-notes",
+                        ":credit_note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "credit_note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:43.000Z",
+                  "updatedAt": "2026-07-28T02:46:43.000Z",
+                  "uid": "35240-63f81d9a-a4f9-4bd8-be17-c84a4e62852d"
+                },
+                {
+                  "id": "8ac0bc67-b0e0-46e2-89e8-183839483f17",
+                  "name": "Rate limit error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/credit-notes/:credit_note_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit-notes",
+                        ":credit_note_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "credit_note_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:43.000Z",
+                  "updatedAt": "2026-07-28T02:46:43.000Z",
+                  "uid": "35240-8ac0bc67-b0e0-46e2-89e8-183839483f17"
+                }
+              ],
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-8394db2e-f10d-4a94-a04b-af0b5b3c293b"
+            }
+          ],
+          "id": "7972b886-d5a2-42ce-969d-2db880395d44",
+          "createdAt": "2026-07-28T02:46:43.000Z",
+          "updatedAt": "2026-07-28T02:46:43.000Z",
+          "uid": "35240-7972b886-d5a2-42ce-969d-2db880395d44"
+        },
+        {
+          "name": "List credit notes",
+          "id": "b6b7ca3e-28fa-4763-be46-9615d6181d27",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/credit-notes?limit=25&page=1&filter[number][eq]=<string>&filter[customer_id][eq]=<string>&filter[invoice_id][eq]=<string>&filter[payment_id][eq]=<string>&filter[amount][eq]=<number>&filter[amount][gt]=<number>&filter[amount][lt]=<number>&filter[amount][gte]=<number>&filter[amount][lte]=<number>&filter[amount_balance][eq]=<number>&filter[amount_balance][gt]=<number>&filter[amount_balance][lt]=<number>&filter[amount_balance][gte]=<number>&filter[amount_balance][lte]=<number>&filter[amount_paid][eq]=<number>&filter[amount_paid][gt]=<number>&filter[amount_paid][lt]=<number>&filter[amount_paid][gte]=<number>&filter[amount_paid][lte]=<number>&sort=-created_at",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "credit-notes"
+              ],
+              "query": [
+                {
+                  "description": "Limit the number of credit notes returned.",
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "description": "Specify the page of credit notes returned.",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[number][eq]",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[customer_id][eq]",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[invoice_id][eq]",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[payment_id][eq]",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount][eq]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount][gt]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount][lt]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount][gte]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount][lte]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_balance][eq]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_balance][gt]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_balance][lt]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_balance][gte]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_balance][lte]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_paid][eq]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_paid][gt]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_paid][lt]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_paid][gte]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter[amount_paid][lte]",
+                  "value": "<number>"
+                },
+                {
+                  "description": "Sort credit notes by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n  - `amount_balance`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n",
+                  "key": "sort",
+                  "value": "-created_at"
+                }
+              ]
+            },
+            "description": "Return a list of credit notes."
+          },
+          "response": [
+            {
+              "id": "23386759-2ae0-40f9-8ff8-f2ab963731d8",
+              "name": "A paginated list of credit notes.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes?limit=25&page=1&filter[number][eq]=<string>&filter[customer_id][eq]=<string>&filter[invoice_id][eq]=<string>&filter[payment_id][eq]=<string>&filter[amount][eq]=<number>&filter[amount][gt]=<number>&filter[amount][lt]=<number>&filter[amount][gte]=<number>&filter[amount][lte]=<number>&filter[amount_balance][eq]=<number>&filter[amount_balance][gt]=<number>&filter[amount_balance][lt]=<number>&filter[amount_balance][gte]=<number>&filter[amount_balance][lte]=<number>&filter[amount_paid][eq]=<number>&filter[amount_paid][gt]=<number>&filter[amount_paid][lt]=<number>&filter[amount_paid][gte]=<number>&filter[amount_paid][lte]=<number>&sort=-created_at",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of credit notes returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of credit notes returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[invoice_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[payment_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Sort credit notes by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n  - `amount_balance`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n",
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"count\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"source\": \"ADMIN_USER\",\n      \"customer_id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"invoice_id\": \"<string>\",\n      \"created_by_user_id\": \"<string>\",\n      \"number\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"amount_balance\": \"<double>\",\n      \"amount_paid\": \"<double>\",\n      \"amount_voided\": \"<double>\",\n      \"amount_payout\": \"<double>\",\n      \"amount_payout_balance\": \"<double>\",\n      \"amount_payout_paid\": \"<double>\",\n      \"credit_note_url\": \"<string>\",\n      \"resolve_credit_note_url\": \"<string>\",\n      \"reason_code\": \"duplicate\",\n      \"reason_message\": \"<string>\",\n      \"voided\": \"<boolean>\",\n      \"voided_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"source\": \"API\",\n      \"customer_id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"invoice_id\": \"<string>\",\n      \"created_by_user_id\": \"<string>\",\n      \"number\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"amount_balance\": \"<double>\",\n      \"amount_paid\": \"<double>\",\n      \"amount_voided\": \"<double>\",\n      \"amount_payout\": \"<double>\",\n      \"amount_payout_balance\": \"<double>\",\n      \"amount_payout_paid\": \"<double>\",\n      \"credit_note_url\": \"<string>\",\n      \"resolve_credit_note_url\": \"<string>\",\n      \"reason_code\": \"double_payment_on_invoice\",\n      \"reason_message\": \"<string>\",\n      \"voided\": \"<boolean>\",\n      \"voided_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-23386759-2ae0-40f9-8ff8-f2ab963731d8"
+            },
+            {
+              "id": "510f318f-cfbb-41f9-b45e-6745d9d9d40c",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes?limit=25&page=1&filter[number][eq]=<string>&filter[customer_id][eq]=<string>&filter[invoice_id][eq]=<string>&filter[payment_id][eq]=<string>&filter[amount][eq]=<number>&filter[amount][gt]=<number>&filter[amount][lt]=<number>&filter[amount][gte]=<number>&filter[amount][lte]=<number>&filter[amount_balance][eq]=<number>&filter[amount_balance][gt]=<number>&filter[amount_balance][lt]=<number>&filter[amount_balance][gte]=<number>&filter[amount_balance][lte]=<number>&filter[amount_paid][eq]=<number>&filter[amount_paid][gt]=<number>&filter[amount_paid][lt]=<number>&filter[amount_paid][gte]=<number>&filter[amount_paid][lte]=<number>&sort=-created_at",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of credit notes returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of credit notes returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[invoice_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[payment_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Sort credit notes by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n  - `amount_balance`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n",
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-510f318f-cfbb-41f9-b45e-6745d9d9d40c"
+            },
+            {
+              "id": "e028496e-1a7d-465b-a1ef-df0acf6294e2",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes?limit=25&page=1&filter[number][eq]=<string>&filter[customer_id][eq]=<string>&filter[invoice_id][eq]=<string>&filter[payment_id][eq]=<string>&filter[amount][eq]=<number>&filter[amount][gt]=<number>&filter[amount][lt]=<number>&filter[amount][gte]=<number>&filter[amount][lte]=<number>&filter[amount_balance][eq]=<number>&filter[amount_balance][gt]=<number>&filter[amount_balance][lt]=<number>&filter[amount_balance][gte]=<number>&filter[amount_balance][lte]=<number>&filter[amount_paid][eq]=<number>&filter[amount_paid][gt]=<number>&filter[amount_paid][lt]=<number>&filter[amount_paid][gte]=<number>&filter[amount_paid][lte]=<number>&sort=-created_at",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of credit notes returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of credit notes returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[invoice_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[payment_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Sort credit notes by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n  - `amount_balance`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n",
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-e028496e-1a7d-465b-a1ef-df0acf6294e2"
+            },
+            {
+              "id": "01addd11-d128-420d-8250-44a42756b7b2",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes?limit=25&page=1&filter[number][eq]=<string>&filter[customer_id][eq]=<string>&filter[invoice_id][eq]=<string>&filter[payment_id][eq]=<string>&filter[amount][eq]=<number>&filter[amount][gt]=<number>&filter[amount][lt]=<number>&filter[amount][gte]=<number>&filter[amount][lte]=<number>&filter[amount_balance][eq]=<number>&filter[amount_balance][gt]=<number>&filter[amount_balance][lt]=<number>&filter[amount_balance][gte]=<number>&filter[amount_balance][lte]=<number>&filter[amount_paid][eq]=<number>&filter[amount_paid][gt]=<number>&filter[amount_paid][lt]=<number>&filter[amount_paid][gte]=<number>&filter[amount_paid][lte]=<number>&sort=-created_at",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of credit notes returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of credit notes returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[invoice_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[payment_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter[amount_paid][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "description": "Sort credit notes by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n  - `amount_balance`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n",
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-01addd11-d128-420d-8250-44a42756b7b2"
+            }
+          ],
+          "createdAt": "2026-07-28T02:46:43.000Z",
+          "updatedAt": "2026-07-28T02:46:43.000Z",
+          "uid": "35240-b6b7ca3e-28fa-4763-be46-9615d6181d27"
+        },
+        {
+          "name": "Create a credit note",
+          "id": "97fbfe74-c0e6-4aaa-947c-57486a06191b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice_id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"reason_code\": \"chargeback\",\n  \"number\": \"<string>\",\n  \"reason_message\": \"<string>\",\n  \"credit_note_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/credit-notes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "credit-notes"
+              ]
+            },
+            "description": "Create a new credit note."
+          },
+          "response": [
+            {
+              "id": "35772371-1780-403e-8150-a79f23c86cbc",
+              "name": "An object containing the status of the credit note creation request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice_id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"reason_code\": \"chargeback\",\n  \"number\": \"<string>\",\n  \"reason_message\": \"<string>\",\n  \"credit_note_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"failed\"\n}",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-35772371-1780-403e-8150-a79f23c86cbc"
+            },
+            {
+              "id": "35c891b7-5751-46f7-85b8-5e35ca6e376c",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice_id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"reason_code\": \"chargeback\",\n  \"number\": \"<string>\",\n  \"reason_message\": \"<string>\",\n  \"credit_note_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-35c891b7-5751-46f7-85b8-5e35ca6e376c"
+            },
+            {
+              "id": "db3445b9-86e5-46eb-86f5-1142455e5798",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice_id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"reason_code\": \"chargeback\",\n  \"number\": \"<string>\",\n  \"reason_message\": \"<string>\",\n  \"credit_note_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-db3445b9-86e5-46eb-86f5-1142455e5798"
+            },
+            {
+              "id": "814aa3ad-99d0-4d91-a8ac-c08840d3ece7",
+              "name": "Not found error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice_id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"reason_code\": \"chargeback\",\n  \"number\": \"<string>\",\n  \"reason_message\": \"<string>\",\n  \"credit_note_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-814aa3ad-99d0-4d91-a8ac-c08840d3ece7"
+            },
+            {
+              "id": "58a2a7ea-0c0f-48e8-9233-5a379c841040",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoice_id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"reason_code\": \"chargeback\",\n  \"number\": \"<string>\",\n  \"reason_message\": \"<string>\",\n  \"credit_note_url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/credit-notes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit-notes"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:43.000Z",
+              "updatedAt": "2026-07-28T02:46:43.000Z",
+              "uid": "35240-58a2a7ea-0c0f-48e8-9233-5a379c841040"
+            }
+          ],
+          "createdAt": "2026-07-28T02:46:43.000Z",
+          "updatedAt": "2026-07-28T02:46:43.000Z",
+          "uid": "35240-97fbfe74-c0e6-4aaa-947c-57486a06191b"
+        }
+      ],
+      "id": "4dc32b1b-9c53-474b-9d74-ce2fd8a2d366",
+      "createdAt": "2026-07-28T02:46:43.000Z",
+      "updatedAt": "2026-07-28T02:46:43.000Z",
+      "uid": "35240-4dc32b1b-9c53-474b-9d74-ce2fd8a2d366"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app-sandbox.resolvepay.com/api"
+    }
+  ]
+}

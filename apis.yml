@@ -1,9 +1,30 @@
 aid: resolve
 name: Resolve
-description: 'Resolve is a company surfaced as a portfolio company of insight-partners, qed-investors,
-  y-combinator and added to the API Evangelist network as a stub for enrichment. Sector: payments. This
-  profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Resolve is a B2B commerce and payments platform that lets businesses offer
+  flexible net terms (typically NET 30-60) to their buyers without carrying the
+  credit risk or waiting on cash. It combines automated credit underwriting,
+  invoicing, agentic collections, and payment processing: sellers are paid
+  upfront while customers pay on terms. Resolve exposes a Merchant API (V5) for
+  direct integrations (customers, credit checks, invoices, orders, charges,
+  shipments, payments, payouts), a Partners API for platform/marketplace
+  sub-merchant management, a browser Checkout SDK, and an official MCP server
+  with full Merchant-API parity for AI assistants. Backed by Insight Partners,
+  QED Investors, and Y Combinator.
 url: https://raw.githubusercontent.com/api-evangelist/resolve/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://resolvepay.com/favicon-32x32.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -14,16 +35,629 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Payments
-apis: []
+- B2B
+- Net Terms
+- Credit
+- Invoicing
+- Financing
+- Embedded Finance
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: resolve:resolve-access-keys-api
+  name: Resolve Access Keys API
+  description: >-
+    OAuth access keys are created in Merchant Dashboard and can be exchanged for bearer tokens.
+
+
+    Use the `/access-keys/token` endpoint to mint a bearer token from a valid `client_id` and `client_secret`.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Access Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-access-keys-api-openapi.yml
+- aid: resolve:resolve-charges-api
+  name: Resolve Charges API
+  description: >-
+    A charge represents an agreement by the customer to accept credit terms for a transaction. It consists
+    of a charge amount, term length (i.e. 30, 60, 90), and reference to the merchant's original order
+    or purchase order numbers.
+
+
+    These endpoints are intended for merchants using the [Checkout SDK](/guides/checkout-sdk).
+
+    If you are not using the Checkout SDK flow, these endpoints are generally not needed.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Charges
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-charges-api-openapi.yml
+- aid: resolve:resolve-credit-notes-api
+  name: Resolve Credit Notes API
+  description: Credit Notes are issued to customers to reduce the amount they owe.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Credit Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-credit-notes-api-openapi.yml
+- aid: resolve:resolve-customers-api
+  name: Resolve Customers API
+  description: >-
+    A customer represents a company that you do business with. For larger companies, there may be several
+    users with access to the customer account that can make purchases with their credit line. For smaller
+    companies, a customer may represent a single individual. Retrieve a customer to get a summary of their
+    total credit line and available credit balance.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-customers-api-openapi.yml
+- aid: resolve:resolve-invoices-api
+  name: Resolve Invoices API
+  description: >-
+    The invoice represents the business transaction between you and your customer. In Resolve, an invoice
+    must be tied to a customer and an advance can be taken on the invoice.
+
+
+    For an advance to be taken on the invoice, a PDF of the invoice must be uploaded and the associated
+    customer must be approved and have available credit for the amount of the invoice.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-invoices-api-openapi.yml
+- aid: resolve:resolve-merchants-api
+  name: Resolve Merchants API
+  description: >-
+    Merchant-scoped operations for managing sub-merchant resources.
+
+
+    The merchant document upload endpoint creates a document record and starts transfer into Resolve-managed
+    storage for validation.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Merchants
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-merchants-api-openapi.yml
+- aid: resolve:resolve-orders-api
+  name: Resolve Orders API
+  description: >-
+    An order represents an authorization of credit for a customer transaction. Once authorized, an order
+    can be partially or fully captured as goods or services are fulfilled, or canceled if the transaction
+    does not proceed.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-orders-api-openapi.yml
+- aid: resolve:resolve-payments-api
+  name: Resolve Payments API
+  description: >-
+    A payment represents a transaction where a customer pays towards their invoices. When a payment is
+    made to Resolve, the customer's available credit balance is increased by the amount of the payment.
+    Payments can be made via various methods including ACH, credit card, check, or wire transfer. Each
+    payment can be applied to one or more invoices.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-payments-api-openapi.yml
+- aid: resolve:resolve-payout-transactions-api
+  name: Resolve Payout Transactions API
+  description: >-
+    Payout Transactions are the individual transactions like customer payments, Resolve advances, forwarded
+    payments, etc. that are rolled into a Payout. Each Payout is the sum of one or more transactions.
+    Note that certain fields are only relevant to certain transaction types - e.g.: a Payout Transaction
+    of type `monthly_fee` will have both `customer_id` and `invoice_id` set to `null`.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Payout Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-payout-transactions-api-openapi.yml
+- aid: resolve:resolve-payouts-api
+  name: Resolve Payouts API
+  description: A Payout is a transfer of money between the  Merchant and Resolve.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Payouts
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-payouts-api-openapi.yml
+- aid: resolve:resolve-shipments-api
+  name: Resolve Shipments API
+  description: >-
+    A shipment represents the fulfillment of goods or services for an invoice. Track shipments to monitor
+    delivery status and fulfillment progress. Shipments can be fulfilled through various methods including
+    shipping providers, self-delivery, customer pickup, or for services-only transactions.
+
+
+    ## Supported Couriers
+
+
+    While any courier value can be accepted for the `shipment_courier` field, instant verification through
+    the sync endpoint is supported for the following couriers:
+
+
+    ### Major Carriers
+
+    - `fedex` - FedEx®
+
+    - `ups` - UPS
+
+    - `usps` - USPS
+
+    - `dhl` - DHL Express
+
+    - `dhl-api` - DHL
+
+
+    ### Complete List of Supported Couriers
+
+
+    `fedex`, `ups`, `usps`, `17postservice`, `2go`, `2ebox`, `360lion`, `3jmslogistics`, `4-72`, `4px`,
+    `shipstoresoftware-webhook`, `99minutos`, `aduiepyle`, `a1post`, `a2b-ba`, `aaa-cooper`, `abf`, `acilogistix`,
+    `acscourier`, `acsworldwide`, `ads`, `adsone`, `aex`, `afllog-ftp`, `arihantcourier`, `air21`, `aitworldwide-sftp`,
+    `aitworldwide-api`, `alljoy`, `amsegroup`, `ancdelivers-sftp`, `anserx`, `ao-deutschland`, `ao-courier`,
+    `ao-courier-webhook`, `apc-overnight`, `apc-overnight-connum`, `apc`, `apg`, `ark-logistics`, `ase`,
+    `asigna`, `asm`, `ata`, `atshealthcare`, `atshealthcare-reference`, `activos24-api`, `aderonline`,
+    `adicional`, `aeronet`, `test-courier`, `agediss-sftp`, `agility`, `airmee-webhook`, `airpak-express`,
+    `airspeed`, `allegro`, `alliedexpress`, `allied-express-ftp`, `alphafreight-webhook`, `always-express`,
+    `amazon`, `awest`, `an-post`, `andreani-api`, `anicamboxexpress`, `anjun`, `anteraja`, `aoyue`, `aquiline`,
+    `aramex`, `aramex-api`, `fastway-au-api`, `fastway-au`, `araskargo`, `arco-spedizioni`, `argents-webhook`,
+    `arrow-api`, `arrowxl`, `asendia-de`, `asendia-hk`, `asendia`, `asendia-uk`, `asendia-usa`, `agsystems`,
+    `associated-couriers`, `asyadexpress`, `auexpress`, `australia-post`, `australia-post-api`, `austrian-post`,
+    `austrian-post-registered`, `averitt`, `axlehire`, `axlehire-ftp`, `bh-worldwide`, `b2ceurope`, `bdmnet`,
+    `bjshomedelivery`, `bjshomedelivery-ftp`, `brt-it`, `brt-it-api`, `brt-it-parcelid`, `brt-it-sender-ref`,
+    `btxglobal-ftp`, `buffalo`, `barqexp`, `barsan`, `belpost`, `ibeone`, `bert-fr`, `800bestex`, `besttransport-sftp`,
+    `bestwayparcel`, `bettertrucks`, `bigsmart`, `biocair-ftp`, `birdsystem`, `bleckmann-sftp`, `blinklastmile`,
+    `bluex`, `bluestar`, `bluecare`, `bluedart-api`, `bluedart`, `bneed`, `bollore-logistics-sftp`, `bollore-logistics`,
+    `bombinoexp`, `bomi-br-api`, `bomi`, `bond`, `bondscouriers`, `borderexpress`, `borderless360-webhook`,
+    `boxc`, `box-berry`, `boxcheck-api`, `bpost`, `bpost-api`, `bpost-international`, `braspress-web`,
+    `braunsexpress`, `brazil-correios`, `bring`, `bringer`, `brouwer-transport`, `budbee-webhook`, `bgpost`,
+    `burd`, `cchezvous-sftp`, `cae-delivers`, `cbl-logistica`, `cbl-logistica-api`, `cdek`, `cdek-tr`,
+    `cdldelivers`, `cdldelivers-api`, `ceva`, `ceva-webhook`, `ceva-tracking`, `cfl-logistics`, `cgs-express`,
+    `parcll`, `cj-malaysia-international`, `cj-gls`, `cj-korea-thai`, `cjlogistics`, `cj-hk-international`,
+    `cjpacket`, `cj-philippines`, `ckb-webhook`, `cle-logistics`, `cn-logistics`, `cnexps`, `crlexpress`,
+    `cse`, `ctc-express`, `tourline`, `cacesa`, `cago`, `cainiao`, `cambodia-post`, `canada-post`, `canpar`,
+    `capital`, `cpex`, `cargopartner-api`, `carriers`, `carry-flap`, `castleparcels`, `celeritas-ftp`,
+    `cello-square`, `champion-logistics`, `chazki`, `chienventure-webhook`, `chilexpress-webhook`, `china-ems`,
+    `china-post`, `chitchats`, `choirexpress`, `chronopost-france-webhook`, `chronopost-france`, `chronopost-portugal`,
+    `ec-firstclass`, `city56-webhook`, `citylinkexpress`, `clevy-links`, `clicklink-sftp`, `cloudwish-asia`,
+    `colis-prive`, `colissimo`, `collectplus`, `collectco`, `com1express`, `comet-tech`, `con-way`, `concise-api`,
+    `concise-webhook`, `continental`, `coordinadora`, `coordinadora-api`, `copa-courier`, `cope`, `corporatecouriers-webhook`,
+    `correo-uy`, `correosexpress`, `correosexpress-api`, `spain-correos-es`, `correos-de-mexico`, `costmeticsnow`,
+    `courant-plus`, `courant-plus-api`, `courierit`, `cnwglobal-api`, `courier-plus`, `courierpost`, `couriers-please`,
+    `croshot`, `crossflight`, `cryopdp-ftp`, `cubyn`, `cuckooexpress`, `cyprus-post`, `ceskaposta`, `ceskaposta-api`,
+    `dexpress-webhook`, `dachser-web`, `dachser`, `daiglobaltrack`, `dao365`, `dbschenker-se`, `dbschenker-api`,
+    `dbschenker-b2b`, `dbschenker-iceland-ftp`, `dbschenker-sv`, `ddexpress`, `deliveryontime`, `dex-i`,
+    `dhl-api`, `dhl-reference-api`, `dhl-active-tracing`, `dhl-benelux`, `dhl-sftp`, `dhl`, `dhl-pieceid`,
+    `dhl-freight`, `dhl-pa-api`, `dhl-global-forwarding-api`, `dhl-gt-api`, `dhl-ecommerce-gc`, `dhl-ecommerce-gc-api`,
+    `dhl-hk`, `dhl-ie-sftp`, `dhl-nl`, `dhlparcel-nl`, `dhlparcel-ru`, `dhlparcel-es`, `dhlparcel-uk`,
+    `dhl-poland`, `dhl-es-sftp`, `dhl-es`, `dhl-supplychain-apac`, `dhl-supply-chain-au-sftp`, `dhl-supply-chain-au`,
+    `dhl-supplychain-id`, `dhl-global-mail-asia`, `dhl-global-mail-asia-api`, `dhl-global-mail`, `dhl-global-mail-api`,
+    `dhl-supplychain-in`, `didadi`, `dirmensajeria`, `dksh`, `dmfgroup`, `dms-matrix`, `dnj-express`,
+    `domino`, `dpd`, `dpd-api`, `dpd-at`, `dpd-at-sftp`, `exapaq`, `dpd-de`, `dpd-hk`, `dpd-hungary-web`,
+    `dpd-hungary-ftp`, `dpd-hungary`, `dpd-ireland`, `interlink-express`, `interlink-express-reference`,
+    `dpd-nl-api`, `packs-api`, `dpd-nl`, `dpd-poland`, `dpd-prt`, `dpd-ro`, `dpd-ru-api`, `dpd-ru`, `dpd-sk-sftp`,
+    `dpd-ch-sftp`, `dpd-uk`, `dpd-uk-sftp`, `dpe-express`, `dpe-za`, `dpex`, `szdpex`, `dsv-za-sftp`,
+    `dsv`, `dsv-reference`, `dsv-are-webhook`, `dtd`, `dtdc-au`, `dtdc-express`, `dtdc`, `dx`, `dx-sftp`,
+    `dx-b2b-connum`, `dx-freight`, `daeshin`, `daiichi`, `danniao`, `danske-fragt`, `dashlink-webhook`,
+    `dawnwing`, `dayross`, `dylt`, `dayton-freight`, `dealer-send`, `delhivery-webhook`, `delhivery`,
+    `deliveryourparcel-za`, `deliver-it`, `smartkargo`, `deliveright-webhook`, `deliverr-sftp`, `delnext`,
+    `deltec-courier`, `godependable`, `designertransport-webhook`, `destiny-ftp`, `destiny`, `destiny-webhook`,
+    `detrack`, `detrack-webhook`, `dhl-germany`, `deutsch-post`, `dialogo-logistica-api`, `dialogo-logistica`,
+    `diamondcouriers`, `dimerco`, `directcouriers`, `directcouriers-ftp`, `directfreight-au-ref`, `directlog`,
+    `direx`, `discountpost`, `emega`, `dobropost`, `doordash-webhook`, `doora`, `dynamic-logistics`, `ecms`,
+    `ecoscooting`, `ecexpress`, `efs`, `elta-courier`, `empsexpress`, `ems`, `eu-fleet-solutions`, `myhermes-uk`,
+    `myhermes-uk-api`, `ewe`, `expressone`, `expressone-sv`, `earlybird`, `eastwestcourier-ftp`, `easy-mail`,
+    `easyroutes`, `easyparcel`, `ecargo-asia`, `echo`, `ecofreight`, `ecom-express`, `ekart`, `ekol-api`,
+    `elite-co`, `emirates-post`, `endeavour-delivery`, `energologistic`, `envialia`, `envialia-reference`,
+    `equick-cn`, `eshipping`, `zes-express`, `estafeta`, `estafeta-api`, `estes`, `efwnow-api`, `etomars`,
+    `edf-ftp`, `eurodis`, `europaket-api`, `exelot-ftp`, `expeditors`, `expeditors-api-ref`, `expresssale`,
+    `fan`, `far-international`, `fdsexpress`, `fercam`, `fmx`, `frontdoorcorp`, `fujexp`, `fargood`, `fnf-za`,
+    `fastdespatch`, `fastbox`, `fastrak-th`, `fastship`, `fasttrack`, `aramex-au-api`, `fastway-ireland`,
+    `fastway-nz`, `fastway-za`, `faxecargo`, `fetchr`, `fiege`, `fiege-nl`, `first-flight`, `first-logistics-api`,
+    `firstmile`, `fitzmark-api`, `flashexpress`, `flashexpress-webhook`, `flashexpress-ph-api`, `fleetopticsinc`,
+    `flightlg`, `flipxp`, `fliway-sftp`, `fliway-api`, `flytexpress`, `fonsen`, `forwardair`, `fragilepak-sftp`,
+    `freightquote`, `freterapido`, `fukuyama-sftp`, `fulfilla`, `fulfillmen`, `furdeco`, `gwlogis-api`,
+    `gac-webhook`, `gangbao`, `gba`, `gbs-broker`, `gcx`, `gdex`, `gdpharm-webhook`, `gdpharm`, `gemworldwide`,
+    `geodis-api`, `geodis-sftp`, `geodis-calberson-fr`, `geswl`, `gio-ecourier-api`, `gio-ecourier`, `gls`,
+    `gls-croatia`, `gls-cz`, `gls-slovakia`, `gls-hun-api`, `gls-hun`, `gls-italy-ftp`, `gls-italy`, `dicom`,
+    `gls-netherlands`, `gls-netherlands-webhook`, `gls-netherlands-sftp`, `gls-romania`, `gls-slovenia`,
+    `gls-spain`, `gls-spain-api`, `gls-us`, `gols`, `gps`, `gsi-express`, `gso`, `gtagsm`, `gati-kwe`,
+    `gati-kwe-api`, `gw-world`, `geis`, `gel-express`, `taxydromiki`, `geodis-usa-api`, `gpost`, `ghn`,
+    `goglobalpost`, `globaltranz`, `globavend`, `globegistics`, `glovo`, `general-overnight`, `general-overnight-ftp`,
+    `gopeople`, `gorush`, `gobolt`, `gojavas`, `gojek-webhook`, `grab-webhook`, `grandslamexpress`, `greyhound`,
+    `mazet`, `grupoampm`, `andreani`, `hct-logistics`, `hfd`, `hkd`, `hrparcel`, `hermes-it`, `hsdexpress`,
+    `hsm-global`, `htdkgroup-webhook`, `yycom`, `hubbed`, `hx-express`, `hdb`, `hdb-box`, `hanjin`, `hellenic-post`,
+    `hellmann`, `helthjem`, `helthjem-api`, `heppner-fr`, `heppner`, `hermes-2mann-handling`, `hermes-de`,
+    `hermes-de-ftp`, `hermes-uk-sftp`, `hermes`, `heroexpress`, `hipshipper`, `holisol`, `home-delivery-solutions`,
+    `homelogistics`, `hong-kong-post`, `houndexpress`, `hrvatska-posta`, `hh-exp`, `huantong`, `hunter-express-sftp`,
+    `hunter-express`, `huodull`, `ibventure-webhook`, `icscourier`, `idexpress`, `iml`, `imxmail`, `indopaket`,
+    `intersmarttrans`, `intex-de`, `iordirect`, `postur-is`, `ilyanglogis`, `inpost-uk`, `inpost-paczkomaty`,
+    `intime-ftp`, `india-post`, `india-post-int`, `inexpost`, `nox-nachtexpress`, `nox-nachtexpress-ftp`,
+    `descartes`, `inntralog-sftp`, `instabox-webhook`, `integra2-ftp`, `intel-valley`, `intelcom-ca`,
+    `intelipost`, `international-seur`, `international-seur-api`, `intexpress`, `interparcel-au`, `interparcel-nz`,
+    `interparcel-uk`, `israel-post`, `israel-post-domestic`, `italy-sda`, `ivoy-webhook`, `jtcargo`, `jtexpress`,
+    `jtexpress-ph`, `jtexpress-sg-api`, `simplypost`, `jtexpress-vn`, `j-net`, `jamef-web`, `jcex`, `jd-worldwide`,
+    `jinsung`, `jne`, `jne-api`, `bh-posta`, `js-express`, `jx`, `jam-express`, `janco`, `janio`, `japan-post`,
+    `javit`, `jawar`, `jayonexpress`, `jersey-post`, `jet-ship`, `ltianexp`, `jocom`, `joom-logistics`,
+    `joyingbox`, `jumppoint-api`, `jumppoint`, `k1-express`, `kec`, `abxexpress-my`, `kgmhub`, `kurasi`,
+    `kwe-global`, `kangaroo-my`, `kargomkolay`, `kedaex`, `kerryttc-vn`, `tgx`, `kerry-express-tw-api`,
+    `kerry-logistics`, `kerry-express-th-webhook`, `kerrytj`, `kerry-ecommerce`, `kng`, `logisystems-sftp`,
+    `kinisi`, `kiwi-express-webhook`, `kolay-gelsin`, `komon-express`, `kpost`, `korea-post`, `kronos-webhook`,
+    `kronos`, `ky-express`, `kn`, `kdexp`, `lbcexpress-ftp`, `lbcexpress-api`, `lctbr-api`, `lht-express`,
+    `liccardi-express`, `liefergrun`, `lmparcel`, `ltl`, `la-poste-colissimo`, `lalamove-api`, `lalamove`,
+    `lalamove-plus-api`, `landmark-global-ftp`, `landmark-global`, `lao-post`, `lasership-api`, `lasership`,
+    `latvijas-pasts`, `leader`, `legion-express`, `leman`, `lexship`, `lietuvos-pastas`, `line`, `linkbridge`,
+    `lion-parcel`, `livrapide`, `locus-webhook`, `loggi`, `logisters`, `lwe-hk`, `logoix`, `logwin-logistics`,
+    `logysto`, `lonestar`, `loomis-express`, `lotte`, `luwjistik`, `m-xpress`, `mx-cargo`, `m24logistics-webhook`,
+    `m3logistics`, `mbw`, `collivery`, `metabrasil-webhook`, `misumi-cn`, `mng-kargo`, `mnx`, `mrw-spain`,
+    `mrw`, `mrw-ftp`, `mudita`, `madrooex`, `maergo`, `magyar-posta-api`, `mail-box-etc`, `mailamericas`,
+    `mailplus`, `mailplus-jp`, `mainfreight`, `mainway`, `malaysia-post-posdaftar`, `malaysia-post`, `malca-amit-api`,
+    `malca-amit`, `marken`, `matdespatch`, `matkahuolto`, `medafrica`, `meest`, `fetchr-webhook`, `mensajerosurbanos-api`,
+    `mwd-api`, `mwd`, `aeroflash`, `mexico-redpack`, `mexico-senda-express`, `mhi`, `mikropakket`, `mikropakket-be`,
+    `milkman`, `mobi-br`, `mobiletyreshop-webhook`, `mondialrelay`, `mondialrelay-fr`, `mondialrelay-es`,
+    `moova-webhook`, `moovin`, `morelink`, `morning-express`, `morninglobal`, `mothership-api`, `movianto`,
+    `multientregapanama`, `mydynalogic`, `nmtransfer`, `nacex`, `nacex-spain-reference`, `nacex-spain`,
+    `nox-night-time-express`, `ntilogistics-ftp`, `ntl`, `nytlogistics`, `new-zealand-post`, `naeko-ftp`,
+    `nanjingwoyuan`, `naqel-express`, `national-sameday`, `nationex`, `nationex-ftp`, `nationwide-my`,
+    `navlungo`, `netlogixgroup`, `newzealand-couriers`, `neweggexpress`, `newgistics`, `newgisticsapi`,
+    `nhans-solutions`, `ntlogistics-vn`, `nipost`, `nightline`, `nim-express`, `nimbuspost`, `ninjavan`,
+    `ninjavan-id`, `ninjavan-my`, `ninjavan-thai`, `ninjavan-vn`, `ninjavan-webhook`, `nippon-express-ftp`,
+    `nippon-express`, `norsk-global`, `northline`, `nova-poshta`, `nova-poshtaint`, `nova-poshta-api`,
+    `novofarma-webhook`, `oca-ar`, `ocs`, `ocs-worldwide`, `omlogistics-api`, `osm-worldwide-sftp`, `osm-worldwide`,
+    `otschile`, `oakh`, `obibox`, `okayparcel`, `old-dominion`, `shopolive`, `omniparcel`, `omnirps-webhook`,
+    `omniva-api`, `omniva`, `onway-webhook`, `ontrac`, `ontrac-api`, `oneworldexpress`, `oneclick`, `optimacourier`,
+    `orangeconnex`, `orangeconnex-ftp`, `orangedsinc`, `orangedsinc-ftp`, `overseas-hr`, `ozeparts-shipping`,
+    `p2p-delivery-api`, `trakpak`, `packfleet`, `palexpress`, `parcelone`, `pfcexpress`, `pflogistics`,
+    `pflogistics-ftp`, `phse-api`, `pickupp-mys`, `pickupp-sgp`, `piggyship`, `pil-logistics`, `pittohio`,
+    `taqbin-taiwan`, `mglobal`, `pts`, `ptt-kargo`, `ptt-posta`, `paack-webhook`, `pack-up`, `packaly`,
+    `packeta`, `packlink`, `packs`, `paikeda`, `pakajo`, `palletways`, `pan-asia`, `pandago-api`, `pandago-ph-api`,
+    `pandion`, `pandulogistics`, `panther`, `panther-order-number`, `panther-reference`, `panther-reference-api`,
+    `papa-webhook`, `paper-express`, `paquetexpress`, `parcalogistics-webhook`, `parcalogistics-api`,
+    `pdn-api`, `portless-api`, `parcel-force`, `parcelpost-sg`, `parcelright`, `parceltopost`, `parcel2go`,
+    `parcelpal-webhook`, `parcelpoint`, `parcelinklogistics`, `parcelled-in`, `parcelstars-webhook`, `parcelstars`,
+    `parknparcel`, `passportshipping`, `patheon`, `ppbyb`, `payo`, `payo-webhook`, `pgeon-api`, `pickrr`,
+    `pickup`, `pidge`, `pilot-freight`, `pitney-bowes`, `planzer`, `plycongroup`, `poczta-polska`, `polarspeed`,
+    `pony-express`, `porterex-webhook`, `portugal-ctt`, `portugal-seur`, `pos-indonesia`, `postone`, `post-serbia`,
+    `post-slovenia`, `post56`, `postnl`, `postnl-international`, `postnl-3s`, `danmark-post`, `postnord`,
+    `sweden-posten`, `postplus`, `postaplus`, `poste-italiane`, `poste-italiane-paccocelere`, `posten-norge`,
+    `posti`, `posti-api`, `posta-romana`, `pressiode`, `procarrier`, `promeddelivery`, `productcaregroup-sftp`,
+    `professional-couriers`, `ppl-api`, `ppl`, `purolator`, `purolator-api`, `purolator-international`,
+    `qtrack`, `quantium`, `qintl-api`, `airterra`, `quiqup`, `quiqup-webhook`, `qwintry`, `qxpress`, `raf`,
+    `ramgroup-za`, `ets-express`, `rl-carriers`, `rpd2man`, `rpm`, `rpxlogistics`, `rpxonline`, `rxo-api`,
+    `rzyexpress`, `raben-group`, `raiderex`, `ransa-webhook`, `rcl`, `redjepakketje`, `redur-es`, `relaiscolis`,
+    `rendr-webhook`, `returnmates-webhook`, `rhenus-group`, `rhenus-uk-api`, `rhenus-uk`, `rincos`, `air-canada-global`,
+    `air-canada`, `rixonhk-api`, `roadbull`, `roadrunner-freight`, `roche-internal-sftp`, `rocketparcel`,
+    `routific-webhook`, `royal-mail`, `royal-mail-ftp`, `royal-mail-webhook`, `royalshipments`, `russian-post`,
+    `ruston`, `sailpost`, `sap-express`, `sekologistics`, `seko-sftp`, `showl`, `sf-express-api`, `sf-express`,
+    `sf-express-cn`, `sfb2c`, `sfc`, `sfcservice`, `sglink`, `hotsin-cargo`, `shipa`, `shipter`, `shipxpres`,
+    `shreenandancourier`, `shreetirupati`, `signia-ftp`, `signialogistics-sftp`, `skybox`, `smartcat`,
+    `smsa-express`, `smsa-express-webhook`, `speedex`, `spflylogistica-webhook`, `spoton`, `sprint-pack`,
+    `srekorea`, `srt-transport`, `starken`, `stepforwardfs`, `sto`, `stone3pl`, `szendex`, `safexpress`,
+    `sagawa-api`, `sagawa`, `saia-freight`, `sassy-api`, `saudi-post`, `sberlogistics-ru`, `scotty`, `scudex-express`,
+    `secretlab-webhook`, `seino`, `seino-api`, `sendeo-kargo`, `sending`, `sendit`, `sendle`, `sendy`,
+    `nowlog-api`, `servip-webhook`, `servientrega`, `setel`, `shadowfax`, `dajin`, `ydex`, `kwt`, `sherpa`,
+    `sherpa-webhook`, `ship-it-asia`, `shipentegra`, `shipgate`, `shipglobal-us`, `shipx`, `shipx-api`,
+    `shippie`, `shippify`, `shippit`, `shiprocket`, `spx`, `spx-th`, `shopfans`, `shreeanjanicourier`,
+    `shree-maruti`, `shunbang-express`, `shyplite`, `simpletire-webhook`, `simsglobal`, `singlobal-express`,
+    `singapore-post`, `singapore-speedpost`, `sinotrans`, `siodemka`, `skelton-sftp`, `skyking`, `skyexpress-international`,
+    `skyexpressinternational`, `skynet`, `skynetworldwide`, `skynetworldwide-uae`, `sky-postal`, `skynet-za`,
+    `skynetworldwide-uk`, `sk-posta`, `smooth`, `sntglobal-api`, `sonictl`, `thenile-webhook`, `sapo`,
+    `sefl`, `smtl`, `spanish-seur`, `spanish-seur-ftp`, `spanish-seur-api`, `specialisedfreight-za`, `spectran`,
+    `spedisci`, `speedee`, `speedcouriers-gr`, `speedx`, `speedy`, `speedaf`, `spreetail-api`, `spring-gds`,
+    `stallionexpress`, `star-track-courier`, `star-track-express`, `star-track`, `star-track-webhook`,
+    `starlinks-api`, `statovernight`, `stop-start-api`, `streck-transport`, `sypost`, `superpackline`,
+    `surat-kargo`, `sutton`, `swiship`, `swiship-jp`, `swiss-post`, `swiss-post-ftp`, `swiss-universal-express`,
+    `loginext-webhook`, `t-cat`, `t-cat-api`, `taqbin-hk`, `tasco-my-webhook`, `tck-express`, `tcs-api`,
+    `tcs`, `thedeliverygroup`, `tdn`, `tfm`, `tforce-finalmile`, `tigfreight`, `tipsa`, `tnt`, `tnt-au`,
+    `tntbrasil-web`, `tnt-fr`, `tnt-fr-reference`, `tnt-it`, `tnt-reference`, `tnt-uk`, `tnt-uk-reference`,
+    `tnt-click`, `tarrive`, `thaiparcels`, `trumpcard`, `tvsscs-webhook`, `typ`, `global-express`, `taiwan-post`,
+    `tamergroup-webhook`, `tazmanian-freight`, `teamexpressllc`, `toll-priority`, `team-global-express-webhook`,
+    `teleport-webhook`, `sic-teliway`, `testing-courier`, `thabit-logistics`, `thailand-post`, `thecourierguy`,
+    `customco-api`, `pallet-network`, `thijs-nl`, `thunderexpress`, `tiki`, `tipsa-api`, `tipsa-ref`,
+    `toll-ipec`, `toll-nz`, `tolos`, `tomydoor`, `tonami-ftp`, `esdex`, `topyou`, `tophatterexpress`,
+    `toshi-webhook`, `total-express-api`, `total-express`, `tourline-reference`, `trackon`, `trans-kargo`,
+    `trans2u`, `transmission-nl`, `transvirtual`, `transpak`, `tanet`, `trunkrs-webhook`, `trunkrs`, `trusk`,
+    `tuffnells`, `tuffnells-reference`, `tusklogistics`, `u-envios`, `ubi-logistics`, `ucs`, `uk-mail`,
+    `ucfs-api`, `usf-reddaway`, `uber-webhook`, `ukrposhta`, `uds`, `urb-it`, `courex`, `urbify`, `urgent-cargus`,
+    `virtransport`, `viwo`, `vox`, `value-webhook`, `veho-webhook`, `venipak`, `vesyl`, `vesyl-api`, `viaeurope`,
+    `viaxpress`, `vtfe`, `vnpost`, `vnpost-api`, `viettelpost`, `virtransport-sftp`, `wooyoung-logistics-sftp`,
+    `wspexpress`, `wahana`, `wanbexpress`, `weworldexpress`, `wedo`, `wepost`, `weship-api`, `weship`,
+    `weaship`, `welivery`, `shipwestgate`, `whistl`, `wineshipping`, `wineshipping-webhook`, `wise-express`,
+    `wiseloads`, `wishpost`, `wizmo`, `worldcourier`, `worldnet`, `xdp-uk`, `xdp-uk-reference`, `xgs`,
+    `xl-express`, `xpo-logistics`, `xpo-fr-api`, `xq-express`, `xde-webhook`, `xindus`, `xyy`, `xpedigo`,
+    `xpert-delivery`, `xpost`, `xpressbees`, `xpressen-dk`, `yamato-tw-api`, `ydh-express`, `yrc`, `yto`,
+    `yyexpress`, `yakit`, `taqbin-jp`, `taqbin-sg-api`, `taqbin-sg`, `yanwen`, `yifan`, `elian-post`,
+    `yodel-api`, `yodeldirect`, `yodel`, `yodel-international`, `youparcel`, `yunexpress`, `yunant`, `yundaex`,
+    `yunhuipost`, `yurtici-kargo`, `yusen-sftp`, `yusen`, `zjs-express`, `zto-domestic`, `zto-express`,
+    `zyou`, `cndexpress`, `zajil-express`, `sfplus-webhook`, `zeek`, `zeleris`, `ziingfinalmile`, `zinc`,
+    `zoom-red`, `zoom2u-webhook`, `zuelligpharma-sftp`, `acommerce`, `alphafast`, `cpacket`, `chronodiali-webhook`,
+    `cnwangtong`, `delivere`, `e-courier-webhook`, `ecoutier`, `eparcel-kr`, `epostglobal`, `eshipper`,
+    `etotal`, `etower`, `fairsenden-api`, `forrun`, `gojek`, `hepsijet`, `i-dika`, `i-parcel`, `icumulus-webhook`,
+    `icumulus`, `idexpress-id`, `imile-api`, `ithinklogistics`, `liefery`, `mysendle-api`, `pack-man`,
+    `shopline`, `solistica-api`, `swe`, `trans-o-flex-sftp`, `transligue-web`, `uparcel`, `uship`, `uc56`,
+    `wndirect`, `xmszm`, `ceska-posta`, `winit`, `jd-express`, `jusdasr`, `be`, `padtf`, `pchome-api`,
+    `6ls`, `yingnuo-logistics`, `jindouyun`, `sdh-scm`
+
+
+    **Note:** Using unsupported courier values will still work but verification may be delayed or require
+    manual processing.
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Shipments
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-shipments-api-openapi.yml
+- aid: resolve:resolve-webhooks-api
+  name: Resolve Webhooks API
+  description: >-
+    Webhooks allow you to receive real-time notifications about events in your Resolve account. When an
+    event occurs, Resolve sends an HTTP POST request to your configured webhook endpoint with details
+    about the event.
+
+
+    ## Webhook Event Structure
+
+
+    All webhook events follow a consistent structure:
+
+
+    ```json
+
+    {
+      "id": "4ecbe7f9e8c1c9092c000027",
+      "object": "invoice",
+      "type": "invoice.created",
+      "occurred_at": "2021-05-20T09:23:53+00:00",
+      "data": {
+        "id": "RH5fF9aeQ"
+      }
+    }
+
+    ```
+
+
+    The `data.id` field contains the ID of the object related to the event. You can use this ID to fetch
+    the full object via the corresponding API endpoint.
+
+
+    ## Supported Event Types
+
+
+    ### Invoice Events
+
+    - **`invoice.created`** - Triggered when a new invoice record is created.
+
+    - **`invoice.balance_updated`** - Triggered when the outstanding balance of an invoice changes (for
+    example, when a payment or credit note is applied).
+
+
+    ### Customer Events
+
+    - **`customer.created`** - Triggered when a new customer record is created.
+
+    - **`customer.status_updated`** - Triggered when a customer's status changes (for example, when a
+    customer is submitted for a credit check or enrolled).
+
+    - **`customer.line_amount_updated`** - Triggered when a customer's credit limit amount is updated.
+
+    - **`customer.advance_rate_updated`** - Triggered when a customer's advance rate percentage is updated.
+
+    - **`customer.credit_decision_created`** - Triggered when a new credit decision is created for a customer.
+
+
+    ### Order Events
+
+    - **`order.created`** - Triggered when a new order record is created.
+
+    - **`order.updated`** - Triggered when an order is updated.
+
+
+    ### Payment Events
+
+    - **`payment.created`** - Triggered when a new payment record is created.
+
+    - **`payment.status_changed`** - Triggered when the status of a payment changes.
+
+
+    ### Payout Events
+
+    - **`payout.created`** - Triggered when a new payout record is created.
+
+    - **`payout.status_changed`** - Triggered when the status of a payout changes (for example, pending,
+    in transit, paid).
+
+
+    ## Verifying Webhook Signatures
+
+
+    To ensure webhook requests are genuine and coming from Resolve, you should verify the webhook signature.
+    Resolve includes a signature in the `x-webhook-signature` header of each webhook request.
+
+
+    ### JavaScript Example
+
+
+    ```javascript
+
+    const crypto = require('crypto');
+
+
+    function verifyWebhookSignature(payload, signature, secret) {
+      const computedSignature = crypto
+        .createHmac('sha256', secret)
+        .update(JSON.stringify(payload))
+        .digest('hex');
+
+      return crypto.timingSafeEqual(
+        Buffer.from(signature),
+        Buffer.from(computedSignature)
+      );
+    }
+
+
+    // Usage in Express.js
+
+    app.post('/webhooks', express.json(), (req, res) => {
+      const signature = req.headers['x-webhook-signature'];
+      const isValid = verifyWebhookSignature(req.body, signature, process.env.WEBHOOK_SECRET);
+
+      if (!isValid) {
+        return res.status(401).send('Invalid signature');
+      }
+
+      // Process the webhook event
+      const event = req.body;
+      console.log('Received event:', event.type);
+
+      res.status(200).send('Webhook received');
+    });
+
+    ```
+
+
+    ## Retry Policy
+
+
+    If your webhook endpoint doesn't respond successfully (non-2xx status code or connection error), Resolve
+    will automatically retry sending the webhook notification. The retry schedule follows an exponential
+    backoff pattern:
+
+
+    - **1st retry**: 30 seconds after the initial attempt
+
+    - **2nd retry**: 90 seconds after the 1st retry
+
+    - **3rd retry**: 270 seconds (4.5 minutes) after the 2nd retry
+
+    - **4th retry**: 810 seconds (13.5 minutes) after the 3rd retry
+
+    - **5th retry**: 2430 seconds (40.5 minutes) after the 4th retry
+
+
+    After the 5th unsuccessful attempt, Resolve will stop retrying and the webhook delivery will be marked
+    as failed.
+
+
+    ## Best Practices
+
+
+    - Always verify webhook signatures to ensure the request is from Resolve
+
+    - Respond with a `200` status code as quickly as possible to acknowledge receipt
+
+    - Process webhook events asynchronously if they require time-intensive operations
+
+    - Implement idempotency on your endpoint to handle duplicate events from retries
+
+    - Use the event `id` to track which events you've already processed
+  humanURL: https://docs.resolvepay.com/api-reference
+  baseURL: https://app.resolvepay.com/api
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/resolve-webhooks-api-openapi.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/resolve/overview
 - type: Website
   url: https://resolvepay.com/
+- type: DeveloperPortal
+  url: https://docs.resolvepay.com
+- type: Documentation
+  url: https://docs.resolvepay.com
+- type: APIReference
+  url: https://docs.resolvepay.com/api-reference
+- type: GettingStarted
+  url: https://docs.resolvepay.com/guides
+- type: Integrations
+  url: https://resolvepay.com/integrations/
+- type: Support
+  url: https://help.resolvepay.com/
+- type: Blog
+  url: https://resolvepay.com/blog
+- type: GitHubOrganization
+  url: https://github.com/resolvepay
+- type: Pricing
+  url: https://resolvepay.com/pricing/
+- type: SignUp
+  url: https://resolvepay.com/signup/
+- type: Login
+  url: https://app.resolvepay.com/
+- type: TermsOfService
+  url: https://resolvepay.com/terms/
+- type: PrivacyPolicy
+  url: https://resolvepay.com/privacy/
+- type: TrustCenter
+  url: https://trust.resolvepay.com
+- type: StatusPage
+  url: https://status.resolvepay.com
+- type: Deprecation
+  url: https://app.resolvepay.com/docs/api/v2
+- type: MCPServer
+  url: mcp/resolve-mcp.yml
+- type: Authentication
+  url: authentication/resolve-authentication.yml
+- type: OAuthScopes
+  url: scopes/resolve-scopes.yml
+- type: Conventions
+  url: conventions/resolve-conventions.yml
+- type: Idempotency
+  url: conventions/resolve-conventions.yml
+- type: ErrorCatalog
+  url: errors/resolve-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/resolve-lifecycle.yml
+- type: RateLimits
+  url: rate-limits/resolve-rate-limits.yml
+- type: Webhooks
+  url: asyncapi/resolve-webhooks.yml
+- type: Conformance
+  url: conformance/resolve-conformance.yml
+- type: Components
+  url: components/resolve-components.yml
+- type: DataModel
+  url: data-model/resolve-data-model.yml
+- type: Sandbox
+  url: sandbox/resolve-sandbox.yml
+- type: DomainSecurity
+  url: security/resolve-domain-security.yml
+- type: LLMsTxt
+  url: llms/resolve-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 21
+  pass: local-v1

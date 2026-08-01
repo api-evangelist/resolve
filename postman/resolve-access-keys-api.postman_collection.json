@@ -1,0 +1,436 @@
+{
+  "info": {
+    "_postman_id": "d71bd3cd-0584-49b4-a226-0b6899804942",
+    "name": "Resolve API Reference Access Keys API",
+    "description": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:46:38.000Z",
+    "updatedAt": "2026-07-28T02:46:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d71bd3cd-0584-49b4-a226-0b6899804942"
+  },
+  "item": [
+    {
+      "name": "access-keys",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Mint an access token",
+              "id": "1fd47fe3-2920-42d7-b349-805c2c1682b5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/access-keys/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "access-keys",
+                    "token"
+                  ]
+                },
+                "description": "Exchange an OAuth access key for a bearer token by providing its `client_id` and `client_secret` in the request body.\n"
+              },
+              "response": [
+                {
+                  "id": "b5f3be64-95c5-4f2d-8518-694d96c89c82",
+                  "name": "Successfully minted bearer token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/access-keys/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "access-keys",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:46:38.000Z",
+                  "updatedAt": "2026-07-28T02:46:38.000Z",
+                  "uid": "35240-b5f3be64-95c5-4f2d-8518-694d96c89c82"
+                },
+                {
+                  "id": "088568bb-5100-44f7-8196-7c70474bbae4",
+                  "name": "Bad request error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/access-keys/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "access-keys",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:38.000Z",
+                  "updatedAt": "2026-07-28T02:46:38.000Z",
+                  "uid": "35240-088568bb-5100-44f7-8196-7c70474bbae4"
+                },
+                {
+                  "id": "1f81810b-ff84-4506-81ef-ad785ffbc9e5",
+                  "name": "Unauthorized error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/access-keys/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "access-keys",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:38.000Z",
+                  "updatedAt": "2026-07-28T02:46:38.000Z",
+                  "uid": "35240-1f81810b-ff84-4506-81ef-ad785ffbc9e5"
+                },
+                {
+                  "id": "f841f446-0729-4fe9-90ea-f7ab18dea301",
+                  "name": "Forbidden error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/access-keys/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "access-keys",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:38.000Z",
+                  "updatedAt": "2026-07-28T02:46:38.000Z",
+                  "uid": "35240-f841f446-0729-4fe9-90ea-f7ab18dea301"
+                },
+                {
+                  "id": "b1a5cd9c-e959-4c6a-8d45-b6cf3a018b8f",
+                  "name": "Not found error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/access-keys/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "access-keys",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:38.000Z",
+                  "updatedAt": "2026-07-28T02:46:38.000Z",
+                  "uid": "35240-b1a5cd9c-e959-4c6a-8d45-b6cf3a018b8f"
+                },
+                {
+                  "id": "810312c7-0353-42f0-b00b-4723b86e0685",
+                  "name": "Rate limit error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_secret\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/access-keys/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "access-keys",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:38.000Z",
+                  "updatedAt": "2026-07-28T02:46:38.000Z",
+                  "uid": "35240-810312c7-0353-42f0-b00b-4723b86e0685"
+                }
+              ],
+              "createdAt": "2026-07-28T02:46:38.000Z",
+              "updatedAt": "2026-07-28T02:46:38.000Z",
+              "uid": "35240-1fd47fe3-2920-42d7-b349-805c2c1682b5"
+            }
+          ],
+          "id": "fc06e288-7b23-4159-a57f-25b2722371ea",
+          "createdAt": "2026-07-28T02:46:38.000Z",
+          "updatedAt": "2026-07-28T02:46:38.000Z",
+          "uid": "35240-fc06e288-7b23-4159-a57f-25b2722371ea"
+        }
+      ],
+      "id": "f4d81499-7735-453c-ae8d-c2b1862c44b2",
+      "createdAt": "2026-07-28T02:46:38.000Z",
+      "updatedAt": "2026-07-28T02:46:38.000Z",
+      "uid": "35240-f4d81499-7735-453c-ae8d-c2b1862c44b2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app-sandbox.resolvepay.com/api"
+    }
+  ]
+}

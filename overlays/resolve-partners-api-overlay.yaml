@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Resolve Partners API
+  version: 1.0.0
+extends: openapi/resolve-partners-api-openapi.yaml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-20'
+      x-apievangelist-production-server: https://app.resolvepay.com/api
+      x-apievangelist-webhooks: asyncapi/resolve-webhooks.yml
+      x-apievangelist-conventions: conventions/resolve-conventions.yml
+  - target: $.servers
+    update:
+      - url: https://app.resolvepay.com/api
+        description: Production
+      - url: https://app-sandbox.resolvepay.com/api
+        description: Sandbox

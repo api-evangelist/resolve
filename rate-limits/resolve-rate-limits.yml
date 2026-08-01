@@ -1,0 +1,13 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.resolvepay.com/api-reference
+algorithm: sliding window
+limits:
+  - scope: global
+    limit_count: 100
+    window: 1 minute
+    status_on_exceed: 429
+headers:
+  - X-Ratelimit-Limit
+  - X-Ratelimit-Remaining
+  - X-Ratelimit-Reset

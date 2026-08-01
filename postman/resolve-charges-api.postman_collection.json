@@ -1,0 +1,1725 @@
+{
+  "info": {
+    "_postman_id": "81bc7ebb-0d59-4aea-8ce6-d3dfeabe9356",
+    "name": "Resolve API Reference Access Keys Charges API",
+    "description": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:46:39.000Z",
+    "updatedAt": "2026-07-28T02:46:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-81bc7ebb-0d59-4aea-8ce6-d3dfeabe9356"
+  },
+  "item": [
+    {
+      "name": "charges",
+      "item": [
+        {
+          "name": "{charge_id}",
+          "item": [
+            {
+              "name": "capture",
+              "item": [
+                {
+                  "name": "Capture a charge",
+                  "id": "dd648acf-74e6-433a-bcfe-0cb3003210f6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<double>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id/capture",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id",
+                        "capture"
+                      ],
+                      "variable": [
+                        {
+                          "id": "be773afd-f2e5-4950-981c-efe54c4054cf",
+                          "key": "charge_id",
+                          "value": "<string>",
+                          "description": "(Required) ID of the charge to capture"
+                        }
+                      ]
+                    },
+                    "description": "Capture an authorized charge."
+                  },
+                  "response": [
+                    {
+                      "id": "9eb5fae6-fa14-49fb-8f7e-2ec3959f4b8a",
+                      "name": "An object representing a charge.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<double>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/capture",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "capture"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"customer_id\": \"<string>\",\n  \"amount_refunded\": \"<double>\",\n  \"canceled\": \"<boolean>\",\n  \"canceled_at\": \"<dateTime>\",\n  \"captured\": \"<boolean>\",\n  \"captured_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"invoice_url\": \"<uri>\",\n  \"metadata\": {\n    \"Duis_35f\": false\n  },\n  \"number\": \"<string>\",\n  \"terms\": \"net7\",\n  \"updated_at\": \"<dateTime>\",\n  \"merchant_invoice_id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"fee\": \"<double>\",\n  \"fee_refunded\": \"<double>\"\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-9eb5fae6-fa14-49fb-8f7e-2ec3959f4b8a"
+                    },
+                    {
+                      "id": "e0c40b75-8749-4e7f-9fcf-85de21aa7a1f",
+                      "name": "Bad request error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<double>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/capture",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "capture"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-e0c40b75-8749-4e7f-9fcf-85de21aa7a1f"
+                    },
+                    {
+                      "id": "b413dc87-2939-483b-b537-135c32acee01",
+                      "name": "Unauthorized error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<double>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/capture",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "capture"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-b413dc87-2939-483b-b537-135c32acee01"
+                    },
+                    {
+                      "id": "0ea1b944-b04b-4c0f-bee8-5238cbc92518",
+                      "name": "Not found error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<double>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/capture",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "capture"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-0ea1b944-b04b-4c0f-bee8-5238cbc92518"
+                    },
+                    {
+                      "id": "b416fc9c-6c54-47a3-bba3-1c82b5054591",
+                      "name": "Rate limit error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<double>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/capture",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "capture"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-b416fc9c-6c54-47a3-bba3-1c82b5054591"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-dd648acf-74e6-433a-bcfe-0cb3003210f6"
+                }
+              ],
+              "id": "1b8f23ef-dc13-480a-a019-ebca71e221e0",
+              "createdAt": "2026-07-28T02:46:39.000Z",
+              "updatedAt": "2026-07-28T02:46:39.000Z",
+              "uid": "35240-1b8f23ef-dc13-480a-a019-ebca71e221e0"
+            },
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "Cancel a charge",
+                  "id": "13f1044e-4f58-4869-8ff0-4aa38a1bc319",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id/cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id",
+                        "cancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4a819a05-656b-45fd-8dbd-f86951be70e7",
+                          "key": "charge_id",
+                          "value": "<string>",
+                          "description": "(Required) ID of the charge to cancel"
+                        }
+                      ]
+                    },
+                    "description": "Cancel an existing charge."
+                  },
+                  "response": [
+                    {
+                      "id": "fe3f54ca-4919-4e7e-87a7-6bdbd3c204f4",
+                      "name": "An object representing a charge.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"customer_id\": \"<string>\",\n  \"amount_refunded\": \"<double>\",\n  \"canceled\": \"<boolean>\",\n  \"canceled_at\": \"<dateTime>\",\n  \"captured\": \"<boolean>\",\n  \"captured_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"invoice_url\": \"<uri>\",\n  \"metadata\": {\n    \"Duis_35f\": false\n  },\n  \"number\": \"<string>\",\n  \"terms\": \"net7\",\n  \"updated_at\": \"<dateTime>\",\n  \"merchant_invoice_id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"fee\": \"<double>\",\n  \"fee_refunded\": \"<double>\"\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-fe3f54ca-4919-4e7e-87a7-6bdbd3c204f4"
+                    },
+                    {
+                      "id": "6a7a980e-a9d9-4bd9-b9e1-daa91792f4f4",
+                      "name": "Bad request error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-6a7a980e-a9d9-4bd9-b9e1-daa91792f4f4"
+                    },
+                    {
+                      "id": "17162b33-a860-4fe2-9932-178816d4b000",
+                      "name": "Unauthorized error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-17162b33-a860-4fe2-9932-178816d4b000"
+                    },
+                    {
+                      "id": "cea2c53c-3b23-4d5e-b646-5a9f9407b15f",
+                      "name": "Not found error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-cea2c53c-3b23-4d5e-b646-5a9f9407b15f"
+                    },
+                    {
+                      "id": "3a3ec89b-e08b-431f-953a-e97f81728e4e",
+                      "name": "Rate limit error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/charges/:charge_id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "charges",
+                            ":charge_id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "charge_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:39.000Z",
+                      "updatedAt": "2026-07-28T02:46:39.000Z",
+                      "uid": "35240-3a3ec89b-e08b-431f-953a-e97f81728e4e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-13f1044e-4f58-4869-8ff0-4aa38a1bc319"
+                }
+              ],
+              "id": "aeb515f3-d321-4e18-9e10-5f8e71ec5da5",
+              "createdAt": "2026-07-28T02:46:39.000Z",
+              "updatedAt": "2026-07-28T02:46:39.000Z",
+              "uid": "35240-aeb515f3-d321-4e18-9e10-5f8e71ec5da5"
+            },
+            {
+              "name": "Fetch a charge",
+              "id": "1ee1f488-e1c5-4f04-a93b-9640045ed058",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/charges/:charge_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charges",
+                    ":charge_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "efb26d63-a8c0-4be2-922a-ce30dfae9208",
+                      "key": "charge_id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the charge to retrieve"
+                    }
+                  ]
+                },
+                "description": "Retrieve an existing charge by its ID."
+              },
+              "response": [
+                {
+                  "id": "e9143d14-1231-4844-a86e-a1e2de216581",
+                  "name": "An object representing a charge.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"customer_id\": \"<string>\",\n  \"amount_refunded\": \"<double>\",\n  \"canceled\": \"<boolean>\",\n  \"canceled_at\": \"<dateTime>\",\n  \"captured\": \"<boolean>\",\n  \"captured_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"invoice_url\": \"<uri>\",\n  \"metadata\": {\n    \"Duis_35f\": false\n  },\n  \"number\": \"<string>\",\n  \"terms\": \"net7\",\n  \"updated_at\": \"<dateTime>\",\n  \"merchant_invoice_id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"fee\": \"<double>\",\n  \"fee_refunded\": \"<double>\"\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-e9143d14-1231-4844-a86e-a1e2de216581"
+                },
+                {
+                  "id": "f33a09fe-4c7d-4ca4-9e3a-3194369c9edd",
+                  "name": "Bad request error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-f33a09fe-4c7d-4ca4-9e3a-3194369c9edd"
+                },
+                {
+                  "id": "b08ff8ca-9d2b-403f-bf16-6f581d2e42f6",
+                  "name": "Unauthorized error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-b08ff8ca-9d2b-403f-bf16-6f581d2e42f6"
+                },
+                {
+                  "id": "169a98b6-5f73-4017-9176-048559149886",
+                  "name": "Not found error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-169a98b6-5f73-4017-9176-048559149886"
+                },
+                {
+                  "id": "426fb9f7-1654-4734-a19c-58279415f3d5",
+                  "name": "Rate limit error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-426fb9f7-1654-4734-a19c-58279415f3d5"
+                }
+              ],
+              "createdAt": "2026-07-28T02:46:39.000Z",
+              "updatedAt": "2026-07-28T02:46:39.000Z",
+              "uid": "35240-1ee1f488-e1c5-4f04-a93b-9640045ed058"
+            },
+            {
+              "name": "Update a charge",
+              "id": "e9c153c1-251d-48bd-8598-0b9bf3b52b12",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<double>\",\n  \"invoice_url\": \"<uri>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"metadata\": {\n    \"sint_552\": -51661286.90493781,\n    \"reprehenderit_b9\": 32021407\n  },\n  \"user_id\": \"<string>\",\n  \"captured\": \"<boolean>\",\n  \"canceled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/charges/:charge_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charges",
+                    ":charge_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "301aaee8-fca2-4886-998e-541c13562533",
+                      "key": "charge_id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the charge to update"
+                    }
+                  ]
+                },
+                "description": "Update a charge."
+              },
+              "response": [
+                {
+                  "id": "8dcba27a-a609-4ed3-b24e-7497acf561dc",
+                  "name": "An object representing a charge.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<double>\",\n  \"invoice_url\": \"<uri>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"metadata\": {\n    \"sint_552\": -51661286.90493781,\n    \"reprehenderit_b9\": 32021407\n  },\n  \"user_id\": \"<string>\",\n  \"captured\": \"<boolean>\",\n  \"canceled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"customer_id\": \"<string>\",\n  \"amount_refunded\": \"<double>\",\n  \"canceled\": \"<boolean>\",\n  \"canceled_at\": \"<dateTime>\",\n  \"captured\": \"<boolean>\",\n  \"captured_at\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\",\n  \"invoice_url\": \"<uri>\",\n  \"metadata\": {\n    \"Duis_35f\": false\n  },\n  \"number\": \"<string>\",\n  \"terms\": \"net7\",\n  \"updated_at\": \"<dateTime>\",\n  \"merchant_invoice_id\": \"<string>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"fee\": \"<double>\",\n  \"fee_refunded\": \"<double>\"\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-8dcba27a-a609-4ed3-b24e-7497acf561dc"
+                },
+                {
+                  "id": "b23ebfce-585d-48ea-b974-382fa7695fee",
+                  "name": "Bad request error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<double>\",\n  \"invoice_url\": \"<uri>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"metadata\": {\n    \"sint_552\": -51661286.90493781,\n    \"reprehenderit_b9\": 32021407\n  },\n  \"user_id\": \"<string>\",\n  \"captured\": \"<boolean>\",\n  \"canceled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-b23ebfce-585d-48ea-b974-382fa7695fee"
+                },
+                {
+                  "id": "48c8a0ec-5cd8-4239-98d9-fa8e451618db",
+                  "name": "Unauthorized error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<double>\",\n  \"invoice_url\": \"<uri>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"metadata\": {\n    \"sint_552\": -51661286.90493781,\n    \"reprehenderit_b9\": 32021407\n  },\n  \"user_id\": \"<string>\",\n  \"captured\": \"<boolean>\",\n  \"canceled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-48c8a0ec-5cd8-4239-98d9-fa8e451618db"
+                },
+                {
+                  "id": "682bf2d3-e194-40c1-a0d5-46d3bd5ddef8",
+                  "name": "Not found error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<double>\",\n  \"invoice_url\": \"<uri>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"metadata\": {\n    \"sint_552\": -51661286.90493781,\n    \"reprehenderit_b9\": 32021407\n  },\n  \"user_id\": \"<string>\",\n  \"captured\": \"<boolean>\",\n  \"canceled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-682bf2d3-e194-40c1-a0d5-46d3bd5ddef8"
+                },
+                {
+                  "id": "48d3bde1-9ff6-4ca7-8fad-8f73ba49935a",
+                  "name": "Rate limit error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<double>\",\n  \"invoice_url\": \"<uri>\",\n  \"order_number\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"metadata\": {\n    \"sint_552\": -51661286.90493781,\n    \"reprehenderit_b9\": 32021407\n  },\n  \"user_id\": \"<string>\",\n  \"captured\": \"<boolean>\",\n  \"canceled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/charges/:charge_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "charges",
+                        ":charge_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "charge_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:39.000Z",
+                  "updatedAt": "2026-07-28T02:46:39.000Z",
+                  "uid": "35240-48d3bde1-9ff6-4ca7-8fad-8f73ba49935a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:46:39.000Z",
+              "updatedAt": "2026-07-28T02:46:39.000Z",
+              "uid": "35240-e9c153c1-251d-48bd-8598-0b9bf3b52b12"
+            }
+          ],
+          "id": "68515b32-dee1-41b1-a12a-3cf47706d50f",
+          "createdAt": "2026-07-28T02:46:39.000Z",
+          "updatedAt": "2026-07-28T02:46:39.000Z",
+          "uid": "35240-68515b32-dee1-41b1-a12a-3cf47706d50f"
+        },
+        {
+          "name": "List charges",
+          "id": "4a9027e3-6314-4af6-95df-effee637f89a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/charges?limit=100&page=1&search=<string>&order=-created_at&starting_at=<dateTime>&ending_at=<dateTime>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "charges"
+              ],
+              "query": [
+                {
+                  "description": "Limit the number of charges returned.",
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "description": "Specify the page of charges returned.",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Search across supported charge fields.\n\nSearch is applied to charge and associated record values including:\n`id`, `number`, `merchant_invoice.order_number`, `merchant_invoice.po_number`,\nand customer/merchant identifying fields.\n",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort charges by field. Prefix with `-` for descending order.\n\nExamples:\n- `order=-created_at`\n- `order=amount`\n",
+                  "key": "order",
+                  "value": "-created_at"
+                },
+                {
+                  "description": "Return charges created at or after this timestamp.",
+                  "key": "starting_at",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Return charges created at or before this timestamp.",
+                  "key": "ending_at",
+                  "value": "<dateTime>"
+                }
+              ]
+            },
+            "description": "Return a paginated list of charges."
+          },
+          "response": [
+            {
+              "id": "ddf4cd0e-8d85-4c11-88ca-2ed62522de9b",
+              "name": "A paginated list of charges.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/charges?limit=100&page=1&search=<string>&order=-created_at&starting_at=<dateTime>&ending_at=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charges"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of charges returned.",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Specify the page of charges returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Search across supported charge fields.\n\nSearch is applied to charge and associated record values including:\n`id`, `number`, `merchant_invoice.order_number`, `merchant_invoice.po_number`,\nand customer/merchant identifying fields.\n",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort charges by field. Prefix with `-` for descending order.\n\nExamples:\n- `order=-created_at`\n- `order=amount`\n",
+                      "key": "order",
+                      "value": "-created_at"
+                    },
+                    {
+                      "description": "Return charges created at or after this timestamp.",
+                      "key": "starting_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Return charges created at or before this timestamp.",
+                      "key": "ending_at",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"count\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"customer_id\": \"<string>\",\n      \"amount_refunded\": \"<double>\",\n      \"canceled\": \"<boolean>\",\n      \"canceled_at\": \"<dateTime>\",\n      \"captured\": \"<boolean>\",\n      \"captured_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"invoice_url\": \"<uri>\",\n      \"metadata\": {\n        \"incididuntc\": false\n      },\n      \"number\": \"<string>\",\n      \"terms\": \"net180\",\n      \"updated_at\": \"<dateTime>\",\n      \"merchant_invoice_id\": \"<string>\",\n      \"order_number\": \"<string>\",\n      \"po_number\": \"<string>\",\n      \"fee\": \"<double>\",\n      \"fee_refunded\": \"<double>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<double>\",\n      \"customer_id\": \"<string>\",\n      \"amount_refunded\": \"<double>\",\n      \"canceled\": \"<boolean>\",\n      \"canceled_at\": \"<dateTime>\",\n      \"captured\": \"<boolean>\",\n      \"captured_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"invoice_url\": \"<uri>\",\n      \"metadata\": {\n        \"aute7_0\": \"proident\",\n        \"aliquipdf2\": true\n      },\n      \"number\": \"<string>\",\n      \"terms\": \"net20\",\n      \"updated_at\": \"<dateTime>\",\n      \"merchant_invoice_id\": \"<string>\",\n      \"order_number\": \"<string>\",\n      \"po_number\": \"<string>\",\n      \"fee\": \"<double>\",\n      \"fee_refunded\": \"<double>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:46:39.000Z",
+              "updatedAt": "2026-07-28T02:46:39.000Z",
+              "uid": "35240-ddf4cd0e-8d85-4c11-88ca-2ed62522de9b"
+            },
+            {
+              "id": "0918854f-8fe8-44d5-8519-4d74d4314afa",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/charges?limit=100&page=1&search=<string>&order=-created_at&starting_at=<dateTime>&ending_at=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charges"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of charges returned.",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Specify the page of charges returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Search across supported charge fields.\n\nSearch is applied to charge and associated record values including:\n`id`, `number`, `merchant_invoice.order_number`, `merchant_invoice.po_number`,\nand customer/merchant identifying fields.\n",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort charges by field. Prefix with `-` for descending order.\n\nExamples:\n- `order=-created_at`\n- `order=amount`\n",
+                      "key": "order",
+                      "value": "-created_at"
+                    },
+                    {
+                      "description": "Return charges created at or after this timestamp.",
+                      "key": "starting_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Return charges created at or before this timestamp.",
+                      "key": "ending_at",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:46:39.000Z",
+              "updatedAt": "2026-07-28T02:46:39.000Z",
+              "uid": "35240-0918854f-8fe8-44d5-8519-4d74d4314afa"
+            },
+            {
+              "id": "9fe3860f-436d-49af-b366-2942a36bd12e",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/charges?limit=100&page=1&search=<string>&order=-created_at&starting_at=<dateTime>&ending_at=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charges"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of charges returned.",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Specify the page of charges returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Search across supported charge fields.\n\nSearch is applied to charge and associated record values including:\n`id`, `number`, `merchant_invoice.order_number`, `merchant_invoice.po_number`,\nand customer/merchant identifying fields.\n",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort charges by field. Prefix with `-` for descending order.\n\nExamples:\n- `order=-created_at`\n- `order=amount`\n",
+                      "key": "order",
+                      "value": "-created_at"
+                    },
+                    {
+                      "description": "Return charges created at or after this timestamp.",
+                      "key": "starting_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Return charges created at or before this timestamp.",
+                      "key": "ending_at",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:39.000Z",
+              "updatedAt": "2026-07-28T02:46:39.000Z",
+              "uid": "35240-9fe3860f-436d-49af-b366-2942a36bd12e"
+            },
+            {
+              "id": "7cd602ed-6e0f-478a-855e-b793a2f97eb7",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/charges?limit=100&page=1&search=<string>&order=-created_at&starting_at=<dateTime>&ending_at=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "charges"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of charges returned.",
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "Specify the page of charges returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Search across supported charge fields.\n\nSearch is applied to charge and associated record values including:\n`id`, `number`, `merchant_invoice.order_number`, `merchant_invoice.po_number`,\nand customer/merchant identifying fields.\n",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort charges by field. Prefix with `-` for descending order.\n\nExamples:\n- `order=-created_at`\n- `order=amount`\n",
+                      "key": "order",
+                      "value": "-created_at"
+                    },
+                    {
+                      "description": "Return charges created at or after this timestamp.",
+                      "key": "starting_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Return charges created at or before this timestamp.",
+                      "key": "ending_at",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:39.000Z",
+              "updatedAt": "2026-07-28T02:46:39.000Z",
+              "uid": "35240-7cd602ed-6e0f-478a-855e-b793a2f97eb7"
+            }
+          ],
+          "createdAt": "2026-07-28T02:46:39.000Z",
+          "updatedAt": "2026-07-28T02:46:39.000Z",
+          "uid": "35240-4a9027e3-6314-4af6-95df-effee637f89a"
+        }
+      ],
+      "id": "33fe2901-042f-4a00-9860-16bdc968a8b3",
+      "createdAt": "2026-07-28T02:46:39.000Z",
+      "updatedAt": "2026-07-28T02:46:39.000Z",
+      "uid": "35240-33fe2901-042f-4a00-9860-16bdc968a8b3"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app-sandbox.resolvepay.com/api"
+    }
+  ]
+}

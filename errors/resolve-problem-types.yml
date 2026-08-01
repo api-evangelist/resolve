@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/resolve-merchant-api-openapi.yaml
+format: custom
+envelope: '{ "error": { "type": "<error_type>", "message": "<detail>", "details": [ { "path": "...", "message": "..." } ] } }'
+docs: https://docs.resolvepay.com/api-reference
+problems:
+  - status: 400
+    type: invalid_request
+    title: Invalid request error
+    detail_example: '[Invalid request message]'
+    schema: InvalidRequestError
+  - status: 401
+    type: authentication_error
+    title: Unauthorized error
+    detail_example: Invalid merchant credentials
+    schema: UnauthorizedError
+  - status: 403
+    type: forbidden_error
+    title: Forbidden error
+    detail_example: API access key expired
+    schema: ForbiddenError
+  - status: 404
+    type: not_found_error
+    title: Not found error
+    detail_example: '[entity] not found'
+    schema: NotFoundError
+  - status: 422
+    type: validation_error
+    title: Validation error
+    detail_example: '`[field]` is required'
+    schema: ValidationError
+    notes: Includes error.details[] with path + message per failed field.
+  - status: 429
+    type: rate_limit_error
+    title: Rate limit error
+    detail_example: Too many requests
+    schema: RateLimitError
+domain_specific:
+  - status: 400
+    type: invalid_request
+    title: Credit check already exists
+    detail_example: Credit check already created for this customer.
+    schema: CreditCheckExistsError
+    source_operation: openapi/resolve-merchant-api-openapi.yaml#requestCustomerCreditCheck

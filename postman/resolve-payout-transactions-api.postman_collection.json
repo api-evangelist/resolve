@@ -1,0 +1,644 @@
+{
+  "info": {
+    "_postman_id": "28ff9bac-5e3d-4903-860a-926f187240b4",
+    "name": "Resolve API Reference Access Keys Payout Transactions API",
+    "description": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:46:59.000Z",
+    "updatedAt": "2026-07-28T02:46:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-28ff9bac-5e3d-4903-860a-926f187240b4"
+  },
+  "item": [
+    {
+      "name": "payout-transactions",
+      "item": [
+        {
+          "name": "List Payout Transactions",
+          "id": "78afd6cc-c567-4b12-be0e-0ded5aa88141",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payout-transactions?limit=25&page=1&filter=<string>&sort=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout-transactions"
+              ],
+              "query": [
+                {
+                  "description": "Limit the number of payout transactions returned.",
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "description": "Specify the page of payout transactions returned.",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Filter Payout Transactions by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`, `ne`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `payout_id` (`eq`, `ne`)\n  - `invoice_id` (`eq`, `ne`)\n\nExample: `filter[created_at][gte]=2021-01-01T00:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort Payout Transactions by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "76b2eba4-cd20-40b9-a305-4483365d96a7",
+              "name": "An object with an array of results containing up to the limit. If no payout transactions are found, the results array will be empty.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payout-transactions?limit=25&page=1&filter=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout-transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of payout transactions returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of payout transactions returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter Payout Transactions by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`, `ne`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `payout_id` (`eq`, `ne`)\n  - `invoice_id` (`eq`, `ne`)\n\nExample: `filter[created_at][gte]=2021-01-01T00:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort Payout Transactions by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"limit\": \"<integer>\",\n  \"page\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:47:00.000Z",
+              "updatedAt": "2026-07-28T02:47:00.000Z",
+              "uid": "35240-76b2eba4-cd20-40b9-a305-4483365d96a7"
+            },
+            {
+              "id": "89089806-2497-4a08-83bb-2d33ec6c6330",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payout-transactions?limit=25&page=1&filter=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout-transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of payout transactions returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of payout transactions returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter Payout Transactions by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`, `ne`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `payout_id` (`eq`, `ne`)\n  - `invoice_id` (`eq`, `ne`)\n\nExample: `filter[created_at][gte]=2021-01-01T00:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort Payout Transactions by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:47:00.000Z",
+              "updatedAt": "2026-07-28T02:47:00.000Z",
+              "uid": "35240-89089806-2497-4a08-83bb-2d33ec6c6330"
+            },
+            {
+              "id": "b19398d7-b705-4aa4-a6cd-9bf64526035a",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payout-transactions?limit=25&page=1&filter=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout-transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of payout transactions returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of payout transactions returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter Payout Transactions by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`, `ne`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `payout_id` (`eq`, `ne`)\n  - `invoice_id` (`eq`, `ne`)\n\nExample: `filter[created_at][gte]=2021-01-01T00:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort Payout Transactions by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:00.000Z",
+              "updatedAt": "2026-07-28T02:47:00.000Z",
+              "uid": "35240-b19398d7-b705-4aa4-a6cd-9bf64526035a"
+            },
+            {
+              "id": "f0623f4f-7362-432e-9f9a-c3c5b45813a8",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payout-transactions?limit=25&page=1&filter=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout-transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of payout transactions returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of payout transactions returned.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Filter Payout Transactions by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`, `ne`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `payout_id` (`eq`, `ne`)\n  - `invoice_id` (`eq`, `ne`)\n\nExample: `filter[created_at][gte]=2021-01-01T00:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort Payout Transactions by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:00.000Z",
+              "updatedAt": "2026-07-28T02:47:00.000Z",
+              "uid": "35240-f0623f4f-7362-432e-9f9a-c3c5b45813a8"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:00.000Z",
+          "updatedAt": "2026-07-28T02:47:00.000Z",
+          "uid": "35240-78afd6cc-c567-4b12-be0e-0ded5aa88141"
+        }
+      ],
+      "id": "91bbbc85-fb19-4203-9c96-bab32524aba5",
+      "createdAt": "2026-07-28T02:47:00.000Z",
+      "updatedAt": "2026-07-28T02:47:00.000Z",
+      "uid": "35240-91bbbc85-fb19-4203-9c96-bab32524aba5"
+    },
+    {
+      "name": "payout_transactions",
+      "item": [
+        {
+          "name": "{payout_transaction_id}",
+          "item": [
+            {
+              "name": "Get a Payout Transaction",
+              "id": "c731954c-feb8-44a6-916e-71617cee613a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payout_transactions/:payout_transaction_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_transactions",
+                    ":payout_transaction_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fdb15c45-e6d5-408d-80c0-6a2f9aec9870",
+                      "key": "payout_transaction_id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the Payout Transaction"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b86b24e9-41c5-45a7-a532-6d919c417eb4",
+                  "name": "An object representing the created Payout Transaction.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_transactions/:payout_transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_transactions",
+                        ":payout_transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_transaction_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"payout_id\": \"<string>\",\n  \"type\": \"mdr_passthrough\",\n  \"customer_id\": \"<string>\",\n  \"customer_name\": \"<string>\",\n  \"invoice_id\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"po_number\": \"<string>\",\n  \"amount_gross\": \"<integer>\",\n  \"amount_fee\": \"<integer>\",\n  \"amount_net\": \"<integer>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:00.000Z",
+                  "updatedAt": "2026-07-28T02:47:00.000Z",
+                  "uid": "35240-b86b24e9-41c5-45a7-a532-6d919c417eb4"
+                },
+                {
+                  "id": "bc06fcc5-5c43-424f-9d37-69aaebde554e",
+                  "name": "Bad request error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_transactions/:payout_transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_transactions",
+                        ":payout_transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_transaction_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:47:00.000Z",
+                  "updatedAt": "2026-07-28T02:47:00.000Z",
+                  "uid": "35240-bc06fcc5-5c43-424f-9d37-69aaebde554e"
+                },
+                {
+                  "id": "8c714cdd-c443-431d-a593-b2edad31b964",
+                  "name": "Unauthorized error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_transactions/:payout_transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_transactions",
+                        ":payout_transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_transaction_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:47:00.000Z",
+                  "updatedAt": "2026-07-28T02:47:00.000Z",
+                  "uid": "35240-8c714cdd-c443-431d-a593-b2edad31b964"
+                },
+                {
+                  "id": "169df94b-e169-4971-9472-349d32c248df",
+                  "name": "Not found error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_transactions/:payout_transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_transactions",
+                        ":payout_transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_transaction_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:47:00.000Z",
+                  "updatedAt": "2026-07-28T02:47:00.000Z",
+                  "uid": "35240-169df94b-e169-4971-9472-349d32c248df"
+                },
+                {
+                  "id": "337bc232-df0b-433d-8b16-9ae55107b439",
+                  "name": "Rate limit error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_transactions/:payout_transaction_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_transactions",
+                        ":payout_transaction_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_transaction_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:47:00.000Z",
+                  "updatedAt": "2026-07-28T02:47:00.000Z",
+                  "uid": "35240-337bc232-df0b-433d-8b16-9ae55107b439"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:00.000Z",
+              "updatedAt": "2026-07-28T02:47:00.000Z",
+              "uid": "35240-c731954c-feb8-44a6-916e-71617cee613a"
+            }
+          ],
+          "id": "d2cd8a6e-450f-4afb-ba91-16ca227b1fd5",
+          "createdAt": "2026-07-28T02:47:00.000Z",
+          "updatedAt": "2026-07-28T02:47:00.000Z",
+          "uid": "35240-d2cd8a6e-450f-4afb-ba91-16ca227b1fd5"
+        }
+      ],
+      "id": "5cd67051-215e-4625-8296-c6e2dec53e36",
+      "createdAt": "2026-07-28T02:47:00.000Z",
+      "updatedAt": "2026-07-28T02:47:00.000Z",
+      "uid": "35240-5cd67051-215e-4625-8296-c6e2dec53e36"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app-sandbox.resolvepay.com/api"
+    }
+  ]
+}

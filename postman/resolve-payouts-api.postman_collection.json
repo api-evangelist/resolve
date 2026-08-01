@@ -1,0 +1,585 @@
+{
+  "info": {
+    "_postman_id": "fad034b8-341f-4b3e-80dc-439b610ac6c1",
+    "name": "Resolve API Reference Access Keys Payouts API",
+    "description": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:00.000Z",
+    "updatedAt": "2026-07-28T02:47:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fad034b8-341f-4b3e-80dc-439b610ac6c1"
+  },
+  "item": [
+    {
+      "name": "payouts",
+      "item": [
+        {
+          "name": "{payout_id}",
+          "item": [
+            {
+              "name": "Get a Payout",
+              "id": "aaf015ae-c3d8-4e2d-8fc8-c786cec07f92",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payouts/:payout_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payouts",
+                    ":payout_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dff6861b-4136-44f8-8b3a-fa2857207405",
+                      "key": "payout_id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the Payout"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "610ee3e2-458a-4bb8-a6a0-affce196b2bb",
+                  "name": "An object representing the created Payout.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payouts/:payout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payouts",
+                        ":payout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"amount_gross\": \"<integer>\",\n  \"amount_fee\": \"<integer>\",\n  \"amount_net\": \"<integer>\",\n  \"status\": \"in_transit\",\n  \"retry_payout_id\": \"<string>\",\n  \"failed_at\": \"<string>\",\n  \"expected_by\": \"<string>\",\n  \"transactions_starting_at\": \"<string>\",\n  \"transactions_ending_at\": \"<string>\",\n  \"canceled_at\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:47:01.000Z",
+                  "updatedAt": "2026-07-28T02:47:01.000Z",
+                  "uid": "35240-610ee3e2-458a-4bb8-a6a0-affce196b2bb"
+                },
+                {
+                  "id": "6eb56499-d454-46ba-a999-23ae94ec6489",
+                  "name": "Bad request error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payouts/:payout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payouts",
+                        ":payout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:47:01.000Z",
+                  "updatedAt": "2026-07-28T02:47:01.000Z",
+                  "uid": "35240-6eb56499-d454-46ba-a999-23ae94ec6489"
+                },
+                {
+                  "id": "c1f096e3-cbc7-49d6-b761-fc316ccd47e5",
+                  "name": "Unauthorized error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payouts/:payout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payouts",
+                        ":payout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:47:01.000Z",
+                  "updatedAt": "2026-07-28T02:47:01.000Z",
+                  "uid": "35240-c1f096e3-cbc7-49d6-b761-fc316ccd47e5"
+                },
+                {
+                  "id": "c6c4dafd-6252-4820-8c8c-75eec3e71214",
+                  "name": "Not found error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payouts/:payout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payouts",
+                        ":payout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:47:01.000Z",
+                  "updatedAt": "2026-07-28T02:47:01.000Z",
+                  "uid": "35240-c6c4dafd-6252-4820-8c8c-75eec3e71214"
+                },
+                {
+                  "id": "51e4c702-6228-4cd8-ae1a-b0fd06fe39fc",
+                  "name": "Rate limit error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payouts/:payout_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payouts",
+                        ":payout_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "payout_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:47:01.000Z",
+                  "updatedAt": "2026-07-28T02:47:01.000Z",
+                  "uid": "35240-51e4c702-6228-4cd8-ae1a-b0fd06fe39fc"
+                }
+              ],
+              "createdAt": "2026-07-28T02:47:01.000Z",
+              "updatedAt": "2026-07-28T02:47:01.000Z",
+              "uid": "35240-aaf015ae-c3d8-4e2d-8fc8-c786cec07f92"
+            }
+          ],
+          "id": "b9a842fa-40d5-4a50-b63c-2d3ca2b1a8b7",
+          "createdAt": "2026-07-28T02:47:01.000Z",
+          "updatedAt": "2026-07-28T02:47:01.000Z",
+          "uid": "35240-b9a842fa-40d5-4a50-b63c-2d3ca2b1a8b7"
+        },
+        {
+          "name": "List Payouts",
+          "id": "e8fd62ff-86a4-4b45-86b9-95d68eac18cd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payouts?filter=<string>&sort=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payouts"
+              ],
+              "query": [
+                {
+                  "description": "Filter records by the specified fields.\n  \nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n  - `eq` - equal (=)\n  - `ne` - not equal (!=)\n  - `gt` - greater than (>)\n  - `gte` - greater than or equal (>=)\n  - `lt` - less than (<)\n  - `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `status` (`eq`)\n  - `expected_by` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[created_at][gt]=2022-10-30T14:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort records by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "62b2f8a4-ba62-43df-9188-6b6d451f6016",
+              "name": "An object with an array of Payouts up to the specified limit.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payouts?filter=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payouts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter records by the specified fields.\n  \nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n  - `eq` - equal (=)\n  - `ne` - not equal (!=)\n  - `gt` - greater than (>)\n  - `gte` - greater than or equal (>=)\n  - `lt` - less than (<)\n  - `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `status` (`eq`)\n  - `expected_by` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[created_at][gt]=2022-10-30T14:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort records by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"limit\": \"<integer>\",\n  \"page\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:47:01.000Z",
+              "updatedAt": "2026-07-28T02:47:01.000Z",
+              "uid": "35240-62b2f8a4-ba62-43df-9188-6b6d451f6016"
+            },
+            {
+              "id": "9dec3188-c264-436c-a8d4-0f00ea5cc032",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payouts?filter=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payouts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter records by the specified fields.\n  \nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n  - `eq` - equal (=)\n  - `ne` - not equal (!=)\n  - `gt` - greater than (>)\n  - `gte` - greater than or equal (>=)\n  - `lt` - less than (<)\n  - `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `status` (`eq`)\n  - `expected_by` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[created_at][gt]=2022-10-30T14:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort records by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:47:01.000Z",
+              "updatedAt": "2026-07-28T02:47:01.000Z",
+              "uid": "35240-9dec3188-c264-436c-a8d4-0f00ea5cc032"
+            },
+            {
+              "id": "ff34710d-d760-4690-b67b-58ace7d7e1da",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payouts?filter=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payouts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter records by the specified fields.\n  \nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n  - `eq` - equal (=)\n  - `ne` - not equal (!=)\n  - `gt` - greater than (>)\n  - `gte` - greater than or equal (>=)\n  - `lt` - less than (<)\n  - `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `status` (`eq`)\n  - `expected_by` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[created_at][gt]=2022-10-30T14:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort records by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:01.000Z",
+              "updatedAt": "2026-07-28T02:47:01.000Z",
+              "uid": "35240-ff34710d-d760-4690-b67b-58ace7d7e1da"
+            },
+            {
+              "id": "9aa2be15-7943-4cf2-873f-5d9f07e18d92",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payouts?filter=<string>&sort=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payouts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter records by the specified fields.\n  \nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n  - `eq` - equal (=)\n  - `ne` - not equal (!=)\n  - `gt` - greater than (>)\n  - `gte` - greater than or equal (>=)\n  - `lt` - less than (<)\n  - `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `status` (`eq`)\n  - `expected_by` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[created_at][gt]=2022-10-30T14:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort records by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n",
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:01.000Z",
+              "updatedAt": "2026-07-28T02:47:01.000Z",
+              "uid": "35240-9aa2be15-7943-4cf2-873f-5d9f07e18d92"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:01.000Z",
+          "updatedAt": "2026-07-28T02:47:01.000Z",
+          "uid": "35240-e8fd62ff-86a4-4b45-86b9-95d68eac18cd"
+        }
+      ],
+      "id": "1e7b0d93-48f8-43ae-b4bb-375be4a1aaf7",
+      "createdAt": "2026-07-28T02:47:01.000Z",
+      "updatedAt": "2026-07-28T02:47:01.000Z",
+      "uid": "35240-1e7b0d93-48f8-43ae-b4bb-375be4a1aaf7"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app-sandbox.resolvepay.com/api"
+    }
+  ]
+}

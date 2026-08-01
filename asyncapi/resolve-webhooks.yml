@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/resolve-partners-api-openapi.yaml
+spec_type: Webhooks
+note: >-
+  Resolve documents webhooks (event notifications to a registered endpoint) but
+  does not publish an AsyncAPI document. Webhook endpoints are managed via the
+  Partners API (listWebhookEndpoints / upsertWebhookEndpoints / deleteWebhookEndpoints).
+delivery:
+  transport: HTTPS POST to registered endpoint
+  retry: automatic retry with backoff on non-2xx / connection error
+  event_structure: '{ type, data: { id, ... }, merchant_id }'
+  idempotency_advice: Consumers should implement idempotency to handle duplicate deliveries.
+management:
+  list: openapi/resolve-partners-api-openapi.yaml#listWebhookEndpoints
+  upsert: openapi/resolve-partners-api-openapi.yaml#upsertWebhookEndpoints
+  delete: openapi/resolve-partners-api-openapi.yaml#deleteWebhookEndpoints
+events:
+  - customer.created
+  - customer.status_updated
+  - customer.credit_decision_created
+  - customer.advance_rate_updated
+  - customer.line_amount_updated
+  - invoice.created
+  - invoice.balance_updated
+  - order.created
+  - order.updated
+  - payment.created
+  - payment.status_changed
+  - payout.created
+  - payout.status_changed
+  - merchant.created
+  - merchant.mal_updated
+  - merchant.more_info_needed
+  - merchant.underwriting_completed

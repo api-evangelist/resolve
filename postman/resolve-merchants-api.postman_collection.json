@@ -1,0 +1,2328 @@
+{
+  "info": {
+    "_postman_id": "aeb76c3e-969c-4007-a791-8a55ee43998f",
+    "name": "Resolve API Reference Access Keys Merchants API",
+    "description": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:46:52.000Z",
+    "updatedAt": "2026-07-28T02:46:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aeb76c3e-969c-4007-a791-8a55ee43998f"
+  },
+  "item": [
+    {
+      "name": "merchants",
+      "item": [
+        {
+          "name": "{merchant_id}",
+          "item": [
+            {
+              "name": "documents",
+              "item": [
+                {
+                  "name": "List Merchant Documents",
+                  "id": "d8233c34-2658-4f51-93ee-11c3be26c2e0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id/documents?limit=25&page=1&sort=created_at&filter[document_type][eq]=<string>&filter[status][eq]=pending_upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id",
+                        "documents"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of document records to return.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Page number for paginated document results.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Sort field for merchant document results.\n\nPrefix with `-` for descending order.\n",
+                          "key": "sort",
+                          "value": "created_at"
+                        },
+                        {
+                          "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                          "key": "filter[document_type][eq]",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                          "key": "filter[status][eq]",
+                          "value": "pending_upload"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "d26b40e5-df46-4515-99e1-07c6326ba43a",
+                          "key": "merchant_id",
+                          "value": "<string>",
+                          "description": "(Required) ID of the sub-merchant under your partner account."
+                        }
+                      ]
+                    },
+                    "description": "Returns document presence and validation lifecycle status for a specific sub-merchant.\n\nThis endpoint is metadata-only and does not return file bodies or signed retrieval URLs.\n\nSupported query options:\n- Pagination: `limit`, `page`\n- Sorting: `sort`\n- Field filters: `filter[field][eq]=value`\n\nSupported filter fields:\n- `document_type`\n- `status`\n\nSupported sort fields:\n- `created_at`\n\nUse `-` prefix for descending sort, for example `sort=-created_at`.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "f5c4b7d8-86da-4149-a6b5-e4bcd57a54db",
+                      "name": "Paginated list of merchant document metadata.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents?limit=25&page=1&sort=created_at&filter[document_type][eq]=<string>&filter[status][eq]=pending_upload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of document records to return.",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Page number for paginated document results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Sort field for merchant document results.\n\nPrefix with `-` for descending order.\n",
+                              "key": "sort",
+                              "value": "created_at"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[document_type][eq]",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[status][eq]",
+                              "value": "pending_upload"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"document_type\": \"personal_guarantee\",\n      \"status\": \"failed\",\n      \"validation_reasons\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"uploaded_at\": \"<dateTime>\",\n      \"validated_at\": \"<dateTime>\",\n      \"object_key\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"document_type\": \"other\",\n      \"status\": \"uploaded_pending_validation\",\n      \"validation_reasons\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"uploaded_at\": \"<dateTime>\",\n      \"validated_at\": \"<dateTime>\",\n      \"object_key\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-f5c4b7d8-86da-4149-a6b5-e4bcd57a54db"
+                    },
+                    {
+                      "id": "ed0fd9d6-30fc-413e-b43d-cf375efab11d",
+                      "name": "Bad request error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents?limit=25&page=1&sort=created_at&filter[document_type][eq]=<string>&filter[status][eq]=pending_upload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of document records to return.",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Page number for paginated document results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Sort field for merchant document results.\n\nPrefix with `-` for descending order.\n",
+                              "key": "sort",
+                              "value": "created_at"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[document_type][eq]",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[status][eq]",
+                              "value": "pending_upload"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-ed0fd9d6-30fc-413e-b43d-cf375efab11d"
+                    },
+                    {
+                      "id": "e9852d98-edbf-47cd-a5fa-02ca8ac32bc2",
+                      "name": "Unauthorized error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents?limit=25&page=1&sort=created_at&filter[document_type][eq]=<string>&filter[status][eq]=pending_upload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of document records to return.",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Page number for paginated document results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Sort field for merchant document results.\n\nPrefix with `-` for descending order.\n",
+                              "key": "sort",
+                              "value": "created_at"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[document_type][eq]",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[status][eq]",
+                              "value": "pending_upload"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-e9852d98-edbf-47cd-a5fa-02ca8ac32bc2"
+                    },
+                    {
+                      "id": "78154c38-0883-4de0-9357-507555fb9554",
+                      "name": "Not found error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents?limit=25&page=1&sort=created_at&filter[document_type][eq]=<string>&filter[status][eq]=pending_upload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of document records to return.",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Page number for paginated document results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Sort field for merchant document results.\n\nPrefix with `-` for descending order.\n",
+                              "key": "sort",
+                              "value": "created_at"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[document_type][eq]",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[status][eq]",
+                              "value": "pending_upload"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-78154c38-0883-4de0-9357-507555fb9554"
+                    },
+                    {
+                      "id": "47a4bc9c-dd6e-4633-a093-fbae130682e1",
+                      "name": "Rate limit error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents?limit=25&page=1&sort=created_at&filter[document_type][eq]=<string>&filter[status][eq]=pending_upload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of document records to return.",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Page number for paginated document results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Sort field for merchant document results.\n\nPrefix with `-` for descending order.\n",
+                              "key": "sort",
+                              "value": "created_at"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[document_type][eq]",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n",
+                              "key": "filter[status][eq]",
+                              "value": "pending_upload"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-47a4bc9c-dd6e-4633-a093-fbae130682e1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-d8233c34-2658-4f51-93ee-11c3be26c2e0"
+                },
+                {
+                  "name": "Create a Merchant Document Upload Request",
+                  "id": "c0216a52-0fe0-42d7-b165-4fc2010fe894",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"document_type\": \"credit_references\",\n  \"filename\": \"<string>\",\n  \"filetype\": \"<string>\",\n  \"download_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id/documents",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id",
+                        "documents"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b98a7495-a81e-4bb1-8cb7-4ebae757529f",
+                          "key": "merchant_id",
+                          "value": "<string>",
+                          "description": "(Required) ID of the sub-merchant under your partner account."
+                        }
+                      ]
+                    },
+                    "description": "Creates a new merchant document record for a sub-merchant and initializes document transfer to the Resolve document validation service.\n\nThe transfer method is determined by request shape:\n- If `download_url` is provided, Resolve queues a background download job (`transfer_method=download_url`).\n- Otherwise, Resolve returns a presigned S3 upload URL (`transfer_method=presigned_upload`).\n\nThe validation profile is endpoint-managed by Resolve and cannot be overridden in the request.\n\nRequest validation includes:\n- `filename` must include an extension\n- `filetype` must be a supported MIME type for the merchant underwriting document profile\n- `download_url`, when provided, must use `http` or `https`\n- `filename` extension must match `filetype`\n\nFor `download_url`, queue dispatch is executed after database commit. A dispatch failure at that stage does not\nroll back the merchant document row; instead, the response remains successful and the document is marked failed.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "ace06dc1-1404-4382-88d2-d9157c111c7c",
+                      "name": "Successful response with merchant document upload/download initiation details.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"document_type\": \"credit_references\",\n  \"filename\": \"<string>\",\n  \"filetype\": \"<string>\",\n  \"download_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"document_id\": \"<string>\",\n  \"document_type\": \"bank_statements\",\n  \"status\": \"failed\",\n  \"upload_url\": \"<uri>\",\n  \"upload_expires_at\": \"<dateTime>\",\n  \"object_key\": \"<string>\",\n  \"transfer_method\": \"download_url\",\n  \"queue_dispatch_status\": \"queued\",\n  \"upload_headers\": {\n    \"anim0a4\": \"<string>\",\n    \"aliquip_38\": \"<string>\",\n    \"elit_171\": \"<string>\"\n  },\n  \"validation_profile\": \"merchant_underwriting_document_default\"\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-ace06dc1-1404-4382-88d2-d9157c111c7c"
+                    },
+                    {
+                      "id": "0fa0eb0d-612e-4583-a3fd-4fb2eacffea2",
+                      "name": "Bad request error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"document_type\": \"credit_references\",\n  \"filename\": \"<string>\",\n  \"filetype\": \"<string>\",\n  \"download_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-0fa0eb0d-612e-4583-a3fd-4fb2eacffea2"
+                    },
+                    {
+                      "id": "b83c049b-1f4a-4a45-a6a2-c34bec9ec40a",
+                      "name": "Unauthorized error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"document_type\": \"credit_references\",\n  \"filename\": \"<string>\",\n  \"filetype\": \"<string>\",\n  \"download_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-b83c049b-1f4a-4a45-a6a2-c34bec9ec40a"
+                    },
+                    {
+                      "id": "88f3a8d8-6c37-4c30-a9c8-efe3152796b4",
+                      "name": "Not found error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"document_type\": \"credit_references\",\n  \"filename\": \"<string>\",\n  \"filetype\": \"<string>\",\n  \"download_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-88f3a8d8-6c37-4c30-a9c8-efe3152796b4"
+                    },
+                    {
+                      "id": "392e9e8c-f41c-456f-82ea-3f0f8c30d5e4",
+                      "name": "Rate limit error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"document_type\": \"credit_references\",\n  \"filename\": \"<string>\",\n  \"filetype\": \"<string>\",\n  \"download_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:merchant_id/documents",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":merchant_id",
+                            "documents"
+                          ],
+                          "variable": [
+                            {
+                              "key": "merchant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:46:53.000Z",
+                      "updatedAt": "2026-07-28T02:46:53.000Z",
+                      "uid": "35240-392e9e8c-f41c-456f-82ea-3f0f8c30d5e4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-c0216a52-0fe0-42d7-b165-4fc2010fe894"
+                }
+              ],
+              "id": "791e20cb-9a84-4068-bcfe-f2000f8cf262",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-791e20cb-9a84-4068-bcfe-f2000f8cf262"
+            },
+            {
+              "name": "Get Merchant",
+              "id": "26c1733f-a195-4b21-8382-28b9fbf919e8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchants/:merchant_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "998e7662-cfd1-4802-8e9b-3721dfac9c1d",
+                      "key": "merchant_id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "description": "Retrieves a single sub-merchant belonging to the authenticated partner.\n\nOnly merchants scoped to the authenticated partner are returned. Requests for\nunknown merchants or merchants outside that scope return `404`.\n\nThis path currently overlaps with a legacy public merchant endpoint. To avoid\nambiguous response shapes or fallback behavior, send the `resolve-api-version`\nheader on every request. Use `resolve-api-version: partner-v1` when you need\nthe partner API response contract documented here.\n"
+              },
+              "response": [
+                {
+                  "id": "3850e2d7-18cb-4966-99e7-4966a4ebad52",
+                  "name": "A merchant object.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"legal_business_name\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"sole_proprietorship\",\n  \"formation_state\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"underwriting_status\": \"<string>\",\n  \"seller_amount_approved\": \"<integer>\",\n  \"active_subscription\": {\n    \"id\": \"<string>\",\n    \"tier\": \"<string>\"\n  },\n  \"metadata\": {\n    \"anim9\": true,\n    \"reprehenderita\": 61347388\n  },\n  \"document_ingestion\": {\n    \"requested_count\": \"<integer>\",\n    \"queued_count\": \"<integer>\",\n    \"failed_count\": \"<integer>\",\n    \"results\": [\n      {\n        \"document_id\": \"<string>\",\n        \"document_type\": \"bank_statements\",\n        \"filename\": \"<string>\",\n        \"download_url\": \"<uri>\",\n        \"status\": \"failed\",\n        \"error_code\": \"<string>\",\n        \"error_message\": \"<string>\"\n      },\n      {\n        \"document_id\": \"<string>\",\n        \"document_type\": \"other\",\n        \"filename\": \"<string>\",\n        \"download_url\": \"<uri>\",\n        \"status\": \"failed\",\n        \"error_code\": \"<string>\",\n        \"error_message\": \"<string>\"\n      }\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-3850e2d7-18cb-4966-99e7-4966a4ebad52"
+                },
+                {
+                  "id": "48686c40-3fef-4fd9-bd8e-aca5d1902c25",
+                  "name": "Bad request error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-48686c40-3fef-4fd9-bd8e-aca5d1902c25"
+                },
+                {
+                  "id": "3c196356-7cc1-4a58-97cc-569ecd7462f5",
+                  "name": "Unauthorized error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-3c196356-7cc1-4a58-97cc-569ecd7462f5"
+                },
+                {
+                  "id": "1c094280-41ce-4dba-8eb9-2102c32f5043",
+                  "name": "Not found error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-1c094280-41ce-4dba-8eb9-2102c32f5043"
+                },
+                {
+                  "id": "f11d8a9d-383f-48d0-a641-86de9a9bcc86",
+                  "name": "Rate limit error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-f11d8a9d-383f-48d0-a641-86de9a9bcc86"
+                }
+              ],
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-26c1733f-a195-4b21-8382-28b9fbf919e8"
+            },
+            {
+              "name": "Update Merchant",
+              "id": "3af5051b-7407-40a7-a0c9-5a037bafe927",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"partnership\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"incididunt_e\": 24467203.134169683,\n    \"nulla3b1\": -35098536.972846925\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"additional_beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"commodob\": -80586356.67585924,\n    \"proident7\": -62802528,\n    \"reprehenderit1\": 11135896.198884383,\n    \"incididunt7\": 54491322\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants/:merchant_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d92d848b-a124-4f77-99b6-cf7ef558f315",
+                      "key": "merchant_id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "description": "Updates a sub-merchant belonging to the authenticated partner.\n\nFor the **partner API** contract, `id` is immutable and cannot be updated via request payload.\n\nPost-underwriting restrictions apply once the latest underwriting decision has been finalized.\n\nFields that are **not updateable** after underwriting is complete:\n- `legal_business_name`\n- `business_address`\n- `business_email`\n- `business_phone`\n- `entity_type`\n- `formation_state`\n- `ein`\n- `annual_revenue`\n- `years_in_business`\n- `industry`\n- `authorized_signer`\n- `bank_account_number`\n- `bank_routing_number`\n- `beneficial_owners` (existing owners are not editable)\n\nFields that are **updateable** after underwriting is complete:\n- `dba_name`\n- `business_description`\n- `website`\n- `estimated_monthly_net_terms_volume`\n- `existing_net_terms_info`\n- `metadata`\n- `plaid_access_token`\n- `additional_beneficial_owners` (add-only)\n\nValidation for mutable request fields follows the same partner create rules for phone, EIN, US address fields,\nbeneficial owner address fields, authorized signer phone, and banking inputs.\n\nThis endpoint also supports optional inline document URL ingestion using the same `download_url` pattern as\nmerchant create. If document arrays are provided (`bank_statements`, `financial_statements`,\n`credit_references`, `personal_guarantee`, `other_documents`), Resolve queues `download_url` ingestion jobs\nequivalent to the document endpoint.\n\nMerchant updates are not rolled back for inline document ingestion failures. Dispatch failures are surfaced\nper-item in `document_ingestion.results`, and the affected merchant document/file metadata is marked failed.\n"
+              },
+              "response": [
+                {
+                  "id": "c4a4725b-2591-4a23-bb82-bc0ed85a157f",
+                  "name": "A merchant object.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"partnership\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"incididunt_e\": 24467203.134169683,\n    \"nulla3b1\": -35098536.972846925\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"additional_beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"commodob\": -80586356.67585924,\n    \"proident7\": -62802528,\n    \"reprehenderit1\": 11135896.198884383,\n    \"incididunt7\": 54491322\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"legal_business_name\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"sole_proprietorship\",\n  \"formation_state\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"underwriting_status\": \"<string>\",\n  \"seller_amount_approved\": \"<integer>\",\n  \"active_subscription\": {\n    \"id\": \"<string>\",\n    \"tier\": \"<string>\"\n  },\n  \"metadata\": {\n    \"anim9\": true,\n    \"reprehenderita\": 61347388\n  },\n  \"document_ingestion\": {\n    \"requested_count\": \"<integer>\",\n    \"queued_count\": \"<integer>\",\n    \"failed_count\": \"<integer>\",\n    \"results\": [\n      {\n        \"document_id\": \"<string>\",\n        \"document_type\": \"bank_statements\",\n        \"filename\": \"<string>\",\n        \"download_url\": \"<uri>\",\n        \"status\": \"failed\",\n        \"error_code\": \"<string>\",\n        \"error_message\": \"<string>\"\n      },\n      {\n        \"document_id\": \"<string>\",\n        \"document_type\": \"other\",\n        \"filename\": \"<string>\",\n        \"download_url\": \"<uri>\",\n        \"status\": \"failed\",\n        \"error_code\": \"<string>\",\n        \"error_message\": \"<string>\"\n      }\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-c4a4725b-2591-4a23-bb82-bc0ed85a157f"
+                },
+                {
+                  "id": "e33adf46-dc02-4cda-a133-8ef860af7f4b",
+                  "name": "Bad request error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"partnership\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"incididunt_e\": 24467203.134169683,\n    \"nulla3b1\": -35098536.972846925\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"additional_beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"commodob\": -80586356.67585924,\n    \"proident7\": -62802528,\n    \"reprehenderit1\": 11135896.198884383,\n    \"incididunt7\": 54491322\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-e33adf46-dc02-4cda-a133-8ef860af7f4b"
+                },
+                {
+                  "id": "174b9c28-0760-4958-b136-e1bdbbf71f14",
+                  "name": "Unauthorized error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"partnership\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"incididunt_e\": 24467203.134169683,\n    \"nulla3b1\": -35098536.972846925\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"additional_beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"commodob\": -80586356.67585924,\n    \"proident7\": -62802528,\n    \"reprehenderit1\": 11135896.198884383,\n    \"incididunt7\": 54491322\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-174b9c28-0760-4958-b136-e1bdbbf71f14"
+                },
+                {
+                  "id": "142bc06b-4058-4e6e-823d-f87f0be2b3e0",
+                  "name": "Not found error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"partnership\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"incididunt_e\": 24467203.134169683,\n    \"nulla3b1\": -35098536.972846925\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"additional_beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"commodob\": -80586356.67585924,\n    \"proident7\": -62802528,\n    \"reprehenderit1\": 11135896.198884383,\n    \"incididunt7\": 54491322\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-142bc06b-4058-4e6e-823d-f87f0be2b3e0"
+                },
+                {
+                  "id": "5eecdf54-9210-4dcc-86c5-c652229d71b9",
+                  "name": "Rate limit error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"partnership\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"incididunt_e\": 24467203.134169683,\n    \"nulla3b1\": -35098536.972846925\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"additional_beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"commodob\": -80586356.67585924,\n    \"proident7\": -62802528,\n    \"reprehenderit1\": 11135896.198884383,\n    \"incididunt7\": 54491322\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:merchant_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":merchant_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "merchant_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:46:53.000Z",
+                  "updatedAt": "2026-07-28T02:46:53.000Z",
+                  "uid": "35240-5eecdf54-9210-4dcc-86c5-c652229d71b9"
+                }
+              ],
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-3af5051b-7407-40a7-a0c9-5a037bafe927"
+            }
+          ],
+          "id": "7eea9692-529b-4333-b0a6-cfaed58e4104",
+          "createdAt": "2026-07-28T02:46:53.000Z",
+          "updatedAt": "2026-07-28T02:46:53.000Z",
+          "uid": "35240-7eea9692-529b-4333-b0a6-cfaed58e4104"
+        },
+        {
+          "name": "List Merchants",
+          "id": "3a0a1612-d78a-4bda-9170-332f079c5589",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/merchants?limit=25&page=1&search=<string>&sort=legal_name&filter[id][eq]=<string>&filter[external_id][eq]=<string>&filter[name][eq]=<string>&filter[legal_name][eq]=<string>&filter[email][eq]=<email>&filter[underwriting_status][eq]=<string>&filter[created_at][eq]=<dateTime>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "merchants"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of merchants to return.",
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "description": "Page number for paginated merchant results.",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Case-insensitive text search across merchant `id`, `name`, `email`, and `legal_name`.",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort field for merchant results.\n\nPrefix with `-` for descending order.\n",
+                  "key": "sort",
+                  "value": "legal_name"
+                },
+                {
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                  "key": "filter[id][eq]",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                  "key": "filter[external_id][eq]",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                  "key": "filter[name][eq]",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                  "key": "filter[legal_name][eq]",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                  "key": "filter[email][eq]",
+                  "value": "<email>"
+                },
+                {
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                  "key": "filter[underwriting_status][eq]",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                  "key": "filter[created_at][eq]",
+                  "value": "<dateTime>"
+                }
+              ]
+            },
+            "description": "Returns sub-merchants under the authenticated partner account.\n\nSupported query options:\n- Pagination: `limit`, `page`\n- Text search: `search`\n- Sorting: `sort`\n- Field filters: `filter[field][eq]=value`\n\nSupported filter fields:\n- `id`\n- `external_id`\n- `name`\n- `legal_name`\n- `email`\n- `underwriting_status`\n- `created_at`\n\nSupported sort fields:\n- `created_at`\n- `id`\n- `name`\n- `legal_name`\n\nUse `-` prefix for descending sort, for example `sort=-name`.\n"
+          },
+          "response": [
+            {
+              "id": "6ebc76f6-cd9d-44f3-8dc9-36dce3575d3a",
+              "name": "Paginated list of merchants.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchants?limit=25&page=1&search=<string>&sort=legal_name&filter[id][eq]=<string>&filter[external_id][eq]=<string>&filter[name][eq]=<string>&filter[legal_name][eq]=<string>&filter[email][eq]=<email>&filter[underwriting_status][eq]=<string>&filter[created_at][eq]=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of merchants to return.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Page number for paginated merchant results.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Case-insensitive text search across merchant `id`, `name`, `email`, and `legal_name`.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field for merchant results.\n\nPrefix with `-` for descending order.\n",
+                      "key": "sort",
+                      "value": "legal_name"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[external_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[legal_name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[email][eq]",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[underwriting_status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"legal_business_name\": \"<string>\",\n      \"dba_name\": \"<string>\",\n      \"business_address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"business_email\": \"<email>\",\n      \"business_phone\": \"<string>\",\n      \"entity_type\": \"llc\",\n      \"formation_state\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"website\": \"<uri>\",\n      \"underwriting_status\": \"<string>\",\n      \"seller_amount_approved\": \"<integer>\",\n      \"active_subscription\": {\n        \"id\": \"<string>\",\n        \"tier\": \"<string>\"\n      },\n      \"metadata\": {\n        \"minim_716\": 94401178.1351271\n      },\n      \"document_ingestion\": {\n        \"requested_count\": \"<integer>\",\n        \"queued_count\": \"<integer>\",\n        \"failed_count\": \"<integer>\",\n        \"results\": [\n          {\n            \"document_id\": \"<string>\",\n            \"document_type\": \"other\",\n            \"filename\": \"<string>\",\n            \"download_url\": \"<uri>\",\n            \"status\": \"queued\",\n            \"error_code\": \"<string>\",\n            \"error_message\": \"<string>\"\n          },\n          {\n            \"document_id\": \"<string>\",\n            \"document_type\": \"bank_statements\",\n            \"filename\": \"<string>\",\n            \"download_url\": \"<uri>\",\n            \"status\": \"queued\",\n            \"error_code\": \"<string>\",\n            \"error_message\": \"<string>\"\n          }\n        ]\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"legal_business_name\": \"<string>\",\n      \"dba_name\": \"<string>\",\n      \"business_address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"business_email\": \"<email>\",\n      \"business_phone\": \"<string>\",\n      \"entity_type\": \"sole_proprietorship\",\n      \"formation_state\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"website\": \"<uri>\",\n      \"underwriting_status\": \"<string>\",\n      \"seller_amount_approved\": \"<integer>\",\n      \"active_subscription\": {\n        \"id\": \"<string>\",\n        \"tier\": \"<string>\"\n      },\n      \"metadata\": {\n        \"esse_728\": false\n      },\n      \"document_ingestion\": {\n        \"requested_count\": \"<integer>\",\n        \"queued_count\": \"<integer>\",\n        \"failed_count\": \"<integer>\",\n        \"results\": [\n          {\n            \"document_id\": \"<string>\",\n            \"document_type\": \"other\",\n            \"filename\": \"<string>\",\n            \"download_url\": \"<uri>\",\n            \"status\": \"failed\",\n            \"error_code\": \"<string>\",\n            \"error_message\": \"<string>\"\n          },\n          {\n            \"document_id\": \"<string>\",\n            \"document_type\": \"credit_references\",\n            \"filename\": \"<string>\",\n            \"download_url\": \"<uri>\",\n            \"status\": \"failed\",\n            \"error_code\": \"<string>\",\n            \"error_message\": \"<string>\"\n          }\n        ]\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-6ebc76f6-cd9d-44f3-8dc9-36dce3575d3a"
+            },
+            {
+              "id": "0d1c5747-eb78-42de-a60a-651584eb3ab5",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchants?limit=25&page=1&search=<string>&sort=legal_name&filter[id][eq]=<string>&filter[external_id][eq]=<string>&filter[name][eq]=<string>&filter[legal_name][eq]=<string>&filter[email][eq]=<email>&filter[underwriting_status][eq]=<string>&filter[created_at][eq]=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of merchants to return.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Page number for paginated merchant results.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Case-insensitive text search across merchant `id`, `name`, `email`, and `legal_name`.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field for merchant results.\n\nPrefix with `-` for descending order.\n",
+                      "key": "sort",
+                      "value": "legal_name"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[external_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[legal_name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[email][eq]",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[underwriting_status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-0d1c5747-eb78-42de-a60a-651584eb3ab5"
+            },
+            {
+              "id": "40bce2ca-59ef-4a5d-a08e-d7d9f0a4bfec",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchants?limit=25&page=1&search=<string>&sort=legal_name&filter[id][eq]=<string>&filter[external_id][eq]=<string>&filter[name][eq]=<string>&filter[legal_name][eq]=<string>&filter[email][eq]=<email>&filter[underwriting_status][eq]=<string>&filter[created_at][eq]=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of merchants to return.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Page number for paginated merchant results.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Case-insensitive text search across merchant `id`, `name`, `email`, and `legal_name`.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field for merchant results.\n\nPrefix with `-` for descending order.\n",
+                      "key": "sort",
+                      "value": "legal_name"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[external_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[legal_name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[email][eq]",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[underwriting_status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-40bce2ca-59ef-4a5d-a08e-d7d9f0a4bfec"
+            },
+            {
+              "id": "d7e1d650-175d-4ccf-a921-6ce870e9d998",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchants?limit=25&page=1&search=<string>&sort=legal_name&filter[id][eq]=<string>&filter[external_id][eq]=<string>&filter[name][eq]=<string>&filter[legal_name][eq]=<string>&filter[email][eq]=<email>&filter[underwriting_status][eq]=<string>&filter[created_at][eq]=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of merchants to return.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Page number for paginated merchant results.",
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Case-insensitive text search across merchant `id`, `name`, `email`, and `legal_name`.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort field for merchant results.\n\nPrefix with `-` for descending order.\n",
+                      "key": "sort",
+                      "value": "legal_name"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[external_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[legal_name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[email][eq]",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[underwriting_status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n",
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-d7e1d650-175d-4ccf-a921-6ce870e9d998"
+            }
+          ],
+          "createdAt": "2026-07-28T02:46:53.000Z",
+          "updatedAt": "2026-07-28T02:46:53.000Z",
+          "uid": "35240-3a0a1612-d78a-4bda-9170-332f079c5589"
+        },
+        {
+          "name": "Create Merchant",
+          "id": "239a466c-05b6-4616-a05e-14c702a55763",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"non_profit\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"laborum_84e\": \"pariatur in reprehenderit\"\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"adipisicing6ea\": \"dolore ullamco eu\",\n    \"idc\": true,\n    \"quis_4_\": \"ea sunt\"\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/merchants",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "merchants"
+              ]
+            },
+            "description": "Creates a sub-merchant under the authenticated partner and starts underwriting lifecycle tracking.\n\nFor the **partner API** contract, `id` is server-managed and is not accepted in the request payload.\nResolve derives/assigns the merchant identifier from merchant naming inputs (`dba_name` or `legal_business_name`) with random alphanumeric fallback for collisions.\n\nCore merchant validation includes:\n- `business_phone` must be a valid US phone number\n- `formation_state` must map to a valid US state\n- US business addresses validate `state` and `postal_code`\n- beneficial owner US addresses validate `state` and `postal_code`\n- `authorized_signer.phone`, when provided, must be a valid US phone number\n- `ein` must be a valid EIN format\n- banking fields validate account-number shape and ABA routing number format\n- `bank_account_number` must be different from `bank_routing_number`\n\nThis endpoint also supports optional inline document URL ingestion. If document arrays are provided\n(`bank_statements`, `financial_statements`, `credit_references`, `personal_guarantee`, `other_documents`),\nResolve queues `download_url` ingestion jobs equivalent to the document endpoint.\n\nInline document requests require:\n- `filename` with an extension\n- supported `filetype` for the merchant underwriting document profile\n- `download_url` using `http` or `https`\n- matching filename extension and `filetype`\n\nMerchant creation is not rolled back for inline document ingestion failures.\n\nInline download dispatch is performed after database commit. Dispatch failures are surfaced per-item in\n`document_ingestion.results`, and the affected merchant document/file metadata is marked failed even though\nthe merchant and some/all document rows were already persisted.\n"
+          },
+          "response": [
+            {
+              "id": "aa2dc016-79a0-463e-b02f-6e5d8fa8978a",
+              "name": "A merchant object.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"non_profit\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"laborum_84e\": \"pariatur in reprehenderit\"\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"adipisicing6ea\": \"dolore ullamco eu\",\n    \"idc\": true,\n    \"quis_4_\": \"ea sunt\"\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"legal_business_name\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"sole_proprietorship\",\n  \"formation_state\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"underwriting_status\": \"<string>\",\n  \"seller_amount_approved\": \"<integer>\",\n  \"active_subscription\": {\n    \"id\": \"<string>\",\n    \"tier\": \"<string>\"\n  },\n  \"metadata\": {\n    \"anim9\": true,\n    \"reprehenderita\": 61347388\n  },\n  \"document_ingestion\": {\n    \"requested_count\": \"<integer>\",\n    \"queued_count\": \"<integer>\",\n    \"failed_count\": \"<integer>\",\n    \"results\": [\n      {\n        \"document_id\": \"<string>\",\n        \"document_type\": \"bank_statements\",\n        \"filename\": \"<string>\",\n        \"download_url\": \"<uri>\",\n        \"status\": \"failed\",\n        \"error_code\": \"<string>\",\n        \"error_message\": \"<string>\"\n      },\n      {\n        \"document_id\": \"<string>\",\n        \"document_type\": \"other\",\n        \"filename\": \"<string>\",\n        \"download_url\": \"<uri>\",\n        \"status\": \"failed\",\n        \"error_code\": \"<string>\",\n        \"error_message\": \"<string>\"\n      }\n    ]\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-aa2dc016-79a0-463e-b02f-6e5d8fa8978a"
+            },
+            {
+              "id": "623a3187-c637-41df-90dc-46858fac866a",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"non_profit\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"laborum_84e\": \"pariatur in reprehenderit\"\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"adipisicing6ea\": \"dolore ullamco eu\",\n    \"idc\": true,\n    \"quis_4_\": \"ea sunt\"\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-623a3187-c637-41df-90dc-46858fac866a"
+            },
+            {
+              "id": "c010f7b5-1ffc-4309-9626-489a61db44fc",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"non_profit\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"laborum_84e\": \"pariatur in reprehenderit\"\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"adipisicing6ea\": \"dolore ullamco eu\",\n    \"idc\": true,\n    \"quis_4_\": \"ea sunt\"\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-c010f7b5-1ffc-4309-9626-489a61db44fc"
+            },
+            {
+              "id": "4008fcdc-07ec-4444-b106-117e45c91e1b",
+              "name": "Not found error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"non_profit\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"laborum_84e\": \"pariatur in reprehenderit\"\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"adipisicing6ea\": \"dolore ullamco eu\",\n    \"idc\": true,\n    \"quis_4_\": \"ea sunt\"\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-4008fcdc-07ec-4444-b106-117e45c91e1b"
+            },
+            {
+              "id": "f97aacc1-3d10-46b1-8283-6dcbd64c1756",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"non_profit\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"laborum_84e\": \"pariatur in reprehenderit\"\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"adipisicing6ea\": \"dolore ullamco eu\",\n    \"idc\": true,\n    \"quis_4_\": \"ea sunt\"\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:46:53.000Z",
+              "updatedAt": "2026-07-28T02:46:53.000Z",
+              "uid": "35240-f97aacc1-3d10-46b1-8283-6dcbd64c1756"
+            }
+          ],
+          "createdAt": "2026-07-28T02:46:53.000Z",
+          "updatedAt": "2026-07-28T02:46:53.000Z",
+          "uid": "35240-239a466c-05b6-4616-a05e-14c702a55763"
+        }
+      ],
+      "id": "4174b50c-e953-4e84-8de8-9c24e46134b5",
+      "createdAt": "2026-07-28T02:46:53.000Z",
+      "updatedAt": "2026-07-28T02:46:53.000Z",
+      "uid": "35240-4174b50c-e953-4e84-8de8-9c24e46134b5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app-sandbox.resolvepay.com/api"
+    }
+  ]
+}

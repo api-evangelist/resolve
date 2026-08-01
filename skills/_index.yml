@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/resolve-merchant-api-openapi.yaml
+skills:
+  - file: resolve-onboard-customer.md
+    name: Onboard a customer for net terms
+    api: openapi/resolve-merchant-api-openapi.yaml
+    operations: [createCustomer, requestCustomerCreditCheck, fetchCustomer, enroll-a-customer]
+  - file: resolve-invoice-and-advance.md
+    name: Create, send, and advance an invoice
+    api: openapi/resolve-merchant-api-openapi.yaml
+    operations: [createInvoice, updateInvoice, sendInvoice, fetchInvoice, createShipment]

@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.resolvepay.com/guides/checkout-sdk
+components:
+  - family: Checkout SDK
+    kind: hosted-js
+    loader: https://app.resolvepay.com/js/resolve.js
+    description: >-
+      Client-side JavaScript SDK loaded from Resolve's hosted script. Embeds the
+      Resolve net-terms checkout / credit-application flow into a storefront —
+      credit application modal, invoice flows, order and charge management on the
+      buyer side.
+    docs: https://docs.resolvepay.com/guides/checkout-sdk
+    guides:
+      - https://docs.resolvepay.com/guides/credit-application-modal
+      - https://docs.resolvepay.com/guides/checkout-sdk-invoices
+      - https://docs.resolvepay.com/guides/checkout-sdk-order-management
+      - https://docs.resolvepay.com/guides/checkout-sdk-charge-management
+      - https://docs.resolvepay.com/guides/checkout-sdk-errors

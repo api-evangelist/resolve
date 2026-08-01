@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/resolve-merchant-api-openapi.yaml, openapi/resolve-partners-api-openapi.yaml
+standards:
+  - id: oauth2
+    conforms: partial
+    evidence: OAuth access keys exchanged for JWT bearer tokens (client-credentials style); modeled in OpenAPI as http bearer, not a full oauth2 scheme.
+  - id: openid-connect
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: 'Errors use a custom { error: { type, message, details[] } } envelope, not application/problem+json.'
+  - id: rfc8594-sunset-header
+    conforms: false
+  - id: json-api
+    conforms: false
+  - id: webhooks
+    conforms: true
+    evidence: Documented webhook event surface with retry + endpoint management operations.
+  - id: idempotency
+    conforms: true
+    evidence: idempotency_key supported on capture operations.
+  - id: pagination
+    conforms: true
+    evidence: page/limit request params with count/results response envelope.
+  - id: pci-dss
+    conforms: unknown
+    evidence: Payments provider; a Trust Center exists at trust.resolvepay.com but named certifications were not machine-verified in this pass.

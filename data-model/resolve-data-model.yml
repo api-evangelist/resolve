@@ -1,0 +1,67 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/resolve-merchant-api-openapi.yaml
+entities:
+  - name: Customer
+    description: A buyer enrolled (or being underwritten) for net terms.
+  - name: Invoice
+    description: A merchant invoice issued to a customer, optionally advanced.
+  - name: CreditNote
+    description: A credit issued against an invoice/customer.
+  - name: Charge
+    description: An authorization/charge tied to a merchant invoice and customer.
+  - name: Order
+    description: An order/checkout captured for a customer.
+  - name: Payment
+    description: A payment received from a customer, applied to invoices.
+  - name: Payout
+    description: A payout from Resolve to the merchant.
+  - name: PayoutTransaction
+    description: An individual transaction line within a payout.
+  - name: Shipment
+    description: Shipment/tracking attached to an invoice.
+  - name: WebhookEndpoint
+    description: A registered endpoint receiving event notifications.
+  - name: Merchant
+    description: A (sub-)merchant account (Partners API).
+relationships:
+  - from: Invoice
+    to: Customer
+    type: belongs_to
+    via: customer_id
+  - from: Payment
+    to: Customer
+    type: belongs_to
+    via: customer_id
+  - from: Charge
+    to: Customer
+    type: belongs_to
+    via: customer_id
+  - from: Charge
+    to: Invoice
+    type: belongs_to
+    via: merchant_invoice_id
+  - from: Order
+    to: Customer
+    type: belongs_to
+    via: customer
+  - from: CreditNote
+    to: Customer
+    type: belongs_to
+    via: customer_id
+  - from: CreditNote
+    to: Invoice
+    type: belongs_to
+    via: invoice_id
+  - from: CreditNote
+    to: Merchant
+    type: belongs_to
+    via: merchant_id
+  - from: Shipment
+    to: Invoice
+    type: belongs_to
+    via: invoice_id
+  - from: PayoutTransaction
+    to: Payout
+    type: belongs_to
+    via: payout_id

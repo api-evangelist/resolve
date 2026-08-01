@@ -1,0 +1,827 @@
+{
+  "info": {
+    "_postman_id": "9ab6f2cb-678f-4d17-8887-f5fd556511f6",
+    "name": "Resolve API Reference Access Keys Webhooks API",
+    "description": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:47:04.000Z",
+    "updatedAt": "2026-07-28T02:47:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9ab6f2cb-678f-4d17-8887-f5fd556511f6"
+  },
+  "item": [
+    {
+      "name": "webhooks",
+      "item": [
+        {
+          "name": "List webhook endpoints",
+          "id": "cd5c29c4-aff5-4165-a290-0979fa68c081",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks?limit=25&page=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ],
+              "query": [
+                {
+                  "description": "Limit the number of webhook endpoints returned.",
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "description": "Specify the page of webhook endpoints returned.",
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Returns a list of all configured webhook endpoints for the merchant account."
+          },
+          "response": [
+            {
+              "id": "acf0de80-58dd-4451-a899-897e2c8b96b0",
+              "name": "An object with an array of results containing up to the limit. If no subscriptions are found, the results array will be empty.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks?limit=25&page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of webhook endpoints returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of webhook endpoints returned.",
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"endpoint_url\": \"<uri>\",\n      \"topic\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"merchant_id\": \"<string>\",\n      \"endpoint_url\": \"<uri>\",\n      \"topic\": {\n        \"name\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-acf0de80-58dd-4451-a899-897e2c8b96b0"
+            },
+            {
+              "id": "1cab6e00-eda8-4e36-b8f2-666e9b9e2e77",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks?limit=25&page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of webhook endpoints returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of webhook endpoints returned.",
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-1cab6e00-eda8-4e36-b8f2-666e9b9e2e77"
+            },
+            {
+              "id": "b4608f3d-721e-4eda-a500-f976dc175695",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks?limit=25&page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of webhook endpoints returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of webhook endpoints returned.",
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-b4608f3d-721e-4eda-a500-f976dc175695"
+            },
+            {
+              "id": "62fa08c1-e6a8-415d-86d2-e91b15bab3af",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks?limit=25&page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit the number of webhook endpoints returned.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Specify the page of webhook endpoints returned.",
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-62fa08c1-e6a8-415d-86d2-e91b15bab3af"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:05.000Z",
+          "updatedAt": "2026-07-28T02:47:05.000Z",
+          "uid": "35240-cd5c29c4-aff5-4165-a290-0979fa68c081"
+        },
+        {
+          "name": "Create or update webhook endpoints",
+          "id": "fd3188d6-a591-4a86-8523-3af258c9adc4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_url\": \"https://\",\n  \"events\": {\n    \"invoice.created\": \"<boolean>\",\n    \"invoice.balance_updated\": \"<boolean>\",\n    \"customer.created\": \"<boolean>\",\n    \"customer.status_updated\": \"<boolean>\",\n    \"customer.line_amount_updated\": \"<boolean>\",\n    \"customer.advance_rate_updated\": \"<boolean>\",\n    \"customer.credit_decision_created\": \"<boolean>\",\n    \"order.created\": \"<boolean>\",\n    \"order.updated\": \"<boolean>\",\n    \"payment.created\": \"<boolean>\",\n    \"payment.status_changed\": \"<boolean>\",\n    \"payout.created\": \"<boolean>\",\n    \"payout.status_changed\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ]
+            },
+            "description": "Create a new webhook endpoint or update an existing one. If an endpoint with the same URL already exists, it will be updated with the new event subscriptions."
+          },
+          "response": [
+            {
+              "id": "e8804e04-ecb8-4970-b614-772fb146aa12",
+              "name": "Successful response with webhook endpoint subscriptions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"https://\",\n  \"events\": {\n    \"invoice.created\": \"<boolean>\",\n    \"invoice.balance_updated\": \"<boolean>\",\n    \"customer.created\": \"<boolean>\",\n    \"customer.status_updated\": \"<boolean>\",\n    \"customer.line_amount_updated\": \"<boolean>\",\n    \"customer.advance_rate_updated\": \"<boolean>\",\n    \"customer.credit_decision_created\": \"<boolean>\",\n    \"order.created\": \"<boolean>\",\n    \"order.updated\": \"<boolean>\",\n    \"payment.created\": \"<boolean>\",\n    \"payment.status_changed\": \"<boolean>\",\n    \"payout.created\": \"<boolean>\",\n    \"payout.status_changed\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"merchant_id\": \"<string>\",\n    \"endpoint_url\": \"<uri>\",\n    \"topic\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"merchant_id\": \"<string>\",\n    \"endpoint_url\": \"<uri>\",\n    \"topic\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-e8804e04-ecb8-4970-b614-772fb146aa12"
+            },
+            {
+              "id": "a39d85f5-4061-4dd0-ae77-df040fd873e6",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"https://\",\n  \"events\": {\n    \"invoice.created\": \"<boolean>\",\n    \"invoice.balance_updated\": \"<boolean>\",\n    \"customer.created\": \"<boolean>\",\n    \"customer.status_updated\": \"<boolean>\",\n    \"customer.line_amount_updated\": \"<boolean>\",\n    \"customer.advance_rate_updated\": \"<boolean>\",\n    \"customer.credit_decision_created\": \"<boolean>\",\n    \"order.created\": \"<boolean>\",\n    \"order.updated\": \"<boolean>\",\n    \"payment.created\": \"<boolean>\",\n    \"payment.status_changed\": \"<boolean>\",\n    \"payout.created\": \"<boolean>\",\n    \"payout.status_changed\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-a39d85f5-4061-4dd0-ae77-df040fd873e6"
+            },
+            {
+              "id": "c6dd5d7b-d8c0-4fac-9ef5-4aa25163d900",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"https://\",\n  \"events\": {\n    \"invoice.created\": \"<boolean>\",\n    \"invoice.balance_updated\": \"<boolean>\",\n    \"customer.created\": \"<boolean>\",\n    \"customer.status_updated\": \"<boolean>\",\n    \"customer.line_amount_updated\": \"<boolean>\",\n    \"customer.advance_rate_updated\": \"<boolean>\",\n    \"customer.credit_decision_created\": \"<boolean>\",\n    \"order.created\": \"<boolean>\",\n    \"order.updated\": \"<boolean>\",\n    \"payment.created\": \"<boolean>\",\n    \"payment.status_changed\": \"<boolean>\",\n    \"payout.created\": \"<boolean>\",\n    \"payout.status_changed\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-c6dd5d7b-d8c0-4fac-9ef5-4aa25163d900"
+            },
+            {
+              "id": "7ee80294-a25d-4a39-a00e-b5e581f4d4b1",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"https://\",\n  \"events\": {\n    \"invoice.created\": \"<boolean>\",\n    \"invoice.balance_updated\": \"<boolean>\",\n    \"customer.created\": \"<boolean>\",\n    \"customer.status_updated\": \"<boolean>\",\n    \"customer.line_amount_updated\": \"<boolean>\",\n    \"customer.advance_rate_updated\": \"<boolean>\",\n    \"customer.credit_decision_created\": \"<boolean>\",\n    \"order.created\": \"<boolean>\",\n    \"order.updated\": \"<boolean>\",\n    \"payment.created\": \"<boolean>\",\n    \"payment.status_changed\": \"<boolean>\",\n    \"payout.created\": \"<boolean>\",\n    \"payout.status_changed\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-7ee80294-a25d-4a39-a00e-b5e581f4d4b1"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:05.000Z",
+          "updatedAt": "2026-07-28T02:47:05.000Z",
+          "uid": "35240-fd3188d6-a591-4a86-8523-3af258c9adc4"
+        },
+        {
+          "name": "Delete webhook endpoints",
+          "id": "c6ce6033-7981-4f2a-a2dd-c1309860b426",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_url\": \"https://\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ]
+            },
+            "description": "Delete a webhook endpoint and all its event subscriptions."
+          },
+          "response": [
+            {
+              "id": "3e1f40ea-cc8a-43be-8a96-ab9a58ca4933",
+              "name": "Webhook endpoint successfully deleted.",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"https://\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-3e1f40ea-cc8a-43be-8a96-ab9a58ca4933"
+            },
+            {
+              "id": "2707c066-5630-4724-9fe5-0d61bd5d52d7",
+              "name": "Bad request error",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"https://\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-2707c066-5630-4724-9fe5-0d61bd5d52d7"
+            },
+            {
+              "id": "95e6afea-83e3-4e42-bc6e-dea8e1971218",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"https://\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-95e6afea-83e3-4e42-bc6e-dea8e1971218"
+            },
+            {
+              "id": "212916ca-966c-4bd9-aa04-6d22921167ca",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"endpoint_url\": \"https://\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"message\": \"<string>\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "createdAt": "2026-07-28T02:47:05.000Z",
+              "updatedAt": "2026-07-28T02:47:05.000Z",
+              "uid": "35240-212916ca-966c-4bd9-aa04-6d22921167ca"
+            }
+          ],
+          "createdAt": "2026-07-28T02:47:05.000Z",
+          "updatedAt": "2026-07-28T02:47:05.000Z",
+          "uid": "35240-c6ce6033-7981-4f2a-a2dd-c1309860b426"
+        }
+      ],
+      "id": "432660f6-e1b6-4444-a0b4-d7e146c0d364",
+      "createdAt": "2026-07-28T02:47:05.000Z",
+      "updatedAt": "2026-07-28T02:47:05.000Z",
+      "uid": "35240-432660f6-e1b6-4444-a0b4-d7e146c0d364"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://app-sandbox.resolvepay.com/api"
+    }
+  ]
+}

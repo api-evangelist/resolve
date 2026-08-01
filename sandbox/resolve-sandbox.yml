@@ -1,0 +1,14 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.resolvepay.com/api-reference
+mode_separation:
+  model: separate sandbox environment (distinct host + credentials)
+  sandbox_host: https://app-sandbox.resolvepay.com/api
+  production_host: https://app.resolvepay.com/api
+  credentials: >-
+    Sandbox merchant_id + secret key / OAuth access keys are issued separately in
+    a sandbox Merchant Dashboard; production keys do not work against the sandbox
+    host and vice versa.
+notes:
+  - The published OpenAPI bundles declare the sandbox server (app-sandbox.resolvepay.com/api) as the default server.
+  - No provider-published magic test card / customer values were found in the public docs; none fabricated here.

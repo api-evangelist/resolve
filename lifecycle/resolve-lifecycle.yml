@@ -1,0 +1,19 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.resolvepay.com/api-reference
+versioning:
+  scheme: header + major bundle
+  header: resolve-api-version
+  current: V5
+  partners_current: partners-v1
+  docs: https://docs.resolvepay.com/guides/direct-api-access-and-authentication
+deprecation:
+  legacy_version: v2
+  legacy_docs: https://app.resolvepay.com/docs/api/v2
+  policy: >-
+    Older major versions (v2) remain documented as legacy while V5 is current;
+    version pinning is done via the resolve-api-version request header.
+sla:
+  support_contact: accounts@resolvepay.com
+status_page: https://status.resolvepay.com
+deprecated_operations: []

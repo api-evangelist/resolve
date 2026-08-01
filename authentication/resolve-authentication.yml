@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/resolve-merchant-api-openapi.yaml, openapi/resolve-partners-api-openapi.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as
+    password.
+  sources:
+  - openapi/resolve-merchant-api-openapi.yaml
+  - openapi/resolve-partners-api-openapi.yaml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Bearer token authentication using an OAuth access token minted for an API access
+    key created in Merchant Dashboard.
+  sources:
+  - openapi/resolve-merchant-api-openapi.yaml
+  - openapi/resolve-partners-api-openapi.yaml
