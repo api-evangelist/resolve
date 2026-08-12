@@ -588,6 +588,8 @@ apis:
   - type: OpenAPI
     url: openapi/resolve-webhooks-api-openapi.yml
 common:
+- type: Overlay
+  url: overlays/resolve-merchant-api-overlay.yaml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/resolve/overview
 - type: Website
