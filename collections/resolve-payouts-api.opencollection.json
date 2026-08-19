@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Payouts API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Payouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/payouts",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter records by the specified fields.\n  \nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n  - `eq` - equal (=)\n  - `ne` - not equal (!=)\n  - `gt` - greater than (>)\n  - `gte` - greater than or equal (>=)\n  - `lt` - less than (<)\n  - `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `status` (`eq`)\n  - `expected_by` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[created_at][gt]=2022-10-30T14:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort records by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n"
+              }
+            ]
+          },
+          "docs": "List Payouts"
+        },
+        {
+          "info": {
+            "name": "Get a Payout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/payouts/:payout_id",
+            "params": [
+              {
+                "name": "payout_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Payout"
+              }
+            ]
+          },
+          "docs": "Get a Payout"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,157 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Charges API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Charges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List charges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/charges",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of charges returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the page of charges returned."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search across supported charge fields.\n\nSearch is applied to charge and associated record values including:\n`id`, `number`, `merchant_invoice.order_number`, `merchant_invoice.po_number`,\nand customer/merchant identifying fields.\n"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort charges by field. Prefix with `-` for descending order.\n\nExamples:\n- `order=-created_at`\n- `order=amount`\n"
+              },
+              {
+                "name": "starting_at",
+                "value": "",
+                "type": "query",
+                "description": "Return charges created at or after this timestamp."
+              },
+              {
+                "name": "ending_at",
+                "value": "",
+                "type": "query",
+                "description": "Return charges created at or before this timestamp."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of charges."
+        },
+        {
+          "info": {
+            "name": "Fetch a charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/charges/:charge_id",
+            "params": [
+              {
+                "name": "charge_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the charge to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing charge by its ID."
+        },
+        {
+          "info": {
+            "name": "Update a charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app-sandbox.resolvepay.com/api/charges/:charge_id",
+            "params": [
+              {
+                "name": "charge_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the charge to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a charge."
+        },
+        {
+          "info": {
+            "name": "Capture a charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/charges/:charge_id/capture",
+            "params": [
+              {
+                "name": "charge_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the charge to capture"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capture an authorized charge."
+        },
+        {
+          "info": {
+            "name": "Cancel a charge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/charges/:charge_id/cancel",
+            "params": [
+              {
+                "name": "charge_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the charge to cancel"
+              }
+            ]
+          },
+          "docs": "Cancel an existing charge."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

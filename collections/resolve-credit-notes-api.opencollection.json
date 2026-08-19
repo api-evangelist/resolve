@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Credit Notes API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Credit Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List credit notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/credit-notes",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of credit notes returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the page of credit notes returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort credit notes by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n  - `amount_balance`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n"
+              }
+            ]
+          },
+          "docs": "Return a list of credit notes."
+        },
+        {
+          "info": {
+            "name": "Create a credit note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/credit-notes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new credit note."
+        },
+        {
+          "info": {
+            "name": "Request to void a credit note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/credit-notes/:credit_note_id/void"
+          },
+          "docs": "Request to void an existing credit note."
+        },
+        {
+          "info": {
+            "name": "Fetch a credit note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/credit-notes/:credit_note_id",
+            "params": [
+              {
+                "name": "credit_note_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the credit note to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing credit note by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

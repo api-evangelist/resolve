@@ -1,0 +1,2148 @@
+{
+  "item": [
+    {
+      "id": "dbd24e9c-8f87-401c-bfa9-3f3c09cfaaaf",
+      "name": "Merchants",
+      "description": {
+        "content": "Merchant-scoped operations for managing sub-merchant resources.\n\nThe merchant document upload endpoint creates a document record and starts transfer into Resolve-managed storage for validation.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "54630f10-512e-4fa7-a386-2d887f573ae3",
+          "name": "List Merchants",
+          "request": {
+            "name": "List Merchants",
+            "description": {
+              "content": "Returns sub-merchants under the authenticated partner account.\n\nSupported query options:\n- Pagination: `limit`, `page`\n- Text search: `search`\n- Sorting: `sort`\n- Field filters: `filter[field][eq]=value`\n\nSupported filter fields:\n- `id`\n- `external_id`\n- `name`\n- `legal_name`\n- `email`\n- `underwriting_status`\n- `created_at`\n\nSupported sort fields:\n- `created_at`\n- `id`\n- `name`\n- `legal_name`\n\nUse `-` prefix for descending sort, for example `sort=-name`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of merchants to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated merchant results."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Case-insensitive text search across merchant `id`, `name`, `email`, and `legal_name`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort field for merchant results.\n\nPrefix with `-` for descending order.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[id][eq]",
+                  "value": "<string>",
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[external_id][eq]",
+                  "value": "<string>",
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[name][eq]",
+                  "value": "<string>",
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[legal_name][eq]",
+                  "value": "<string>",
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[email][eq]",
+                  "value": "<email>",
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[underwriting_status][eq]",
+                  "value": "<string>",
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[created_at][eq]",
+                  "value": "<dateTime>",
+                  "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cd053e3-7b14-4c75-9131-af4fb5e515f0",
+              "name": "Paginated list of merchants.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "search",
+                      "value": "alpha"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    },
+                    {
+                      "key": "filter[id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[external_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[legal_name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[email][eq]",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "filter[underwriting_status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2,\n  \"page\": 1,\n  \"limit\": 25,\n  \"results\": [\n    {\n      \"id\": \"mrc_alpha123456789\",\n      \"legal_business_name\": \"Alpha Supply LLC\",\n      \"dba_name\": \"Alpha DBA\",\n      \"business_address\": {\n        \"line1\": \"100 Main St\",\n        \"city\": \"Austin\",\n        \"state\": \"TX\",\n        \"postal_code\": \"78701\",\n        \"country\": \"US\"\n      },\n      \"business_email\": \"ops@alpha.example.com\",\n      \"business_phone\": \"+15125550100\",\n      \"entity_type\": \"llc\",\n      \"formation_state\": \"TX\",\n      \"industry\": \"Manufacturing\",\n      \"website\": \"https://alpha.example.com\",\n      \"underwriting_status\": \"completed\",\n      \"seller_amount_approved\": 12500,\n      \"active_subscription\": {\n        \"id\": \"sub_alpha123456789\",\n        \"tier\": \"free\"\n      },\n      \"metadata\": {\n        \"partner_ref\": \"alpha-001\"\n      },\n      \"created_at\": \"2026-03-11T10:00:00.000Z\",\n      \"updated_at\": \"2026-03-11T10:00:00.000Z\"\n    },\n    {\n      \"id\": \"mrc_beta1234567890\",\n      \"legal_business_name\": \"Beta Goods Inc\",\n      \"dba_name\": null,\n      \"business_address\": {\n        \"line1\": \"200 Beta Blvd\",\n        \"city\": \"Denver\",\n        \"state\": \"CO\",\n        \"postal_code\": \"80202\",\n        \"country\": \"US\"\n      },\n      \"business_email\": \"ops@beta.example.com\",\n      \"business_phone\": \"+13035550100\",\n      \"entity_type\": \"corporation\",\n      \"formation_state\": \"DE\",\n      \"industry\": \"Distribution\",\n      \"website\": \"https://beta.example.com\",\n      \"underwriting_status\": \"pending\",\n      \"seller_amount_approved\": 0,\n      \"active_subscription\": {\n        \"id\": \"sub_beta1234567890\",\n        \"tier\": \"free\"\n      },\n      \"metadata\": {\n        \"partner_ref\": \"beta-001\"\n      },\n      \"created_at\": \"2026-03-11T11:00:00.000Z\",\n      \"updated_at\": \"2026-03-11T11:00:00.000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb3f30e0-32b7-4d21-af7c-d51ac2c447dd",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "search",
+                      "value": "alpha"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    },
+                    {
+                      "key": "filter[id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[external_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[legal_name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[email][eq]",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "filter[underwriting_status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95c5ce15-bccd-43aa-8fe6-6b5ab8027473",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "search",
+                      "value": "alpha"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    },
+                    {
+                      "key": "filter[id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[external_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[legal_name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[email][eq]",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "filter[underwriting_status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "786c17be-026b-40bc-83a3-093510582581",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "search",
+                      "value": "alpha"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    },
+                    {
+                      "key": "filter[id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[external_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[legal_name][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[email][eq]",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "filter[underwriting_status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef4476fb-c38a-49d1-9905-dde31df748a3",
+          "name": "Create Merchant",
+          "request": {
+            "name": "Create Merchant",
+            "description": {
+              "content": "Creates a sub-merchant under the authenticated partner and starts underwriting lifecycle tracking.\n\nFor the **partner API** contract, `id` is server-managed and is not accepted in the request payload.\nResolve derives/assigns the merchant identifier from merchant naming inputs (`dba_name` or `legal_business_name`) with random alphanumeric fallback for collisions.\n\nCore merchant validation includes:\n- `business_phone` must be a valid US phone number\n- `formation_state` must map to a valid US state\n- US business addresses validate `state` and `postal_code`\n- beneficial owner US addresses validate `state` and `postal_code`\n- `authorized_signer.phone`, when provided, must be a valid US phone number\n- `ein` must be a valid EIN format\n- banking fields validate account-number shape and ABA routing number format\n- `bank_account_number` must be different from `bank_routing_number`\n\nThis endpoint also supports optional inline document URL ingestion. If document arrays are provided\n(`bank_statements`, `financial_statements`, `credit_references`, `personal_guarantee`, `other_documents`),\nResolve queues `download_url` ingestion jobs equivalent to the document endpoint.\n\nInline document requests require:\n- `filename` with an extension\n- supported `filetype` for the merchant underwriting document profile\n- `download_url` using `http` or `https`\n- matching filename extension and `filetype`\n\nMerchant creation is not rolled back for inline document ingestion failures.\n\nInline download dispatch is performed after database commit. Dispatch failures are surfaced per-item in\n`document_ingestion.results`, and the affected merchant document/file metadata is marked failed even though\nthe merchant and some/all document rows were already persisted.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"<string>\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"key_0\": 9404.44036817789,\n    \"key_1\": \"string\",\n    \"key_2\": true,\n    \"key_3\": 6745.777555317602\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 6117.608959338674,\n    \"key_1\": 8852,\n    \"key_2\": true\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c41a7702-4d29-4a58-94a9-7a98408d02d3",
+              "name": "A merchant object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"mrc_1234567890abcdef\",\n  \"legal_business_name\": \"Acme Supply LLC\",\n  \"dba_name\": \"Acme Industrial\",\n  \"business_address\": {\n    \"line1\": \"100 Main St\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postal_code\": \"78701\",\n    \"country\": \"US\"\n  },\n  \"business_email\": \"ops@acmesupply.com\",\n  \"business_phone\": \"+15125550123\",\n  \"entity_type\": \"llc\",\n  \"formation_state\": \"TX\",\n  \"underwriting_status\": \"pending\",\n  \"seller_amount_approved\": 0,\n  \"active_subscription\": {\n    \"id\": \"sub_1234567890abcdef\",\n    \"tier\": \"trial\"\n  },\n  \"metadata\": {\n    \"partner_reference\": \"mt-merchant-1029\"\n  },\n  \"created_at\": \"2026-02-26T10:00:00.000Z\",\n  \"updated_at\": \"2026-02-26T10:00:00.000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "642fa61b-cbb1-4a53-8547-f26bb9a7ee0c",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f83d483c-d8a8-4b58-a48e-55f97c9f1706",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01d9f05e-abb6-4757-a19d-9e0c1dbc552c",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6838813-dfde-4ed8-9dba-fcdf405cc91e",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22c63dd2-a6fa-4f2a-8dbb-640a86c22db4",
+          "name": "Get Merchant",
+          "request": {
+            "name": "Get Merchant",
+            "description": {
+              "content": "Retrieves a single sub-merchant belonging to the authenticated partner.\n\nOnly merchants scoped to the authenticated partner are returned. Requests for\nunknown merchants or merchants outside that scope return `404`.\n\nThis path currently overlaps with a legacy public merchant endpoint. To avoid\nambiguous response shapes or fallback behavior, send the `resolve-api-version`\nheader on every request. Use `resolve-api-version: partner-v1` when you need\nthe partner API response contract documented here.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchants",
+                ":merchant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) ID of the sub-merchant under your partner account."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "46391905-865e-4ee6-ac41-77d13023964f",
+              "name": "A merchant object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"mrc_1234567890abcdef\",\n  \"legal_business_name\": \"Acme Supply LLC\",\n  \"dba_name\": \"Acme Industrial\",\n  \"business_address\": {\n    \"line1\": \"100 Main St\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postal_code\": \"78701\",\n    \"country\": \"US\"\n  },\n  \"business_email\": \"ops@acmesupply.com\",\n  \"business_phone\": \"+15125550123\",\n  \"entity_type\": \"llc\",\n  \"formation_state\": \"TX\",\n  \"underwriting_status\": \"pending\",\n  \"seller_amount_approved\": 0,\n  \"active_subscription\": {\n    \"id\": \"sub_1234567890abcdef\",\n    \"tier\": \"trial\"\n  },\n  \"metadata\": {\n    \"partner_reference\": \"mt-merchant-1029\"\n  },\n  \"created_at\": \"2026-02-26T10:00:00.000Z\",\n  \"updated_at\": \"2026-02-26T10:00:00.000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f17bb67-1d8f-4294-b528-6d65615728e5",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09bc74c0-1750-4ce3-aee7-aae410002a6b",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ae273bb-06af-40f3-817a-5e15f67b1f7e",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a690d83a-4844-4df9-ba74-535037ddfb21",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3b8038e-c1e8-45fd-b586-559c23645dad",
+          "name": "Update Merchant",
+          "request": {
+            "name": "Update Merchant",
+            "description": {
+              "content": "Updates a sub-merchant belonging to the authenticated partner.\n\nFor the **partner API** contract, `id` is immutable and cannot be updated via request payload.\n\nPost-underwriting restrictions apply once the latest underwriting decision has been finalized.\n\nFields that are **not updateable** after underwriting is complete:\n- `legal_business_name`\n- `business_address`\n- `business_email`\n- `business_phone`\n- `entity_type`\n- `formation_state`\n- `ein`\n- `annual_revenue`\n- `years_in_business`\n- `industry`\n- `authorized_signer`\n- `bank_account_number`\n- `bank_routing_number`\n- `beneficial_owners` (existing owners are not editable)\n\nFields that are **updateable** after underwriting is complete:\n- `dba_name`\n- `business_description`\n- `website`\n- `estimated_monthly_net_terms_volume`\n- `existing_net_terms_info`\n- `metadata`\n- `plaid_access_token`\n- `additional_beneficial_owners` (add-only)\n\nValidation for mutable request fields follows the same partner create rules for phone, EIN, US address fields,\nbeneficial owner address fields, authorized signer phone, and banking inputs.\n\nThis endpoint also supports optional inline document URL ingestion using the same `download_url` pattern as\nmerchant create. If document arrays are provided (`bank_statements`, `financial_statements`,\n`credit_references`, `personal_guarantee`, `other_documents`), Resolve queues `download_url` ingestion jobs\nequivalent to the document endpoint.\n\nMerchant updates are not rolled back for inline document ingestion failures. Dispatch failures are surfaced\nper-item in `document_ingestion.results`, and the affected merchant document/file metadata is marked failed.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchants",
+                ":merchant_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) ID of the sub-merchant under your partner account."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"legal_business_name\": \"<string>\",\n  \"business_address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"line2\": \"<string>\"\n  },\n  \"business_email\": \"<email>\",\n  \"business_phone\": \"<string>\",\n  \"entity_type\": \"<string>\",\n  \"formation_state\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"dba_name\": \"<string>\",\n  \"annual_revenue\": \"<integer>\",\n  \"years_in_business\": \"<integer>\",\n  \"industry\": \"<string>\",\n  \"business_description\": \"<string>\",\n  \"website\": \"<uri>\",\n  \"estimated_monthly_net_terms_volume\": \"<integer>\",\n  \"existing_net_terms_info\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": true\n  },\n  \"beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"additional_beneficial_owners\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\",\n        \"line2\": \"<string>\"\n      },\n      \"ssn_last_4\": \"<string>\",\n      \"ownership_percentage\": \"<double>\"\n    }\n  ],\n  \"authorized_signer\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"title\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"plaid_access_token\": \"<string>\",\n  \"bank_account_number\": \"<string>\",\n  \"bank_routing_number\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  },\n  \"bank_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"financial_statements\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"credit_references\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"personal_guarantee\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ],\n  \"other_documents\": [\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    },\n    {\n      \"filename\": \"<string>\",\n      \"filetype\": \"<string>\",\n      \"download_url\": \"<uri>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1c9d53f-f2b1-4749-9cea-1fa92de439d1",
+              "name": "A merchant object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"mrc_1234567890abcdef\",\n  \"legal_business_name\": \"Acme Supply LLC\",\n  \"dba_name\": \"Acme Industrial\",\n  \"business_address\": {\n    \"line1\": \"100 Main St\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"postal_code\": \"78701\",\n    \"country\": \"US\"\n  },\n  \"business_email\": \"ops@acmesupply.com\",\n  \"business_phone\": \"+15125550123\",\n  \"entity_type\": \"llc\",\n  \"formation_state\": \"TX\",\n  \"underwriting_status\": \"pending\",\n  \"seller_amount_approved\": 0,\n  \"active_subscription\": {\n    \"id\": \"sub_1234567890abcdef\",\n    \"tier\": \"trial\"\n  },\n  \"metadata\": {\n    \"partner_reference\": \"mt-merchant-1029\"\n  },\n  \"created_at\": \"2026-02-26T10:00:00.000Z\",\n  \"updated_at\": \"2026-02-26T10:00:00.000Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af0f603f-d958-41cb-b14a-40a82530bca7",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92513238-28e3-4c91-beb1-23cab25ca548",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5c63bb2-c157-46d2-a65b-e80b1b65a06a",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfc6132c-ee85-4346-9fc8-27e09f7bbe18",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "753baabe-62e1-4aee-892a-09cd31ad1861",
+          "name": "List Merchant Documents",
+          "request": {
+            "name": "List Merchant Documents",
+            "description": {
+              "content": "Returns document presence and validation lifecycle status for a specific sub-merchant.\n\nThis endpoint is metadata-only and does not return file bodies or signed retrieval URLs.\n\nSupported query options:\n- Pagination: `limit`, `page`\n- Sorting: `sort`\n- Field filters: `filter[field][eq]=value`\n\nSupported filter fields:\n- `document_type`\n- `status`\n\nSupported sort fields:\n- `created_at`\n\nUse `-` prefix for descending sort, for example `sort=-created_at`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchants",
+                ":merchant_id",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of document records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated document results."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort field for merchant document results.\n\nPrefix with `-` for descending order.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[document_type][eq]",
+                  "value": "<string>",
+                  "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[status][eq]",
+                  "value": "<string>",
+                  "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) ID of the sub-merchant under your partner account."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "480c36e5-aa87-4dd4-81d6-69c883acaa35",
+              "name": "Paginated list of merchant document metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    },
+                    {
+                      "key": "filter[document_type][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status][eq]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2,\n  \"page\": 1,\n  \"limit\": 25,\n  \"results\": [\n    {\n      \"id\": \"md_1234567890abcdef\",\n      \"merchant_id\": \"mrc_1234567890abcdef\",\n      \"document_type\": \"bank_statements\",\n      \"status\": \"accepted\",\n      \"validation_reasons\": [],\n      \"uploaded_at\": \"2026-02-26T10:05:00.000Z\",\n      \"validated_at\": \"2026-02-26T10:06:40.000Z\",\n      \"object_key\": \"merchant/mrc_123/document/md_1234567890abcdef/bank_statement_2026_01.pdf\",\n      \"created_at\": \"2026-02-26T10:00:00.000Z\",\n      \"updated_at\": \"2026-02-26T10:06:40.000Z\"\n    },\n    {\n      \"id\": \"md_abcdef1234567890\",\n      \"merchant_id\": \"mrc_1234567890abcdef\",\n      \"document_type\": \"financial_statements\",\n      \"status\": \"failed\",\n      \"validation_reasons\": [\n        \"DOWNLOAD_TIMEOUT\"\n      ],\n      \"uploaded_at\": null,\n      \"validated_at\": \"2026-02-26T10:06:40.000Z\",\n      \"object_key\": \"merchant/mrc_123/document/md_abcdef1234567890/financials_q4_2025.pdf\",\n      \"created_at\": \"2026-02-26T10:01:00.000Z\",\n      \"updated_at\": \"2026-02-26T10:06:40.000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42c9eb77-cadc-4b3a-939c-012643c2e624",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    },
+                    {
+                      "key": "filter[document_type][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status][eq]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e02a63c-f512-4982-af59-0008e5acb39a",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    },
+                    {
+                      "key": "filter[document_type][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status][eq]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dc763ac-7b81-4e54-830d-8caaf85b6408",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    },
+                    {
+                      "key": "filter[document_type][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status][eq]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d375b591-db48-4cad-bb22-97411768c00f",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    },
+                    {
+                      "key": "filter[document_type][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status][eq]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47fb64ce-0b85-4260-996d-7ea8b9493996",
+          "name": "Create a Merchant Document Upload Request",
+          "request": {
+            "name": "Create a Merchant Document Upload Request",
+            "description": {
+              "content": "Creates a new merchant document record for a sub-merchant and initializes document transfer to the Resolve document validation service.\n\nThe transfer method is determined by request shape:\n- If `download_url` is provided, Resolve queues a background download job (`transfer_method=download_url`).\n- Otherwise, Resolve returns a presigned S3 upload URL (`transfer_method=presigned_upload`).\n\nThe validation profile is endpoint-managed by Resolve and cannot be overridden in the request.\n\nRequest validation includes:\n- `filename` must include an extension\n- `filetype` must be a supported MIME type for the merchant underwriting document profile\n- `download_url`, when provided, must use `http` or `https`\n- `filename` extension must match `filetype`\n\nFor `download_url`, queue dispatch is executed after database commit. A dispatch failure at that stage does not\nroll back the merchant document row; instead, the response remains successful and the document is marked failed.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "merchants",
+                ":merchant_id",
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchant_id",
+                  "description": "(Required) ID of the sub-merchant under your partner account."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"document_type\": \"<string>\",\n  \"filename\": \"<string>\",\n  \"filetype\": \"<string>\",\n  \"download_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4cb586b5-7f7f-4640-a374-00189915fce8",
+              "name": "Successful response with merchant document upload/download initiation details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"md_1234567890abcdef\",\n  \"document_id\": \"md_1234567890abcdef\",\n  \"document_type\": \"bank_statements\",\n  \"status\": \"pending_upload\",\n  \"upload_url\": \"https://resolve-document-validation-uploads-dev.s3.amazonaws.com/merchant/mrc_123/document/md_123/bank_statement_2026_01.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&...\",\n  \"upload_expires_at\": \"2026-02-26T18:35:00.000Z\",\n  \"object_key\": \"merchant/mrc_123/document/md_1234567890abcdef/bank_statement_2026_01.pdf\",\n  \"transfer_method\": \"presigned_upload\",\n  \"queue_dispatch_status\": null,\n  \"upload_headers\": {\n    \"x-amz-meta-validation_profile\": \"merchant_underwriting_document_default\",\n    \"x-amz-meta-callback_domain\": \"overcommunicative-unriotously-alaina.ngrok-free.dev\",\n    \"x-amz-meta-callback_url\": \"https://overcommunicative-unriotously-alaina.ngrok-free.dev/api/internal/document-validation/completed\"\n  },\n  \"validation_profile\": \"merchant_underwriting_document_default\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee8a174f-7292-4373-8caa-6a278d33636d",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4f5f01f-379e-43ef-a60d-7bcada71b0a4",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4aaa90e-e237-40de-bfc0-93f2a3fa38c8",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "285a9698-c65a-45b8-9d4d-21869458c1a3",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "merchants",
+                    ":merchant_id",
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchant_id",
+                      "description": "(Required) ID of the sub-merchant under your partner account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app-sandbox.resolvepay.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1c272e0-b59f-4430-bf83-54949eca0916",
+    "name": "Resolve API Reference Access Keys Merchants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+      "type": "text/plain"
+    }
+  }
+}

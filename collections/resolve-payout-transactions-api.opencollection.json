@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Payout Transactions API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payout Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Payout Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/payout-transactions",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of payout transactions returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the page of payout transactions returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter Payout Transactions by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`, `ne`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `payout_id` (`eq`, `ne`)\n  - `invoice_id` (`eq`, `ne`)\n\nExample: `filter[created_at][gte]=2021-01-01T00:00:00.000Z`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort Payout Transactions by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n"
+              }
+            ]
+          },
+          "docs": "List Payout Transactions"
+        },
+        {
+          "info": {
+            "name": "Get a Payout Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/payout_transactions/:payout_transaction_id",
+            "params": [
+              {
+                "name": "payout_transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the Payout Transaction"
+              }
+            ]
+          },
+          "docs": "Get a Payout Transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1083 @@
+{
+  "item": [
+    {
+      "id": "a5459181-3007-485f-819f-7b650037c3fa",
+      "name": "Payments",
+      "description": {
+        "content": "A payment represents a transaction where a customer pays towards their invoices. When a payment is made to Resolve, the customer's available credit balance is increased by the amount of the payment. Payments can be made via various methods including ACH, credit card, check, or wire transfer. Each payment can be applied to one or more invoices.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4bd95348-07df-4aea-a820-a862134df78c",
+          "name": "List payments",
+          "request": {
+            "name": "List payments",
+            "description": {
+              "content": "Return a list of payments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Limit the number of payments returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Specify the page of payments returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[customer_id][eq]",
+                  "value": "<string>",
+                  "description": "Filter payments by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n- `after` - after date\n- `before` - before date\n- `start` - start date\n- `end` - end date\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`)\n  - `status` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[customer_id][eq]=X50sgfRd`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[status][eq]",
+                  "value": "<string>",
+                  "description": "Filter payments by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n- `after` - after date\n- `before` - before date\n- `start` - start date\n- `end` - end date\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`)\n  - `status` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[customer_id][eq]=X50sgfRd`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][eq]",
+                  "value": "<number>",
+                  "description": "Filter payments by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n- `after` - after date\n- `before` - before date\n- `start` - start date\n- `end` - end date\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`)\n  - `status` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[customer_id][eq]=X50sgfRd`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][gt]",
+                  "value": "<number>",
+                  "description": "Filter payments by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n- `after` - after date\n- `before` - before date\n- `start` - start date\n- `end` - end date\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`)\n  - `status` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[customer_id][eq]=X50sgfRd`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][lt]",
+                  "value": "<number>",
+                  "description": "Filter payments by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n- `after` - after date\n- `before` - before date\n- `start` - start date\n- `end` - end date\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`)\n  - `status` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[customer_id][eq]=X50sgfRd`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][gte]",
+                  "value": "<number>",
+                  "description": "Filter payments by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n- `after` - after date\n- `before` - before date\n- `start` - start date\n- `end` - end date\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`)\n  - `status` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[customer_id][eq]=X50sgfRd`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][lte]",
+                  "value": "<number>",
+                  "description": "Filter payments by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n- `after` - after date\n- `before` - before date\n- `start` - start date\n- `end` - end date\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`)\n  - `status` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[customer_id][eq]=X50sgfRd`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "-created_at",
+                  "description": "Sort payments by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3b49529-34c3-4ddf-be32-57220939eccd",
+              "name": "A paginated list of payments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1,\n  \"limit\": 25,\n  \"page\": 1,\n  \"results\": [\n    {\n      \"id\": \"PMMlaE5wbg0\",\n      \"customer_id\": \"X50sgfRd\",\n      \"source\": \"customer_user\",\n      \"amount\": 1000,\n      \"method\": \"ach_debit\",\n      \"status\": \"paid\",\n      \"created_at\": \"2020-01-01T00:00:00.730Z\",\n      \"paid_at\": \"2020-01-02T00:00:00.730Z\",\n      \"canceled_at\": \"1977-04-02T06:47:20.600Z\",\n      \"failed_at\": \"2009-03-17T15:19:32.050Z\",\n      \"processed_at\": \"2020-01-01T12:00:00.730Z\",\n      \"scheduled_at\": \"2025-10-29T17:23:57.878Z\",\n      \"processing_fee\": 25.5,\n      \"canceled_code\": \"string\",\n      \"failed_code\": \"string\",\n      \"payment_links\": [\n        {\n          \"record_id\": \"PMMlaE5wbg0\",\n          \"record_type\": \"invoice\",\n          \"amount\": 500\n        },\n        {\n          \"record_id\": \"PMMlaE5wbg0\",\n          \"record_type\": \"invoice\",\n          \"amount\": 500\n        }\n      ],\n      \"created_by_user_id\": \"string\"\n    },\n    {\n      \"id\": \"PMMlaE5wbg0\",\n      \"customer_id\": \"X50sgfRd\",\n      \"source\": \"customer_user\",\n      \"amount\": 1000,\n      \"method\": \"ach_debit\",\n      \"status\": \"paid\",\n      \"created_at\": \"2020-01-01T00:00:00.730Z\",\n      \"paid_at\": \"2020-01-02T00:00:00.730Z\",\n      \"canceled_at\": \"2008-11-25T03:49:47.931Z\",\n      \"failed_at\": \"1982-09-02T05:59:01.476Z\",\n      \"processed_at\": \"2020-01-01T12:00:00.730Z\",\n      \"scheduled_at\": \"1966-07-17T11:38:15.347Z\",\n      \"processing_fee\": 25.5,\n      \"canceled_code\": \"string\",\n      \"failed_code\": \"string\",\n      \"payment_links\": [\n        {\n          \"record_id\": \"PMMlaE5wbg0\",\n          \"record_type\": \"invoice\",\n          \"amount\": 500\n        },\n        {\n          \"record_id\": \"PMMlaE5wbg0\",\n          \"record_type\": \"invoice\",\n          \"amount\": 500\n        }\n      ],\n      \"created_by_user_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "084d1b81-085b-438b-a33b-d5812bd8c783",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "591a5406-db9f-4832-8036-9fd7d35dd149",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04ada850-ef21-4927-937a-035b23601674",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[status][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "facbc6e5-ebfd-45ea-8cbc-1b65259c7d4a",
+          "name": "Create a payment",
+          "request": {
+            "name": "Create a payment",
+            "description": {
+              "content": "Create a forwarded payment for an invoice belonging to one of your sub-merchants.\n\nThe payment will be forwarded from the bank account of the entity that receives payouts. If the payout receiver is the partner, the partner's bank account will be used. If the payout receiver is the sub-merchant, the sub-merchant's bank account will be used.\n\nThe invoice must be sent, and the payment amount must not exceed the invoice's outstanding balance.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice_id\": \"<string>\",\n  \"amount\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62db7049-6d97-4b23-a89f-d7549d12ca28",
+              "name": "An object representing a payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"PMMlaE5wbg0\",\n  \"customer_id\": \"X50sgfRd\",\n  \"source\": \"customer_user\",\n  \"amount\": 1000,\n  \"method\": \"ach_debit\",\n  \"status\": \"paid\",\n  \"created_at\": \"2020-01-01T00:00:00.730Z\",\n  \"paid_at\": \"2020-01-02T00:00:00.730Z\",\n  \"canceled_at\": \"1988-11-17T11:05:25.658Z\",\n  \"failed_at\": \"1996-11-28T03:09:53.726Z\",\n  \"processed_at\": \"2020-01-01T12:00:00.730Z\",\n  \"scheduled_at\": \"1988-12-15T09:05:09.586Z\",\n  \"processing_fee\": 25.5,\n  \"canceled_code\": \"string\",\n  \"failed_code\": \"string\",\n  \"payment_links\": [\n    {\n      \"record_id\": \"PMMlaE5wbg0\",\n      \"record_type\": \"invoice\",\n      \"amount\": 500\n    },\n    {\n      \"record_id\": \"PMMlaE5wbg0\",\n      \"record_type\": \"invoice\",\n      \"amount\": 500\n    }\n  ],\n  \"created_by_user_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1de75859-fe04-4e52-8b5f-7d1934aab4e9",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8363842-6353-4b49-a659-4ff6e058fe69",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f11592d-2e97-49d7-bd90-724a04eee7ee",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4077f805-636c-44e6-af2d-c7afaa2b2725",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1c5f84d-184e-4c5c-91ae-a85ca6f40ba0",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "083647b2-6a1f-4fd2-a201-a1fb98eaa01b",
+          "name": "Fetch a payment",
+          "request": {
+            "name": "Fetch a payment",
+            "description": {
+              "content": "Retrieve an existing payment by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payments",
+                ":payment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "payment_id",
+                  "description": "(Required) ID of the payment to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "955ecfe9-b621-4caa-9aa5-cb8ee8a2b67f",
+              "name": "An object representing a payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payment_id",
+                      "description": "(Required) ID of the payment to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"PMMlaE5wbg0\",\n  \"customer_id\": \"X50sgfRd\",\n  \"source\": \"customer_user\",\n  \"amount\": 1000,\n  \"method\": \"ach_debit\",\n  \"status\": \"paid\",\n  \"created_at\": \"2020-01-01T00:00:00.730Z\",\n  \"paid_at\": \"2020-01-02T00:00:00.730Z\",\n  \"canceled_at\": \"1988-11-17T11:05:25.658Z\",\n  \"failed_at\": \"1996-11-28T03:09:53.726Z\",\n  \"processed_at\": \"2020-01-01T12:00:00.730Z\",\n  \"scheduled_at\": \"1988-12-15T09:05:09.586Z\",\n  \"processing_fee\": 25.5,\n  \"canceled_code\": \"string\",\n  \"failed_code\": \"string\",\n  \"payment_links\": [\n    {\n      \"record_id\": \"PMMlaE5wbg0\",\n      \"record_type\": \"invoice\",\n      \"amount\": 500\n    },\n    {\n      \"record_id\": \"PMMlaE5wbg0\",\n      \"record_type\": \"invoice\",\n      \"amount\": 500\n    }\n  ],\n  \"created_by_user_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20850bc7-e335-416c-828c-05f4e2717580",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payment_id",
+                      "description": "(Required) ID of the payment to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e99de28f-a6cb-4128-9407-18cd3b05ed70",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payment_id",
+                      "description": "(Required) ID of the payment to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1433e98e-f770-418c-8108-52bd0d2a5afd",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payment_id",
+                      "description": "(Required) ID of the payment to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80829e7c-f4fd-42b3-b75b-b89fa1bb043e",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payments",
+                    ":payment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "payment_id",
+                      "description": "(Required) ID of the payment to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app-sandbox.resolvepay.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "83b16975-6522-4472-8b14-1bd220ebc9f0",
+    "name": "Resolve API Reference Access Keys Payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+      "type": "text/plain"
+    }
+  }
+}

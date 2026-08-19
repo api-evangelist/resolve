@@ -1,0 +1,188 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Invoices API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/invoices",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of invoices returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the page of invoices returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+              }
+            ]
+          },
+          "docs": "Return a list of invoices."
+        },
+        {
+          "info": {
+            "name": "Create an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/invoices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new advanced or non-advanced invoice with the desired terms."
+        },
+        {
+          "info": {
+            "name": "Fetch an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/invoices/:invoice_id",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the invoice to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing invoice by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app-sandbox.resolvepay.com/api/invoices/:invoice_id",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the invoice to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an invoice."
+        },
+        {
+          "info": {
+            "name": "Delete an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app-sandbox.resolvepay.com/api/invoices/:invoice_id",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the invoice to delete"
+              }
+            ]
+          },
+          "docs": "Delete an invoice."
+        },
+        {
+          "info": {
+            "name": "Send an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app-sandbox.resolvepay.com/api/invoices/:invoice_id/send",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the invoice to send"
+              }
+            ]
+          },
+          "docs": "Send an invoice to the customer."
+        },
+        {
+          "info": {
+            "name": "Void an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/invoices/:invoice_id/void",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the invoice to void"
+              }
+            ]
+          },
+          "docs": "Void an invoice."
+        },
+        {
+          "info": {
+            "name": "Cancel an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/invoices/:invoice_id/cancel",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the invoice to cancel"
+              }
+            ]
+          },
+          "docs": "Cancel an invoice."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

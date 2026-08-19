@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mint an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/access-keys/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchange an OAuth access key for a bearer token by providing its `client_id` and `client_secret` in the request body.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

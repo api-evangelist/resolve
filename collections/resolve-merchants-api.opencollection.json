@@ -1,0 +1,190 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Merchants API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merchants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Merchants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/merchants",
+            "params": [
+              {
+                "name": "limit",
+                "value": "25",
+                "type": "query",
+                "description": "Maximum number of merchants to return."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number for paginated merchant results."
+              },
+              {
+                "name": "search",
+                "value": "alpha",
+                "type": "query",
+                "description": "Case-insensitive text search across merchant `id`, `name`, `email`, and `legal_name`."
+              },
+              {
+                "name": "sort",
+                "value": "-created_at",
+                "type": "query",
+                "description": "Sort field for merchant results.\n\nPrefix with `-` for descending order.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter merchants by allowlisted fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[id][eq]=mrc_1234567890abcdef`\n- `filter[legal_name][eq]=Alpha Supply LLC`\n- `filter[underwriting_status][eq]=pending`\n- `filter[created_at][eq]=2026-03-11T00:00:00.000Z`\n"
+              }
+            ]
+          },
+          "docs": "Returns sub-merchants under the authenticated partner account.\n\nSupported query options:\n- Pagination: `limit`, `page`\n- Text search: `search`\n- Sorting: `sort`\n- Field filters: `filter[field][eq]=value`\n\nSupported filter fields:\n- `id`\n- `external_id`\n- `name`\n- `legal_name`\n- `email`\n- `underwriting_status`\n- `created_at`\n\nSupported sort fields:\n- `created_at`\n- `id`\n- `name`\n- `legal_name`\n\nUse `-` prefix for descending sort, for example `sort=-name`.\n"
+        },
+        {
+          "info": {
+            "name": "Create Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/merchants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a sub-merchant under the authenticated partner and starts underwriting lifecycle tracking.\n\nFor the **partner API** contract, `id` is server-managed and is not accepted in the request payload.\nResolve derives/assigns the merchant identifier from merchant naming inputs (`dba_name` or `legal_business_name`) with random alphanumeric fallback for collisions.\n\nCore merchant validation includes:\n- `business_phone` must be a valid US phone number\n- `formation_state` must map to a valid US state"
+        },
+        {
+          "info": {
+            "name": "Get Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/merchants/:merchant_id",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "mrc_1234567890abcdef",
+                "type": "path",
+                "description": "ID of the sub-merchant under your partner account."
+              }
+            ]
+          },
+          "docs": "Retrieves a single sub-merchant belonging to the authenticated partner.\n\nOnly merchants scoped to the authenticated partner are returned. Requests for\nunknown merchants or merchants outside that scope return `404`.\n\nThis path currently overlaps with a legacy public merchant endpoint. To avoid\nambiguous response shapes or fallback behavior, send the `resolve-api-version`\nheader on every request. Use `resolve-api-version: partner-v1` when you need\nthe partner API response contract documented here."
+        },
+        {
+          "info": {
+            "name": "Update Merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app-sandbox.resolvepay.com/api/merchants/:merchant_id",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "mrc_1234567890abcdef",
+                "type": "path",
+                "description": "ID of the sub-merchant under your partner account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a sub-merchant belonging to the authenticated partner.\n\nFor the **partner API** contract, `id` is immutable and cannot be updated via request payload.\n\nPost-underwriting restrictions apply once the latest underwriting decision has been finalized.\n\nFields that are **not updateable** after underwriting is complete:\n- `legal_business_name`\n- `business_address`\n- `business_email`\n- `business_phone`\n- `entity_type`\n- `formation_state`\n- `ein`\n- `annual_revenue`\n- `years_in_business`\n- `indust"
+        },
+        {
+          "info": {
+            "name": "List Merchant Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/merchants/:merchant_id/documents",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "mrc_1234567890abcdef",
+                "type": "path",
+                "description": "ID of the sub-merchant under your partner account."
+              },
+              {
+                "name": "limit",
+                "value": "25",
+                "type": "query",
+                "description": "Maximum number of document records to return."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Page number for paginated document results."
+              },
+              {
+                "name": "sort",
+                "value": "-created_at",
+                "type": "query",
+                "description": "Sort field for merchant document results.\n\nPrefix with `-` for descending order.\n"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter merchant documents by type or validation status.\n\nFilter semantics: `filter[field][operator]=value`.\n\nSupported filters:\n- `filter[document_type][eq]=bank_statements`\n- `filter[status][eq]=accepted`\n"
+              }
+            ]
+          },
+          "docs": "Returns document presence and validation lifecycle status for a specific sub-merchant.\n\nThis endpoint is metadata-only and does not return file bodies or signed retrieval URLs.\n\nSupported query options:\n- Pagination: `limit`, `page`\n- Sorting: `sort`\n- Field filters: `filter[field][eq]=value`\n\nSupported filter fields:\n- `document_type`\n- `status`\n\nSupported sort fields:\n- `created_at`\n\nUse `-` prefix for descending sort, for example `sort=-created_at`.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Merchant Document Upload Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/merchants/:merchant_id/documents",
+            "params": [
+              {
+                "name": "merchant_id",
+                "value": "mrc_1234567890abcdef",
+                "type": "path",
+                "description": "ID of the sub-merchant under your partner account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new merchant document record for a sub-merchant and initializes document transfer to the Resolve document validation service.\n\nThe transfer method is determined by request shape:\n- If `download_url` is provided, Resolve queues a background download job (`transfer_method=download_url`).\n- Otherwise, Resolve returns a presigned S3 upload URL (`transfer_method=presigned_upload`).\n\nThe validation profile is endpoint-managed by Resolve and cannot be overridden in the request.\n\nRequest valid"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

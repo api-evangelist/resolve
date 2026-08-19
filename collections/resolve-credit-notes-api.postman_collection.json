@@ -1,0 +1,1566 @@
+{
+  "item": [
+    {
+      "id": "db4c1c0b-c7ed-4af8-94ff-0ee341d4ab26",
+      "name": "Credit Notes",
+      "description": {
+        "content": "Credit Notes are issued to customers to reduce the amount they owe.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a634d3e-89b7-4274-8da5-90043fee7874",
+          "name": "List credit notes",
+          "request": {
+            "name": "List credit notes",
+            "description": {
+              "content": "Return a list of credit notes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "credit-notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Limit the number of credit notes returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Specify the page of credit notes returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[number][eq]",
+                  "value": "<string>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[customer_id][eq]",
+                  "value": "<string>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[invoice_id][eq]",
+                  "value": "<string>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[payment_id][eq]",
+                  "value": "<string>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][eq]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][gt]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][lt]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][gte]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount][lte]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][eq]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][gt]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][lt]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][gte]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][lte]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_paid][eq]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_paid][gt]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_paid][lt]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_paid][gte]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_paid][lte]",
+                  "value": "<number>",
+                  "description": "Filter credit notes by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `customer_id` (`eq`)\n  - `invoice_id` (`eq`)\n  - `payment_id` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_paid` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[number][eq]=CN-001`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "-created_at",
+                  "description": "Sort credit notes by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n  - `amount_balance`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53688424-af25-438f-aca5-99499aa22430",
+              "name": "A paginated list of credit notes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[invoice_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[payment_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1,\n  \"limit\": 25,\n  \"page\": 1,\n  \"results\": [\n    {\n      \"id\": \"CNMlaE5wbg0\",\n      \"source\": \"MERCHANT_USER\",\n      \"customer_id\": \"X50sgfRd\",\n      \"merchant_id\": \"MER456789\",\n      \"invoice_id\": \"PMMlaE5wbg0\",\n      \"created_by_user_id\": \"USR123456\",\n      \"number\": \"CN-001\",\n      \"amount\": 1000,\n      \"amount_balance\": 500,\n      \"amount_paid\": 500,\n      \"amount_voided\": 0,\n      \"amount_payout\": 1000,\n      \"amount_payout_balance\": 500,\n      \"amount_payout_paid\": 500,\n      \"credit_note_url\": \"https://www.example.com/credit-note.pdf\",\n      \"resolve_credit_note_url\": \"https://www.example.com/resolve-credit-note.pdf\",\n      \"reason_code\": \"requested_by_customer\",\n      \"reason_message\": \"Customer returned damaged goods\",\n      \"voided\": false,\n      \"voided_at\": \"1962-02-13T03:18:06.114Z\"\n    },\n    {\n      \"id\": \"CNMlaE5wbg0\",\n      \"source\": \"MERCHANT_USER\",\n      \"customer_id\": \"X50sgfRd\",\n      \"merchant_id\": \"MER456789\",\n      \"invoice_id\": \"PMMlaE5wbg0\",\n      \"created_by_user_id\": \"USR123456\",\n      \"number\": \"CN-001\",\n      \"amount\": 1000,\n      \"amount_balance\": 500,\n      \"amount_paid\": 500,\n      \"amount_voided\": 0,\n      \"amount_payout\": 1000,\n      \"amount_payout_balance\": 500,\n      \"amount_payout_paid\": 500,\n      \"credit_note_url\": \"https://www.example.com/credit-note.pdf\",\n      \"resolve_credit_note_url\": \"https://www.example.com/resolve-credit-note.pdf\",\n      \"reason_code\": \"requested_by_customer\",\n      \"reason_message\": \"Customer returned damaged goods\",\n      \"voided\": false,\n      \"voided_at\": \"1984-08-23T14:51:10.244Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5dce70e-778b-449e-b333-e4781a93563f",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[invoice_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[payment_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "640da699-37de-4113-af9b-9eeb88d7ba77",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[invoice_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[payment_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c057a83-de6c-4c52-8249-7cf8d60dd257",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[invoice_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[payment_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[amount][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_paid][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-created_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34126f77-145a-4bc7-b0ee-72e863914ebc",
+          "name": "Create a credit note",
+          "request": {
+            "name": "Create a credit note",
+            "description": {
+              "content": "Create a new credit note.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "credit-notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice_id\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"reason_code\": \"<string>\",\n  \"number\": \"<string>\",\n  \"reason_message\": \"<string>\",\n  \"credit_note_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "124a6d05-e758-42dc-8403-f8e1645355f3",
+              "name": "An object containing the status of the credit note creation request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"pending\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "858cccac-dc5b-45d4-aeff-23fd727fa209",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d09e406-531c-4a12-a12c-a2f198382fa1",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87774ed3-4ed4-483f-b9ca-6632d58659dc",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce7a3920-7ae3-4b90-a463-6298a3f95ed7",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59f60e7b-1b86-4fa2-9579-ea2d47faf216",
+          "name": "Request to void a credit note",
+          "request": {
+            "name": "Request to void a credit note",
+            "description": {
+              "content": "Request to void an existing credit note.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "credit-notes",
+                ":credit_note_id",
+                "void"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6bac1fa5-c51d-4cab-940d-63e559b31321",
+              "name": "The credit note object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"CNMlaE5wbg0\",\n  \"source\": \"MERCHANT_USER\",\n  \"customer_id\": \"X50sgfRd\",\n  \"merchant_id\": \"MER456789\",\n  \"invoice_id\": \"PMMlaE5wbg0\",\n  \"created_by_user_id\": \"USR123456\",\n  \"number\": \"CN-001\",\n  \"amount\": 1000,\n  \"amount_balance\": 500,\n  \"amount_paid\": 500,\n  \"amount_voided\": 0,\n  \"amount_payout\": 1000,\n  \"amount_payout_balance\": 500,\n  \"amount_payout_paid\": 500,\n  \"credit_note_url\": \"https://www.example.com/credit-note.pdf\",\n  \"resolve_credit_note_url\": \"https://www.example.com/resolve-credit-note.pdf\",\n  \"reason_code\": \"requested_by_customer\",\n  \"reason_message\": \"Customer returned damaged goods\",\n  \"voided\": false,\n  \"voided_at\": \"1955-05-07T23:16:20.379Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5f8fac7-a3be-43f0-baed-a8d0fc6e119e",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07cd5b12-88a4-4842-80d1-0319d7319616",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d5ea161-fc68-4d9e-88b8-f5a023cb1d9c",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1191588-e05b-4e91-9ccb-8c945a80c9f8",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66998771-0876-49e7-95cb-8fe722c24619",
+          "name": "Fetch a credit note",
+          "request": {
+            "name": "Fetch a credit note",
+            "description": {
+              "content": "Retrieve an existing credit note by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "credit-notes",
+                ":credit_note_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "credit_note_id",
+                  "description": "(Required) ID of the credit note to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cee583b6-72ca-43bd-ac3c-6cc9124063f2",
+              "name": "The credit note object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credit_note_id",
+                      "description": "(Required) ID of the credit note to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"CNMlaE5wbg0\",\n  \"source\": \"MERCHANT_USER\",\n  \"customer_id\": \"X50sgfRd\",\n  \"merchant_id\": \"MER456789\",\n  \"invoice_id\": \"PMMlaE5wbg0\",\n  \"created_by_user_id\": \"USR123456\",\n  \"number\": \"CN-001\",\n  \"amount\": 1000,\n  \"amount_balance\": 500,\n  \"amount_paid\": 500,\n  \"amount_voided\": 0,\n  \"amount_payout\": 1000,\n  \"amount_payout_balance\": 500,\n  \"amount_payout_paid\": 500,\n  \"credit_note_url\": \"https://www.example.com/credit-note.pdf\",\n  \"resolve_credit_note_url\": \"https://www.example.com/resolve-credit-note.pdf\",\n  \"reason_code\": \"requested_by_customer\",\n  \"reason_message\": \"Customer returned damaged goods\",\n  \"voided\": false,\n  \"voided_at\": \"1955-05-07T23:16:20.379Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f04434e-6f97-4c3a-984b-8725f37c6a5a",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credit_note_id",
+                      "description": "(Required) ID of the credit note to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "512cbee3-8b0e-44ce-bd35-edb6dcfa8393",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credit_note_id",
+                      "description": "(Required) ID of the credit note to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d9b8155-ac52-4c28-b65b-2e8edb958f51",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credit_note_id",
+                      "description": "(Required) ID of the credit note to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7007d409-860f-40fb-bbfc-6ea02b5840e1",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credit-notes",
+                    ":credit_note_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "credit_note_id",
+                      "description": "(Required) ID of the credit note to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app-sandbox.resolvepay.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1c93a90e-ffd0-42b6-9edc-d1ae91132126",
+    "name": "Resolve API Reference Access Keys Credit Notes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+      "type": "text/plain"
+    }
+  }
+}

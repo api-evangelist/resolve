@@ -6,144 +6,153 @@ server:
   name: resolve
   transport: http
   url: https://mcp.resolvepay.com/mcp
-  description: >-
-    Official Resolve MCP server with full parity to the Merchant API. Manage a
-    Resolve account (customers, credit checks, invoices, orders, charges,
-    shipments, payments, payouts) from AI assistants like Claude and ChatGPT.
-    All requests are authenticated and audit-logged; permissions are scoped to
+  description: Official Resolve MCP server with full parity to the Merchant API. Manage a Resolve account
+    (customers, credit checks, invoices, orders, charges, shipments, payments, payouts) from AI assistants
+    like Claude and ChatGPT. All requests are authenticated and audit-logged; permissions are scoped to
     what the authenticated principal can access in the Resolve dashboard.
   auth:
-    - type: oauth
-      description: Interactive OAuth sign-in with Resolve dashboard credentials (native clients like Claude and ChatGPT).
-    - type: m2m-bearer
-      description: Machine-to-machine bearer token minted from an MCP access key for custom clients and unattended agents.
-      scopes: [merchant:read, merchant:write]
+  - type: oauth
+    description: Interactive OAuth sign-in with Resolve dashboard credentials (native clients like Claude
+      and ChatGPT).
+  - type: m2m-bearer
+    description: Machine-to-machine bearer token minted from an MCP access key for custom clients and
+      unattended agents.
+    scopes:
+    - merchant:read
+    - merchant:write
   install:
-    - client: claude
-      method: Resolve plugin (one-step) — https://github.com/resolvepay/resolve-mcp-plugin
-    - client: other
-      method: Connect the streamable-HTTP MCP endpoint manually and install the Resolve skill.
+  - client: claude
+    method: Resolve plugin (one-step) — https://github.com/resolvepay/resolve-mcp-plugin
+  - client: other
+    method: Connect the streamable-HTTP MCP endpoint manually and install the Resolve skill.
   docs:
     tools: https://docs.resolvepay.com/guides/mcp-tools
     connect: https://docs.resolvepay.com/guides/mcp-connect
     auth: https://docs.resolvepay.com/guides/mcp-authentication
 tools:
-  - name: list_resolve_accounts
-    access: read
-    description: List Resolve accounts available to the authenticated login.
-  - name: search
-    access: read
-    description: Semantic search over Resolve's published help articles.
-  - name: create_temp_file
-    access: write
-    description: Mint a presigned S3 upload URL for a file (e.g. invoice PDF).
-  - name: list_temp_files
-    access: read
-    description: List previously uploaded temp files and mint fresh download URLs.
-  - name: list_customers
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#listCustomers
-  - name: get_customer
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchCustomer
-  - name: create_customer
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#createCustomer
-  - name: update_customer
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#updateCustomer
-  - name: request_credit_check
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#requestCustomerCreditCheck
-  - name: enroll_customer
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#enroll-a-customer
-  - name: list_invoices
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#listInvoices
-  - name: get_invoice
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchInvoice
-  - name: create_invoice
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#createInvoice
-  - name: update_invoice
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#updateInvoice
-  - name: send_invoice
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#sendInvoice
-  - name: advance_invoice
-    access: write
-  - name: capture_invoice
-    access: write
-  - name: void_invoice
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#voidInvoice
-  - name: cancel_invoice
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#cancelInvoice
-  - name: delete_invoice
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#deleteInvoice
-  - name: list_orders
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#listOrders
-  - name: get_order
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchOrder
-  - name: create_order
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#createOrder
-  - name: update_order
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#updateOrder
-  - name: capture_order
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#captureOrder
-  - name: cancel_order
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#cancelOrder
-  - name: list_charges
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#listCharges
-  - name: get_charge
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchCharge
-  - name: update_charge
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#updateCharge
-  - name: capture_charge
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#captureCharge
-  - name: cancel_charge
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#cancelCharge
-  - name: list_shipments
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#listShipments
-  - name: get_shipment
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#getShipment
-  - name: create_shipment
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#createShipment
-  - name: update_shipment
-    access: write
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#updateShipment
-  - name: delete_shipment
-    access: write
-  - name: sync_shipment_tracking
-    access: write
-  - name: list_payments
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#listPayments
-  - name: get_payment
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchPayment
-  - name: list_payouts
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#listPayouts
-  - name: get_payout
-    access: read
-    source_operation: openapi/resolve-merchant-api-openapi.yaml#getPayout
+- name: list_resolve_accounts
+  access: read
+  description: List Resolve accounts available to the authenticated login.
+- name: search
+  access: read
+  description: Semantic search over Resolve's published help articles.
+- name: create_temp_file
+  access: write
+  description: Mint a presigned S3 upload URL for a file (e.g. invoice PDF).
+- name: list_temp_files
+  access: read
+  description: List previously uploaded temp files and mint fresh download URLs.
+- name: list_customers
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#listCustomers
+- name: get_customer
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchCustomer
+- name: create_customer
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#createCustomer
+- name: update_customer
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#updateCustomer
+- name: request_credit_check
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#requestCustomerCreditCheck
+- name: enroll_customer
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#enroll-a-customer
+- name: list_invoices
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#listInvoices
+- name: get_invoice
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchInvoice
+- name: create_invoice
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#createInvoice
+- name: update_invoice
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#updateInvoice
+- name: send_invoice
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#sendInvoice
+- name: advance_invoice
+  access: write
+- name: capture_invoice
+  access: write
+- name: void_invoice
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#voidInvoice
+- name: cancel_invoice
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#cancelInvoice
+- name: delete_invoice
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#deleteInvoice
+- name: list_orders
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#listOrders
+- name: get_order
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchOrder
+- name: create_order
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#createOrder
+- name: update_order
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#updateOrder
+- name: capture_order
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#captureOrder
+- name: cancel_order
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#cancelOrder
+- name: list_charges
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#listCharges
+- name: get_charge
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchCharge
+- name: update_charge
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#updateCharge
+- name: capture_charge
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#captureCharge
+- name: cancel_charge
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#cancelCharge
+- name: list_shipments
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#listShipments
+- name: get_shipment
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#getShipment
+- name: create_shipment
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#createShipment
+- name: update_shipment
+  access: write
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#updateShipment
+- name: delete_shipment
+  access: write
+- name: sync_shipment_tracking
+  access: write
+- name: list_payments
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#listPayments
+- name: get_payment
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#fetchPayment
+- name: list_payouts
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#listPayouts
+- name: get_payout
+  access: read
+  source_operation: openapi/resolve-merchant-api-openapi.yaml#getPayout
+deployment:
+  mode: remote
+  endpoint: https://mcp.resolvepay.com/mcp
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census

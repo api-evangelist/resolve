@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Webhooks API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/webhooks",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of webhook endpoints returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the page of webhook endpoints returned."
+              }
+            ]
+          },
+          "docs": "Returns a list of all configured webhook endpoints for the merchant account."
+        },
+        {
+          "info": {
+            "name": "Create or update webhook endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new webhook endpoint or update an existing one. If an endpoint with the same URL already exists, it will be updated with the new event subscriptions."
+        },
+        {
+          "info": {
+            "name": "Delete webhook endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app-sandbox.resolvepay.com/api/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a webhook endpoint and all its event subscriptions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

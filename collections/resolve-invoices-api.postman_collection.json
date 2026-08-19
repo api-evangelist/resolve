@@ -1,0 +1,3251 @@
+{
+  "item": [
+    {
+      "id": "0a9ba785-8a33-493d-950e-efefda1ad234",
+      "name": "Invoices",
+      "description": {
+        "content": "The invoice represents the business transaction between you and your customer. In Resolve, an invoice must be tied to a customer and an advance can be taken on the invoice.\n\nFor an advance to be taken on the invoice, a PDF of the invoice must be uploaded and the associated customer must be approved and have available credit for the amount of the invoice.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af93e588-7db5-4078-9ea4-ab3bfedb5584",
+          "name": "List all invoices",
+          "request": {
+            "name": "List all invoices",
+            "description": {
+              "content": "Return a list of invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Limit the number of invoices returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Specify the page of invoices returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[number][eq]",
+                  "value": "<string>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[order_number][eq]",
+                  "value": "<string>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[po_number][eq]",
+                  "value": "<string>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[customer_id][eq]",
+                  "value": "<string>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[created_at][eq]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[created_at][gt]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[created_at][lt]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[created_at][gte]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[created_at][lte]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[fully_paid][eq]",
+                  "value": "<boolean>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[fully_paid][ne]",
+                  "value": "<boolean>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[fully_paid_at][eq]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[fully_paid_at][gt]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[fully_paid_at][lt]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[fully_paid_at][gte]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[fully_paid_at][lte]",
+                  "value": "<dateTime>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_due][eq]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_due][gt]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_due][lt]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_due][gte]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_due][lte]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][eq]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][gt]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][lt]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][gte]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_balance][lte]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_pending][eq]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_pending][gt]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_pending][lt]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_pending][gte]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_pending][lte]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_refunded][eq]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_refunded][gt]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_refunded][lt]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_refunded][gte]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[amount_refunded][lte]",
+                  "value": "<number>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[archived][eq]",
+                  "value": "<boolean>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[archived][ne]",
+                  "value": "<boolean>",
+                  "description": "Filter invoices by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `number` (`eq`)\n  - `order_number` (`eq`)\n  - `po_number` (`eq`)\n  - `customer_id` (`eq`)\n  - `advance_requested` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `fully_paid` (`eq`, `ne`)\n  - `fully_paid_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_due` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_pending` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_refunded` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[number][eq]=100`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a841c4f5-d749-4ffe-949f-69bb540979ec",
+              "name": "An object with an array of results containing up to the limit. If no invoices are found, the results array will be empty.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[order_number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[po_number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][gt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][lte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid][eq]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[fully_paid][ne]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][eq]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][gt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][lte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[amount_due][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[archived][eq]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[archived][ne]",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 1,\n  \"limit\": 25,\n  \"page\": 1,\n  \"results\": [\n    {\n      \"id\": \"PMMlaE5wbg0\",\n      \"source\": \"MERCHANT_USER\",\n      \"customer_id\": \"string\",\n      \"order_number\": \"5055\",\n      \"number\": \"Inv # 123\",\n      \"po_number\": \"PO-555\",\n      \"notes\": \"Example of additional notes for Customer.\",\n      \"merchant_invoice_url\": \"https://www.example.com/invoice.pdf\",\n      \"resolve_invoice_url\": \"https://www.example.com/resolve-invoice.pdf\",\n      \"resolve_invoice_status\": \"completed\",\n      \"fully_paid\": true,\n      \"fully_paid_at\": \"2020-01-01T00:00:00.730Z\",\n      \"advanced\": false,\n      \"due_at\": \"2020-02-01T00:00:00.750Z\",\n      \"original_due_at\": \"2020-02-01T00:00:00.750Z\",\n      \"invoiced_at\": \"2020-01-01T00:00:00.750Z\",\n      \"advance_requested\": false,\n      \"terms\": \"net180\",\n      \"amount_payout_due\": 4000,\n      \"amount_payout_paid\": 2000,\n      \"amount_payout_pending\": 1000,\n      \"amount_payout_refunded\": 500,\n      \"amount_payout_balance\": 500,\n      \"payout_fully_paid\": false,\n      \"payout_fully_paid_at\": \"2020-01-02T00:00:00.730Z\",\n      \"amount_balance\": 2000,\n      \"amount_due\": 4000,\n      \"amount_refunded\": 0,\n      \"amount_pending\": 1000,\n      \"amount_paid\": 1000,\n      \"amount_advance\": 4000,\n      \"amount_additional_advance\": 1000,\n      \"amount_advance_fee\": 10.75,\n      \"amount_advance_fee_refund\": 10.75,\n      \"advance_rate\": 0.75,\n      \"advanced_at\": \"2020-01-02T00:00:00.730Z\",\n      \"amount_customer_fee_total\": 500,\n      \"amount_customer_fee_waived\": 120,\n      \"amount_customer_fee_paid\": 300,\n      \"amount_customer_fee_balance\": 80,\n      \"created_at\": \"2020-01-02T00:00:00.730Z\",\n      \"updated_at\": \"2020-01-02T00:00:00.730Z\",\n      \"archived\": false,\n      \"invoice_payment_url\": \"https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0\",\n      \"canceled\": false,\n      \"canceled_at\": \"2011-10-20T12:31:52.759Z\",\n      \"voided\": false,\n      \"voided_at\": \"1946-12-13T22:36:00.163Z\",\n      \"amount_canceled\": 0,\n      \"amount_voided\": 0\n    },\n    {\n      \"id\": \"PMMlaE5wbg0\",\n      \"source\": \"MERCHANT_USER\",\n      \"customer_id\": \"string\",\n      \"order_number\": \"5055\",\n      \"number\": \"Inv # 123\",\n      \"po_number\": \"PO-555\",\n      \"notes\": \"Example of additional notes for Customer.\",\n      \"merchant_invoice_url\": \"https://www.example.com/invoice.pdf\",\n      \"resolve_invoice_url\": \"https://www.example.com/resolve-invoice.pdf\",\n      \"resolve_invoice_status\": \"completed\",\n      \"fully_paid\": true,\n      \"fully_paid_at\": \"2020-01-01T00:00:00.730Z\",\n      \"advanced\": false,\n      \"due_at\": \"2020-02-01T00:00:00.750Z\",\n      \"original_due_at\": \"2020-02-01T00:00:00.750Z\",\n      \"invoiced_at\": \"2020-01-01T00:00:00.750Z\",\n      \"advance_requested\": false,\n      \"terms\": \"net30\",\n      \"amount_payout_due\": 4000,\n      \"amount_payout_paid\": 2000,\n      \"amount_payout_pending\": 1000,\n      \"amount_payout_refunded\": 500,\n      \"amount_payout_balance\": 500,\n      \"payout_fully_paid\": false,\n      \"payout_fully_paid_at\": \"2020-01-02T00:00:00.730Z\",\n      \"amount_balance\": 2000,\n      \"amount_due\": 4000,\n      \"amount_refunded\": 0,\n      \"amount_pending\": 1000,\n      \"amount_paid\": 1000,\n      \"amount_advance\": 4000,\n      \"amount_additional_advance\": 1000,\n      \"amount_advance_fee\": 10.75,\n      \"amount_advance_fee_refund\": 10.75,\n      \"advance_rate\": 0.75,\n      \"advanced_at\": \"2020-01-02T00:00:00.730Z\",\n      \"amount_customer_fee_total\": 500,\n      \"amount_customer_fee_waived\": 120,\n      \"amount_customer_fee_paid\": 300,\n      \"amount_customer_fee_balance\": 80,\n      \"created_at\": \"2020-01-02T00:00:00.730Z\",\n      \"updated_at\": \"2020-01-02T00:00:00.730Z\",\n      \"archived\": false,\n      \"invoice_payment_url\": \"https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0\",\n      \"canceled\": false,\n      \"canceled_at\": \"1968-02-05T05:55:34.569Z\",\n      \"voided\": false,\n      \"voided_at\": \"1990-02-16T00:16:14.993Z\",\n      \"amount_canceled\": 0,\n      \"amount_voided\": 0\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "494b1814-38c0-4175-8c42-2b2fdc46f6a4",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[order_number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[po_number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][gt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][lte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid][eq]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[fully_paid][ne]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][eq]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][gt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][lte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[amount_due][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[archived][eq]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[archived][ne]",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3972fa9-d073-4064-bb13-0434f6f673de",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[order_number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[po_number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][gt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][lte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid][eq]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[fully_paid][ne]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][eq]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][gt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][lte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[amount_due][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[archived][eq]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[archived][ne]",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "112e8e11-1232-4d0b-b3cc-df4b7fda0c0c",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "filter[number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[order_number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[po_number][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[customer_id][eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter[created_at][eq]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][gt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[created_at][lte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid][eq]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[fully_paid][ne]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][eq]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][gt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][lt]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][gte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[fully_paid_at][lte]",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "filter[amount_due][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_due][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_balance][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_pending][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][eq]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][gt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][lt]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][gte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[amount_refunded][lte]",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "filter[archived][eq]",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filter[archived][ne]",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8b7e795-a92b-44ff-8af1-b386665a8383",
+          "name": "Create an invoice",
+          "request": {
+            "name": "Create an invoice",
+            "description": {
+              "content": "Create a new advanced or non-advanced invoice with the desired terms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c71e3ea3-6ea4-4351-b201-f5a25617504e",
+              "name": "An object representing an invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"PMMlaE5wbg0\",\n  \"source\": \"MERCHANT_USER\",\n  \"customer_id\": \"string\",\n  \"order_number\": \"5055\",\n  \"number\": \"Inv # 123\",\n  \"po_number\": \"PO-555\",\n  \"notes\": \"Example of additional notes for Customer.\",\n  \"merchant_invoice_url\": \"https://www.example.com/invoice.pdf\",\n  \"resolve_invoice_url\": \"https://www.example.com/resolve-invoice.pdf\",\n  \"resolve_invoice_status\": \"completed\",\n  \"fully_paid\": true,\n  \"fully_paid_at\": \"2020-01-01T00:00:00.730Z\",\n  \"advanced\": false,\n  \"due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"original_due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"invoiced_at\": \"2020-01-01T00:00:00.750Z\",\n  \"advance_requested\": false,\n  \"terms\": \"net20\",\n  \"amount_payout_due\": 4000,\n  \"amount_payout_paid\": 2000,\n  \"amount_payout_pending\": 1000,\n  \"amount_payout_refunded\": 500,\n  \"amount_payout_balance\": 500,\n  \"payout_fully_paid\": false,\n  \"payout_fully_paid_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_balance\": 2000,\n  \"amount_due\": 4000,\n  \"amount_refunded\": 0,\n  \"amount_pending\": 1000,\n  \"amount_paid\": 1000,\n  \"amount_advance\": 4000,\n  \"amount_additional_advance\": 1000,\n  \"amount_advance_fee\": 10.75,\n  \"amount_advance_fee_refund\": 10.75,\n  \"advance_rate\": 0.75,\n  \"advanced_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_customer_fee_total\": 500,\n  \"amount_customer_fee_waived\": 120,\n  \"amount_customer_fee_paid\": 300,\n  \"amount_customer_fee_balance\": 80,\n  \"created_at\": \"2020-01-02T00:00:00.730Z\",\n  \"updated_at\": \"2020-01-02T00:00:00.730Z\",\n  \"archived\": false,\n  \"invoice_payment_url\": \"https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0\",\n  \"canceled\": false,\n  \"canceled_at\": \"1988-10-11T05:20:42.597Z\",\n  \"voided\": false,\n  \"voided_at\": \"2004-08-29T12:37:55.771Z\",\n  \"amount_canceled\": 0,\n  \"amount_voided\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9583c1af-d74c-4098-a33d-d0285863bbc5",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53a4d671-63e6-493b-a14b-640dc01d71dc",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "effb0e7e-7601-4726-8a34-ff2e3ac636c3",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7f0f792-9faa-4fc4-b962-93f4814920a5",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b88cb25-1d1b-4a28-aa66-e860b266b719",
+          "name": "Fetch an invoice",
+          "request": {
+            "name": "Fetch an invoice",
+            "description": {
+              "content": "Retrieve an existing invoice by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoice_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoice_id",
+                  "description": "(Required) ID of the invoice to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8026c4a1-9674-4e6b-97a8-38f49b42ac32",
+              "name": "An object representing an invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"PMMlaE5wbg0\",\n  \"source\": \"MERCHANT_USER\",\n  \"customer_id\": \"string\",\n  \"order_number\": \"5055\",\n  \"number\": \"Inv # 123\",\n  \"po_number\": \"PO-555\",\n  \"notes\": \"Example of additional notes for Customer.\",\n  \"merchant_invoice_url\": \"https://www.example.com/invoice.pdf\",\n  \"resolve_invoice_url\": \"https://www.example.com/resolve-invoice.pdf\",\n  \"resolve_invoice_status\": \"completed\",\n  \"fully_paid\": true,\n  \"fully_paid_at\": \"2020-01-01T00:00:00.730Z\",\n  \"advanced\": false,\n  \"due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"original_due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"invoiced_at\": \"2020-01-01T00:00:00.750Z\",\n  \"advance_requested\": false,\n  \"terms\": \"net20\",\n  \"amount_payout_due\": 4000,\n  \"amount_payout_paid\": 2000,\n  \"amount_payout_pending\": 1000,\n  \"amount_payout_refunded\": 500,\n  \"amount_payout_balance\": 500,\n  \"payout_fully_paid\": false,\n  \"payout_fully_paid_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_balance\": 2000,\n  \"amount_due\": 4000,\n  \"amount_refunded\": 0,\n  \"amount_pending\": 1000,\n  \"amount_paid\": 1000,\n  \"amount_advance\": 4000,\n  \"amount_additional_advance\": 1000,\n  \"amount_advance_fee\": 10.75,\n  \"amount_advance_fee_refund\": 10.75,\n  \"advance_rate\": 0.75,\n  \"advanced_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_customer_fee_total\": 500,\n  \"amount_customer_fee_waived\": 120,\n  \"amount_customer_fee_paid\": 300,\n  \"amount_customer_fee_balance\": 80,\n  \"created_at\": \"2020-01-02T00:00:00.730Z\",\n  \"updated_at\": \"2020-01-02T00:00:00.730Z\",\n  \"archived\": false,\n  \"invoice_payment_url\": \"https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0\",\n  \"canceled\": false,\n  \"canceled_at\": \"1988-10-11T05:20:42.597Z\",\n  \"voided\": false,\n  \"voided_at\": \"2004-08-29T12:37:55.771Z\",\n  \"amount_canceled\": 0,\n  \"amount_voided\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfafbaf7-cfe9-4edd-974e-999e41c1413d",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3635f5c2-62cd-4c84-857c-9e4feccfbf5d",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85d3b469-46ee-45f3-b45b-62df0cfd5d24",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d7855c2-c777-410e-b23b-018975b8abcc",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4478dc70-96f7-402d-b8ce-5fdb0aacdb8f",
+          "name": "Update an invoice",
+          "request": {
+            "name": "Update an invoice",
+            "description": {
+              "content": "Update an invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoice_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoice_id",
+                  "description": "(Required) ID of the invoice to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22d6e9d7-ded4-4909-a609-2e015f196da6",
+              "name": "An object representing an invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"PMMlaE5wbg0\",\n  \"source\": \"MERCHANT_USER\",\n  \"customer_id\": \"string\",\n  \"order_number\": \"5055\",\n  \"number\": \"Inv # 123\",\n  \"po_number\": \"PO-555\",\n  \"notes\": \"Example of additional notes for Customer.\",\n  \"merchant_invoice_url\": \"https://www.example.com/invoice.pdf\",\n  \"resolve_invoice_url\": \"https://www.example.com/resolve-invoice.pdf\",\n  \"resolve_invoice_status\": \"completed\",\n  \"fully_paid\": true,\n  \"fully_paid_at\": \"2020-01-01T00:00:00.730Z\",\n  \"advanced\": false,\n  \"due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"original_due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"invoiced_at\": \"2020-01-01T00:00:00.750Z\",\n  \"advance_requested\": false,\n  \"terms\": \"net20\",\n  \"amount_payout_due\": 4000,\n  \"amount_payout_paid\": 2000,\n  \"amount_payout_pending\": 1000,\n  \"amount_payout_refunded\": 500,\n  \"amount_payout_balance\": 500,\n  \"payout_fully_paid\": false,\n  \"payout_fully_paid_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_balance\": 2000,\n  \"amount_due\": 4000,\n  \"amount_refunded\": 0,\n  \"amount_pending\": 1000,\n  \"amount_paid\": 1000,\n  \"amount_advance\": 4000,\n  \"amount_additional_advance\": 1000,\n  \"amount_advance_fee\": 10.75,\n  \"amount_advance_fee_refund\": 10.75,\n  \"advance_rate\": 0.75,\n  \"advanced_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_customer_fee_total\": 500,\n  \"amount_customer_fee_waived\": 120,\n  \"amount_customer_fee_paid\": 300,\n  \"amount_customer_fee_balance\": 80,\n  \"created_at\": \"2020-01-02T00:00:00.730Z\",\n  \"updated_at\": \"2020-01-02T00:00:00.730Z\",\n  \"archived\": false,\n  \"invoice_payment_url\": \"https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0\",\n  \"canceled\": false,\n  \"canceled_at\": \"1988-10-11T05:20:42.597Z\",\n  \"voided\": false,\n  \"voided_at\": \"2004-08-29T12:37:55.771Z\",\n  \"amount_canceled\": 0,\n  \"amount_voided\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90c9ef43-0cfe-4f6e-baa2-7949f2f27047",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "850b5b5e-f2f8-4250-988f-a864589543c9",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "424b2165-4e5d-4f2a-bb7c-b68688a60b10",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00128c59-b3ef-4aee-94d1-89ed45e1c27a",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c9813e0-2ed1-4027-92c7-241f434cd539",
+          "name": "Delete an invoice",
+          "request": {
+            "name": "Delete an invoice",
+            "description": {
+              "content": "Delete an invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoice_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoice_id",
+                  "description": "(Required) ID of the invoice to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f2ed675-d1f6-492d-940f-187362f127ee",
+              "name": "An object representing an invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"PMMlaE5wbg0\",\n  \"source\": \"MERCHANT_USER\",\n  \"customer_id\": \"string\",\n  \"order_number\": \"5055\",\n  \"number\": \"Inv # 123\",\n  \"po_number\": \"PO-555\",\n  \"notes\": \"Example of additional notes for Customer.\",\n  \"merchant_invoice_url\": \"https://www.example.com/invoice.pdf\",\n  \"resolve_invoice_url\": \"https://www.example.com/resolve-invoice.pdf\",\n  \"resolve_invoice_status\": \"completed\",\n  \"fully_paid\": true,\n  \"fully_paid_at\": \"2020-01-01T00:00:00.730Z\",\n  \"advanced\": false,\n  \"due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"original_due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"invoiced_at\": \"2020-01-01T00:00:00.750Z\",\n  \"advance_requested\": false,\n  \"terms\": \"net20\",\n  \"amount_payout_due\": 4000,\n  \"amount_payout_paid\": 2000,\n  \"amount_payout_pending\": 1000,\n  \"amount_payout_refunded\": 500,\n  \"amount_payout_balance\": 500,\n  \"payout_fully_paid\": false,\n  \"payout_fully_paid_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_balance\": 2000,\n  \"amount_due\": 4000,\n  \"amount_refunded\": 0,\n  \"amount_pending\": 1000,\n  \"amount_paid\": 1000,\n  \"amount_advance\": 4000,\n  \"amount_additional_advance\": 1000,\n  \"amount_advance_fee\": 10.75,\n  \"amount_advance_fee_refund\": 10.75,\n  \"advance_rate\": 0.75,\n  \"advanced_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_customer_fee_total\": 500,\n  \"amount_customer_fee_waived\": 120,\n  \"amount_customer_fee_paid\": 300,\n  \"amount_customer_fee_balance\": 80,\n  \"created_at\": \"2020-01-02T00:00:00.730Z\",\n  \"updated_at\": \"2020-01-02T00:00:00.730Z\",\n  \"archived\": false,\n  \"invoice_payment_url\": \"https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0\",\n  \"canceled\": false,\n  \"canceled_at\": \"1988-10-11T05:20:42.597Z\",\n  \"voided\": false,\n  \"voided_at\": \"2004-08-29T12:37:55.771Z\",\n  \"amount_canceled\": 0,\n  \"amount_voided\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59a1874d-3bdf-4f28-a95d-16df4ccf1a58",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c530f30-3b80-4674-8307-b6bc7e61be5f",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87fe9a1d-95c1-4ed4-b844-db0070217b7e",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1312b5e3-f50b-45aa-893c-feec6894b922",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c30a4e54-bfbd-4e95-bb83-289490c24cab",
+          "name": "Send an invoice",
+          "request": {
+            "name": "Send an invoice",
+            "description": {
+              "content": "Send an invoice to the customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoice_id",
+                "send"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoice_id",
+                  "description": "(Required) ID of the invoice to send"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afe1904f-c706-4319-ad7a-b1dc1b6838e7",
+              "name": "An object representing an invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to send"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"PMMlaE5wbg0\",\n  \"source\": \"MERCHANT_USER\",\n  \"customer_id\": \"string\",\n  \"order_number\": \"5055\",\n  \"number\": \"Inv # 123\",\n  \"po_number\": \"PO-555\",\n  \"notes\": \"Example of additional notes for Customer.\",\n  \"merchant_invoice_url\": \"https://www.example.com/invoice.pdf\",\n  \"resolve_invoice_url\": \"https://www.example.com/resolve-invoice.pdf\",\n  \"resolve_invoice_status\": \"completed\",\n  \"fully_paid\": true,\n  \"fully_paid_at\": \"2020-01-01T00:00:00.730Z\",\n  \"advanced\": false,\n  \"due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"original_due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"invoiced_at\": \"2020-01-01T00:00:00.750Z\",\n  \"advance_requested\": false,\n  \"terms\": \"net20\",\n  \"amount_payout_due\": 4000,\n  \"amount_payout_paid\": 2000,\n  \"amount_payout_pending\": 1000,\n  \"amount_payout_refunded\": 500,\n  \"amount_payout_balance\": 500,\n  \"payout_fully_paid\": false,\n  \"payout_fully_paid_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_balance\": 2000,\n  \"amount_due\": 4000,\n  \"amount_refunded\": 0,\n  \"amount_pending\": 1000,\n  \"amount_paid\": 1000,\n  \"amount_advance\": 4000,\n  \"amount_additional_advance\": 1000,\n  \"amount_advance_fee\": 10.75,\n  \"amount_advance_fee_refund\": 10.75,\n  \"advance_rate\": 0.75,\n  \"advanced_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_customer_fee_total\": 500,\n  \"amount_customer_fee_waived\": 120,\n  \"amount_customer_fee_paid\": 300,\n  \"amount_customer_fee_balance\": 80,\n  \"created_at\": \"2020-01-02T00:00:00.730Z\",\n  \"updated_at\": \"2020-01-02T00:00:00.730Z\",\n  \"archived\": false,\n  \"invoice_payment_url\": \"https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0\",\n  \"canceled\": false,\n  \"canceled_at\": \"1988-10-11T05:20:42.597Z\",\n  \"voided\": false,\n  \"voided_at\": \"2004-08-29T12:37:55.771Z\",\n  \"amount_canceled\": 0,\n  \"amount_voided\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d71c4b7-4601-4109-b0fd-d9b356532147",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to send"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34975d76-9697-42f0-bd03-0b640d9f700e",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to send"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8f6a12b-35d2-4c90-a1e3-1fd1d3f7b7b5",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to send"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8046056a-c5f8-451b-9a4c-2c6eef0e9e39",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "send"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to send"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d004bbcc-6dc5-4cfd-888e-dc67d63be29d",
+          "name": "Void an invoice",
+          "request": {
+            "name": "Void an invoice",
+            "description": {
+              "content": "Void an invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoice_id",
+                "void"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoice_id",
+                  "description": "(Required) ID of the invoice to void"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05922c9b-0ed3-4153-ace0-89f061b190f0",
+              "name": "An object representing an invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to void"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"PMMlaE5wbg0\",\n  \"source\": \"MERCHANT_USER\",\n  \"customer_id\": \"string\",\n  \"order_number\": \"5055\",\n  \"number\": \"Inv # 123\",\n  \"po_number\": \"PO-555\",\n  \"notes\": \"Example of additional notes for Customer.\",\n  \"merchant_invoice_url\": \"https://www.example.com/invoice.pdf\",\n  \"resolve_invoice_url\": \"https://www.example.com/resolve-invoice.pdf\",\n  \"resolve_invoice_status\": \"completed\",\n  \"fully_paid\": true,\n  \"fully_paid_at\": \"2020-01-01T00:00:00.730Z\",\n  \"advanced\": false,\n  \"due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"original_due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"invoiced_at\": \"2020-01-01T00:00:00.750Z\",\n  \"advance_requested\": false,\n  \"terms\": \"net20\",\n  \"amount_payout_due\": 4000,\n  \"amount_payout_paid\": 2000,\n  \"amount_payout_pending\": 1000,\n  \"amount_payout_refunded\": 500,\n  \"amount_payout_balance\": 500,\n  \"payout_fully_paid\": false,\n  \"payout_fully_paid_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_balance\": 2000,\n  \"amount_due\": 4000,\n  \"amount_refunded\": 0,\n  \"amount_pending\": 1000,\n  \"amount_paid\": 1000,\n  \"amount_advance\": 4000,\n  \"amount_additional_advance\": 1000,\n  \"amount_advance_fee\": 10.75,\n  \"amount_advance_fee_refund\": 10.75,\n  \"advance_rate\": 0.75,\n  \"advanced_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_customer_fee_total\": 500,\n  \"amount_customer_fee_waived\": 120,\n  \"amount_customer_fee_paid\": 300,\n  \"amount_customer_fee_balance\": 80,\n  \"created_at\": \"2020-01-02T00:00:00.730Z\",\n  \"updated_at\": \"2020-01-02T00:00:00.730Z\",\n  \"archived\": false,\n  \"invoice_payment_url\": \"https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0\",\n  \"canceled\": false,\n  \"canceled_at\": \"1988-10-11T05:20:42.597Z\",\n  \"voided\": false,\n  \"voided_at\": \"2004-08-29T12:37:55.771Z\",\n  \"amount_canceled\": 0,\n  \"amount_voided\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8605ae10-3fb2-4318-a988-c414f4f849d0",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to void"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79546417-f36c-4c49-8e50-0a33d6eb7cb3",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to void"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08b9755c-e613-4879-a532-987a47a804ab",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to void"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "659a849c-5898-4c28-983a-3b65974446ad",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to void"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b9faed1-c153-4ed0-bc95-22a43e86f596",
+          "name": "Cancel an invoice",
+          "request": {
+            "name": "Cancel an invoice",
+            "description": {
+              "content": "Cancel an invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoice_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoice_id",
+                  "description": "(Required) ID of the invoice to cancel"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ec53057-be0d-4a61-913f-3d27d8dcf2b3",
+              "name": "An object representing an invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to cancel"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"PMMlaE5wbg0\",\n  \"source\": \"MERCHANT_USER\",\n  \"customer_id\": \"string\",\n  \"order_number\": \"5055\",\n  \"number\": \"Inv # 123\",\n  \"po_number\": \"PO-555\",\n  \"notes\": \"Example of additional notes for Customer.\",\n  \"merchant_invoice_url\": \"https://www.example.com/invoice.pdf\",\n  \"resolve_invoice_url\": \"https://www.example.com/resolve-invoice.pdf\",\n  \"resolve_invoice_status\": \"completed\",\n  \"fully_paid\": true,\n  \"fully_paid_at\": \"2020-01-01T00:00:00.730Z\",\n  \"advanced\": false,\n  \"due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"original_due_at\": \"2020-02-01T00:00:00.750Z\",\n  \"invoiced_at\": \"2020-01-01T00:00:00.750Z\",\n  \"advance_requested\": false,\n  \"terms\": \"net20\",\n  \"amount_payout_due\": 4000,\n  \"amount_payout_paid\": 2000,\n  \"amount_payout_pending\": 1000,\n  \"amount_payout_refunded\": 500,\n  \"amount_payout_balance\": 500,\n  \"payout_fully_paid\": false,\n  \"payout_fully_paid_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_balance\": 2000,\n  \"amount_due\": 4000,\n  \"amount_refunded\": 0,\n  \"amount_pending\": 1000,\n  \"amount_paid\": 1000,\n  \"amount_advance\": 4000,\n  \"amount_additional_advance\": 1000,\n  \"amount_advance_fee\": 10.75,\n  \"amount_advance_fee_refund\": 10.75,\n  \"advance_rate\": 0.75,\n  \"advanced_at\": \"2020-01-02T00:00:00.730Z\",\n  \"amount_customer_fee_total\": 500,\n  \"amount_customer_fee_waived\": 120,\n  \"amount_customer_fee_paid\": 300,\n  \"amount_customer_fee_balance\": 80,\n  \"created_at\": \"2020-01-02T00:00:00.730Z\",\n  \"updated_at\": \"2020-01-02T00:00:00.730Z\",\n  \"archived\": false,\n  \"invoice_payment_url\": \"https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0\",\n  \"canceled\": false,\n  \"canceled_at\": \"1988-10-11T05:20:42.597Z\",\n  \"voided\": false,\n  \"voided_at\": \"2004-08-29T12:37:55.771Z\",\n  \"amount_canceled\": 0,\n  \"amount_voided\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be3a52d5-b79e-43b2-a234-de967452cd28",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to cancel"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ec8ef11-32c2-4abd-a634-6b6208e1b48f",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to cancel"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abd83be2-2962-4df7-bd1e-78e3623dab5a",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to cancel"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "105766a2-22c7-45e6-bebf-f552a675176c",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoice_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoice_id",
+                      "description": "(Required) ID of the invoice to cancel"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app-sandbox.resolvepay.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ce30a848-8610-4c3c-99dd-9c9c2331287d",
+    "name": "Resolve API Reference Access Keys Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+      "type": "text/plain"
+    }
+  }
+}

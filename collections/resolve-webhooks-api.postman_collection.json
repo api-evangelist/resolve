@@ -1,0 +1,733 @@
+{
+  "item": [
+    {
+      "id": "585f2e42-878e-4583-8bae-a0a40094fd78",
+      "name": "Webhooks",
+      "description": {
+        "content": "Webhooks allow you to receive real-time notifications about events in your Resolve account. When an event occurs, Resolve sends an HTTP POST request to your configured webhook endpoint with details about the event.\n\n## Webhook Event Structure\n\nAll webhook events follow a consistent structure:\n\n```json\n{\n  \"id\": \"4ecbe7f9e8c1c9092c000027\",\n  \"object\": \"invoice\",\n  \"type\": \"invoice.created\",\n  \"occurred_at\": \"2021-05-20T09:23:53+00:00\",\n  \"data\": {\n    \"id\": \"RH5fF9aeQ\"\n  }\n}\n```\n\nThe `data.id` field contains the ID of the object related to the event. You can use this ID to fetch the full object via the corresponding API endpoint.\n\n## Supported Event Types\n\n### Invoice Events\n- **`invoice.created`** - Triggered when a new invoice record is created.\n- **`invoice.balance_updated`** - Triggered when the outstanding balance of an invoice changes (for example, when a payment or credit note is applied).\n\n### Customer Events\n- **`customer.created`** - Triggered when a new customer record is created.\n- **`customer.status_updated`** - Triggered when a customer's status changes (for example, when a customer is submitted for a credit check or enrolled).\n- **`customer.line_amount_updated`** - Triggered when a customer's credit limit amount is updated.\n- **`customer.advance_rate_updated`** - Triggered when a customer's advance rate percentage is updated.\n- **`customer.credit_decision_created`** - Triggered when a new credit decision is created for a customer.\n\n### Order Events\n- **`order.created`** - Triggered when a new order record is created.\n- **`order.updated`** - Triggered when an order is updated.\n\n### Payment Events\n- **`payment.created`** - Triggered when a new payment record is created.\n- **`payment.status_changed`** - Triggered when the status of a payment changes.\n\n### Payout Events\n- **`payout.created`** - Triggered when a new payout record is created.\n- **`payout.status_changed`** - Triggered when the status of a payout changes (for example, pending, in transit, paid).\n\n## Verifying Webhook Signatures\n\nTo ensure webhook requests are genuine and coming from Resolve, you should verify the webhook signature. Resolve includes a signature in the `x-webhook-signature` header of each webhook request.\n\n### JavaScript Example\n\n```javascript\nconst crypto = require('crypto');\n\nfunction verifyWebhookSignature(payload, signature, secret) {\n  const computedSignature = crypto\n    .createHmac('sha256', secret)\n    .update(JSON.stringify(payload))\n    .digest('hex');\n\n  return crypto.timingSafeEqual(\n    Buffer.from(signature),\n    Buffer.from(computedSignature)\n  );\n}\n\n// Usage in Express.js\napp.post('/webhooks', express.json(), (req, res) => {\n  const signature = req.headers['x-webhook-signature'];\n  const isValid = verifyWebhookSignature(req.body, signature, process.env.WEBHOOK_SECRET);\n\n  if (!isValid) {\n    return res.status(401).send('Invalid signature');\n  }\n\n  // Process the webhook event\n  const event = req.body;\n  console.log('Received event:', event.type);\n\n  res.status(200).send('Webhook received');\n});\n```\n\n## Retry Policy\n\nIf your webhook endpoint doesn't respond successfully (non-2xx status code or connection error), Resolve will automatically retry sending the webhook notification. The retry schedule follows an exponential backoff pattern:\n\n- **1st retry**: 30 seconds after the initial attempt\n- **2nd retry**: 90 seconds after the 1st retry\n- **3rd retry**: 270 seconds (4.5 minutes) after the 2nd retry\n- **4th retry**: 810 seconds (13.5 minutes) after the 3rd retry\n- **5th retry**: 2430 seconds (40.5 minutes) after the 4th retry\n\nAfter the 5th unsuccessful attempt, Resolve will stop retrying and the webhook delivery will be marked as failed.\n\n## Best Practices\n\n- Always verify webhook signatures to ensure the request is from Resolve\n- Respond with a `200` status code as quickly as possible to acknowledge receipt\n- Process webhook events asynchronously if they require time-intensive operations\n- Implement idempotency on your endpoint to handle duplicate events from retries\n- Use the event `id` to track which events you've already processed\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "96cafeef-1d1c-4909-8003-24ef84bb190e",
+          "name": "List webhook endpoints",
+          "request": {
+            "name": "List webhook endpoints",
+            "description": {
+              "content": "Returns a list of all configured webhook endpoints for the merchant account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Limit the number of webhook endpoints returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Specify the page of webhook endpoints returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04c5d3f7-0232-413e-8756-169890ebe6ee",
+              "name": "An object with an array of results containing up to the limit. If no subscriptions are found, the results array will be empty.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 3,\n  \"page\": 1,\n  \"limit\": 25,\n  \"results\": [\n    {\n      \"id\": \"whe_abc123def456\",\n      \"merchant_id\": \"mer_xyz789\",\n      \"endpoint_url\": \"https://example.com/webhooks/resolve\",\n      \"topic\": {\n        \"name\": \"invoice.created\",\n        \"description\": \"Triggered when a new invoice record is created\"\n      },\n      \"created_at\": \"2021-05-20T09:23:53+00:00\",\n      \"updated_at\": \"2021-05-20T09:23:53+00:00\"\n    },\n    {\n      \"id\": \"whe_def456ghi789\",\n      \"merchant_id\": \"mer_xyz789\",\n      \"endpoint_url\": \"https://example.com/webhooks/resolve\",\n      \"topic\": {\n        \"name\": \"customer.created\",\n        \"description\": \"Triggered when a new customer record is created\"\n      },\n      \"created_at\": \"2021-05-20T09:23:53+00:00\",\n      \"updated_at\": \"2021-05-20T09:23:53+00:00\"\n    },\n    {\n      \"id\": \"whe_ghi789jkl012\",\n      \"merchant_id\": \"mer_xyz789\",\n      \"endpoint_url\": \"https://api.example.com/resolve-events\",\n      \"topic\": {\n        \"name\": \"payout.created\",\n        \"description\": \"Triggered when a new payout record is created\"\n      },\n      \"created_at\": \"2021-05-21T10:30:00+00:00\",\n      \"updated_at\": \"2021-05-21T10:30:00+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2df2ce1b-ae79-4c3d-a7b7-4c883cf87396",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f633cc1-214a-4311-a573-24b2c09d0ac6",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3be49080-e141-4316-b446-fd2d36ecd40f",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ae5d97c-4bc8-47e3-ac14-2655f586627a",
+          "name": "Create or update webhook endpoints",
+          "request": {
+            "name": "Create or update webhook endpoints",
+            "description": {
+              "content": "Create a new webhook endpoint or update an existing one. If an endpoint with the same URL already exists, it will be updated with the new event subscriptions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_url\": \"<uri>\",\n  \"events\": {\n    \"invoice.created\": \"<boolean>\",\n    \"invoice.balance_updated\": \"<boolean>\",\n    \"customer.created\": \"<boolean>\",\n    \"customer.status_updated\": \"<boolean>\",\n    \"customer.line_amount_updated\": \"<boolean>\",\n    \"customer.advance_rate_updated\": \"<boolean>\",\n    \"customer.credit_decision_created\": \"<boolean>\",\n    \"order.created\": \"<boolean>\",\n    \"order.updated\": \"<boolean>\",\n    \"payment.created\": \"<boolean>\",\n    \"payment.status_changed\": \"<boolean>\",\n    \"payout.created\": \"<boolean>\",\n    \"payout.status_changed\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cf0c570c-b475-4594-b10b-962489cbf174",
+              "name": "Successful response with webhook endpoint subscriptions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"whe_abc123def456\",\n    \"merchant_id\": \"mer_xyz789\",\n    \"endpoint_url\": \"https://example.com/webhooks/resolve\",\n    \"topic\": {\n      \"name\": \"invoice.created\",\n      \"description\": \"Triggered when a new invoice record is created\"\n    },\n    \"created_at\": \"2021-05-20T09:23:53+00:00\",\n    \"updated_at\": \"2021-05-20T09:23:53+00:00\"\n  },\n  {\n    \"id\": \"whe_def456ghi789\",\n    \"merchant_id\": \"mer_xyz789\",\n    \"endpoint_url\": \"https://example.com/webhooks/resolve\",\n    \"topic\": {\n      \"name\": \"invoice.balance_updated\",\n      \"description\": \"Triggered when the outstanding balance of an invoice changes\"\n    },\n    \"created_at\": \"2021-05-20T09:23:53+00:00\",\n    \"updated_at\": \"2021-05-20T09:23:53+00:00\"\n  },\n  {\n    \"id\": \"whe_ghi789jkl012\",\n    \"merchant_id\": \"mer_xyz789\",\n    \"endpoint_url\": \"https://example.com/webhooks/resolve\",\n    \"topic\": {\n      \"name\": \"customer.created\",\n      \"description\": \"Triggered when a new customer record is created\"\n    },\n    \"created_at\": \"2021-05-20T09:23:53+00:00\",\n    \"updated_at\": \"2021-05-20T09:23:53+00:00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e04f8377-bbad-43f1-9a04-23baa5719de7",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ee37d71-2fad-4de1-ad58-2d51278c28cf",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fc6571f-bcb4-4b9e-94aa-56465e5dcc3f",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b60e3db-e45d-461d-9fac-51962ae50dca",
+          "name": "Delete webhook endpoints",
+          "request": {
+            "name": "Delete webhook endpoints",
+            "description": {
+              "content": "Delete a webhook endpoint and all its event subscriptions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"endpoint_url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db0e336a-b38c-40a2-83aa-4e6c0aff6078",
+              "name": "Webhook endpoint successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e4dcb0d-ce5d-4703-82fe-0c0eef9ca4c0",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26b0a983-3754-43a9-95ed-2eb3d674fff3",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9e566e4-6b4a-4c84-9262-b4b58716c042",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app-sandbox.resolvepay.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f406157b-7887-450e-a327-7213666f59ba",
+    "name": "Resolve API Reference Access Keys Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+      "type": "text/plain"
+    }
+  }
+}

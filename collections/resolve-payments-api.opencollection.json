@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Payments API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/payments",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of payments returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the page of payments returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter payments by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n- `after` - after date\n- `before` - before date\n- `start` - start date\n- `end` - end date\n\nFiltering is allowed by the following fields:\n  - `customer_id` (`eq`)\n  - `status` (`eq`)\n  - `amount` (`eq`, `gt`, `lt`, `gte`, `lte`)\n\nExample: `filter[customer_id][eq]=X50sgfRd`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort payments by the specified field. Use `-` prefix for descending order.\n\nAvailable sort fields:\n  - `id`\n  - `created_at`\n  - `amount`\n\nExample: `sort=-created_at` (sort by created_at in descending order)\n"
+              }
+            ]
+          },
+          "docs": "Return a list of payments."
+        },
+        {
+          "info": {
+            "name": "Create a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/payments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a forwarded payment for an invoice belonging to one of your sub-merchants.\n\nThe payment will be forwarded from the bank account of the entity that receives payouts. If the payout receiver is the partner, the partner's bank account will be used. If the payout receiver is the sub-merchant, the sub-merchant's bank account will be used.\n\nThe invoice must be sent, and the payment amount must not exceed the invoice's outstanding balance.\n"
+        },
+        {
+          "info": {
+            "name": "Fetch a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/payments/:payment_id",
+            "params": [
+              {
+                "name": "payment_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the payment to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing payment by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

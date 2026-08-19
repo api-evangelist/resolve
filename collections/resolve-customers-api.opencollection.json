@@ -1,0 +1,184 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Customers API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/customers",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of customers returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Specify the page of customers returned."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter customers by the specified fields.\n\nFilter semantics: `filter[field][operator]=value`.\n\nAvailable filter operators:\n- `eq` - equal (=)\n- `ne` - not equal (!=)\n- `gt` - greater than (>)\n- `gte` - greater than or equal (>=)\n- `lt` - less than (<)\n- `lte` - less than or equal  (<=)\n\nFiltering is allowed by the following fields:\n  - `email` (`eq`)\n  - `business_name` (`eq`)\n  - `created_at` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_approved` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_available` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_authorized` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_balance` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `amount_unapplied_payments` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `advance_rate` (`eq`, `gt`, `lt`, `gte`, `lte`)\n  - `archived` (`eq`, `ne`)\n\nExample: `filter[email][eq]=test@resolvepay.com`\n\nNote: filter with the `eq` operator is equivalent to the following filter `filter[field]=value`\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort customers by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`, `amount_approved`, `amount_available`, `business_name`.\n\nExample: `sort=business_name,-created_at`\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Return a list of customers."
+        },
+        {
+          "info": {
+            "name": "Create a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a customer."
+        },
+        {
+          "info": {
+            "name": "Fetch a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/customers/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the customer to return"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve an existing customer by its ID.\n\nA successful response to this request will be the Customer entity.\nIf customer enrollment is required, we will return `net_terms_status='pending_enrollment'` and a not null `net_terms_enrollment_url`.\nIf customer enrollment is not required (customer applied through a direct application), we will return `net_terms_status='enrolled'`.\n"
+        },
+        {
+          "info": {
+            "name": "Update a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app-sandbox.resolvepay.com/api/customers/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the customer to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update a customer."
+        },
+        {
+          "info": {
+            "name": "Enroll a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/customers/:customer_id/enroll",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the customer to enroll"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "<div style=\"border-sizing: border-box; padding: 10px; background-color: rgba(212, 31, 28, 0.07); color: rgb(212, 31, 28);\">\n  As of <strong>July 2023</strong>, this route has been replaced with a stub response and will soon be deprecated.\n  The <strong>`confirm_enrollment`</strong> status no longer exists and, once approved by Resolve, customers will either be <strong>`enrolled`</strong>\n  (if they applied through an application) or <strong>`pending_enrollment`</strong> (if credit checked).\n</di"
+        },
+        {
+          "info": {
+            "name": "Request a credit check",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/customers/:customer_id/credit-check",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the customer being submitted for a credit check"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You may request a credit check on a customer who hasn't previously been credit checked.\nThis endpoint returns no content. You'll be able to see the date you requested the credit check\n(`credit_check_requested_at`) and `credit_status` updated to `pending` or, in the case of an instant decision,\n`approved` or `declined` by fetching the Customer entity.\n\nA `hold` credit status represents when a customer's credit account is over 15 days overdue.\nA `deactivated` credit status represents when a custom"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

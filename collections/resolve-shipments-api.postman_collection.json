@@ -1,0 +1,1956 @@
+{
+  "item": [
+    {
+      "id": "b6592aaf-fc14-4368-b993-5822f57c1168",
+      "name": "Shipments",
+      "description": {
+        "content": "A shipment represents the fulfillment of goods or services for an invoice. Track shipments to monitor delivery status and fulfillment progress. Shipments can be fulfilled through various methods including shipping providers, self-delivery, customer pickup, or for services-only transactions.\n\n## Supported Couriers\n\nWhile any courier value can be accepted for the `shipment_courier` field, instant verification through the sync endpoint is supported for the following couriers:\n\n### Major Carriers\n- `fedex` - FedEx®\n- `ups` - UPS\n- `usps` - USPS\n- `dhl` - DHL Express\n- `dhl-api` - DHL\n\n### Complete List of Supported Couriers\n\n`fedex`, `ups`, `usps`, `17postservice`, `2go`, `2ebox`, `360lion`, `3jmslogistics`, `4-72`, `4px`, `shipstoresoftware-webhook`, `99minutos`, `aduiepyle`, `a1post`, `a2b-ba`, `aaa-cooper`, `abf`, `acilogistix`, `acscourier`, `acsworldwide`, `ads`, `adsone`, `aex`, `afllog-ftp`, `arihantcourier`, `air21`, `aitworldwide-sftp`, `aitworldwide-api`, `alljoy`, `amsegroup`, `ancdelivers-sftp`, `anserx`, `ao-deutschland`, `ao-courier`, `ao-courier-webhook`, `apc-overnight`, `apc-overnight-connum`, `apc`, `apg`, `ark-logistics`, `ase`, `asigna`, `asm`, `ata`, `atshealthcare`, `atshealthcare-reference`, `activos24-api`, `aderonline`, `adicional`, `aeronet`, `test-courier`, `agediss-sftp`, `agility`, `airmee-webhook`, `airpak-express`, `airspeed`, `allegro`, `alliedexpress`, `allied-express-ftp`, `alphafreight-webhook`, `always-express`, `amazon`, `awest`, `an-post`, `andreani-api`, `anicamboxexpress`, `anjun`, `anteraja`, `aoyue`, `aquiline`, `aramex`, `aramex-api`, `fastway-au-api`, `fastway-au`, `araskargo`, `arco-spedizioni`, `argents-webhook`, `arrow-api`, `arrowxl`, `asendia-de`, `asendia-hk`, `asendia`, `asendia-uk`, `asendia-usa`, `agsystems`, `associated-couriers`, `asyadexpress`, `auexpress`, `australia-post`, `australia-post-api`, `austrian-post`, `austrian-post-registered`, `averitt`, `axlehire`, `axlehire-ftp`, `bh-worldwide`, `b2ceurope`, `bdmnet`, `bjshomedelivery`, `bjshomedelivery-ftp`, `brt-it`, `brt-it-api`, `brt-it-parcelid`, `brt-it-sender-ref`, `btxglobal-ftp`, `buffalo`, `barqexp`, `barsan`, `belpost`, `ibeone`, `bert-fr`, `800bestex`, `besttransport-sftp`, `bestwayparcel`, `bettertrucks`, `bigsmart`, `biocair-ftp`, `birdsystem`, `bleckmann-sftp`, `blinklastmile`, `bluex`, `bluestar`, `bluecare`, `bluedart-api`, `bluedart`, `bneed`, `bollore-logistics-sftp`, `bollore-logistics`, `bombinoexp`, `bomi-br-api`, `bomi`, `bond`, `bondscouriers`, `borderexpress`, `borderless360-webhook`, `boxc`, `box-berry`, `boxcheck-api`, `bpost`, `bpost-api`, `bpost-international`, `braspress-web`, `braunsexpress`, `brazil-correios`, `bring`, `bringer`, `brouwer-transport`, `budbee-webhook`, `bgpost`, `burd`, `cchezvous-sftp`, `cae-delivers`, `cbl-logistica`, `cbl-logistica-api`, `cdek`, `cdek-tr`, `cdldelivers`, `cdldelivers-api`, `ceva`, `ceva-webhook`, `ceva-tracking`, `cfl-logistics`, `cgs-express`, `parcll`, `cj-malaysia-international`, `cj-gls`, `cj-korea-thai`, `cjlogistics`, `cj-hk-international`, `cjpacket`, `cj-philippines`, `ckb-webhook`, `cle-logistics`, `cn-logistics`, `cnexps`, `crlexpress`, `cse`, `ctc-express`, `tourline`, `cacesa`, `cago`, `cainiao`, `cambodia-post`, `canada-post`, `canpar`, `capital`, `cpex`, `cargopartner-api`, `carriers`, `carry-flap`, `castleparcels`, `celeritas-ftp`, `cello-square`, `champion-logistics`, `chazki`, `chienventure-webhook`, `chilexpress-webhook`, `china-ems`, `china-post`, `chitchats`, `choirexpress`, `chronopost-france-webhook`, `chronopost-france`, `chronopost-portugal`, `ec-firstclass`, `city56-webhook`, `citylinkexpress`, `clevy-links`, `clicklink-sftp`, `cloudwish-asia`, `colis-prive`, `colissimo`, `collectplus`, `collectco`, `com1express`, `comet-tech`, `con-way`, `concise-api`, `concise-webhook`, `continental`, `coordinadora`, `coordinadora-api`, `copa-courier`, `cope`, `corporatecouriers-webhook`, `correo-uy`, `correosexpress`, `correosexpress-api`, `spain-correos-es`, `correos-de-mexico`, `costmeticsnow`, `courant-plus`, `courant-plus-api`, `courierit`, `cnwglobal-api`, `courier-plus`, `courierpost`, `couriers-please`, `croshot`, `crossflight`, `cryopdp-ftp`, `cubyn`, `cuckooexpress`, `cyprus-post`, `ceskaposta`, `ceskaposta-api`, `dexpress-webhook`, `dachser-web`, `dachser`, `daiglobaltrack`, `dao365`, `dbschenker-se`, `dbschenker-api`, `dbschenker-b2b`, `dbschenker-iceland-ftp`, `dbschenker-sv`, `ddexpress`, `deliveryontime`, `dex-i`, `dhl-api`, `dhl-reference-api`, `dhl-active-tracing`, `dhl-benelux`, `dhl-sftp`, `dhl`, `dhl-pieceid`, `dhl-freight`, `dhl-pa-api`, `dhl-global-forwarding-api`, `dhl-gt-api`, `dhl-ecommerce-gc`, `dhl-ecommerce-gc-api`, `dhl-hk`, `dhl-ie-sftp`, `dhl-nl`, `dhlparcel-nl`, `dhlparcel-ru`, `dhlparcel-es`, `dhlparcel-uk`, `dhl-poland`, `dhl-es-sftp`, `dhl-es`, `dhl-supplychain-apac`, `dhl-supply-chain-au-sftp`, `dhl-supply-chain-au`, `dhl-supplychain-id`, `dhl-global-mail-asia`, `dhl-global-mail-asia-api`, `dhl-global-mail`, `dhl-global-mail-api`, `dhl-supplychain-in`, `didadi`, `dirmensajeria`, `dksh`, `dmfgroup`, `dms-matrix`, `dnj-express`, `domino`, `dpd`, `dpd-api`, `dpd-at`, `dpd-at-sftp`, `exapaq`, `dpd-de`, `dpd-hk`, `dpd-hungary-web`, `dpd-hungary-ftp`, `dpd-hungary`, `dpd-ireland`, `interlink-express`, `interlink-express-reference`, `dpd-nl-api`, `packs-api`, `dpd-nl`, `dpd-poland`, `dpd-prt`, `dpd-ro`, `dpd-ru-api`, `dpd-ru`, `dpd-sk-sftp`, `dpd-ch-sftp`, `dpd-uk`, `dpd-uk-sftp`, `dpe-express`, `dpe-za`, `dpex`, `szdpex`, `dsv-za-sftp`, `dsv`, `dsv-reference`, `dsv-are-webhook`, `dtd`, `dtdc-au`, `dtdc-express`, `dtdc`, `dx`, `dx-sftp`, `dx-b2b-connum`, `dx-freight`, `daeshin`, `daiichi`, `danniao`, `danske-fragt`, `dashlink-webhook`, `dawnwing`, `dayross`, `dylt`, `dayton-freight`, `dealer-send`, `delhivery-webhook`, `delhivery`, `deliveryourparcel-za`, `deliver-it`, `smartkargo`, `deliveright-webhook`, `deliverr-sftp`, `delnext`, `deltec-courier`, `godependable`, `designertransport-webhook`, `destiny-ftp`, `destiny`, `destiny-webhook`, `detrack`, `detrack-webhook`, `dhl-germany`, `deutsch-post`, `dialogo-logistica-api`, `dialogo-logistica`, `diamondcouriers`, `dimerco`, `directcouriers`, `directcouriers-ftp`, `directfreight-au-ref`, `directlog`, `direx`, `discountpost`, `emega`, `dobropost`, `doordash-webhook`, `doora`, `dynamic-logistics`, `ecms`, `ecoscooting`, `ecexpress`, `efs`, `elta-courier`, `empsexpress`, `ems`, `eu-fleet-solutions`, `myhermes-uk`, `myhermes-uk-api`, `ewe`, `expressone`, `expressone-sv`, `earlybird`, `eastwestcourier-ftp`, `easy-mail`, `easyroutes`, `easyparcel`, `ecargo-asia`, `echo`, `ecofreight`, `ecom-express`, `ekart`, `ekol-api`, `elite-co`, `emirates-post`, `endeavour-delivery`, `energologistic`, `envialia`, `envialia-reference`, `equick-cn`, `eshipping`, `zes-express`, `estafeta`, `estafeta-api`, `estes`, `efwnow-api`, `etomars`, `edf-ftp`, `eurodis`, `europaket-api`, `exelot-ftp`, `expeditors`, `expeditors-api-ref`, `expresssale`, `fan`, `far-international`, `fdsexpress`, `fercam`, `fmx`, `frontdoorcorp`, `fujexp`, `fargood`, `fnf-za`, `fastdespatch`, `fastbox`, `fastrak-th`, `fastship`, `fasttrack`, `aramex-au-api`, `fastway-ireland`, `fastway-nz`, `fastway-za`, `faxecargo`, `fetchr`, `fiege`, `fiege-nl`, `first-flight`, `first-logistics-api`, `firstmile`, `fitzmark-api`, `flashexpress`, `flashexpress-webhook`, `flashexpress-ph-api`, `fleetopticsinc`, `flightlg`, `flipxp`, `fliway-sftp`, `fliway-api`, `flytexpress`, `fonsen`, `forwardair`, `fragilepak-sftp`, `freightquote`, `freterapido`, `fukuyama-sftp`, `fulfilla`, `fulfillmen`, `furdeco`, `gwlogis-api`, `gac-webhook`, `gangbao`, `gba`, `gbs-broker`, `gcx`, `gdex`, `gdpharm-webhook`, `gdpharm`, `gemworldwide`, `geodis-api`, `geodis-sftp`, `geodis-calberson-fr`, `geswl`, `gio-ecourier-api`, `gio-ecourier`, `gls`, `gls-croatia`, `gls-cz`, `gls-slovakia`, `gls-hun-api`, `gls-hun`, `gls-italy-ftp`, `gls-italy`, `dicom`, `gls-netherlands`, `gls-netherlands-webhook`, `gls-netherlands-sftp`, `gls-romania`, `gls-slovenia`, `gls-spain`, `gls-spain-api`, `gls-us`, `gols`, `gps`, `gsi-express`, `gso`, `gtagsm`, `gati-kwe`, `gati-kwe-api`, `gw-world`, `geis`, `gel-express`, `taxydromiki`, `geodis-usa-api`, `gpost`, `ghn`, `goglobalpost`, `globaltranz`, `globavend`, `globegistics`, `glovo`, `general-overnight`, `general-overnight-ftp`, `gopeople`, `gorush`, `gobolt`, `gojavas`, `gojek-webhook`, `grab-webhook`, `grandslamexpress`, `greyhound`, `mazet`, `grupoampm`, `andreani`, `hct-logistics`, `hfd`, `hkd`, `hrparcel`, `hermes-it`, `hsdexpress`, `hsm-global`, `htdkgroup-webhook`, `yycom`, `hubbed`, `hx-express`, `hdb`, `hdb-box`, `hanjin`, `hellenic-post`, `hellmann`, `helthjem`, `helthjem-api`, `heppner-fr`, `heppner`, `hermes-2mann-handling`, `hermes-de`, `hermes-de-ftp`, `hermes-uk-sftp`, `hermes`, `heroexpress`, `hipshipper`, `holisol`, `home-delivery-solutions`, `homelogistics`, `hong-kong-post`, `houndexpress`, `hrvatska-posta`, `hh-exp`, `huantong`, `hunter-express-sftp`, `hunter-express`, `huodull`, `ibventure-webhook`, `icscourier`, `idexpress`, `iml`, `imxmail`, `indopaket`, `intersmarttrans`, `intex-de`, `iordirect`, `postur-is`, `ilyanglogis`, `inpost-uk`, `inpost-paczkomaty`, `intime-ftp`, `india-post`, `india-post-int`, `inexpost`, `nox-nachtexpress`, `nox-nachtexpress-ftp`, `descartes`, `inntralog-sftp`, `instabox-webhook`, `integra2-ftp`, `intel-valley`, `intelcom-ca`, `intelipost`, `international-seur`, `international-seur-api`, `intexpress`, `interparcel-au`, `interparcel-nz`, `interparcel-uk`, `israel-post`, `israel-post-domestic`, `italy-sda`, `ivoy-webhook`, `jtcargo`, `jtexpress`, `jtexpress-ph`, `jtexpress-sg-api`, `simplypost`, `jtexpress-vn`, `j-net`, `jamef-web`, `jcex`, `jd-worldwide`, `jinsung`, `jne`, `jne-api`, `bh-posta`, `js-express`, `jx`, `jam-express`, `janco`, `janio`, `japan-post`, `javit`, `jawar`, `jayonexpress`, `jersey-post`, `jet-ship`, `ltianexp`, `jocom`, `joom-logistics`, `joyingbox`, `jumppoint-api`, `jumppoint`, `k1-express`, `kec`, `abxexpress-my`, `kgmhub`, `kurasi`, `kwe-global`, `kangaroo-my`, `kargomkolay`, `kedaex`, `kerryttc-vn`, `tgx`, `kerry-express-tw-api`, `kerry-logistics`, `kerry-express-th-webhook`, `kerrytj`, `kerry-ecommerce`, `kng`, `logisystems-sftp`, `kinisi`, `kiwi-express-webhook`, `kolay-gelsin`, `komon-express`, `kpost`, `korea-post`, `kronos-webhook`, `kronos`, `ky-express`, `kn`, `kdexp`, `lbcexpress-ftp`, `lbcexpress-api`, `lctbr-api`, `lht-express`, `liccardi-express`, `liefergrun`, `lmparcel`, `ltl`, `la-poste-colissimo`, `lalamove-api`, `lalamove`, `lalamove-plus-api`, `landmark-global-ftp`, `landmark-global`, `lao-post`, `lasership-api`, `lasership`, `latvijas-pasts`, `leader`, `legion-express`, `leman`, `lexship`, `lietuvos-pastas`, `line`, `linkbridge`, `lion-parcel`, `livrapide`, `locus-webhook`, `loggi`, `logisters`, `lwe-hk`, `logoix`, `logwin-logistics`, `logysto`, `lonestar`, `loomis-express`, `lotte`, `luwjistik`, `m-xpress`, `mx-cargo`, `m24logistics-webhook`, `m3logistics`, `mbw`, `collivery`, `metabrasil-webhook`, `misumi-cn`, `mng-kargo`, `mnx`, `mrw-spain`, `mrw`, `mrw-ftp`, `mudita`, `madrooex`, `maergo`, `magyar-posta-api`, `mail-box-etc`, `mailamericas`, `mailplus`, `mailplus-jp`, `mainfreight`, `mainway`, `malaysia-post-posdaftar`, `malaysia-post`, `malca-amit-api`, `malca-amit`, `marken`, `matdespatch`, `matkahuolto`, `medafrica`, `meest`, `fetchr-webhook`, `mensajerosurbanos-api`, `mwd-api`, `mwd`, `aeroflash`, `mexico-redpack`, `mexico-senda-express`, `mhi`, `mikropakket`, `mikropakket-be`, `milkman`, `mobi-br`, `mobiletyreshop-webhook`, `mondialrelay`, `mondialrelay-fr`, `mondialrelay-es`, `moova-webhook`, `moovin`, `morelink`, `morning-express`, `morninglobal`, `mothership-api`, `movianto`, `multientregapanama`, `mydynalogic`, `nmtransfer`, `nacex`, `nacex-spain-reference`, `nacex-spain`, `nox-night-time-express`, `ntilogistics-ftp`, `ntl`, `nytlogistics`, `new-zealand-post`, `naeko-ftp`, `nanjingwoyuan`, `naqel-express`, `national-sameday`, `nationex`, `nationex-ftp`, `nationwide-my`, `navlungo`, `netlogixgroup`, `newzealand-couriers`, `neweggexpress`, `newgistics`, `newgisticsapi`, `nhans-solutions`, `ntlogistics-vn`, `nipost`, `nightline`, `nim-express`, `nimbuspost`, `ninjavan`, `ninjavan-id`, `ninjavan-my`, `ninjavan-thai`, `ninjavan-vn`, `ninjavan-webhook`, `nippon-express-ftp`, `nippon-express`, `norsk-global`, `northline`, `nova-poshta`, `nova-poshtaint`, `nova-poshta-api`, `novofarma-webhook`, `oca-ar`, `ocs`, `ocs-worldwide`, `omlogistics-api`, `osm-worldwide-sftp`, `osm-worldwide`, `otschile`, `oakh`, `obibox`, `okayparcel`, `old-dominion`, `shopolive`, `omniparcel`, `omnirps-webhook`, `omniva-api`, `omniva`, `onway-webhook`, `ontrac`, `ontrac-api`, `oneworldexpress`, `oneclick`, `optimacourier`, `orangeconnex`, `orangeconnex-ftp`, `orangedsinc`, `orangedsinc-ftp`, `overseas-hr`, `ozeparts-shipping`, `p2p-delivery-api`, `trakpak`, `packfleet`, `palexpress`, `parcelone`, `pfcexpress`, `pflogistics`, `pflogistics-ftp`, `phse-api`, `pickupp-mys`, `pickupp-sgp`, `piggyship`, `pil-logistics`, `pittohio`, `taqbin-taiwan`, `mglobal`, `pts`, `ptt-kargo`, `ptt-posta`, `paack-webhook`, `pack-up`, `packaly`, `packeta`, `packlink`, `packs`, `paikeda`, `pakajo`, `palletways`, `pan-asia`, `pandago-api`, `pandago-ph-api`, `pandion`, `pandulogistics`, `panther`, `panther-order-number`, `panther-reference`, `panther-reference-api`, `papa-webhook`, `paper-express`, `paquetexpress`, `parcalogistics-webhook`, `parcalogistics-api`, `pdn-api`, `portless-api`, `parcel-force`, `parcelpost-sg`, `parcelright`, `parceltopost`, `parcel2go`, `parcelpal-webhook`, `parcelpoint`, `parcelinklogistics`, `parcelled-in`, `parcelstars-webhook`, `parcelstars`, `parknparcel`, `passportshipping`, `patheon`, `ppbyb`, `payo`, `payo-webhook`, `pgeon-api`, `pickrr`, `pickup`, `pidge`, `pilot-freight`, `pitney-bowes`, `planzer`, `plycongroup`, `poczta-polska`, `polarspeed`, `pony-express`, `porterex-webhook`, `portugal-ctt`, `portugal-seur`, `pos-indonesia`, `postone`, `post-serbia`, `post-slovenia`, `post56`, `postnl`, `postnl-international`, `postnl-3s`, `danmark-post`, `postnord`, `sweden-posten`, `postplus`, `postaplus`, `poste-italiane`, `poste-italiane-paccocelere`, `posten-norge`, `posti`, `posti-api`, `posta-romana`, `pressiode`, `procarrier`, `promeddelivery`, `productcaregroup-sftp`, `professional-couriers`, `ppl-api`, `ppl`, `purolator`, `purolator-api`, `purolator-international`, `qtrack`, `quantium`, `qintl-api`, `airterra`, `quiqup`, `quiqup-webhook`, `qwintry`, `qxpress`, `raf`, `ramgroup-za`, `ets-express`, `rl-carriers`, `rpd2man`, `rpm`, `rpxlogistics`, `rpxonline`, `rxo-api`, `rzyexpress`, `raben-group`, `raiderex`, `ransa-webhook`, `rcl`, `redjepakketje`, `redur-es`, `relaiscolis`, `rendr-webhook`, `returnmates-webhook`, `rhenus-group`, `rhenus-uk-api`, `rhenus-uk`, `rincos`, `air-canada-global`, `air-canada`, `rixonhk-api`, `roadbull`, `roadrunner-freight`, `roche-internal-sftp`, `rocketparcel`, `routific-webhook`, `royal-mail`, `royal-mail-ftp`, `royal-mail-webhook`, `royalshipments`, `russian-post`, `ruston`, `sailpost`, `sap-express`, `sekologistics`, `seko-sftp`, `showl`, `sf-express-api`, `sf-express`, `sf-express-cn`, `sfb2c`, `sfc`, `sfcservice`, `sglink`, `hotsin-cargo`, `shipa`, `shipter`, `shipxpres`, `shreenandancourier`, `shreetirupati`, `signia-ftp`, `signialogistics-sftp`, `skybox`, `smartcat`, `smsa-express`, `smsa-express-webhook`, `speedex`, `spflylogistica-webhook`, `spoton`, `sprint-pack`, `srekorea`, `srt-transport`, `starken`, `stepforwardfs`, `sto`, `stone3pl`, `szendex`, `safexpress`, `sagawa-api`, `sagawa`, `saia-freight`, `sassy-api`, `saudi-post`, `sberlogistics-ru`, `scotty`, `scudex-express`, `secretlab-webhook`, `seino`, `seino-api`, `sendeo-kargo`, `sending`, `sendit`, `sendle`, `sendy`, `nowlog-api`, `servip-webhook`, `servientrega`, `setel`, `shadowfax`, `dajin`, `ydex`, `kwt`, `sherpa`, `sherpa-webhook`, `ship-it-asia`, `shipentegra`, `shipgate`, `shipglobal-us`, `shipx`, `shipx-api`, `shippie`, `shippify`, `shippit`, `shiprocket`, `spx`, `spx-th`, `shopfans`, `shreeanjanicourier`, `shree-maruti`, `shunbang-express`, `shyplite`, `simpletire-webhook`, `simsglobal`, `singlobal-express`, `singapore-post`, `singapore-speedpost`, `sinotrans`, `siodemka`, `skelton-sftp`, `skyking`, `skyexpress-international`, `skyexpressinternational`, `skynet`, `skynetworldwide`, `skynetworldwide-uae`, `sky-postal`, `skynet-za`, `skynetworldwide-uk`, `sk-posta`, `smooth`, `sntglobal-api`, `sonictl`, `thenile-webhook`, `sapo`, `sefl`, `smtl`, `spanish-seur`, `spanish-seur-ftp`, `spanish-seur-api`, `specialisedfreight-za`, `spectran`, `spedisci`, `speedee`, `speedcouriers-gr`, `speedx`, `speedy`, `speedaf`, `spreetail-api`, `spring-gds`, `stallionexpress`, `star-track-courier`, `star-track-express`, `star-track`, `star-track-webhook`, `starlinks-api`, `statovernight`, `stop-start-api`, `streck-transport`, `sypost`, `superpackline`, `surat-kargo`, `sutton`, `swiship`, `swiship-jp`, `swiss-post`, `swiss-post-ftp`, `swiss-universal-express`, `loginext-webhook`, `t-cat`, `t-cat-api`, `taqbin-hk`, `tasco-my-webhook`, `tck-express`, `tcs-api`, `tcs`, `thedeliverygroup`, `tdn`, `tfm`, `tforce-finalmile`, `tigfreight`, `tipsa`, `tnt`, `tnt-au`, `tntbrasil-web`, `tnt-fr`, `tnt-fr-reference`, `tnt-it`, `tnt-reference`, `tnt-uk`, `tnt-uk-reference`, `tnt-click`, `tarrive`, `thaiparcels`, `trumpcard`, `tvsscs-webhook`, `typ`, `global-express`, `taiwan-post`, `tamergroup-webhook`, `tazmanian-freight`, `teamexpressllc`, `toll-priority`, `team-global-express-webhook`, `teleport-webhook`, `sic-teliway`, `testing-courier`, `thabit-logistics`, `thailand-post`, `thecourierguy`, `customco-api`, `pallet-network`, `thijs-nl`, `thunderexpress`, `tiki`, `tipsa-api`, `tipsa-ref`, `toll-ipec`, `toll-nz`, `tolos`, `tomydoor`, `tonami-ftp`, `esdex`, `topyou`, `tophatterexpress`, `toshi-webhook`, `total-express-api`, `total-express`, `tourline-reference`, `trackon`, `trans-kargo`, `trans2u`, `transmission-nl`, `transvirtual`, `transpak`, `tanet`, `trunkrs-webhook`, `trunkrs`, `trusk`, `tuffnells`, `tuffnells-reference`, `tusklogistics`, `u-envios`, `ubi-logistics`, `ucs`, `uk-mail`, `ucfs-api`, `usf-reddaway`, `uber-webhook`, `ukrposhta`, `uds`, `urb-it`, `courex`, `urbify`, `urgent-cargus`, `virtransport`, `viwo`, `vox`, `value-webhook`, `veho-webhook`, `venipak`, `vesyl`, `vesyl-api`, `viaeurope`, `viaxpress`, `vtfe`, `vnpost`, `vnpost-api`, `viettelpost`, `virtransport-sftp`, `wooyoung-logistics-sftp`, `wspexpress`, `wahana`, `wanbexpress`, `weworldexpress`, `wedo`, `wepost`, `weship-api`, `weship`, `weaship`, `welivery`, `shipwestgate`, `whistl`, `wineshipping`, `wineshipping-webhook`, `wise-express`, `wiseloads`, `wishpost`, `wizmo`, `worldcourier`, `worldnet`, `xdp-uk`, `xdp-uk-reference`, `xgs`, `xl-express`, `xpo-logistics`, `xpo-fr-api`, `xq-express`, `xde-webhook`, `xindus`, `xyy`, `xpedigo`, `xpert-delivery`, `xpost`, `xpressbees`, `xpressen-dk`, `yamato-tw-api`, `ydh-express`, `yrc`, `yto`, `yyexpress`, `yakit`, `taqbin-jp`, `taqbin-sg-api`, `taqbin-sg`, `yanwen`, `yifan`, `elian-post`, `yodel-api`, `yodeldirect`, `yodel`, `yodel-international`, `youparcel`, `yunexpress`, `yunant`, `yundaex`, `yunhuipost`, `yurtici-kargo`, `yusen-sftp`, `yusen`, `zjs-express`, `zto-domestic`, `zto-express`, `zyou`, `cndexpress`, `zajil-express`, `sfplus-webhook`, `zeek`, `zeleris`, `ziingfinalmile`, `zinc`, `zoom-red`, `zoom2u-webhook`, `zuelligpharma-sftp`, `acommerce`, `alphafast`, `cpacket`, `chronodiali-webhook`, `cnwangtong`, `delivere`, `e-courier-webhook`, `ecoutier`, `eparcel-kr`, `epostglobal`, `eshipper`, `etotal`, `etower`, `fairsenden-api`, `forrun`, `gojek`, `hepsijet`, `i-dika`, `i-parcel`, `icumulus-webhook`, `icumulus`, `idexpress-id`, `imile-api`, `ithinklogistics`, `liefery`, `mysendle-api`, `pack-man`, `shopline`, `solistica-api`, `swe`, `trans-o-flex-sftp`, `transligue-web`, `uparcel`, `uship`, `uc56`, `wndirect`, `xmszm`, `ceska-posta`, `winit`, `jd-express`, `jusdasr`, `be`, `padtf`, `pchome-api`, `6ls`, `yingnuo-logistics`, `jindouyun`, `sdh-scm`\n\n**Note:** Using unsupported courier values will still work but verification may be delayed or require manual processing.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4680b8d0-f9bd-4288-be09-042e37d66c48",
+          "name": "List Shipments",
+          "request": {
+            "name": "List Shipments",
+            "description": {},
+            "url": {
+              "path": [
+                "shipments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "merchant_invoice_id",
+                  "value": "<string>",
+                  "description": "Filter shipments by specific merchant invoice ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "fulfillment_method",
+                  "value": "<string>",
+                  "description": "Filter shipments by fulfillment method."
+                },
+                {
+                  "disabled": false,
+                  "key": "verification_status",
+                  "value": "<string>",
+                  "description": "Filter shipments by verification status."
+                },
+                {
+                  "disabled": false,
+                  "key": "shipment_courier",
+                  "value": "<string>",
+                  "description": "Filter shipments by shipping courier."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Number of results to return per page (1-100)."
+                },
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<string>",
+                  "description": "Pagination cursor for fetching results after a specific shipment ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "ending_before",
+                  "value": "<string>",
+                  "description": "Pagination cursor for fetching results before a specific shipment ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search term to filter shipments across multiple fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "searchBy",
+                  "value": "<string>",
+                  "description": "Specific field to search within."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort records by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5f5ea6f-e91a-4b39-97f9-3ae5b7dfac57",
+              "name": "An object with an array of Shipments up to the specified limit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_invoice_id",
+                      "value": "inv_1234567890abcdef"
+                    },
+                    {
+                      "key": "fulfillment_method",
+                      "value": "shipping_provider"
+                    },
+                    {
+                      "key": "verification_status",
+                      "value": "verified"
+                    },
+                    {
+                      "key": "shipment_courier",
+                      "value": "ups"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "starting_after",
+                      "value": "ship_1234567890abcdef"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "ship_9876543210fedcba"
+                    },
+                    {
+                      "key": "search",
+                      "value": "1Z123E45678901234"
+                    },
+                    {
+                      "key": "searchBy",
+                      "value": "tracking_number"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 10,\n  \"page\": 1,\n  \"count\": 25,\n  \"results\": [\n    {\n      \"id\": \"ship_1234567890abcdef\",\n      \"merchant_invoice_id\": \"inv_1234567890abcdef\",\n      \"fulfillment_method\": \"shipping_provider\",\n      \"shipment_tracking_number\": \"1Z123E45678901234\",\n      \"shipment_courier\": \"ups\",\n      \"verification_status\": \"verified\",\n      \"created_at\": \"2024-01-15T10:30:00Z\",\n      \"updated_at\": \"2024-01-15T14:45:00Z\",\n      \"tracking_status\": \"delivered\",\n      \"tracking_substatus\": \"delivered_001\",\n      \"expected_delivery\": \"2024-01-20T18:00:00Z\"\n    },\n    {\n      \"id\": \"ship_1234567890abcdef\",\n      \"merchant_invoice_id\": \"inv_1234567890abcdef\",\n      \"fulfillment_method\": \"shipping_provider\",\n      \"shipment_tracking_number\": \"1Z123E45678901234\",\n      \"shipment_courier\": \"ups\",\n      \"verification_status\": \"verified\",\n      \"created_at\": \"2024-01-15T10:30:00Z\",\n      \"updated_at\": \"2024-01-15T14:45:00Z\",\n      \"tracking_status\": \"delivered\",\n      \"tracking_substatus\": \"delivered_001\",\n      \"expected_delivery\": \"2024-01-20T18:00:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4142f137-19c3-429a-b450-4668a9a3f1dc",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_invoice_id",
+                      "value": "inv_1234567890abcdef"
+                    },
+                    {
+                      "key": "fulfillment_method",
+                      "value": "shipping_provider"
+                    },
+                    {
+                      "key": "verification_status",
+                      "value": "verified"
+                    },
+                    {
+                      "key": "shipment_courier",
+                      "value": "ups"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "starting_after",
+                      "value": "ship_1234567890abcdef"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "ship_9876543210fedcba"
+                    },
+                    {
+                      "key": "search",
+                      "value": "1Z123E45678901234"
+                    },
+                    {
+                      "key": "searchBy",
+                      "value": "tracking_number"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d3c00d5-fb1d-4a8d-a20a-9c22fae08185",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_invoice_id",
+                      "value": "inv_1234567890abcdef"
+                    },
+                    {
+                      "key": "fulfillment_method",
+                      "value": "shipping_provider"
+                    },
+                    {
+                      "key": "verification_status",
+                      "value": "verified"
+                    },
+                    {
+                      "key": "shipment_courier",
+                      "value": "ups"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "starting_after",
+                      "value": "ship_1234567890abcdef"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "ship_9876543210fedcba"
+                    },
+                    {
+                      "key": "search",
+                      "value": "1Z123E45678901234"
+                    },
+                    {
+                      "key": "searchBy",
+                      "value": "tracking_number"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50f19a6a-4221-456e-8e6f-a921ddc0ed4d",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "merchant_invoice_id",
+                      "value": "inv_1234567890abcdef"
+                    },
+                    {
+                      "key": "fulfillment_method",
+                      "value": "shipping_provider"
+                    },
+                    {
+                      "key": "verification_status",
+                      "value": "verified"
+                    },
+                    {
+                      "key": "shipment_courier",
+                      "value": "ups"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "starting_after",
+                      "value": "ship_1234567890abcdef"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "ship_9876543210fedcba"
+                    },
+                    {
+                      "key": "search",
+                      "value": "1Z123E45678901234"
+                    },
+                    {
+                      "key": "searchBy",
+                      "value": "tracking_number"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04260476-cc19-44f8-b4bd-f64974308857",
+          "name": "Create a Shipment",
+          "request": {
+            "name": "Create a Shipment",
+            "description": {},
+            "url": {
+              "path": [
+                "shipments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant_invoice_id\": \"<string>\",\n  \"fulfillment_method\": \"shipping_provider\",\n  \"shipment_tracking_number\": \"<string>\",\n  \"shipment_courier\": \"<string>\",\n  \"file\": {\n    \"url\": \"<uri>\",\n    \"size\": \"<integer>\",\n    \"metadata\": {\n      \"original_filename\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86920043-a6ab-4998-8d46-ddd0c8341c73",
+              "name": "An object representing the Shipment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ship_1234567890abcdef\",\n  \"merchant_invoice_id\": \"inv_1234567890abcdef\",\n  \"fulfillment_method\": \"shipping_provider\",\n  \"shipment_tracking_number\": \"1Z123E45678901234\",\n  \"shipment_courier\": \"ups\",\n  \"verification_status\": \"verified\",\n  \"created_at\": \"2024-01-15T10:30:00Z\",\n  \"updated_at\": \"2024-01-15T14:45:00Z\",\n  \"tracking_status\": \"delivered\",\n  \"tracking_substatus\": \"delivered_001\",\n  \"expected_delivery\": \"2024-01-20T18:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09454fc4-edba-41b8-9cd1-05622f1eefe8",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8defee99-0123-428a-9342-bc7456b88c12",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39b1cbc9-45bd-4927-8c9b-7f3df3cea632",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "870f89ea-6544-4069-86d2-09a82bf1471d",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "487a3cbf-e8ce-41ea-ad9c-adc5c29ea88c",
+          "name": "Get a Shipment",
+          "request": {
+            "name": "Get a Shipment",
+            "description": {},
+            "url": {
+              "path": [
+                "shipments",
+                ":shipment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipment_id",
+                  "description": "(Required) ID of the Shipment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b38d43e4-6fda-483e-a988-22d9f7ec14cc",
+              "name": "An object representing the Shipment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ship_1234567890abcdef\",\n  \"merchant_invoice_id\": \"inv_1234567890abcdef\",\n  \"fulfillment_method\": \"shipping_provider\",\n  \"shipment_tracking_number\": \"1Z123E45678901234\",\n  \"shipment_courier\": \"ups\",\n  \"verification_status\": \"verified\",\n  \"created_at\": \"2024-01-15T10:30:00Z\",\n  \"updated_at\": \"2024-01-15T14:45:00Z\",\n  \"tracking_status\": \"delivered\",\n  \"tracking_substatus\": \"delivered_001\",\n  \"expected_delivery\": \"2024-01-20T18:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e69fa7e-8da9-427c-b60f-5df7bf373cfa",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f40cead-9203-4e36-ac5f-5dbee963586f",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4351f36d-5a46-468d-8103-69dbae81bf96",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04846721-11b2-4487-b21a-a58e12748b4a",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09f773e1-e7bf-440c-8084-eed20c6a775c",
+          "name": "Update a Shipment",
+          "request": {
+            "name": "Update a Shipment",
+            "description": {},
+            "url": {
+              "path": [
+                "shipments",
+                ":shipment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipment_id",
+                  "description": "(Required) ID of the Shipment to update"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchant_invoice_id\": \"<string>\",\n  \"shipment_tracking_number\": \"<string>\",\n  \"shipment_courier\": \"<string>\",\n  \"file\": {\n    \"url\": \"<uri>\",\n    \"size\": \"<integer>\",\n    \"metadata\": {\n      \"original_filename\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e122f83-66c4-4c6e-a158-04934e5fc4cc",
+              "name": "An object representing the Shipment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ship_1234567890abcdef\",\n  \"merchant_invoice_id\": \"inv_1234567890abcdef\",\n  \"fulfillment_method\": \"shipping_provider\",\n  \"shipment_tracking_number\": \"1Z123E45678901234\",\n  \"shipment_courier\": \"ups\",\n  \"verification_status\": \"verified\",\n  \"created_at\": \"2024-01-15T10:30:00Z\",\n  \"updated_at\": \"2024-01-15T14:45:00Z\",\n  \"tracking_status\": \"delivered\",\n  \"tracking_substatus\": \"delivered_001\",\n  \"expected_delivery\": \"2024-01-20T18:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a233c021-ea93-423e-a5d2-0c3d0c194c10",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9c0af11-a269-4b0a-977d-62a2c4481b32",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9798eff-f785-4946-b61d-f7782d520eed",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eee6de67-2bb4-4786-8855-dd260b343e2f",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to update"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40c09616-39d2-4dfe-a82e-808360286cf1",
+          "name": "Delete a Shipment",
+          "request": {
+            "name": "Delete a Shipment",
+            "description": {},
+            "url": {
+              "path": [
+                "shipments",
+                ":shipment_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipment_id",
+                  "description": "(Required) ID of the Shipment to delete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e92d0b8-6245-4598-814f-af4b0a1af357",
+              "name": "An object representing the Shipment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ship_1234567890abcdef\",\n  \"merchant_invoice_id\": \"inv_1234567890abcdef\",\n  \"fulfillment_method\": \"shipping_provider\",\n  \"shipment_tracking_number\": \"1Z123E45678901234\",\n  \"shipment_courier\": \"ups\",\n  \"verification_status\": \"verified\",\n  \"created_at\": \"2024-01-15T10:30:00Z\",\n  \"updated_at\": \"2024-01-15T14:45:00Z\",\n  \"tracking_status\": \"delivered\",\n  \"tracking_substatus\": \"delivered_001\",\n  \"expected_delivery\": \"2024-01-20T18:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a7fab63-9a4d-41b2-946d-bc5108cda155",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8659fd5c-0e29-43d7-8c7c-f40db54fcd12",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9045476b-f1a4-4cc3-bb03-213addb12dc6",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e05c8d29-ea4a-4076-89f8-147ae497f99d",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to delete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0eb9f952-c41b-435b-b5fd-460d426711d5",
+          "name": "Sync Shipment Tracking",
+          "request": {
+            "name": "Sync Shipment Tracking",
+            "description": {
+              "content": "Synchronizes shipment tracking information by fetching real-time data from the courier using the existing tracking number. This endpoint retrieves the latest tracking updates directly from the shipping provider and performs instant verification of the shipment status, ensuring that the shipment data is current and accurate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                ":shipment_id",
+                "sync"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "shipment_id",
+                  "description": "(Required) ID of the Shipment to sync tracking for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec05b877-7108-4573-b9ca-d554e8ae2bf6",
+              "name": "An object representing the Shipment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to sync tracking for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"ship_1234567890abcdef\",\n  \"merchant_invoice_id\": \"inv_1234567890abcdef\",\n  \"fulfillment_method\": \"shipping_provider\",\n  \"shipment_tracking_number\": \"1Z123E45678901234\",\n  \"shipment_courier\": \"ups\",\n  \"verification_status\": \"verified\",\n  \"created_at\": \"2024-01-15T10:30:00Z\",\n  \"updated_at\": \"2024-01-15T14:45:00Z\",\n  \"tracking_status\": \"delivered\",\n  \"tracking_substatus\": \"delivered_001\",\n  \"expected_delivery\": \"2024-01-20T18:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fcff4fb-675a-4c8a-93c3-3e4aec35910b",
+              "name": "Bad request error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to sync tracking for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Validation error\",\n    \"type\": \"validation_error\",\n    \"details\": [\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      },\n      {\n        \"path\": \"path.to.field\",\n        \"message\": \"`[field]` is required\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c05568c-4ccf-41e0-8374-8975a6bc3ad3",
+              "name": "Unauthorized error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to sync tracking for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Invalid merchant credentials\",\n    \"type\": \"authentication_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04d77ca2-c95c-4f46-8a45-09a9d1b43c79",
+              "name": "Not found error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to sync tracking for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"[entity] not found\",\n    \"type\": \"not_found_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "def5510f-19ec-4aec-b050-e9c9601f47bc",
+              "name": "Rate limit error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    ":shipment_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "shipment_id",
+                      "description": "(Required) ID of the Shipment to sync tracking for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Too many requests\",\n    \"type\": \"rate_limit_error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app-sandbox.resolvepay.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "97e881f9-af1c-4a0d-b561-2e8b43b97749",
+    "name": "Resolve API Reference Access Keys Shipments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)\n\nLegacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Resolve API Reference Access Keys Shipments API",
+    "version": "V5"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/shipments",
+            "params": [
+              {
+                "name": "merchant_invoice_id",
+                "value": "inv_1234567890abcdef",
+                "type": "query",
+                "description": "Filter shipments by specific merchant invoice ID."
+              },
+              {
+                "name": "fulfillment_method",
+                "value": "shipping_provider",
+                "type": "query",
+                "description": "Filter shipments by fulfillment method."
+              },
+              {
+                "name": "verification_status",
+                "value": "verified",
+                "type": "query",
+                "description": "Filter shipments by verification status."
+              },
+              {
+                "name": "shipment_courier",
+                "value": "ups",
+                "type": "query",
+                "description": "Filter shipments by shipping courier."
+              },
+              {
+                "name": "limit",
+                "value": "25",
+                "type": "query",
+                "description": "Number of results to return per page (1-100)."
+              },
+              {
+                "name": "starting_after",
+                "value": "ship_1234567890abcdef",
+                "type": "query",
+                "description": "Pagination cursor for fetching results after a specific shipment ID."
+              },
+              {
+                "name": "ending_before",
+                "value": "ship_9876543210fedcba",
+                "type": "query",
+                "description": "Pagination cursor for fetching results before a specific shipment ID."
+              },
+              {
+                "name": "search",
+                "value": "1Z123E45678901234",
+                "type": "query",
+                "description": "Search term to filter shipments across multiple fields."
+              },
+              {
+                "name": "searchBy",
+                "value": "tracking_number",
+                "type": "query",
+                "description": "Specific field to search within."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort records by the specified fields.\n\nThe sort order for each sort field is ascending unless it is prefixed with a minus,\nin which case it is descending.\n\nMultiple sort fields supported by allowing comma-separated sort fields. Sort fields will be applied in the order specified.\n\nSorting is allowed by the following fields: `id`, `created_at`.\n\nExample: `sort=id,-created_at`\n"
+              }
+            ]
+          },
+          "docs": "List Shipments"
+        },
+        {
+          "info": {
+            "name": "Create a Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/shipments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Shipment"
+        },
+        {
+          "info": {
+            "name": "Get a Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app-sandbox.resolvepay.com/api/shipments/:shipment_id",
+            "params": [
+              {
+                "name": "shipment_id",
+                "value": "ship_1234567890abcdef",
+                "type": "path",
+                "description": "ID of the Shipment"
+              }
+            ]
+          },
+          "docs": "Get a Shipment"
+        },
+        {
+          "info": {
+            "name": "Update a Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app-sandbox.resolvepay.com/api/shipments/:shipment_id",
+            "params": [
+              {
+                "name": "shipment_id",
+                "value": "ship_1234567890abcdef",
+                "type": "path",
+                "description": "ID of the Shipment to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Shipment"
+        },
+        {
+          "info": {
+            "name": "Delete a Shipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app-sandbox.resolvepay.com/api/shipments/:shipment_id",
+            "params": [
+              {
+                "name": "shipment_id",
+                "value": "ship_1234567890abcdef",
+                "type": "path",
+                "description": "ID of the Shipment to delete"
+              }
+            ]
+          },
+          "docs": "Delete a Shipment"
+        },
+        {
+          "info": {
+            "name": "Sync Shipment Tracking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app-sandbox.resolvepay.com/api/shipments/:shipment_id/sync",
+            "params": [
+              {
+                "name": "shipment_id",
+                "value": "ship_1234567890abcdef",
+                "type": "path",
+                "description": "ID of the Shipment to sync tracking for"
+              }
+            ]
+          },
+          "docs": "Synchronizes shipment tracking information by fetching real-time data from the courier using the existing tracking number. This endpoint retrieves the latest tracking updates directly from the shipping provider and performs instant verification of the shipment status, ensuring that the shipment data is current and accurate."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
