@@ -147,6 +147,8 @@ apis:
   humanURL: https://docs.resolvepay.com/api-reference
   baseURL: https://app.resolvepay.com/api
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -583,6 +585,8 @@ apis:
   humanURL: https://docs.resolvepay.com/api-reference
   baseURL: https://app.resolvepay.com/api
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
