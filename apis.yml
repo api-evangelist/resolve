@@ -604,6 +604,9 @@ apis:
   - type: OpenAPI
     url: openapi/resolve-webhooks-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/resolve-capability-edges.yml
+  name: Resolve Business Capability Map
 - type: Overlay
   url: overlays/resolve-merchant-api-overlay.yaml
 - type: PostmanWorkspace
