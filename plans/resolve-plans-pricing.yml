@@ -1,0 +1,24 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://resolvepay.com/pricing/
+sources:
+- https://resolvepay.com/pricing/
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+published: false
+note: No numeric price is published on the pricing page; Page states custom/negotiated pricing with risk-based
+  advance fees; no numeric prices except an illustrative $1,000 invoice example with 90%/50% advance rates,
+  not a price.
+plan_count: 1
+plans:
+- name: Custom plan
+  price_text: Custom plans / based on scoping & implementation
+  period: none
+  included_quota: 'Unified online and offline net terms; Ecommerce integration; Accounting/ERP integration;
+    Net terms checkout extension; API access; Max buyer credit line: Customized'
+  overage: 'Advance invoice fees Net 30: risk based Net 60: risk based'
