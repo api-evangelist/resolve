@@ -1,0 +1,31 @@
+# Front Door AI Index — resolve — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: resolve
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: resolvepay.com
+  final_host: resolvepay.com
+  ownership: own
+  owner: resolve
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 11
+  host_score: 11
+  density: 9.81
+  words: 1121
+  tiers:
+    agentic: 7
+    core: 4
+    model: 0
+  ambiguous: 6
+  top_terms:
+    agentic: 6
+    AI: 4
+    automation: 2
+    smart: 2
+    AI agent: 1
+    agent: 1
+    intelligence: 1

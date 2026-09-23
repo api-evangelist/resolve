@@ -1,18 +1,8 @@
 {
   "provider": "resolve",
   "sources": [
-    "resolve-access-keys-api-openapi.yml",
-    "resolve-charges-api-openapi.yml",
-    "resolve-credit-notes-api-openapi.yml",
-    "resolve-customers-api-openapi.yml",
-    "resolve-invoices-api-openapi.yml",
-    "resolve-merchants-api-openapi.yml",
-    "resolve-orders-api-openapi.yml",
-    "resolve-payments-api-openapi.yml",
-    "resolve-payout-transactions-api-openapi.yml",
-    "resolve-payouts-api-openapi.yml",
-    "resolve-shipments-api-openapi.yml",
-    "resolve-webhooks-api-openapi.yml"
+    "_original/resolve-merchant-api-openapi.yaml",
+    "_original/resolve-partners-api-openapi.yaml"
   ],
   "outputs": [
     "resolve-access-keys-api-openapi.yml",
@@ -20,17 +10,44 @@
     "resolve-credit-notes-api-openapi.yml",
     "resolve-customers-api-openapi.yml",
     "resolve-invoices-api-openapi.yml",
-    "resolve-merchants-api-openapi.yml",
     "resolve-orders-api-openapi.yml",
     "resolve-payments-api-openapi.yml",
     "resolve-payout-transactions-api-openapi.yml",
     "resolve-payouts-api-openapi.yml",
     "resolve-shipments-api-openapi.yml",
-    "resolve-webhooks-api-openapi.yml"
+    "resolve-webhooks-api-openapi.yml",
+    "resolve-merchants-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "resolve-merchant-api-openapi.yaml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "resolve-partners-api-openapi.yaml: upgraded openapi 3.0.4 -> OpenAPI 3.2.0",
+    "tag 'Access Keys' spans 2 source specs (resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml): per-path servers applied",
+    "tag 'Credit Notes' spans 2 source specs (resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml): per-path servers applied",
+    "tag 'Customers' spans 2 source specs (resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml): per-path servers applied",
+    "tag 'Invoices' spans 2 source specs (resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml): per-path servers applied",
+    "tag 'Payments' spans 2 source specs (resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml): per-path servers applied",
+    "tag 'Payout Transactions' spans 2 source specs (resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml): per-path servers applied",
+    "tag 'Payouts' spans 2 source specs (resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml): per-path servers applied",
+    "tag 'Shipments' spans 2 source specs (resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml): per-path servers applied",
+    "tag 'Webhooks' spans 2 source specs (resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "resolve-access-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-charges-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-credit-notes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-merchants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-payout-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-payouts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-shipments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "resolve-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,13 +1,10 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Resolve API Reference Access Keys API
-  version: V5
-  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
-
-
-    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
-
-    '
+  title: Resolve Access Keys API
+  x-refined-note:
+  - x-logo differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Access Keys across 2 of this provider''s published API definitions: resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://app-sandbox.resolvepay.com/api
   description: Sandbox server
@@ -20,17 +17,13 @@ tags:
   description: 'OAuth access keys are created in Merchant Dashboard and can be exchanged for bearer tokens.
 
 
-    Use the `/access-keys/token` endpoint to mint a bearer token from a valid `client_id` and `client_secret`.
-
-    '
+    Use the `/access-keys/token` endpoint to mint a bearer token from a valid `client_id` and `client_secret`.'
 paths:
   /access-keys/token:
     post:
       summary: Mint an access token
       operationId: issueAccessKeyToken
-      description: 'Exchange an OAuth access key for a bearer token by providing its `client_id` and `client_secret` in the request body.
-
-        '
+      description: Exchange an OAuth access key for a bearer token by providing its `client_id` and `client_secret` in the request body.
       security: []
       requestBody:
         $ref: '#/components/requestBodies/IssueAccessKeyTokenRequestBody'
@@ -49,55 +42,57 @@ paths:
           $ref: '#/components/responses/RateLimitResponse'
       tags:
       - Access Keys
+    servers:
+    - url: https://app-sandbox.resolvepay.com/api
+      description: Sandbox server
 components:
+  responses:
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    AccessKeyTokenResponse:
+      description: Successfully minted bearer token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessKeyTokenResponse'
+          examples:
+            default:
+              value:
+                access_token: eyJ...
+                token_type: Bearer
+                expires_in: 86400
+                scope: merchant:read merchant:write
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    ForbiddenResponse:
+      description: Forbidden error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
   schemas:
-    IssueAccessKeyTokenRequest:
-      type: object
-      additionalProperties: false
-      required:
-      - client_id
-      - client_secret
-      properties:
-        client_id:
-          type: string
-          description: OAuth access key client ID returned when the access key was created.
-        client_secret:
-          type: string
-          description: OAuth access key client secret returned when the access key was created or rotated.
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
     UnauthorizedError:
       type: object
       title: Unauthorized error
@@ -115,21 +110,6 @@ components:
               enum:
               - authentication_error
               example: authentication_error
-    ForbiddenError:
-      type: object
-      title: Forbidden error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: API access key expired
-            type:
-              type: string
-              description: A short string, describing error type
-              example: forbidden_error
     ValidationError:
       type: object
       title: Validation error
@@ -160,6 +140,23 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
     AccessKeyTokenResponse:
       type: object
       required:
@@ -181,6 +178,51 @@ components:
           type: string
           description: Space-delimited scopes granted to the token.
           example: merchant:read merchant:write
+    ForbiddenError:
+      type: object
+      title: Forbidden error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: API access key expired
+            type:
+              type: string
+              description: A short string, describing error type
+              example: forbidden_error
+    IssueAccessKeyTokenRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - client_id
+      - client_secret
+      properties:
+        client_id:
+          type: string
+          description: OAuth access key client ID returned when the access key was created.
+        client_secret:
+          type: string
+          description: OAuth access key client secret returned when the access key was created or rotated.
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
     RateLimitError:
       type: object
       title: Rate limit error
@@ -198,52 +240,6 @@ components:
               enum:
               - rate_limit_error
               example: rate_limit_error
-  responses:
-    ForbiddenResponse:
-      description: Forbidden error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenError'
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    InvalidRequestOrValidationResponse:
-      description: Bad request error
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - $ref: '#/components/schemas/ValidationError'
-            - $ref: '#/components/schemas/InvalidRequestError'
-    AccessKeyTokenResponse:
-      description: Successfully minted bearer token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AccessKeyTokenResponse'
-          examples:
-            default:
-              value:
-                access_token: eyJ...
-                token_type: Bearer
-                expires_in: 86400
-                scope: merchant:read merchant:write
   requestBodies:
     IssueAccessKeyTokenRequestBody:
       required: true
@@ -266,3 +262,6 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+x-refined-from:
+- resolve-merchant-api-openapi.yaml
+- resolve-partners-api-openapi.yaml

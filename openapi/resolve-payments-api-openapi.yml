@@ -1,13 +1,10 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Resolve API Reference Access Keys Payments API
-  version: V5
-  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
-
-
-    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
-
-    '
+  title: Resolve Payments API
+  x-refined-note:
+  - x-logo differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Payments across 2 of this provider''s published API definitions: resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://app-sandbox.resolvepay.com/api
   description: Sandbox server
@@ -17,9 +14,7 @@ security:
 tags:
 - name: Payments
   x-displayName: Payments
-  description: 'A payment represents a transaction where a customer pays towards their invoices. When a payment is made to Resolve, the customer''s available credit balance is increased by the amount of the payment. Payments can be made via various methods including ACH, credit card, check, or wire transfer. Each payment can be applied to one or more invoices.
-
-    '
+  description: A payment represents a transaction where a customer pays towards their invoices. When a payment is made to Resolve, the customer's available credit balance is increased by the amount of the payment. Payments can be made via various methods including ACH, credit card, check, or wire transfer. Each payment can be applied to one or more invoices.
 paths:
   /payments:
     get:
@@ -112,9 +107,7 @@ paths:
         The payment will be forwarded from the bank account of the entity that receives payouts. If the payout receiver is the partner, the partner''s bank account will be used. If the payout receiver is the sub-merchant, the sub-merchant''s bank account will be used.
 
 
-        The invoice must be sent, and the payment amount must not exceed the invoice''s outstanding balance.
-
-        '
+        The invoice must be sent, and the payment amount must not exceed the invoice''s outstanding balance.'
       requestBody:
         $ref: '#/components/requestBodies/PaymentCreateRequestBody'
       responses:
@@ -132,6 +125,9 @@ paths:
           $ref: '#/components/responses/RateLimitResponse'
       tags:
       - Payments
+    servers:
+    - url: https://app-sandbox.resolvepay.com/api
+      description: Sandbox server
   /payments/{payment_id}:
     get:
       summary: Fetch a payment
@@ -157,61 +153,53 @@ paths:
           $ref: '#/components/responses/RateLimitResponse'
       tags:
       - Payments
+    servers:
+    - url: https://app-sandbox.resolvepay.com/api
+      description: Sandbox server
 components:
-  schemas:
-    PaymentCreateRequest:
-      type: object
-      required:
-      - invoice_id
-      - amount
-      properties:
-        invoice_id:
-          type: string
-          example: PMMlaE5wbg0
-          description: ID of the invoice to create a payment for. The invoice must belong to one of your sub-merchants and must be sent.
-        amount:
-          type: number
-          format: double
-          example: 1000.5
-          exclusiveMinimum: true
-          minimum: 0
-          description: Payment amount in dollars. Must be greater than zero and must not exceed the invoice's outstanding balance.
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
-    PaymentListResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
+  responses:
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    PaymentResponse:
+      description: An object representing a payment.
+      content:
+        application/json:
+          schema:
             $ref: '#/components/schemas/Payment'
-    NotFoundError:
+    PaymentListResponse:
+      description: A paginated list of payments.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentListResponse'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+  schemas:
+    UnauthorizedError:
       type: object
-      title: Not found error
+      title: Unauthorized error
       properties:
         error:
           type: object
@@ -219,13 +207,13 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: '[entity] not found'
+              example: Invalid merchant credentials
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - not_found_error
-              example: not_found_error
+              - authentication_error
+              example: authentication_error
     ValidationError:
       type: object
       title: Validation error
@@ -256,6 +244,56 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    PaymentListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
     Payment:
       type: object
       properties:
@@ -392,23 +430,6 @@ components:
           type: string
           example: null
           description: ID of the user who created the payment, if applicable.
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
     RateLimitError:
       type: object
       title: Rate limit error
@@ -426,45 +447,162 @@ components:
               enum:
               - rate_limit_error
               example: rate_limit_error
-  responses:
-    PaymentResponse:
-      description: An object representing a payment.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Payment'
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
-    PaymentListResponse:
-      description: A paginated list of payments.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentListResponse'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    InvalidRequestOrValidationResponse:
-      description: Bad request error
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - $ref: '#/components/schemas/ValidationError'
-            - $ref: '#/components/schemas/InvalidRequestError'
+    PaymentCreateRequest:
+      type: object
+      required:
+      - invoice_id
+      - amount
+      properties:
+        invoice_id:
+          type: string
+          example: PMMlaE5wbg0
+          description: ID of the invoice to create a payment for. The invoice must belong to one of your sub-merchants and must be sent.
+        amount:
+          type: number
+          format: double
+          example: 1000.5
+          description: Payment amount in dollars. Must be greater than zero and must not exceed the invoice's outstanding balance.
+          exclusiveMinimum: 0
+    Payment_2:
+      type: object
+      properties:
+        id:
+          type: string
+          example: PMMlaE5wbg0
+          description: Unique identifier for the payment.
+        customer_id:
+          type: string
+          example: X50sgfRd
+          description: Unique identifier of the customer that made the payment.
+        source:
+          type: string
+          enum:
+          - api
+          - merchant_user
+          - admin_user
+          - customer_user
+          - payment_gateway
+          - check
+          - guest_checkout
+          example: customer_user
+          description: Source of the payment.
+        amount:
+          type: number
+          format: double
+          example: 1000
+          description: Amount of the payment in USD.
+        method:
+          type: string
+          enum:
+          - check
+          - ach_debit
+          - direct_deposit
+          - card
+          - merchant
+          - unapplied_payment_adjustment
+          - credit_note
+          - adjustment
+          - wire
+          example: ach_debit
+          description: Method of payment made by the customer.
+        status:
+          type: string
+          enum:
+          - pending
+          - in_transit
+          - in_review
+          - paid
+          - failed
+          - canceled
+          example: paid
+          description: 'Status of the payment.
+
+
+            - `pending` - Payment is pending processing.
+
+            - `in_transit` - Payment has been processed and is in transit.
+
+            - `in_review` - Payment is being reviewed.
+
+            - `paid` - Payment has been confirmed and applied to the customer''s account.
+
+            - `failed` - Payment failed confirmation (e.g., bank transfer or credit card payment rejected).
+
+            - `canceled` - Payment was canceled by request.
+
+            '
+        created_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00.730Z'
+          description: Date the payment was created.
+        paid_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: Date the payment was confirmed by Resolve and applied to the customer's account.
+        canceled_at:
+          type: string
+          format: date-time
+          example: null
+          description: Date the payment was canceled by request.
+        failed_at:
+          type: string
+          format: date-time
+          example: null
+          description: Date the payment failed processing.
+        processed_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T12:00:00.730Z'
+          description: Date the payment was processed by Resolve.
+        scheduled_at:
+          type: string
+          format: date-time
+          example: null
+          description: Date the payment was scheduled for processing, if applicable.
+        processing_fee:
+          type: number
+          format: double
+          example: 25.5
+          description: Processing fee for the payment.
+        canceled_code:
+          type: string
+          example: null
+          description: Code indicating the reason the payment was canceled.
+        failed_code:
+          type: string
+          example: null
+          description: Code indicating the reason the payment failed processing.
+        dispute_code:
+          type: string
+          example: null
+          description: Code indicating the reason for a payment dispute.
+        payment_links:
+          type: array
+          description: List of records the payment is applied to.
+          items:
+            type: object
+            properties:
+              record_id:
+                type: string
+                example: PMMlaE5wbg0
+                description: ID of the record.
+              record_type:
+                type: string
+                enum:
+                - invoice
+                example: invoice
+                description: Type of record the payment is applied to.
+              amount:
+                type: number
+                format: double
+                example: 500
+                description: Amount applied to this record.
+        created_by_user_id:
+          type: string
+          example: null
+          description: ID of the user who created the payment, if applicable.
   requestBodies:
     PaymentCreateRequestBody:
       description: Create a forwarded payment for a sub-merchant's invoice.
@@ -482,3 +620,6 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+x-refined-from:
+- resolve-merchant-api-openapi.yaml
+- resolve-partners-api-openapi.yaml

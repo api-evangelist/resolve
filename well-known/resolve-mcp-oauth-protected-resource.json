@@ -1,0 +1,1 @@
+{"resource":"https://mcp.resolvepay.com/mcp","authorization_servers":["https://login.resolvepay.com/","https://resolvepay-external-production.us.auth0.com/"],"scopes_supported":[],"bearer_methods_supported":["header"],"resource_name":"Resolve MCP"}

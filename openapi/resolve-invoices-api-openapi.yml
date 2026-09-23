@@ -1,13 +1,10 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Resolve API Reference Access Keys Invoices API
-  version: V5
-  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
-
-
-    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
-
-    '
+  title: Resolve Invoices API
+  x-refined-note:
+  - x-logo differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Invoices across 2 of this provider''s published API definitions: resolve-merchant-api-openapi.yaml, resolve-partners-api-openapi.yaml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://app-sandbox.resolvepay.com/api
   description: Sandbox server
@@ -20,9 +17,7 @@ tags:
   description: 'The invoice represents the business transaction between you and your customer. In Resolve, an invoice must be tied to a customer and an advance can be taken on the invoice.
 
 
-    For an advance to be taken on the invoice, a PDF of the invoice must be uploaded and the associated customer must be approved and have available credit for the amount of the invoice.
-
-    '
+    For an advance to be taken on the invoice, a PDF of the invoice must be uploaded and the associated customer must be approved and have available credit for the amount of the invoice.'
 paths:
   /invoices:
     get:
@@ -204,6 +199,9 @@ paths:
           $ref: '#/components/responses/RateLimitResponse'
       tags:
       - Invoices
+    servers:
+    - url: https://app-sandbox.resolvepay.com/api
+      description: Sandbox server
   /invoices/{invoice_id}:
     get:
       summary: Fetch an invoice
@@ -279,6 +277,9 @@ paths:
           $ref: '#/components/responses/RateLimitResponse'
       tags:
       - Invoices
+    servers:
+    - url: https://app-sandbox.resolvepay.com/api
+      description: Sandbox server
   /invoices/{invoice_id}/send:
     put:
       summary: Send an invoice
@@ -304,6 +305,9 @@ paths:
           $ref: '#/components/responses/RateLimitResponse'
       tags:
       - Invoices
+    servers:
+    - url: https://app-sandbox.resolvepay.com/api
+      description: Sandbox server
   /invoices/{invoice_id}/void:
     post:
       summary: Void an invoice
@@ -329,6 +333,9 @@ paths:
           $ref: '#/components/responses/RateLimitResponse'
       tags:
       - Invoices
+    servers:
+    - url: https://app-sandbox.resolvepay.com/api
+      description: Sandbox server
   /invoices/{invoice_id}/cancel:
     post:
       summary: Cancel an invoice
@@ -354,56 +361,35 @@ paths:
           $ref: '#/components/responses/RateLimitResponse'
       tags:
       - Invoices
+    servers:
+    - url: https://app-sandbox.resolvepay.com/api
+      description: Sandbox server
 components:
+  requestBodies:
+    InvoiceCreateRequestBody:
+      description: Invoice to add to the system.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InvoiceCreateRequest'
+    InvoiceUpdateRequestBody:
+      description: 'Fields to update an invoice with. Please note, allowed fields depend on whether or not the invoice has been sent.
+
+        '
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/InvoiceUpdateBeforeSent'
+            - $ref: '#/components/schemas/InvoiceUpdateAfterSentAdvanced'
+            - $ref: '#/components/schemas/InvoiceUpdateAfterSentNonAdvanced'
+    InvoiceCreateRequestBody_2:
+      description: Invoice to add to the system. Must include `merchant_id` referencing a valid sub-merchant.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InvoiceCreateRequest_2'
   schemas:
-    InvoiceRequestBeforeSentBase:
-      type: object
-      properties:
-        customer_id:
-          type: string
-          example: X50sgfRd
-          description: ID of the customer being charged
-        advance_requested:
-          type: boolean
-          example: 'false'
-          description: The type of invoice. This will determine if this is an advanced or non-advanced invoice.
-    InvoiceUpdateBeforeSent:
-      title: Not sent
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
-    InvoiceRequestAmountBase:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: double
-          example: 2000
-          description: Amount being charged from the customer
-    InvoiceUpdateAfterSentNonAdvanced:
-      title: Sent without advance
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
-    InvoiceListResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Invoice'
     Invoice:
       type: object
       properties:
@@ -678,6 +664,24 @@ components:
           format: double
           example: 0
           description: Amount that has been voided.
+    InvoiceUpdateBeforeSent:
+      title: Not sent
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
+    InvoiceRequestBeforeSentBase:
+      type: object
+      properties:
+        customer_id:
+          type: string
+          example: X50sgfRd
+          description: ID of the customer being charged
+        advance_requested:
+          type: boolean
+          example: 'false'
+          description: The type of invoice. This will determine if this is an advanced or non-advanced invoice.
     UnauthorizedError:
       type: object
       title: Unauthorized error
@@ -695,6 +699,22 @@ components:
               enum:
               - authentication_error
               example: authentication_error
+    InvoiceListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
     NotFoundError:
       type: object
       title: Not found error
@@ -712,6 +732,46 @@ components:
               enum:
               - not_found_error
               example: not_found_error
+    InvoiceCreateRequest:
+      allOf:
+      - type: object
+        required:
+        - amount
+        - customer_id
+        - number
+        - merchant_invoice_url
+      - $ref: '#/components/schemas/InvoiceRequest'
+    InvoiceUpdateAfterSentNonAdvanced:
+      title: Sent without advance
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    InvoiceRequestAmountBase:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          example: 2000
+          description: Amount being charged from the customer
     ValidationError:
       type: object
       title: Validation error
@@ -742,6 +802,12 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
+    InvoiceRequest:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
     InvalidRequestError:
       type: object
       title: Invalid request error
@@ -801,62 +867,336 @@ components:
           type: string
           example: Example of additional notes for Customer.
           description: Additional notes for the Customer
-    InvoiceRequest:
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
-    InvoiceCreateRequest:
-      allOf:
-      - type: object
-        required:
-        - amount
-        - customer_id
-        - number
-        - merchant_invoice_url
-      - $ref: '#/components/schemas/InvoiceRequest'
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
     InvoiceUpdateAfterSentAdvanced:
       title: Sent with advance
       type: object
       allOf:
       - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
-  requestBodies:
-    InvoiceCreateRequestBody:
-      description: Invoice to add to the system.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InvoiceCreateRequest'
-    InvoiceUpdateRequestBody:
-      description: 'Fields to update an invoice with. Please note, allowed fields depend on whether or not the invoice has been sent.
+    Invoice_2:
+      type: object
+      properties:
+        id:
+          type: string
+          example: PMMlaE5wbg0
+          description: Unique identifier for the invoice.
+        merchant_id:
+          type: string
+          example: MER456789
+          description: ID of the sub-merchant this invoice belongs to.
+        source:
+          type: string
+          enum:
+          - QUICKBOOKS
+          - MERCHANT_USER
+          - ADMIN_USER
+          - CUSTOMER_USER
+          - API
+          example: MERCHANT_USER
+        customer_id:
+          type: string
+          description: ID of the customer being charged. For marketplace partners, the customer belongs to the partner. For single-merchant partners, the customer belongs to the sub-merchant.
+        order_number:
+          type: string
+          example: '5055'
+          description: Order number identifier.
+        number:
+          type: string
+          example: 'Inv # 123'
+          description: Invoice number identifier.
+        po_number:
+          type: string
+          example: PO-555
+          description: PO number identifier.
+        notes:
+          type: string
+          example: Example of additional notes for Customer.
+          description: Additional notes for the Customer
+        line_items:
+          type: array
+          example: []
+          description: Line item data
+        merchant_invoice_url:
+          type: string
+          example: https://www.example.com/invoice.pdf
+          description: The invoice PDF that you've uploaded to Resolve.
+        resolve_invoice_url:
+          type: string
+          example: https://www.example.com/resolve-invoice.pdf
+          description: Resolve-issued invoice PDF with your invoice attached.
+        resolve_invoice_status:
+          type: string
+          example: completed
+          description: 'Shows current status of the Resolve-issued invoice PDF.
 
-        '
+
+            - `not_generated` - PDF wasn''t created or queued for creation. Resolve PDFs
+
+            are generated when an invoice is sent.
+
+            - `processing` - PDF is in the process of being generated. Try to refetch the invoice
+
+            in a minute to get a `resolve_invoice_url` link.
+
+            - `completed` - PDF is generated, `resolve_invoice_url` points to the generated file.
+
+            '
+          enum:
+          - not_generated
+          - processing
+          - completed
+        fully_paid:
+          type: boolean
+          example: true
+          description: Indicates whether the invoice is fully paid.
+        fully_paid_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00.730Z'
+          description: The date the invoice has been fully paid.
+        advanced:
+          type: boolean
+          example: false
+          description: Indicates whether the invoice has been advanced.
+        due_at:
+          type: string
+          format: date-time
+          example: '2020-02-01T00:00:00.750Z'
+          description: The current due date for this invoice's payment.
+        original_due_at:
+          type: string
+          format: date-time
+          example: '2020-02-01T00:00:00.750Z'
+          description: The due date for this invoice at the time an advance was issued.
+        invoiced_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00.750Z'
+          description: The date this invoice was created in your system of record (Resolve or Quickbooks).
+        advance_requested:
+          type: boolean
+          example: 'false'
+          description: Indicated if advance was requested.
+        terms:
+          type: string
+          enum:
+          - due_upon_receipt
+          - net7
+          - net10
+          - net10th
+          - net15
+          - net20
+          - net30
+          - net45
+          - net60
+          - net75
+          - net90
+          - net120
+          - net180
+          description: The terms selected for this invoice.
+        amount_payout_due:
+          type: number
+          format: double
+          example: 4000
+          description: The original amount that Resolve owed on this invoice on the advance date.
+        amount_payout_paid:
+          type: number
+          format: double
+          example: 2000
+          description: The amount that Resolve has paid out.
+        amount_payout_pending:
+          type: number
+          format: double
+          example: 1000
+          description: The amount that Resolve has currently pending to be paid out.
+        amount_payout_refunded:
+          type: number
+          format: double
+          example: 500
+          description: The amount that Resolve has debited from due to refunds.
+        amount_payout_balance:
+          type: number
+          format: double
+          example: 500
+          description: The amount remaining to be paid out.
+        payout_fully_paid:
+          type: boolean
+          example: false
+          description: The status of whether or not this invoice has been fully paid out.
+        payout_fully_paid_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: The date of when this invoice has been fully paid out.
+        amount_balance:
+          type: number
+          format: double
+          example: 2000
+          description: Current balance due.
+        amount_due:
+          type: number
+          format: double
+          example: 4000
+          description: Original amount due.
+        amount_refunded:
+          type: number
+          format: double
+          example: 0
+          description: Amount that has been refunded.
+        amount_pending:
+          type: number
+          format: double
+          example: 1000
+          description: Amount of total payments pending.
+        amount_paid:
+          type: number
+          format: double
+          example: 1000
+          description: Amount of total payments applied to this invoice.
+        amount_advance:
+          type: number
+          format: double
+          example: 4000
+          description: Amount of advance received.
+        amount_additional_advance:
+          type: number
+          format: double
+          example: 1000
+          description: Amount of additional advance received.
+        amount_advance_fee:
+          type: number
+          format: double
+          example: 10.75
+          description: Fee for the amount of advance.
+        amount_advance_fee_refund:
+          type: number
+          format: double
+          example: 10.75
+          description: Refunded fees for the amount of advance.
+        advance_rate:
+          type: number
+          format: double
+          example: 0.75
+          minimum: 0
+          maximum: 1
+          description: The advance rate that was used to determine amount of advance.
+        advanced_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: The date this invoice was advanced.
+        amount_customer_fee_total:
+          type: number
+          format: double
+          example: 500
+          description: The total amount of customer fees accrued.
+        amount_customer_fee_waived:
+          type: number
+          format: double
+          example: 120
+          description: The total amount of customer fees waived.
+        amount_customer_fee_paid:
+          type: number
+          format: double
+          example: 300
+          description: The total amount of customer fees paid.
+        amount_customer_fee_balance:
+          type: number
+          format: double
+          example: 80
+          description: The current amount of customer fees owed.
+        created_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: Date the invoice was created.
+        updated_at:
+          type: string
+          format: date-time
+          example: '2020-01-02T00:00:00.730Z'
+          description: Date the invoice was last updated.
+        archived:
+          type: boolean
+          example: false
+          description: Boolean indicating if invoice is archived.
+        invoice_payment_url:
+          type: string
+          example: https://app.resolvepay.com/merchant/invoices/PMMlaE5wbg0
+          description: Link to make invoice payments.
+        canceled:
+          type: boolean
+          example: false
+          description: Indicates whether the invoice is canceled.
+        canceled_at:
+          type: string
+          format: date-time
+          example: null
+          description: Date the invoice was canceled.
+        voided:
+          type: boolean
+          example: false
+          description: Indicates whether the invoice is voided.
+        voided_at:
+          type: string
+          format: date-time
+          example: null
+          description: Date the invoice was voided.
+        amount_canceled:
+          type: number
+          format: double
+          example: 0
+          description: Amount that has been canceled.
+        amount_voided:
+          type: number
+          format: double
+          example: 0
+          description: Amount that has been voided.
+        amount_scheduled:
+          type: number
+          format: double
+          example: 0
+          description: Amount of scheduled payments.
+        status:
+          type: string
+          description: Current payment status of the invoice.
+        sent_at:
+          type: string
+          format: date-time
+          example: '2020-01-01T00:00:00.730Z'
+          description: Date the invoice was sent.
+    InvoiceCreateRequest_2:
+      allOf:
+      - type: object
+        required:
+        - merchant_id
+        - amount
+        - customer_id
+        - number
+        - merchant_invoice_url
+        properties:
+          merchant_id:
+            type: string
+            example: MER456789
+            description: ID of the sub-merchant this invoice belongs to. Must be a valid sub-merchant under your partner account.
+      - $ref: '#/components/schemas/InvoiceRequest'
+  responses:
+    NotFoundResponse:
+      description: Not found error
       content:
         application/json:
           schema:
-            oneOf:
-            - $ref: '#/components/schemas/InvoiceUpdateBeforeSent'
-            - $ref: '#/components/schemas/InvoiceUpdateAfterSentAdvanced'
-            - $ref: '#/components/schemas/InvoiceUpdateAfterSentNonAdvanced'
-  responses:
+            $ref: '#/components/schemas/NotFoundError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    InvoiceResponse:
+      description: An object representing an invoice.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Invoice'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -871,24 +1211,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    InvoiceResponse:
-      description: An object representing an invoice.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Invoice'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
     InvoiceListResponse:
       description: 'An object with an array of results containing up to the limit. If no invoices are found, the results array will be empty.
 
@@ -907,3 +1229,6 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+x-refined-from:
+- resolve-merchant-api-openapi.yaml
+- resolve-partners-api-openapi.yaml

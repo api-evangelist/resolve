@@ -1,13 +1,11 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Resolve API Reference Access Keys Orders API
+  title: Resolve API Reference Orders API
   version: V5
-  description: 'API Support: [accounts@resolvepay.com](mailto:accounts@resolvepay.com?subject=API)
+  description: 'API Support: accounts@resolvepay.com
 
 
-    Legacy (v2) API documentation: [https://app.resolvepay.com/docs/api/v2](https://app.resolvepay.com/docs/api/v2)
-
-    '
+    Legacy (v2) API documentation: https://app.resolvepay.com/docs/api/v2'
 servers:
 - url: https://app-sandbox.resolvepay.com/api
   description: Sandbox server
@@ -17,9 +15,7 @@ security:
 tags:
 - name: Orders
   x-displayName: Orders
-  description: 'An order represents an authorization of credit for a customer transaction. Once authorized, an order can be partially or fully captured as goods or services are fulfilled, or canceled if the transaction does not proceed.
-
-    '
+  description: An order represents an authorization of credit for a customer transaction. Once authorized, an order can be partially or fully captured as goods or services are fulfilled, or canceled if the transaction does not proceed.
 paths:
   /orders:
     get:
@@ -272,88 +268,6 @@ paths:
       - Orders
 components:
   schemas:
-    OrderListResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 100
-        page:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderListItem'
-    OrderCaptureEvent:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: double
-          example: 500
-          description: Amount captured in this capture event in USD.
-        idempotency_key:
-          type: string
-          example: capture-2024-001
-          description: Idempotency key used for this capture.
-        processed_at:
-          type: string
-          format: date-time
-          example: '2024-01-15T10:00:00.000Z'
-          description: Timestamp when this capture was processed.
-        invoice_id:
-          type: string
-          example: INabc123
-          description: ID of the merchant invoice associated with this capture.
-    OrderCreateRequest:
-      type: object
-      required:
-      - amount
-      - customer_id
-      - line_items
-      properties:
-        amount:
-          type: number
-          format: double
-          minimum: 0
-          example: 1000
-          description: Amount to authorize for the order in USD.
-        customer_id:
-          type: string
-          example: X50sgfRd
-          description: Unique identifier of the customer placing the order.
-        line_items:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OrderLineItem'
-          description: Line items for the order. At least one item is required.
-        order_number:
-          type: string
-          example: '5055'
-          description: Your internal order number.
-        po_number:
-          type: string
-          example: PO-555
-          description: Purchase order number.
-        advance_requested:
-          type: boolean
-          example: false
-          description: Whether to request an advance on this order.
-        source:
-          type: string
-          example: checkout
-          description: Source channel creating the order.
-        metadata:
-          type: object
-          additionalProperties: true
-          example:
-            internal_ref: ref-001
-          description: Custom metadata to attach to the order.
     OrderLineItem:
       type: object
       additionalProperties: true
@@ -389,89 +303,6 @@ components:
           format: double
           example: 8.5
           description: Tax amount for this line item in USD.
-    OrderListItem:
-      type: object
-      properties:
-        id:
-          type: string
-          example: ORDlaE5wbg0
-          description: Unique identifier for the order.
-        checkout_id:
-          type: string
-          example: CHKabc123
-          description: ID of the checkout session associated with this order.
-        number:
-          type: string
-          example: ord_100001
-          description: Order number identifier.
-        po_number:
-          type: string
-          example: PO-555
-          description: Purchase order number associated with the order.
-        advance_requested:
-          type: boolean
-          example: false
-          description: Whether an advance was requested for this order.
-        source:
-          type: string
-          example: checkout
-          description: Source channel that created the order.
-        status:
-          type: string
-          example: authorized
-          description: Current status of the order.
-        amount_authorized:
-          type: number
-          format: double
-          example: 1000
-          description: Total authorized amount for the order in USD.
-        amount_captured:
-          type: number
-          format: double
-          example: 500
-          description: Total captured amount for the order in USD.
-        amount_canceled:
-          type: number
-          format: double
-          example: 0
-          description: Total canceled amount for the order in USD.
-        amount_remaining:
-          type: number
-          format: double
-          example: 500
-          description: Remaining authorized amount available for capture in USD.
-        first_captured_at:
-          type: string
-          format: date-time
-          example: '2024-01-15T10:00:00.000Z'
-          nullable: true
-          description: Timestamp of the first capture event.
-        line_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderLineItem'
-          description: Line items associated with the order.
-        authorization_expires_at:
-          type: string
-          format: date-time
-          example: '2024-02-15T10:00:00.000Z'
-          description: Timestamp when the authorization expires.
-        authorization_expiry_source:
-          type: string
-          example: system
-          description: Source that determined the authorization expiry.
-        authorized_at:
-          type: string
-          format: date-time
-          example: '2024-01-01T00:00:00.000Z'
-          description: Timestamp when the order was authorized.
-        updated_at:
-          type: string
-          format: date-time
-          example: '2024-01-15T10:00:00.000Z'
-          description: Timestamp when the order was last updated.
-        customer:
-          $ref: '#/components/schemas/OrderCustomer'
     UnauthorizedError:
       type: object
       title: Unauthorized error
@@ -489,6 +320,43 @@ components:
               enum:
               - authentication_error
               example: authentication_error
+    OrderCaptureEvent:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          example: 500
+          description: Amount captured in this capture event in USD.
+        idempotency_key:
+          type: string
+          example: capture-2024-001
+          description: Idempotency key used for this capture.
+        processed_at:
+          type: string
+          format: date-time
+          example: '2024-01-15T10:00:00.000Z'
+          description: Timestamp when this capture was processed.
+        invoice_id:
+          type: string
+          example: INabc123
+          description: ID of the merchant invoice associated with this capture.
+    OrderCustomer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: X50sgfRd
+          description: Unique identifier of the customer.
+        name:
+          type: string
+          example: Acme Corp
+          description: Business name of the customer.
+        remaining_credit:
+          type: number
+          format: double
+          example: 5000
+          description: Remaining available credit for the customer in USD.
     NotFoundError:
       type: object
       title: Not found error
@@ -506,6 +374,39 @@ components:
               enum:
               - not_found_error
               example: not_found_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    OrderListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderListItem'
     ValidationError:
       type: object
       title: Validation error
@@ -536,94 +437,6 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    OrderCaptureRequest:
-      type: object
-      required:
-      - amount
-      - idempotency_key
-      properties:
-        amount:
-          type: number
-          format: double
-          minimum: 0
-          example: 500
-          description: Amount to capture in USD. Must not exceed the remaining authorized amount.
-        idempotency_key:
-          type: string
-          example: capture-2024-001
-          description: Unique key to ensure idempotent capture requests.
-        number:
-          type: string
-          example: inv_100001
-          description: Invoice or shipment number for this capture.
-        merchant_invoice_url:
-          type: string
-          format: uri
-          example: https://example.com/invoice.pdf
-          description: URL of the merchant invoice PDF. Provide either this or `line_items`, not both.
-        line_items:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OrderLineItem'
-          description: Line items for this capture. Provide either this or `merchant_invoice_url`, not both.
-    OrderCustomer:
-      type: object
-      properties:
-        id:
-          type: string
-          example: X50sgfRd
-          description: Unique identifier of the customer.
-        name:
-          type: string
-          example: Acme Corp
-          description: Business name of the customer.
-        remaining_credit:
-          type: number
-          format: double
-          example: 5000
-          description: Remaining available credit for the customer in USD.
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
-    OrderUpdateRequest:
-      type: object
-      minProperties: 1
-      properties:
-        amount:
-          type: number
-          format: double
-          minimum: 0
-          example: 1200
-          description: Updated authorization amount in USD.
-        order_number:
-          type: string
-          example: '5055'
-          description: Updated internal order number.
-        po_number:
-          type: string
-          example: PO-555
-          description: Updated purchase order number.
-        line_items:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OrderLineItem'
-          description: Updated line items for the order.
     Order:
       type: object
       properties:
@@ -676,10 +489,11 @@ components:
           example: 500
           description: Remaining authorized amount available for capture in USD.
         first_captured_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           example: '2024-01-15T10:00:00.000Z'
-          nullable: true
           description: Timestamp of the first capture event.
         line_items:
           type: array
@@ -712,9 +526,169 @@ components:
           description: Timestamp when the order was last updated.
         customer:
           $ref: '#/components/schemas/OrderCustomer'
-    RateLimitError:
+    OrderCreateRequest:
       type: object
-      title: Rate limit error
+      required:
+      - amount
+      - customer_id
+      - line_items
+      properties:
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          example: 1000
+          description: Amount to authorize for the order in USD.
+        customer_id:
+          type: string
+          example: X50sgfRd
+          description: Unique identifier of the customer placing the order.
+        line_items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+          description: Line items for the order. At least one item is required.
+        order_number:
+          type: string
+          example: '5055'
+          description: Your internal order number.
+        po_number:
+          type: string
+          example: PO-555
+          description: Purchase order number.
+        advance_requested:
+          type: boolean
+          example: false
+          description: Whether to request an advance on this order.
+        source:
+          type: string
+          example: checkout
+          description: Source channel creating the order.
+        metadata:
+          type: object
+          additionalProperties: true
+          example:
+            internal_ref: ref-001
+          description: Custom metadata to attach to the order.
+    OrderCaptureRequest:
+      type: object
+      required:
+      - amount
+      - idempotency_key
+      properties:
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          example: 500
+          description: Amount to capture in USD. Must not exceed the remaining authorized amount.
+        idempotency_key:
+          type: string
+          example: capture-2024-001
+          description: Unique key to ensure idempotent capture requests.
+        number:
+          type: string
+          example: inv_100001
+          description: Invoice or shipment number for this capture.
+        merchant_invoice_url:
+          type: string
+          format: uri
+          example: https://example.com/invoice.pdf
+          description: URL of the merchant invoice PDF. Provide either this or `line_items`, not both.
+        line_items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+          description: Line items for this capture. Provide either this or `merchant_invoice_url`, not both.
+    OrderListItem:
+      type: object
+      properties:
+        id:
+          type: string
+          example: ORDlaE5wbg0
+          description: Unique identifier for the order.
+        checkout_id:
+          type: string
+          example: CHKabc123
+          description: ID of the checkout session associated with this order.
+        number:
+          type: string
+          example: ord_100001
+          description: Order number identifier.
+        po_number:
+          type: string
+          example: PO-555
+          description: Purchase order number associated with the order.
+        advance_requested:
+          type: boolean
+          example: false
+          description: Whether an advance was requested for this order.
+        source:
+          type: string
+          example: checkout
+          description: Source channel that created the order.
+        status:
+          type: string
+          example: authorized
+          description: Current status of the order.
+        amount_authorized:
+          type: number
+          format: double
+          example: 1000
+          description: Total authorized amount for the order in USD.
+        amount_captured:
+          type: number
+          format: double
+          example: 500
+          description: Total captured amount for the order in USD.
+        amount_canceled:
+          type: number
+          format: double
+          example: 0
+          description: Total canceled amount for the order in USD.
+        amount_remaining:
+          type: number
+          format: double
+          example: 500
+          description: Remaining authorized amount available for capture in USD.
+        first_captured_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-01-15T10:00:00.000Z'
+          description: Timestamp of the first capture event.
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+          description: Line items associated with the order.
+        authorization_expires_at:
+          type: string
+          format: date-time
+          example: '2024-02-15T10:00:00.000Z'
+          description: Timestamp when the authorization expires.
+        authorization_expiry_source:
+          type: string
+          example: system
+          description: Source that determined the authorization expiry.
+        authorized_at:
+          type: string
+          format: date-time
+          example: '2024-01-01T00:00:00.000Z'
+          description: Timestamp when the order was authorized.
+        updated_at:
+          type: string
+          format: date-time
+          example: '2024-01-15T10:00:00.000Z'
+          description: Timestamp when the order was last updated.
+        customer:
+          $ref: '#/components/schemas/OrderCustomer'
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
       properties:
         error:
           type: object
@@ -722,33 +696,50 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: Too many requests
+              example: '[Invalid request message]'
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - rate_limit_error
-              example: rate_limit_error
-  requestBodies:
-    OrderCaptureRequestBody:
-      description: Fields for capturing an authorized order.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OrderCaptureRequest'
-    OrderCreateRequestBody:
-      description: Fields for creating a new order.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OrderCreateRequest'
-    OrderUpdateRequestBody:
-      description: Fields to update on an authorized order. At least one field must be provided.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OrderUpdateRequest'
+              - invalid_request
+              example: invalid_request
+    OrderUpdateRequest:
+      type: object
+      minProperties: 1
+      properties:
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          example: 1200
+          description: Updated authorization amount in USD.
+        order_number:
+          type: string
+          example: '5055'
+          description: Updated internal order number.
+        po_number:
+          type: string
+          example: PO-555
+          description: Updated purchase order number.
+        line_items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+          description: Updated line items for the order.
   responses:
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -757,6 +748,12 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
+    OrderResponse:
+      description: An object representing an order.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Order'
     UnauthorizedResponse:
       description: Unauthorized error
       content:
@@ -769,24 +766,25 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/OrderListResponse'
-    RateLimitResponse:
-      description: Rate limit error
+  requestBodies:
+    OrderCreateRequestBody:
+      description: Fields for creating a new order.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/RateLimitError'
-    OrderResponse:
-      description: An object representing an order.
+            $ref: '#/components/schemas/OrderCreateRequest'
+    OrderCaptureRequestBody:
+      description: Fields for capturing an authorized order.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Order'
-    NotFoundResponse:
-      description: Not found error
+            $ref: '#/components/schemas/OrderCaptureRequest'
+    OrderUpdateRequestBody:
+      description: Fields to update on an authorized order. At least one field must be provided.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/NotFoundError'
+            $ref: '#/components/schemas/OrderUpdateRequest'
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.
