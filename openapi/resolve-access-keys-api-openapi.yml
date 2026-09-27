@@ -53,6 +53,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -61,6 +67,12 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
     AccessKeyTokenResponse:
       description: Successfully minted bearer token
       content:
@@ -74,42 +86,13 @@ components:
                 token_type: Bearer
                 expires_in: 86400
                 scope: merchant:read merchant:write
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
     ForbiddenResponse:
       description: Forbidden error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
   schemas:
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
     ValidationError:
       type: object
       title: Validation error
@@ -140,72 +123,6 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
-    AccessKeyTokenResponse:
-      type: object
-      required:
-      - access_token
-      - token_type
-      - expires_in
-      properties:
-        access_token:
-          type: string
-          description: Bearer token to include in the `Authorization` header.
-        token_type:
-          type: string
-          example: Bearer
-        expires_in:
-          type: integer
-          description: Token lifetime in seconds.
-          example: 86400
-        scope:
-          type: string
-          description: Space-delimited scopes granted to the token.
-          example: merchant:read merchant:write
-    ForbiddenError:
-      type: object
-      title: Forbidden error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: API access key expired
-            type:
-              type: string
-              description: A short string, describing error type
-              example: forbidden_error
-    IssueAccessKeyTokenRequest:
-      type: object
-      additionalProperties: false
-      required:
-      - client_id
-      - client_secret
-      properties:
-        client_id:
-          type: string
-          description: OAuth access key client ID returned when the access key was created.
-        client_secret:
-          type: string
-          description: OAuth access key client secret returned when the access key was created or rotated.
     NotFoundError:
       type: object
       title: Not found error
@@ -240,6 +157,89 @@ components:
               enum:
               - rate_limit_error
               example: rate_limit_error
+    IssueAccessKeyTokenRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - client_id
+      - client_secret
+      properties:
+        client_id:
+          type: string
+          description: OAuth access key client ID returned when the access key was created.
+        client_secret:
+          type: string
+          description: OAuth access key client secret returned when the access key was created or rotated.
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    ForbiddenError:
+      type: object
+      title: Forbidden error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: API access key expired
+            type:
+              type: string
+              description: A short string, describing error type
+              example: forbidden_error
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+    AccessKeyTokenResponse:
+      type: object
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      properties:
+        access_token:
+          type: string
+          description: Bearer token to include in the `Authorization` header.
+        token_type:
+          type: string
+          example: Bearer
+        expires_in:
+          type: integer
+          description: Token lifetime in seconds.
+          example: 86400
+        scope:
+          type: string
+          description: Space-delimited scopes granted to the token.
+          example: merchant:read merchant:write
   requestBodies:
     IssueAccessKeyTokenRequestBody:
       required: true

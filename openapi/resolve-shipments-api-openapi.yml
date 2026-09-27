@@ -259,6 +259,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    ShipmentListResponse:
+      description: An object with an array of Shipments up to the specified limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentsList'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -267,24 +279,12 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
     ShipmentResponse:
       description: An object representing the Shipment.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ShipmentObject'
-    ShipmentListResponse:
-      description: An object with an array of Shipments up to the specified limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ShipmentsList'
     RateLimitResponse:
       description: Rate limit error
       content:
@@ -292,23 +292,6 @@ components:
           schema:
             $ref: '#/components/schemas/RateLimitError'
   schemas:
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
     ValidationError:
       type: object
       title: Validation error
@@ -339,6 +322,40 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
     ShipmentCreateRequest:
       type: object
       required:
@@ -409,25 +426,6 @@ components:
               enum:
               - invalid_request
               example: invalid_request
-    ShipmentsList:
-      type: object
-      properties:
-        limit:
-          type: integer
-          description: Number of results returned per page.
-          example: 10
-        page:
-          type: integer
-          description: Current page number.
-          example: 1
-        count:
-          type: integer
-          description: Total number of shipments matching the query.
-          example: 25
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ShipmentObject'
     ShipmentObject:
       type: object
       properties:
@@ -497,6 +495,42 @@ components:
           format: date-time
           description: Expected delivery date and time provided by the shipping courier.
           example: '2024-01-20T18:00:00Z'
+    ShipmentsList:
+      type: object
+      properties:
+        limit:
+          type: integer
+          description: Number of results returned per page.
+          example: 10
+        page:
+          type: integer
+          description: Current page number.
+          example: 1
+        count:
+          type: integer
+          description: Total number of shipments matching the query.
+          example: 25
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShipmentObject'
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     ShipmentUpdateRequest:
       type: object
       properties:
@@ -530,23 +564,6 @@ components:
             size: 204800
             metadata:
               original_filename: proof_of_delivery.pdf
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
     ShipmentFile:
       type: object
       required:
@@ -572,23 +589,6 @@ components:
               example: proof_of_delivery.pdf
           example:
             original_filename: proof_of_delivery.pdf
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
     ShipmentCreateRequest_2:
       type: object
       required:
@@ -676,13 +676,6 @@ components:
             metadata:
               original_filename: proof_of_delivery.pdf
   requestBodies:
-    CreateShipmentRequest:
-      description: Request body for creating a new shipment.
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ShipmentCreateRequest'
     UpdateShipmentRequest:
       description: Request body for updating an existing shipment.
       required: true
@@ -690,6 +683,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ShipmentUpdateRequest'
+    CreateShipmentRequest:
+      description: Request body for creating a new shipment.
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentCreateRequest'
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.

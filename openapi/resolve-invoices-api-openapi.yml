@@ -365,6 +365,47 @@ paths:
     - url: https://app-sandbox.resolvepay.com/api
       description: Sandbox server
 components:
+  responses:
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    InvoiceResponse:
+      description: An object representing an invoice.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Invoice'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    InvoiceListResponse:
+      description: 'An object with an array of results containing up to the limit. If no invoices are found, the results array will be empty.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InvoiceListResponse'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
   requestBodies:
     InvoiceCreateRequestBody:
       description: Invoice to add to the system.
@@ -390,6 +431,81 @@ components:
           schema:
             $ref: '#/components/schemas/InvoiceCreateRequest_2'
   schemas:
+    InvoiceRequestAmountBase:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          example: 2000
+          description: Amount being charged from the customer
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    InvoiceListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
     Invoice:
       type: object
       properties:
@@ -664,13 +780,6 @@ components:
           format: double
           example: 0
           description: Amount that has been voided.
-    InvoiceUpdateBeforeSent:
-      title: Not sent
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
     InvoiceRequestBeforeSentBase:
       type: object
       properties:
@@ -682,6 +791,25 @@ components:
           type: boolean
           example: 'false'
           description: The type of invoice. This will determine if this is an advanced or non-advanced invoice.
+    InvoiceUpdateBeforeSent:
+      title: Not sent
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
+    InvoiceRequest:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
+    InvoiceUpdateAfterSentNonAdvanced:
+      title: Sent without advance
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
+      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
     UnauthorizedError:
       type: object
       title: Unauthorized error
@@ -699,39 +827,6 @@ components:
               enum:
               - authentication_error
               example: authentication_error
-    InvoiceListResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Invoice'
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
     InvoiceCreateRequest:
       allOf:
       - type: object
@@ -741,37 +836,6 @@ components:
         - number
         - merchant_invoice_url
       - $ref: '#/components/schemas/InvoiceRequest'
-    InvoiceUpdateAfterSentNonAdvanced:
-      title: Sent without advance
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
-    InvoiceRequestAmountBase:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: double
-          example: 2000
-          description: Amount being charged from the customer
     ValidationError:
       type: object
       title: Validation error
@@ -802,29 +866,11 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    InvoiceRequest:
+    InvoiceUpdateAfterSentAdvanced:
+      title: Sent with advance
       type: object
       allOf:
       - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestBeforeSentBase'
-      - $ref: '#/components/schemas/InvoiceRequestAmountBase'
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
     InvoiceRequestAfterSentBase:
       type: object
       properties:
@@ -867,11 +913,6 @@ components:
           type: string
           example: Example of additional notes for Customer.
           description: Additional notes for the Customer
-    InvoiceUpdateAfterSentAdvanced:
-      title: Sent with advance
-      type: object
-      allOf:
-      - $ref: '#/components/schemas/InvoiceRequestAfterSentBase'
     Invoice_2:
       type: object
       properties:
@@ -1178,47 +1219,6 @@ components:
             example: MER456789
             description: ID of the sub-merchant this invoice belongs to. Must be a valid sub-merchant under your partner account.
       - $ref: '#/components/schemas/InvoiceRequest'
-  responses:
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    InvoiceResponse:
-      description: An object representing an invoice.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Invoice'
-    InvalidRequestOrValidationResponse:
-      description: Bad request error
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - $ref: '#/components/schemas/ValidationError'
-            - $ref: '#/components/schemas/InvalidRequestError'
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    InvoiceListResponse:
-      description: 'An object with an array of results containing up to the limit. If no invoices are found, the results array will be empty.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InvoiceListResponse'
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.

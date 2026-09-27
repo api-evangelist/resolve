@@ -573,6 +573,115 @@ paths:
       - Merchants
 components:
   responses:
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    MerchantListResponse:
+      description: Paginated list of merchants.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MerchantList'
+          examples:
+            merchantList:
+              summary: List merchant response with pagination metadata
+              value:
+                count: 2
+                page: 1
+                limit: 25
+                results:
+                - id: mrc_alpha123456789
+                  legal_business_name: Alpha Supply LLC
+                  dba_name: Alpha DBA
+                  business_address:
+                    line1: 100 Main St
+                    city: Austin
+                    state: TX
+                    postal_code: '78701'
+                    country: US
+                  business_email: ops@alpha.example.com
+                  business_phone: '+15125550100'
+                  entity_type: llc
+                  formation_state: TX
+                  industry: Manufacturing
+                  website: https://alpha.example.com
+                  underwriting_status: completed
+                  seller_amount_approved: 12500
+                  active_subscription:
+                    id: sub_alpha123456789
+                    tier: free
+                  metadata:
+                    partner_ref: alpha-001
+                  created_at: '2026-03-11T10:00:00.000Z'
+                  updated_at: '2026-03-11T10:00:00.000Z'
+                - id: mrc_beta1234567890
+                  legal_business_name: Beta Goods Inc
+                  dba_name: null
+                  business_address:
+                    line1: 200 Beta Blvd
+                    city: Denver
+                    state: CO
+                    postal_code: '80202'
+                    country: US
+                  business_email: ops@beta.example.com
+                  business_phone: '+13035550100'
+                  entity_type: corporation
+                  formation_state: DE
+                  industry: Distribution
+                  website: https://beta.example.com
+                  underwriting_status: pending
+                  seller_amount_approved: 0
+                  active_subscription:
+                    id: sub_beta1234567890
+                    tier: free
+                  metadata:
+                    partner_ref: beta-001
+                  created_at: '2026-03-11T11:00:00.000Z'
+                  updated_at: '2026-03-11T11:00:00.000Z'
+    MerchantDocumentListResponse:
+      description: Paginated list of merchant document metadata.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MerchantDocumentList'
+          examples:
+            documentList:
+              summary: Merchant document metadata list
+              value:
+                count: 2
+                page: 1
+                limit: 25
+                results:
+                - id: md_1234567890abcdef
+                  merchant_id: mrc_1234567890abcdef
+                  document_type: bank_statements
+                  status: accepted
+                  validation_reasons: []
+                  uploaded_at: '2026-02-26T10:05:00.000Z'
+                  validated_at: '2026-02-26T10:06:40.000Z'
+                  object_key: merchant/mrc_123/document/md_1234567890abcdef/bank_statement_2026_01.pdf
+                  created_at: '2026-02-26T10:00:00.000Z'
+                  updated_at: '2026-02-26T10:06:40.000Z'
+                - id: md_abcdef1234567890
+                  merchant_id: mrc_1234567890abcdef
+                  document_type: financial_statements
+                  status: failed
+                  validation_reasons:
+                  - DOWNLOAD_TIMEOUT
+                  uploaded_at: null
+                  validated_at: '2026-02-26T10:06:40.000Z'
+                  object_key: merchant/mrc_123/document/md_abcdef1234567890/financials_q4_2025.pdf
+                  created_at: '2026-02-26T10:01:00.000Z'
+                  updated_at: '2026-02-26T10:06:40.000Z'
     MerchantResponse:
       description: A merchant object.
       content:
@@ -650,74 +759,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/NotFoundError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    MerchantListResponse:
-      description: Paginated list of merchants.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MerchantList'
-          examples:
-            merchantList:
-              summary: List merchant response with pagination metadata
-              value:
-                count: 2
-                page: 1
-                limit: 25
-                results:
-                - id: mrc_alpha123456789
-                  legal_business_name: Alpha Supply LLC
-                  dba_name: Alpha DBA
-                  business_address:
-                    line1: 100 Main St
-                    city: Austin
-                    state: TX
-                    postal_code: '78701'
-                    country: US
-                  business_email: ops@alpha.example.com
-                  business_phone: '+15125550100'
-                  entity_type: llc
-                  formation_state: TX
-                  industry: Manufacturing
-                  website: https://alpha.example.com
-                  underwriting_status: completed
-                  seller_amount_approved: 12500
-                  active_subscription:
-                    id: sub_alpha123456789
-                    tier: free
-                  metadata:
-                    partner_ref: alpha-001
-                  created_at: '2026-03-11T10:00:00.000Z'
-                  updated_at: '2026-03-11T10:00:00.000Z'
-                - id: mrc_beta1234567890
-                  legal_business_name: Beta Goods Inc
-                  dba_name: null
-                  business_address:
-                    line1: 200 Beta Blvd
-                    city: Denver
-                    state: CO
-                    postal_code: '80202'
-                    country: US
-                  business_email: ops@beta.example.com
-                  business_phone: '+13035550100'
-                  entity_type: corporation
-                  formation_state: DE
-                  industry: Distribution
-                  website: https://beta.example.com
-                  underwriting_status: pending
-                  seller_amount_approved: 0
-                  active_subscription:
-                    id: sub_beta1234567890
-                    tier: free
-                  metadata:
-                    partner_ref: beta-001
-                  created_at: '2026-03-11T11:00:00.000Z'
-                  updated_at: '2026-03-11T11:00:00.000Z'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -776,220 +817,7 @@ components:
                 transfer_method: download_url
                 queue_dispatch_status: failed
                 validation_profile: merchant_underwriting_document_default
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    MerchantDocumentListResponse:
-      description: Paginated list of merchant document metadata.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MerchantDocumentList'
-          examples:
-            documentList:
-              summary: Merchant document metadata list
-              value:
-                count: 2
-                page: 1
-                limit: 25
-                results:
-                - id: md_1234567890abcdef
-                  merchant_id: mrc_1234567890abcdef
-                  document_type: bank_statements
-                  status: accepted
-                  validation_reasons: []
-                  uploaded_at: '2026-02-26T10:05:00.000Z'
-                  validated_at: '2026-02-26T10:06:40.000Z'
-                  object_key: merchant/mrc_123/document/md_1234567890abcdef/bank_statement_2026_01.pdf
-                  created_at: '2026-02-26T10:00:00.000Z'
-                  updated_at: '2026-02-26T10:06:40.000Z'
-                - id: md_abcdef1234567890
-                  merchant_id: mrc_1234567890abcdef
-                  document_type: financial_statements
-                  status: failed
-                  validation_reasons:
-                  - DOWNLOAD_TIMEOUT
-                  uploaded_at: null
-                  validated_at: '2026-02-26T10:06:40.000Z'
-                  object_key: merchant/mrc_123/document/md_abcdef1234567890/financials_q4_2025.pdf
-                  created_at: '2026-02-26T10:01:00.000Z'
-                  updated_at: '2026-02-26T10:06:40.000Z'
   schemas:
-    UpdateMerchantRequest:
-      type: object
-      description: 'All fields are optional for update requests.
-
-
-        For merchants whose latest underwriting decision has been finalized, updates to core legal/identity/banking
-
-        fields may be blocked.
-
-        '
-      properties:
-        legal_business_name:
-          type: string
-        business_address:
-          $ref: '#/components/schemas/Address'
-        business_email:
-          type: string
-          format: email
-        business_phone:
-          type: string
-          description: Business phone number. Must be a valid US phone number and is normalized to E.164.
-        entity_type:
-          type: string
-          enum:
-          - corporation
-          - llc
-          - sole_proprietorship
-          - partnership
-          - non_profit
-        formation_state:
-          type: string
-          description: Business formation state. Must map to a valid US state and is normalized to the state code.
-        ein:
-          type: string
-          description: Employer Identification Number. Must be a valid EIN format.
-        dba_name:
-          type: string
-        annual_revenue:
-          type: integer
-        years_in_business:
-          type: integer
-          minimum: 0
-        industry:
-          type: string
-        business_description:
-          type: string
-        website:
-          type: string
-          format: uri
-        estimated_monthly_net_terms_volume:
-          type: integer
-        existing_net_terms_info:
-          type: object
-          additionalProperties: true
-        beneficial_owners:
-          type: array
-          description: Beneficial owner records. Existing owner records are not editable after underwriting is complete.
-          items:
-            $ref: '#/components/schemas/BeneficialOwner'
-        additional_beneficial_owners:
-          type: array
-          description: Add-only beneficial owner records for post-underwriting updates.
-          items:
-            $ref: '#/components/schemas/BeneficialOwner'
-        authorized_signer:
-          $ref: '#/components/schemas/AuthorizedSigner'
-        plaid_access_token:
-          type: string
-          description: Plaid access token for connected banking data.
-        bank_account_number:
-          type: string
-          description: Bank account number. Must satisfy Resolve account-number validation.
-        bank_routing_number:
-          type: string
-          description: ABA routing number. Must be a valid routing number.
-        metadata:
-          type: object
-          additionalProperties: true
-        bank_statements:
-          type: array
-          description: 'Optional document ingestion on merchant update.
-
-            Each item queues a background download job (equivalent to calling the document endpoint with `download_url`).
-
-            '
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-        financial_statements:
-          type: array
-          description: Optional inline `financial_statements` document ingestion requests.
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-        credit_references:
-          type: array
-          description: Optional inline `credit_references` document ingestion requests.
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-        personal_guarantee:
-          type: array
-          description: Optional inline `personal_guarantee` document ingestion requests.
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-        other_documents:
-          type: array
-          description: Optional inline `other` document ingestion requests.
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-    BeneficialOwner:
-      type: object
-      required:
-      - first_name
-      - last_name
-      - date_of_birth
-      - address
-      - ssn_last_4
-      properties:
-        first_name:
-          type: string
-          example: John
-        last_name:
-          type: string
-          example: Owner
-        date_of_birth:
-          type: string
-          format: date
-          example: '1987-04-14'
-        address:
-          $ref: '#/components/schemas/Address'
-        ssn_last_4:
-          type: string
-          minLength: 4
-          maxLength: 4
-          example: '1234'
-        ownership_percentage:
-          type: number
-          format: double
-          minimum: 0
-          maximum: 100
-          example: 35
-    DocumentIngestionSummary:
-      type: object
-      properties:
-        requested_count:
-          type: integer
-          example: 2
-        queued_count:
-          type: integer
-          example: 1
-        failed_count:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentIngestionResult'
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
     Address:
       type: object
       required:
@@ -1019,19 +847,32 @@ components:
         country:
           type: string
           example: US
-    MerchantDocumentUploadRequestObject:
+    MerchantList:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique identifier of the merchant document.
-          example: md_1234567890abcdef
-        document_id:
-          type: string
-          description: Alias of the merchant document identifier.
-          example: md_1234567890abcdef
+        count:
+          type: integer
+          example: 2
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Merchant'
+    CreateMerchantDocumentRequest:
+      type: object
+      required:
+      - document_type
+      - filename
+      - filetype
+      properties:
         document_type:
           type: string
+          description: Merchant document type.
           enum:
           - bank_statements
           - financial_statements
@@ -1039,80 +880,31 @@ components:
           - personal_guarantee
           - other
           example: bank_statements
-        status:
+        filename:
           type: string
-          description: Initial validation lifecycle status for the document.
-          enum:
-          - pending_upload
-          - failed
-          example: pending_upload
-        upload_url:
-          type:
-          - string
-          - 'null'
+          description: 'Original filename for the document.
+
+            The filename must include an extension. For known MIME types, the extension must match `filetype`.
+
+            '
+          example: bank_statement_2026_01.pdf
+        filetype:
+          type: string
+          description: 'MIME type for the document.
+
+            Known MIME types are validated against the filename extension.
+
+            '
+          example: application/pdf
+        download_url:
+          type: string
           format: uri
-          description: Presigned S3 URL to upload file content when `transfer_method` is `presigned_upload`.
-          example: https://resolve-document-validation-uploads-dev.s3.amazonaws.com/merchant/mrc_123/document/md_123/bank_statement_2026_01.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&...
-        upload_expires_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Expiration timestamp for `upload_url` when `transfer_method` is `presigned_upload`.
-          example: '2026-02-26T18:35:00.000Z'
-        object_key:
-          type: string
-          description: S3 object key where the document is expected to be stored.
-          example: merchant/mrc_123/document/md_1234567890abcdef/bank_statement_2026_01.pdf
-        transfer_method:
-          type: string
-          description: How the document is moved into Resolve-managed storage.
-          enum:
-          - presigned_upload
-          - download_url
-          example: presigned_upload
-        queue_dispatch_status:
-          type:
-          - string
-          - 'null'
-          description: 'Queue dispatch result when `transfer_method` is `download_url`.
+          description: 'Optional remote URL for Resolve to fetch directly. When provided, Resolve queues a background download job
+
+            and does not return a presigned upload URL. Only `http` and `https` URLs are accepted.
 
             '
-          enum:
-          - queued
-          - failed
-          example: queued
-        upload_headers:
-          type:
-          - object
-          - 'null'
-          description: 'Required headers to include on the presigned upload PUT request.
-
-
-            Always includes:
-
-            - `x-amz-meta-validation_profile`
-
-
-            May include callback routing headers when configured by Resolve:
-
-            - `x-amz-meta-callback_domain`
-
-            - `x-amz-meta-callback_url`
-
-            '
-          additionalProperties:
-            type: string
-          example:
-            x-amz-meta-validation_profile: merchant_underwriting_document_default
-            x-amz-meta-callback_domain: overcommunicative-unriotously-alaina.ngrok-free.dev
-            x-amz-meta-callback_url: https://overcommunicative-unriotously-alaina.ngrok-free.dev/api/internal/document-validation/completed
-        validation_profile:
-          type: string
-          description: Resolve-managed document validation profile applied to this request.
-          enum:
-          - merchant_underwriting_document_default
-          example: merchant_underwriting_document_default
+          example: https://partner-files.example.com/bank_statement_2026_01.pdf
     CreateMerchantRequest:
       type: object
       required:
@@ -1240,68 +1032,6 @@ components:
           description: Optional inline `other` document ingestion requests.
           items:
             $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
-    InlineDocumentDownloadRequest:
-      type: object
-      required:
-      - filename
-      - filetype
-      - download_url
-      properties:
-        filename:
-          type: string
-          description: 'Original filename for the remote file.
-
-            The filename must include an extension, and that extension must match `filetype`.
-
-            '
-          example: bank_statement_2026_01.pdf
-        filetype:
-          type: string
-          description: 'MIME type for the remote file.
-
-            Must be a supported MIME type for the merchant underwriting document validation profile.
-
-            '
-          example: application/pdf
-        download_url:
-          type: string
-          format: uri
-          description: Remote file URL. Only `http` and `https` URLs are accepted.
-          example: https://partner-files.example.com/bank_statement_2026_01.pdf
     Merchant:
       type: object
       properties:
@@ -1392,25 +1122,9 @@ components:
           type: string
           format: date-time
           example: '2026-02-26T10:05:00.000Z'
-    MerchantList:
+    NotFoundError:
       type: object
-      properties:
-        count:
-          type: integer
-          example: 2
-        page:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Merchant'
-    ValidationError:
-      type: object
-      title: Validation error
+      title: Not found error
       properties:
         error:
           type: object
@@ -1418,26 +1132,49 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: Validation error
+              example: '[entity] not found'
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - validation_error
-              example: validation_error
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    example: path.to.field
-                    description: Path to the field failed validation
-                  message:
-                    type: string
-                    example: '`[field]` is required'
-                    description: Detailed description of the error
+              - not_found_error
+              example: not_found_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    AuthorizedSigner:
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: Jane
+        last_name:
+          type: string
+          example: Doe
+        email:
+          type: string
+          format: email
+          example: jane.doe@acmesupply.com
+        title:
+          type: string
+          example: Controller
+        phone:
+          type: string
+          example: '+15125550123'
     MerchantDocumentList:
       type: object
       properties:
@@ -1454,6 +1191,241 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MerchantDocument'
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    MerchantDocumentUploadRequestObject:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the merchant document.
+          example: md_1234567890abcdef
+        document_id:
+          type: string
+          description: Alias of the merchant document identifier.
+          example: md_1234567890abcdef
+        document_type:
+          type: string
+          enum:
+          - bank_statements
+          - financial_statements
+          - credit_references
+          - personal_guarantee
+          - other
+          example: bank_statements
+        status:
+          type: string
+          description: Initial validation lifecycle status for the document.
+          enum:
+          - pending_upload
+          - failed
+          example: pending_upload
+        upload_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Presigned S3 URL to upload file content when `transfer_method` is `presigned_upload`.
+          example: https://resolve-document-validation-uploads-dev.s3.amazonaws.com/merchant/mrc_123/document/md_123/bank_statement_2026_01.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&...
+        upload_expires_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Expiration timestamp for `upload_url` when `transfer_method` is `presigned_upload`.
+          example: '2026-02-26T18:35:00.000Z'
+        object_key:
+          type: string
+          description: S3 object key where the document is expected to be stored.
+          example: merchant/mrc_123/document/md_1234567890abcdef/bank_statement_2026_01.pdf
+        transfer_method:
+          type: string
+          description: How the document is moved into Resolve-managed storage.
+          enum:
+          - presigned_upload
+          - download_url
+          example: presigned_upload
+        queue_dispatch_status:
+          type:
+          - string
+          - 'null'
+          description: 'Queue dispatch result when `transfer_method` is `download_url`.
+
+            '
+          enum:
+          - queued
+          - failed
+          example: queued
+        upload_headers:
+          type:
+          - object
+          - 'null'
+          description: 'Required headers to include on the presigned upload PUT request.
+
+
+            Always includes:
+
+            - `x-amz-meta-validation_profile`
+
+
+            May include callback routing headers when configured by Resolve:
+
+            - `x-amz-meta-callback_domain`
+
+            - `x-amz-meta-callback_url`
+
+            '
+          additionalProperties:
+            type: string
+          example:
+            x-amz-meta-validation_profile: merchant_underwriting_document_default
+            x-amz-meta-callback_domain: overcommunicative-unriotously-alaina.ngrok-free.dev
+            x-amz-meta-callback_url: https://overcommunicative-unriotously-alaina.ngrok-free.dev/api/internal/document-validation/completed
+        validation_profile:
+          type: string
+          description: Resolve-managed document validation profile applied to this request.
+          enum:
+          - merchant_underwriting_document_default
+          example: merchant_underwriting_document_default
+    UpdateMerchantRequest:
+      type: object
+      description: 'All fields are optional for update requests.
+
+
+        For merchants whose latest underwriting decision has been finalized, updates to core legal/identity/banking
+
+        fields may be blocked.
+
+        '
+      properties:
+        legal_business_name:
+          type: string
+        business_address:
+          $ref: '#/components/schemas/Address'
+        business_email:
+          type: string
+          format: email
+        business_phone:
+          type: string
+          description: Business phone number. Must be a valid US phone number and is normalized to E.164.
+        entity_type:
+          type: string
+          enum:
+          - corporation
+          - llc
+          - sole_proprietorship
+          - partnership
+          - non_profit
+        formation_state:
+          type: string
+          description: Business formation state. Must map to a valid US state and is normalized to the state code.
+        ein:
+          type: string
+          description: Employer Identification Number. Must be a valid EIN format.
+        dba_name:
+          type: string
+        annual_revenue:
+          type: integer
+        years_in_business:
+          type: integer
+          minimum: 0
+        industry:
+          type: string
+        business_description:
+          type: string
+        website:
+          type: string
+          format: uri
+        estimated_monthly_net_terms_volume:
+          type: integer
+        existing_net_terms_info:
+          type: object
+          additionalProperties: true
+        beneficial_owners:
+          type: array
+          description: Beneficial owner records. Existing owner records are not editable after underwriting is complete.
+          items:
+            $ref: '#/components/schemas/BeneficialOwner'
+        additional_beneficial_owners:
+          type: array
+          description: Add-only beneficial owner records for post-underwriting updates.
+          items:
+            $ref: '#/components/schemas/BeneficialOwner'
+        authorized_signer:
+          $ref: '#/components/schemas/AuthorizedSigner'
+        plaid_access_token:
+          type: string
+          description: Plaid access token for connected banking data.
+        bank_account_number:
+          type: string
+          description: Bank account number. Must satisfy Resolve account-number validation.
+        bank_routing_number:
+          type: string
+          description: ABA routing number. Must be a valid routing number.
+        metadata:
+          type: object
+          additionalProperties: true
+        bank_statements:
+          type: array
+          description: 'Optional document ingestion on merchant update.
+
+            Each item queues a background download job (equivalent to calling the document endpoint with `download_url`).
+
+            '
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
+        financial_statements:
+          type: array
+          description: Optional inline `financial_statements` document ingestion requests.
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
+        credit_references:
+          type: array
+          description: Optional inline `credit_references` document ingestion requests.
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
+        personal_guarantee:
+          type: array
+          description: Optional inline `personal_guarantee` document ingestion requests.
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
+        other_documents:
+          type: array
+          description: Optional inline `other` document ingestion requests.
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     MerchantDocument:
       type: object
       description: Merchant document metadata and validation lifecycle status.
@@ -1515,28 +1487,41 @@ components:
           type: string
           format: date-time
           example: '2026-02-26T10:06:40.000Z'
-    AuthorizedSigner:
+    BeneficialOwner:
       type: object
+      required:
+      - first_name
+      - last_name
+      - date_of_birth
+      - address
+      - ssn_last_4
       properties:
         first_name:
           type: string
-          example: Jane
+          example: John
         last_name:
           type: string
-          example: Doe
-        email:
+          example: Owner
+        date_of_birth:
           type: string
-          format: email
-          example: jane.doe@acmesupply.com
-        title:
+          format: date
+          example: '1987-04-14'
+        address:
+          $ref: '#/components/schemas/Address'
+        ssn_last_4:
           type: string
-          example: Controller
-        phone:
-          type: string
-          example: '+15125550123'
-    InvalidRequestError:
+          minLength: 4
+          maxLength: 4
+          example: '1234'
+        ownership_percentage:
+          type: number
+          format: double
+          minimum: 0
+          maximum: 100
+          example: 35
+    ValidationError:
       type: object
-      title: Invalid request error
+      title: Validation error
       properties:
         error:
           type: object
@@ -1544,13 +1529,26 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: '[Invalid request message]'
+              example: Validation error
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - invalid_request
-              example: invalid_request
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
     DocumentIngestionResult:
       type: object
       description: 'Inline document dispatch result for merchant create/update responses.
@@ -1590,49 +1588,85 @@ components:
           type:
           - string
           - 'null'
-    CreateMerchantDocumentRequest:
+    InlineDocumentDownloadRequest:
       type: object
       required:
-      - document_type
       - filename
       - filetype
+      - download_url
       properties:
-        document_type:
-          type: string
-          description: Merchant document type.
-          enum:
-          - bank_statements
-          - financial_statements
-          - credit_references
-          - personal_guarantee
-          - other
-          example: bank_statements
         filename:
           type: string
-          description: 'Original filename for the document.
+          description: 'Original filename for the remote file.
 
-            The filename must include an extension. For known MIME types, the extension must match `filetype`.
+            The filename must include an extension, and that extension must match `filetype`.
 
             '
           example: bank_statement_2026_01.pdf
         filetype:
           type: string
-          description: 'MIME type for the document.
+          description: 'MIME type for the remote file.
 
-            Known MIME types are validated against the filename extension.
+            Must be a supported MIME type for the merchant underwriting document validation profile.
 
             '
           example: application/pdf
         download_url:
           type: string
           format: uri
-          description: 'Optional remote URL for Resolve to fetch directly. When provided, Resolve queues a background download job
-
-            and does not return a presigned upload URL. Only `http` and `https` URLs are accepted.
-
-            '
+          description: Remote file URL. Only `http` and `https` URLs are accepted.
           example: https://partner-files.example.com/bank_statement_2026_01.pdf
+    DocumentIngestionSummary:
+      type: object
+      properties:
+        requested_count:
+          type: integer
+          example: 2
+        queued_count:
+          type: integer
+          example: 1
+        failed_count:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentIngestionResult'
   requestBodies:
+    CreateMerchantDocumentRequest:
+      description: 'Request body for creating a merchant document upload request.
+
+
+        Validation notes:
+
+        - `filename` must include an extension
+
+        - `filetype` must be a supported MIME type for the merchant underwriting document profile
+
+        - `download_url`, when provided, must use `http` or `https`
+
+        - `filename` extension must match `filetype`
+
+        '
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateMerchantDocumentRequest'
+          examples:
+            presignedUpload:
+              summary: Presigned upload flow
+              value:
+                document_type: bank_statements
+                filename: bank_statement_2026_01.pdf
+                filetype: application/pdf
+            downloadUrl:
+              summary: Download URL flow
+              value:
+                document_type: financial_statements
+                filename: financials_q4_2025.pdf
+                filetype: application/pdf
+                download_url: https://partner-files.example.com/financials_q4_2025.pdf
     CreateMerchantRequest:
       description: Request body for creating a partner sub-merchant.
       required: true
@@ -1710,40 +1744,6 @@ components:
                 - filename: updated_customer_reference.pdf
                   filetype: application/pdf
                   download_url: https://partner-files.example.com/updated_customer_reference.pdf
-    CreateMerchantDocumentRequest:
-      description: 'Request body for creating a merchant document upload request.
-
-
-        Validation notes:
-
-        - `filename` must include an extension
-
-        - `filetype` must be a supported MIME type for the merchant underwriting document profile
-
-        - `download_url`, when provided, must use `http` or `https`
-
-        - `filename` extension must match `filetype`
-
-        '
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateMerchantDocumentRequest'
-          examples:
-            presignedUpload:
-              summary: Presigned upload flow
-              value:
-                document_type: bank_statements
-                filename: bank_statement_2026_01.pdf
-                filetype: application/pdf
-            downloadUrl:
-              summary: Download URL flow
-              value:
-                document_type: financial_statements
-                filename: financials_q4_2025.pdf
-                filetype: application/pdf
-                download_url: https://partner-files.example.com/financials_q4_2025.pdf
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.

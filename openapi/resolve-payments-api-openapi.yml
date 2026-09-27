@@ -164,6 +164,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -178,42 +184,19 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Payment'
-    PaymentListResponse:
-      description: A paginated list of payments.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentListResponse'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
     RateLimitResponse:
       description: Rate limit error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RateLimitError'
+    PaymentListResponse:
+      description: A paginated list of payments.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentListResponse'
   schemas:
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
     ValidationError:
       type: object
       title: Validation error
@@ -244,23 +227,6 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
     NotFoundError:
       type: object
       title: Not found error
@@ -278,6 +244,40 @@ components:
               enum:
               - not_found_error
               example: not_found_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
     PaymentListResponse:
       type: object
       properties:
@@ -294,6 +294,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Payment'
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     Payment:
       type: object
       properties:
@@ -430,23 +447,6 @@ components:
           type: string
           example: null
           description: ID of the user who created the payment, if applicable.
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
     PaymentCreateRequest:
       type: object
       required:

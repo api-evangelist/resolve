@@ -110,6 +110,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -118,18 +124,6 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
-    PayoutTransactionResponse:
-      description: An object representing the created Payout Transaction.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PayoutTransactionObject'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
     ListPayoutTransactionsResponse:
       description: An object with an array of results containing up to the limit. If no payout transactions are found, the results array will be empty.
       content:
@@ -142,6 +136,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/RateLimitError'
+    PayoutTransactionResponse:
+      description: An object representing the created Payout Transaction.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PayoutTransactionObject'
   schemas:
     PayoutTransactionsLists:
       type: object
@@ -155,23 +155,6 @@ components:
         results:
           items:
             $ref: '#/components/schemas/PayoutTransactionObject'
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
     ValidationError:
       type: object
       title: Validation error
@@ -202,57 +185,6 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
     PayoutTransactionObject:
       type: object
       properties:
@@ -325,6 +257,74 @@ components:
           type: string
           description: Date time of when the payout transaction was last updated.
           example: '2022-09-06T03:08:37.508Z'
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     PayoutTransactionObject_2:
       type: object
       properties:

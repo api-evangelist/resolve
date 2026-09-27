@@ -208,6 +208,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    CreditNoteResponse:
+      description: The credit note object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditNote'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -216,79 +228,85 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
-    CreditNoteActionResponse:
-      description: An object containing the status of the credit note creation request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreditNoteAction'
     CreditNoteListResponse:
       description: A paginated list of credit notes.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/CreditNoteListResponse'
-    CreditNoteResponse:
-      description: The credit note object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreditNote'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
     RateLimitResponse:
       description: Rate limit error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RateLimitError'
+    CreditNoteActionResponse:
+      description: An object containing the status of the credit note creation request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditNoteAction'
   schemas:
-    CreditNoteAction:
+    CreditNoteCreateRequest:
       type: object
+      required:
+      - invoice_id
+      - amount
+      - reason_code
       properties:
-        status:
+        invoice_id:
           type: string
+          example: PMMlaE5wbg0
+          description: ID of the invoice
+        amount:
+          type: number
+          format: double
+          example: 2000
+          description: Amount of the credit note
+        number:
+          type: string
+          example: CN-001
+          description: Number of the credit note
+        reason_code:
+          type: string
+          example: reason_code
           enum:
-          - pending
-          - processing
-          - failed
-          - completed
-          example: pending
-          description: Status of the credit note action
-    ValidationError:
+          - chargeback
+          - duplicate
+          - fraudulent
+          - requested_by_customer
+          - missing_remittance
+          - overpayment_on_invoice
+          - invoice_was_refunded
+          - double_payment_on_invoice
+          - missing_invoice_in_resolve
+          - credit_transfer
+          - other
+          description: Reason code for the credit note
+        reason_message:
+          type: string
+          example: reason_message
+          description: Reason message for the credit note
+        credit_note_url:
+          type: string
+          example: https://example.com/credit_note_url.pdf
+          description: URL for the publicly-accessible credit note PDF.
+    CreditNoteListResponse:
       type: object
-      title: Validation error
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Validation error
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - validation_error
-              example: validation_error
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    example: path.to.field
-                    description: Path to the field failed validation
-                  message:
-                    type: string
-                    example: '`[field]` is required'
-                    description: Detailed description of the error
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreditNote'
     CreditNote:
       type: object
       properties:
@@ -396,9 +414,9 @@ components:
           format: date-time
           example: null
           description: Date the credit note was voided.
-    UnauthorizedError:
+    ValidationError:
       type: object
-      title: Unauthorized error
+      title: Validation error
       properties:
         error:
           type: object
@@ -406,74 +424,26 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: Invalid merchant credentials
+              example: Validation error
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - authentication_error
-              example: authentication_error
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
-    CreditNoteCreateRequest:
-      type: object
-      required:
-      - invoice_id
-      - amount
-      - reason_code
-      properties:
-        invoice_id:
-          type: string
-          example: PMMlaE5wbg0
-          description: ID of the invoice
-        amount:
-          type: number
-          format: double
-          example: 2000
-          description: Amount of the credit note
-        number:
-          type: string
-          example: CN-001
-          description: Number of the credit note
-        reason_code:
-          type: string
-          example: reason_code
-          enum:
-          - chargeback
-          - duplicate
-          - fraudulent
-          - requested_by_customer
-          - missing_remittance
-          - overpayment_on_invoice
-          - invoice_was_refunded
-          - double_payment_on_invoice
-          - missing_invoice_in_resolve
-          - credit_transfer
-          - other
-          description: Reason code for the credit note
-        reason_message:
-          type: string
-          example: reason_message
-          description: Reason message for the credit note
-        credit_note_url:
-          type: string
-          example: https://example.com/credit_note_url.pdf
-          description: URL for the publicly-accessible credit note PDF.
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
     NotFoundError:
       type: object
       title: Not found error
@@ -491,22 +461,6 @@ components:
               enum:
               - not_found_error
               example: not_found_error
-    CreditNoteListResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreditNote'
     RateLimitError:
       type: object
       title: Rate limit error
@@ -524,6 +478,52 @@ components:
               enum:
               - rate_limit_error
               example: rate_limit_error
+    CreditNoteAction:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - processing
+          - failed
+          - completed
+          example: pending
+          description: Status of the credit note action
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     CreditNote_2:
       type: object
       properties:
