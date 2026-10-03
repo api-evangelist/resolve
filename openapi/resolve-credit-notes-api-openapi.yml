@@ -201,112 +201,24 @@ paths:
     - url: https://app-sandbox.resolvepay.com/api
       description: Sandbox server
 components:
-  responses:
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
-    CreditNoteResponse:
-      description: The credit note object.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreditNote'
-    InvalidRequestOrValidationResponse:
-      description: Bad request error
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - $ref: '#/components/schemas/ValidationError'
-            - $ref: '#/components/schemas/InvalidRequestError'
-    CreditNoteListResponse:
-      description: A paginated list of credit notes.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreditNoteListResponse'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    CreditNoteActionResponse:
-      description: An object containing the status of the credit note creation request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreditNoteAction'
   schemas:
-    CreditNoteCreateRequest:
+    UnauthorizedError:
       type: object
-      required:
-      - invoice_id
-      - amount
-      - reason_code
+      title: Unauthorized error
       properties:
-        invoice_id:
-          type: string
-          example: PMMlaE5wbg0
-          description: ID of the invoice
-        amount:
-          type: number
-          format: double
-          example: 2000
-          description: Amount of the credit note
-        number:
-          type: string
-          example: CN-001
-          description: Number of the credit note
-        reason_code:
-          type: string
-          example: reason_code
-          enum:
-          - chargeback
-          - duplicate
-          - fraudulent
-          - requested_by_customer
-          - missing_remittance
-          - overpayment_on_invoice
-          - invoice_was_refunded
-          - double_payment_on_invoice
-          - missing_invoice_in_resolve
-          - credit_transfer
-          - other
-          description: Reason code for the credit note
-        reason_message:
-          type: string
-          example: reason_message
-          description: Reason message for the credit note
-        credit_note_url:
-          type: string
-          example: https://example.com/credit_note_url.pdf
-          description: URL for the publicly-accessible credit note PDF.
-    CreditNoteListResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreditNote'
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     CreditNote:
       type: object
       properties:
@@ -414,6 +326,83 @@ components:
           format: date-time
           example: null
           description: Date the credit note was voided.
+    CreditNoteListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreditNote'
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    CreditNoteCreateRequest:
+      type: object
+      required:
+      - invoice_id
+      - amount
+      - reason_code
+      properties:
+        invoice_id:
+          type: string
+          example: PMMlaE5wbg0
+          description: ID of the invoice
+        amount:
+          type: number
+          format: double
+          example: 2000
+          description: Amount of the credit note
+        number:
+          type: string
+          example: CN-001
+          description: Number of the credit note
+        reason_code:
+          type: string
+          example: reason_code
+          enum:
+          - chargeback
+          - duplicate
+          - fraudulent
+          - requested_by_customer
+          - missing_remittance
+          - overpayment_on_invoice
+          - invoice_was_refunded
+          - double_payment_on_invoice
+          - missing_invoice_in_resolve
+          - credit_transfer
+          - other
+          description: Reason code for the credit note
+        reason_message:
+          type: string
+          example: reason_message
+          description: Reason message for the credit note
+        credit_note_url:
+          type: string
+          example: https://example.com/credit_note_url.pdf
+          description: URL for the publicly-accessible credit note PDF.
     ValidationError:
       type: object
       title: Validation error
@@ -444,23 +433,6 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
     RateLimitError:
       type: object
       title: Rate limit error
@@ -507,23 +479,6 @@ components:
               enum:
               - invalid_request
               example: invalid_request
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
     CreditNote_2:
       type: object
       properties:
@@ -631,6 +586,51 @@ components:
           format: date-time
           example: null
           description: Date the credit note was voided.
+  responses:
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    CreditNoteResponse:
+      description: The credit note object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditNote'
+    CreditNoteListResponse:
+      description: A paginated list of credit notes.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditNoteListResponse'
+    CreditNoteActionResponse:
+      description: An object containing the status of the credit note creation request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditNoteAction'
   requestBodies:
     CreditNoteCreateRequestBody:
       description: Issue a credit note for an invoice.

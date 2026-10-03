@@ -85,6 +85,286 @@ paths:
     - url: https://app-sandbox.resolvepay.com/api
       description: Sandbox server
 components:
+  schemas:
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    WebhookEventSubscriptions:
+      type: object
+      description: Object containing boolean flags for each available webhook event topic. Set to true to subscribe to that event, or false to unsubscribe.
+      properties:
+        invoice.created:
+          type: boolean
+          description: Subscribe to invoice creation events
+          example: true
+        invoice.balance_updated:
+          type: boolean
+          description: Subscribe to invoice balance update events
+          example: false
+        customer.created:
+          type: boolean
+          description: Subscribe to customer creation events
+          example: true
+        customer.status_updated:
+          type: boolean
+          description: Subscribe to customer status update events
+          example: false
+        customer.line_amount_updated:
+          type: boolean
+          description: Subscribe to customer credit line amount update events
+          example: false
+        customer.advance_rate_updated:
+          type: boolean
+          description: Subscribe to customer advance rate update events
+          example: false
+        customer.credit_decision_created:
+          type: boolean
+          description: Subscribe to customer credit decision creation events
+          example: true
+        order.created:
+          type: boolean
+          description: Subscribe to order creation events
+          example: false
+        order.updated:
+          type: boolean
+          description: Subscribe to order update events
+          example: false
+        payment.created:
+          type: boolean
+          description: Subscribe to payment creation events
+          example: true
+        payment.status_changed:
+          type: boolean
+          description: Subscribe to payment status change events
+          example: true
+        payout.created:
+          type: boolean
+          description: Subscribe to payout creation events
+          example: false
+        payout.status_changed:
+          type: boolean
+          description: Subscribe to payout status change events
+          example: false
+      additionalProperties: false
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    WebhookEndpoint:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the webhook endpoint
+          example: whe_abc123def456
+        merchant_id:
+          type: string
+          description: The merchant ID associated with this webhook endpoint
+          example: mer_xyz789
+        endpoint_url:
+          type: string
+          format: uri
+          description: The HTTPS URL where webhook events will be sent
+          example: https://example.com/webhooks/resolve
+        topic:
+          type: object
+          description: The event topic this endpoint is subscribed to
+          properties:
+            name:
+              type: string
+              description: The event topic name
+              example: invoice.created
+            description:
+              type: string
+              description: Human-readable description of the event topic
+              example: Triggered when a new invoice record is created
+        created_at:
+          type: string
+          format: date-time
+          description: When this webhook endpoint subscription was created
+          example: '2021-05-20T09:23:53+00:00'
+        updated_at:
+          type: string
+          format: date-time
+          description: When this webhook endpoint subscription was last updated
+          example: '2021-05-20T09:23:53+00:00'
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    WebhookEventSubscriptions_2:
+      type: object
+      description: Object containing boolean flags for each available webhook event topic. Set to true to subscribe to that event, or false to unsubscribe.
+      properties:
+        invoice.created:
+          type: boolean
+          description: Subscribe to invoice creation events
+          example: true
+        invoice.balance_updated:
+          type: boolean
+          description: Subscribe to invoice balance update events
+          example: false
+        customer.created:
+          type: boolean
+          description: Subscribe to customer creation events
+          example: true
+        customer.status_updated:
+          type: boolean
+          description: Subscribe to customer status update events
+          example: false
+        customer.line_amount_updated:
+          type: boolean
+          description: Subscribe to customer credit line amount update events
+          example: false
+        customer.advance_rate_updated:
+          type: boolean
+          description: Subscribe to customer advance rate update events
+          example: false
+        customer.credit_decision_created:
+          type: boolean
+          description: Subscribe to customer credit decision creation events
+          example: true
+        payment.created:
+          type: boolean
+          description: Subscribe to payment creation events
+          example: true
+        payment.status_changed:
+          type: boolean
+          description: Subscribe to payment status change events
+          example: true
+        payout.created:
+          type: boolean
+          description: Subscribe to payout creation events
+          example: false
+        payout.status_changed:
+          type: boolean
+          description: Subscribe to payout status change events
+          example: false
+        merchant.created:
+          type: boolean
+          description: Subscribe to partner-facing sub-merchant creation events
+          example: true
+        merchant.underwriting_completed:
+          type: boolean
+          description: Subscribe to sub-merchant underwriting completion events
+          example: true
+        merchant.more_info_needed:
+          type: boolean
+          description: Subscribe to sub-merchant underwriting needs-info events
+          example: false
+        merchant.mal_updated:
+          type: boolean
+          description: Subscribe to sub-merchant MAL update events
+          example: false
+      additionalProperties: false
+    WebhookEndpoint_2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the webhook endpoint
+          example: whe_abc123def456
+        merchant_id:
+          type: string
+          description: The partner ID associated with this webhook endpoint
+          example: mer_xyz789
+        endpoint_url:
+          type: string
+          format: uri
+          description: The HTTPS URL where webhook events will be sent
+          example: https://example.com/webhooks/resolve
+        topic:
+          type: object
+          description: The event topic this endpoint is subscribed to
+          properties:
+            name:
+              type: string
+              description: The event topic name
+              example: invoice.created
+            description:
+              type: string
+              description: Human-readable description of the event topic
+              example: Triggered when a new invoice record is created
+        created_at:
+          type: string
+          format: date-time
+          description: When this webhook endpoint subscription was created
+          example: '2021-05-20T09:23:53+00:00'
+        updated_at:
+          type: string
+          format: date-time
+          description: When this webhook endpoint subscription was last updated
+          example: '2021-05-20T09:23:53+00:00'
   responses:
     UnauthorizedResponse:
       description: Unauthorized error
@@ -92,14 +372,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
-    InvalidRequestOrValidationResponse:
-      description: Bad request error
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - $ref: '#/components/schemas/ValidationError'
-            - $ref: '#/components/schemas/InvalidRequestError'
     WebhookResponse:
       description: Successful response with webhook endpoint subscriptions
       content:
@@ -164,6 +436,20 @@ components:
                   description: Triggered when the status of a payment changes
                 created_at: '2021-05-25T14:30:00+00:00'
                 updated_at: '2021-05-25T14:30:00+00:00'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
     WebhookListResponse:
       description: An object with an array of results containing up to the limit. If no subscriptions are found, the results array will be empty.
       content:
@@ -227,12 +513,6 @@ components:
                 page: 1
                 limit: 25
                 results: []
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
     WebhookResponse_2:
       description: Successful response with webhook endpoint subscriptions
       content:
@@ -399,307 +679,7 @@ components:
                 page: 1
                 limit: 25
                 results: []
-  schemas:
-    ValidationError:
-      type: object
-      title: Validation error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Validation error
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - validation_error
-              example: validation_error
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    example: path.to.field
-                    description: Path to the field failed validation
-                  message:
-                    type: string
-                    example: '`[field]` is required'
-                    description: Detailed description of the error
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
-    WebhookEventSubscriptions:
-      type: object
-      description: Object containing boolean flags for each available webhook event topic. Set to true to subscribe to that event, or false to unsubscribe.
-      properties:
-        invoice.created:
-          type: boolean
-          description: Subscribe to invoice creation events
-          example: true
-        invoice.balance_updated:
-          type: boolean
-          description: Subscribe to invoice balance update events
-          example: false
-        customer.created:
-          type: boolean
-          description: Subscribe to customer creation events
-          example: true
-        customer.status_updated:
-          type: boolean
-          description: Subscribe to customer status update events
-          example: false
-        customer.line_amount_updated:
-          type: boolean
-          description: Subscribe to customer credit line amount update events
-          example: false
-        customer.advance_rate_updated:
-          type: boolean
-          description: Subscribe to customer advance rate update events
-          example: false
-        customer.credit_decision_created:
-          type: boolean
-          description: Subscribe to customer credit decision creation events
-          example: true
-        order.created:
-          type: boolean
-          description: Subscribe to order creation events
-          example: false
-        order.updated:
-          type: boolean
-          description: Subscribe to order update events
-          example: false
-        payment.created:
-          type: boolean
-          description: Subscribe to payment creation events
-          example: true
-        payment.status_changed:
-          type: boolean
-          description: Subscribe to payment status change events
-          example: true
-        payout.created:
-          type: boolean
-          description: Subscribe to payout creation events
-          example: false
-        payout.status_changed:
-          type: boolean
-          description: Subscribe to payout status change events
-          example: false
-      additionalProperties: false
-    WebhookEndpoint:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the webhook endpoint
-          example: whe_abc123def456
-        merchant_id:
-          type: string
-          description: The merchant ID associated with this webhook endpoint
-          example: mer_xyz789
-        endpoint_url:
-          type: string
-          format: uri
-          description: The HTTPS URL where webhook events will be sent
-          example: https://example.com/webhooks/resolve
-        topic:
-          type: object
-          description: The event topic this endpoint is subscribed to
-          properties:
-            name:
-              type: string
-              description: The event topic name
-              example: invoice.created
-            description:
-              type: string
-              description: Human-readable description of the event topic
-              example: Triggered when a new invoice record is created
-        created_at:
-          type: string
-          format: date-time
-          description: When this webhook endpoint subscription was created
-          example: '2021-05-20T09:23:53+00:00'
-        updated_at:
-          type: string
-          format: date-time
-          description: When this webhook endpoint subscription was last updated
-          example: '2021-05-20T09:23:53+00:00'
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
-    WebhookEventSubscriptions_2:
-      type: object
-      description: Object containing boolean flags for each available webhook event topic. Set to true to subscribe to that event, or false to unsubscribe.
-      properties:
-        invoice.created:
-          type: boolean
-          description: Subscribe to invoice creation events
-          example: true
-        invoice.balance_updated:
-          type: boolean
-          description: Subscribe to invoice balance update events
-          example: false
-        customer.created:
-          type: boolean
-          description: Subscribe to customer creation events
-          example: true
-        customer.status_updated:
-          type: boolean
-          description: Subscribe to customer status update events
-          example: false
-        customer.line_amount_updated:
-          type: boolean
-          description: Subscribe to customer credit line amount update events
-          example: false
-        customer.advance_rate_updated:
-          type: boolean
-          description: Subscribe to customer advance rate update events
-          example: false
-        customer.credit_decision_created:
-          type: boolean
-          description: Subscribe to customer credit decision creation events
-          example: true
-        payment.created:
-          type: boolean
-          description: Subscribe to payment creation events
-          example: true
-        payment.status_changed:
-          type: boolean
-          description: Subscribe to payment status change events
-          example: true
-        payout.created:
-          type: boolean
-          description: Subscribe to payout creation events
-          example: false
-        payout.status_changed:
-          type: boolean
-          description: Subscribe to payout status change events
-          example: false
-        merchant.created:
-          type: boolean
-          description: Subscribe to partner-facing sub-merchant creation events
-          example: true
-        merchant.underwriting_completed:
-          type: boolean
-          description: Subscribe to sub-merchant underwriting completion events
-          example: true
-        merchant.more_info_needed:
-          type: boolean
-          description: Subscribe to sub-merchant underwriting needs-info events
-          example: false
-        merchant.mal_updated:
-          type: boolean
-          description: Subscribe to sub-merchant MAL update events
-          example: false
-      additionalProperties: false
-    WebhookEndpoint_2:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the webhook endpoint
-          example: whe_abc123def456
-        merchant_id:
-          type: string
-          description: The partner ID associated with this webhook endpoint
-          example: mer_xyz789
-        endpoint_url:
-          type: string
-          format: uri
-          description: The HTTPS URL where webhook events will be sent
-          example: https://example.com/webhooks/resolve
-        topic:
-          type: object
-          description: The event topic this endpoint is subscribed to
-          properties:
-            name:
-              type: string
-              description: The event topic name
-              example: invoice.created
-            description:
-              type: string
-              description: Human-readable description of the event topic
-              example: Triggered when a new invoice record is created
-        created_at:
-          type: string
-          format: date-time
-          description: When this webhook endpoint subscription was created
-          example: '2021-05-20T09:23:53+00:00'
-        updated_at:
-          type: string
-          format: date-time
-          description: When this webhook endpoint subscription was last updated
-          example: '2021-05-20T09:23:53+00:00'
   requestBodies:
-    WebhookDeleteRequestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - endpoint_url
-            properties:
-              endpoint_url:
-                type: string
-                format: uri
-                pattern: ^https://
-                description: The HTTPS URL of the webhook endpoint to delete
-                example: https://example.com/webhooks/resolve
-          examples:
-            basic:
-              summary: Delete a webhook endpoint
-              value:
-                endpoint_url: https://example.com/webhooks/resolve
     WebhookUpsertRequestBody:
       required: true
       content:
@@ -745,6 +725,26 @@ components:
                   payment.status_changed: false
                   payout.created: false
                   payout.status_changed: false
+    WebhookDeleteRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - endpoint_url
+            properties:
+              endpoint_url:
+                type: string
+                format: uri
+                pattern: ^https://
+                description: The HTTPS URL of the webhook endpoint to delete
+                example: https://example.com/webhooks/resolve
+          examples:
+            basic:
+              summary: Delete a webhook endpoint
+              value:
+                endpoint_url: https://example.com/webhooks/resolve
     WebhookUpsertRequestBody_2:
       required: true
       content:
