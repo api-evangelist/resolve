@@ -390,40 +390,7 @@ paths:
     - url: https://app-sandbox.resolvepay.com/api
       description: Sandbox server
 components:
-  requestBodies:
-    CustomerPostRequestBody:
-      description: Customer to add to the system.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CustomerPostRequest'
-    CustomerRequestCreditCheckBody:
-      description: Request a credit check for a customer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CustomerCreditCheckRequest'
-    CustomerPutRequestBody:
-      description: 'Fields to update a customer with.
-
-        '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CustomerPutRequest'
   responses:
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    CustomerResponse:
-      description: An object representing the customer.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Customer'
     CustomerListResponse:
       description: 'An object with an array of results containing up to the limit. If no customers are found, the results array will be empty.
 
@@ -432,12 +399,42 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/CustomerList'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    CustomerResponse:
+      description: An object representing the customer.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Customer'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
     RateLimitResponse:
       description: Rate limit error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RateLimitError'
+    CreditCheckAlreadyExistsResponse:
+      description: Credit check already created for this customer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreditCheckExistsError'
+    UnprocessableEntityResponse:
+      description: Unprocessable entity error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InvalidRequestError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -446,25 +443,65 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
-    CreditCheckAlreadyExistsResponse:
-      description: Credit check already created for this customer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreditCheckExistsError'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
-    UnprocessableEntityResponse:
-      description: Unprocessable entity error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InvalidRequestError'
   schemas:
+    CustomerList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          items:
+            $ref: '#/components/schemas/Customer'
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    CustomerCreditCheckRequest:
+      type: object
+      required:
+      - amount_requested
+      - has_purchase_history
+      properties:
+        amount_requested:
+          type: number
+          example: 50000
+          minimum: 1
+          description: Request an amount (plus buffer) to cover your customer's purchases over their payment term. This can be increased later.
+        business_description:
+          type:
+          - string
+          - 'null'
+          maxLength: 500
+          example: Put a description your customer's business here.
+          description: A description of your customer's business.
+        has_purchase_history:
+          type: boolean
+          example: true
+          description: Indicates whether this customer has prior purchase history with the merchant. When `true`, the merchant has prior purchase history with this customer.
+        has_purchase_terms_history:
+          type: boolean
+          example: false
+          description: Required if `has_purchase_history = true`. Indicates whether this customer has prior purchase history on net terms with the merchant. When `true`, the merchant has prior net terms purchase history with this customer.
     ValidationError:
       type: object
       title: Validation error
@@ -495,35 +532,9 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    CustomerCreditCheckRequest:
+    UnauthorizedError:
       type: object
-      required:
-      - amount_requested
-      - has_purchase_history
-      properties:
-        amount_requested:
-          type: number
-          example: 50000
-          minimum: 1
-          description: Request an amount (plus buffer) to cover your customer's purchases over their payment term. This can be increased later.
-        business_description:
-          type:
-          - string
-          - 'null'
-          maxLength: 500
-          example: Put a description your customer's business here.
-          description: A description of your customer's business.
-        has_purchase_history:
-          type: boolean
-          example: true
-          description: Indicates whether this customer has prior purchase history with the merchant. When `true`, the merchant has prior purchase history with this customer.
-        has_purchase_terms_history:
-          type: boolean
-          example: false
-          description: Required if `has_purchase_history = true`. Indicates whether this customer has prior purchase history on net terms with the merchant. When `true`, the merchant has prior net terms purchase history with this customer.
-    CreditCheckExistsError:
-      type: object
-      title: Credit check exists error
+      title: Unauthorized error
       properties:
         error:
           type: object
@@ -531,13 +542,13 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: Credit check already created for this customer.
+              example: Invalid merchant credentials
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - invalid_request
-              example: invalid_request
+              - authentication_error
+              example: authentication_error
     Customer:
       type: object
       description: 'The customer object represents a company that you do business with. Retrieve a customer to get a summary of their total credit line and available credit balance.
@@ -830,118 +841,6 @@ components:
                 - other
                 example: past_due
                 description: Code indicating reason for hold, if applicable.
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
-    CustomerPutRequest:
-      type: object
-      properties:
-        business_address:
-          type: string
-          example: 111 Main Street
-          description: Street address of the business' primary location.
-        business_city:
-          type: string
-          example: San Francisco
-          description: City of the business' primary location.
-        business_state:
-          type: string
-          example: CA
-          description: State or province of the business' primary location.
-        business_zip:
-          type: string
-          example: '94104'
-          description: US zip code of the business' primary location.
-        business_country:
-          type: string
-          example: US
-          description: Country of the business' primary location.
-        business_ap_email:
-          type: string
-          example: ap@example.com
-          description: Email address of the business' accounts payable person or department.
-        business_ap_phone:
-          type: string
-          example: (202) 456-1414
-          description: Phone number of the business' accounts payable person or department.
-        business_ap_phone_extension:
-          type: string
-          example: '123'
-          description: Phone number extension of the business' accounts payable person or department.
-        business_name:
-          type: string
-          example: Example, Inc.
-          description: Full legal name of the business being applied for.
-        email:
-          type: string
-          format: email
-          example: user@example.com
-          description: Email of the customer applying for terms.
-        default_terms:
-          type:
-          - string
-          - 'null'
-          description: Set default terms that will apply to this customer's invoices. Can be overridden when requesting an advance.
-          enum:
-          - net7
-          - net10
-          - net10th
-          - net15
-          - net20
-          - net30
-          - net45
-          - net60
-          - net75
-          - net90
-          - net120
-          - net180
-          - null
-    CustomerList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          items:
-            $ref: '#/components/schemas/Customer'
     CustomerPostRequest:
       type: object
       required:
@@ -1016,23 +915,6 @@ components:
           - net120
           - net180
           - null
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
     InvalidRequestError:
       type: object
       title: Invalid request error
@@ -1050,6 +932,103 @@ components:
               enum:
               - invalid_request
               example: invalid_request
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    CreditCheckExistsError:
+      type: object
+      title: Credit check exists error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Credit check already created for this customer.
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    CustomerPutRequest:
+      type: object
+      properties:
+        business_address:
+          type: string
+          example: 111 Main Street
+          description: Street address of the business' primary location.
+        business_city:
+          type: string
+          example: San Francisco
+          description: City of the business' primary location.
+        business_state:
+          type: string
+          example: CA
+          description: State or province of the business' primary location.
+        business_zip:
+          type: string
+          example: '94104'
+          description: US zip code of the business' primary location.
+        business_country:
+          type: string
+          example: US
+          description: Country of the business' primary location.
+        business_ap_email:
+          type: string
+          example: ap@example.com
+          description: Email address of the business' accounts payable person or department.
+        business_ap_phone:
+          type: string
+          example: (202) 456-1414
+          description: Phone number of the business' accounts payable person or department.
+        business_ap_phone_extension:
+          type: string
+          example: '123'
+          description: Phone number extension of the business' accounts payable person or department.
+        business_name:
+          type: string
+          example: Example, Inc.
+          description: Full legal name of the business being applied for.
+        email:
+          type: string
+          format: email
+          example: user@example.com
+          description: Email of the customer applying for terms.
+        default_terms:
+          type:
+          - string
+          - 'null'
+          description: Set default terms that will apply to this customer's invoices. Can be overridden when requesting an advance.
+          enum:
+          - net7
+          - net10
+          - net10th
+          - net15
+          - net20
+          - net30
+          - net45
+          - net60
+          - net75
+          - net90
+          - net120
+          - net180
+          - null
     CustomerCreditCheckRequest_2:
       type: object
       required:
@@ -1378,75 +1357,6 @@ components:
                 - other
                 example: past_due
                 description: Code indicating reason for hold, if applicable.
-    CustomerPutRequest_2:
-      type: object
-      properties:
-        external_id:
-          type:
-          - string
-          - 'null'
-          example: CUS-123456
-          description: Optional customer identifier from your system.
-        business_address:
-          type: string
-          example: 111 Main Street
-          description: Street address of the business' primary location.
-        business_city:
-          type: string
-          example: San Francisco
-          description: City of the business' primary location.
-        business_state:
-          type: string
-          example: CA
-          description: State or province of the business' primary location.
-        business_zip:
-          type: string
-          example: '94104'
-          description: US zip code of the business' primary location.
-        business_country:
-          type: string
-          example: US
-          description: Country of the business' primary location.
-        business_ap_email:
-          type: string
-          example: ap@example.com
-          description: Email address of the business' accounts payable person or department.
-        business_ap_phone:
-          type: string
-          example: (202) 456-1414
-          description: Phone number of the business' accounts payable person or department.
-        business_ap_phone_extension:
-          type: string
-          example: '123'
-          description: Phone number extension of the business' accounts payable person or department.
-        business_name:
-          type: string
-          example: Example, Inc.
-          description: Full legal name of the business being applied for.
-        email:
-          type: string
-          format: email
-          example: user@example.com
-          description: Email of the customer applying for terms.
-        default_terms:
-          type:
-          - string
-          - 'null'
-          description: Set default terms that will apply to this customer's invoices. Can be overridden when requesting an advance.
-          enum:
-          - net7
-          - net10
-          - net10th
-          - net15
-          - net20
-          - net30
-          - net45
-          - net60
-          - net75
-          - net90
-          - net120
-          - net180
-          - null
     CustomerPostRequest_2:
       type: object
       required:
@@ -1531,6 +1441,96 @@ components:
           - net120
           - net180
           - null
+    CustomerPutRequest_2:
+      type: object
+      properties:
+        external_id:
+          type:
+          - string
+          - 'null'
+          example: CUS-123456
+          description: Optional customer identifier from your system.
+        business_address:
+          type: string
+          example: 111 Main Street
+          description: Street address of the business' primary location.
+        business_city:
+          type: string
+          example: San Francisco
+          description: City of the business' primary location.
+        business_state:
+          type: string
+          example: CA
+          description: State or province of the business' primary location.
+        business_zip:
+          type: string
+          example: '94104'
+          description: US zip code of the business' primary location.
+        business_country:
+          type: string
+          example: US
+          description: Country of the business' primary location.
+        business_ap_email:
+          type: string
+          example: ap@example.com
+          description: Email address of the business' accounts payable person or department.
+        business_ap_phone:
+          type: string
+          example: (202) 456-1414
+          description: Phone number of the business' accounts payable person or department.
+        business_ap_phone_extension:
+          type: string
+          example: '123'
+          description: Phone number extension of the business' accounts payable person or department.
+        business_name:
+          type: string
+          example: Example, Inc.
+          description: Full legal name of the business being applied for.
+        email:
+          type: string
+          format: email
+          example: user@example.com
+          description: Email of the customer applying for terms.
+        default_terms:
+          type:
+          - string
+          - 'null'
+          description: Set default terms that will apply to this customer's invoices. Can be overridden when requesting an advance.
+          enum:
+          - net7
+          - net10
+          - net10th
+          - net15
+          - net20
+          - net30
+          - net45
+          - net60
+          - net75
+          - net90
+          - net120
+          - net180
+          - null
+  requestBodies:
+    CustomerPutRequestBody:
+      description: 'Fields to update a customer with.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerPutRequest'
+    CustomerPostRequestBody:
+      description: Customer to add to the system.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerPostRequest'
+    CustomerRequestCreditCheckBody:
+      description: Request a credit check for a customer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerCreditCheckRequest'
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.

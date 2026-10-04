@@ -85,10 +85,448 @@ paths:
     - url: https://app-sandbox.resolvepay.com/api
       description: Sandbox server
 components:
+  requestBodies:
+    WebhookDeleteRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - endpoint_url
+            properties:
+              endpoint_url:
+                type: string
+                format: uri
+                pattern: ^https://
+                description: The HTTPS URL of the webhook endpoint to delete
+                example: https://example.com/webhooks/resolve
+          examples:
+            basic:
+              summary: Delete a webhook endpoint
+              value:
+                endpoint_url: https://example.com/webhooks/resolve
+    WebhookUpsertRequestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - endpoint_url
+            - events
+            properties:
+              endpoint_url:
+                type: string
+                format: uri
+                pattern: ^https://
+                description: The HTTPS URL where webhook events will be sent. Must use HTTPS protocol.
+                example: https://example.com/webhooks/resolve
+              events:
+                $ref: '#/components/schemas/WebhookEventSubscriptions'
+          examples:
+            basic:
+              summary: Subscribe to specific events
+              value:
+                endpoint_url: https://example.com/webhooks/resolve
+                events:
+                  invoice.created: true
+                  invoice.balance_updated: true
+                  customer.created: true
+                  customer.credit_decision_created: true
+            unsubscribe:
+              summary: Unsubscribe from specific events
+              description: Update an existing endpoint to unsubscribe from certain event types by setting them to false. Only events set to true will remain active.
+              value:
+                endpoint_url: https://example.com/webhooks/resolve
+                events:
+                  invoice.created: true
+                  invoice.balance_updated: false
+                  customer.created: true
+                  customer.status_updated: false
+                  customer.line_amount_updated: false
+                  customer.advance_rate_updated: false
+                  customer.credit_decision_created: false
+                  payment.created: false
+                  payment.status_changed: false
+                  payout.created: false
+                  payout.status_changed: false
+    WebhookUpsertRequestBody_2:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+            - endpoint_url
+            - events
+            properties:
+              endpoint_url:
+                type: string
+                format: uri
+                pattern: ^https://
+                description: The HTTPS URL where webhook events will be sent. Must use HTTPS protocol.
+                example: https://example.com/webhooks/resolve
+              events:
+                $ref: '#/components/schemas/WebhookEventSubscriptions_2'
+          examples:
+            basic:
+              summary: Subscribe to specific events
+              value:
+                endpoint_url: https://example.com/webhooks/resolve
+                events:
+                  invoice.created: true
+                  invoice.balance_updated: true
+                  customer.created: true
+                  customer.credit_decision_created: true
+            partner_merchant_events:
+              summary: Subscribe to partner merchant lifecycle events
+              value:
+                endpoint_url: https://example.com/webhooks/resolve
+                events:
+                  merchant.created: true
+                  merchant.underwriting_completed: true
+                  merchant.more_info_needed: true
+                  merchant.mal_updated: true
+            unsubscribe:
+              summary: Unsubscribe from specific events
+              description: Update an existing endpoint to unsubscribe from certain event types by setting them to false. Only events set to true will remain active.
+              value:
+                endpoint_url: https://example.com/webhooks/resolve
+                events:
+                  invoice.created: true
+                  invoice.balance_updated: false
+                  customer.created: true
+                  customer.status_updated: false
+                  customer.line_amount_updated: false
+                  customer.advance_rate_updated: false
+                  customer.credit_decision_created: false
+                  payment.created: false
+                  payment.status_changed: false
+                  payout.created: false
+                  payout.status_changed: false
+                  merchant.created: false
+                  merchant.underwriting_completed: false
+                  merchant.more_info_needed: false
+                  merchant.mal_updated: false
+  responses:
+    WebhookListResponse:
+      description: An object with an array of results containing up to the limit. If no subscriptions are found, the results array will be empty.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+                description: Total number of webhook endpoint subscriptions
+                example: 3
+              page:
+                type: integer
+                description: Current page number
+                example: 1
+              limit:
+                type: integer
+                description: Number of results per page
+                example: 25
+              results:
+                type: array
+                description: Array of webhook endpoint objects. Each object represents one endpoint-topic subscription. If an endpoint is subscribed to multiple topics, it will appear multiple times in the array.
+                items:
+                  $ref: '#/components/schemas/WebhookEndpoint'
+          examples:
+            multiple_endpoints:
+              summary: Response with multiple webhook endpoint subscriptions
+              value:
+                count: 3
+                page: 1
+                limit: 25
+                results:
+                - id: whe_abc123def456
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://example.com/webhooks/resolve
+                  topic:
+                    name: invoice.created
+                    description: Triggered when a new invoice record is created
+                  created_at: '2021-05-20T09:23:53+00:00'
+                  updated_at: '2021-05-20T09:23:53+00:00'
+                - id: whe_def456ghi789
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://example.com/webhooks/resolve
+                  topic:
+                    name: customer.created
+                    description: Triggered when a new customer record is created
+                  created_at: '2021-05-20T09:23:53+00:00'
+                  updated_at: '2021-05-20T09:23:53+00:00'
+                - id: whe_ghi789jkl012
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://api.example.com/resolve-events
+                  topic:
+                    name: payout.created
+                    description: Triggered when a new payout record is created
+                  created_at: '2021-05-21T10:30:00+00:00'
+                  updated_at: '2021-05-21T10:30:00+00:00'
+            empty_list:
+              summary: Response with no webhook endpoints configured
+              value:
+                count: 0
+                page: 1
+                limit: 25
+                results: []
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    WebhookResponse:
+      description: Successful response with webhook endpoint subscriptions
+      content:
+        application/json:
+          schema:
+            type: array
+            description: Array of webhook endpoint objects. Each object represents one endpoint-topic subscription created or updated.
+            items:
+              $ref: '#/components/schemas/WebhookEndpoint'
+          examples:
+            created:
+              summary: Newly created webhook endpoint subscriptions
+              value:
+              - id: whe_abc123def456
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: invoice.created
+                  description: Triggered when a new invoice record is created
+                created_at: '2021-05-20T09:23:53+00:00'
+                updated_at: '2021-05-20T09:23:53+00:00'
+              - id: whe_def456ghi789
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: invoice.balance_updated
+                  description: Triggered when the outstanding balance of an invoice changes
+                created_at: '2021-05-20T09:23:53+00:00'
+                updated_at: '2021-05-20T09:23:53+00:00'
+              - id: whe_ghi789jkl012
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: customer.created
+                  description: Triggered when a new customer record is created
+                created_at: '2021-05-20T09:23:53+00:00'
+                updated_at: '2021-05-20T09:23:53+00:00'
+            updated:
+              summary: Updated webhook endpoint with new event subscriptions
+              value:
+              - id: whe_abc123def456
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: invoice.created
+                  description: Triggered when a new invoice record is created
+                created_at: '2021-05-20T09:23:53+00:00'
+                updated_at: '2021-05-25T14:30:00+00:00'
+              - id: whe_mno123pqr456
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: payment.created
+                  description: Triggered when a new payment is created
+                created_at: '2021-05-25T14:30:00+00:00'
+                updated_at: '2021-05-25T14:30:00+00:00'
+              - id: whe_stu789vwx012
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: payment.status_changed
+                  description: Triggered when the status of a payment changes
+                created_at: '2021-05-25T14:30:00+00:00'
+                updated_at: '2021-05-25T14:30:00+00:00'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
+    WebhookListResponse_2:
+      description: An object with an array of results containing up to the limit. If no subscriptions are found, the results array will be empty.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              count:
+                type: integer
+                description: Total number of webhook endpoint subscriptions
+                example: 3
+              page:
+                type: integer
+                description: Current page number
+                example: 1
+              limit:
+                type: integer
+                description: Number of results per page
+                example: 25
+              results:
+                type: array
+                description: Array of webhook endpoint objects. Each object represents one endpoint-topic subscription. If an endpoint is subscribed to multiple topics, it will appear multiple times in the array.
+                items:
+                  $ref: '#/components/schemas/WebhookEndpoint_2'
+          examples:
+            multiple_endpoints:
+              summary: Response with multiple webhook endpoint subscriptions
+              value:
+                count: 3
+                page: 1
+                limit: 25
+                results:
+                - id: whe_abc123def456
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://example.com/webhooks/resolve
+                  topic:
+                    name: invoice.created
+                    description: Triggered when a new invoice record is created
+                  created_at: '2021-05-20T09:23:53+00:00'
+                  updated_at: '2021-05-20T09:23:53+00:00'
+                - id: whe_def456ghi789
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://example.com/webhooks/resolve
+                  topic:
+                    name: customer.created
+                    description: Triggered when a new customer record is created
+                  created_at: '2021-05-20T09:23:53+00:00'
+                  updated_at: '2021-05-20T09:23:53+00:00'
+                - id: whe_ghi789jkl012
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://api.example.com/resolve-events
+                  topic:
+                    name: payout.created
+                    description: Triggered when a new payout record is created
+                  created_at: '2021-05-21T10:30:00+00:00'
+                  updated_at: '2021-05-21T10:30:00+00:00'
+            partner_merchant_events:
+              summary: Response with partner merchant webhook subscriptions
+              value:
+                count: 4
+                page: 1
+                limit: 25
+                results:
+                - id: whe_mer123abc456
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://example.com/webhooks/resolve
+                  topic:
+                    name: merchant.created
+                    description: Triggered when a partner creates a new merchant record.
+                  created_at: '2026-03-13T12:00:00+00:00'
+                  updated_at: '2026-03-13T12:00:00+00:00'
+                - id: whe_mer123abc457
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://example.com/webhooks/resolve
+                  topic:
+                    name: merchant.underwriting_completed
+                    description: Triggered when a merchant underwriting decision is completed.
+                  created_at: '2026-03-13T12:00:00+00:00'
+                  updated_at: '2026-03-13T12:00:00+00:00'
+                - id: whe_mer123abc458
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://example.com/webhooks/resolve
+                  topic:
+                    name: merchant.more_info_needed
+                    description: Triggered when merchant underwriting status changes to needs info.
+                  created_at: '2026-03-13T12:00:00+00:00'
+                  updated_at: '2026-03-13T12:00:00+00:00'
+                - id: whe_mer123abc459
+                  merchant_id: mer_xyz789
+                  endpoint_url: https://example.com/webhooks/resolve
+                  topic:
+                    name: merchant.mal_updated
+                    description: Triggered when a merchant approved limit (MAL) changes.
+                  created_at: '2026-03-13T12:00:00+00:00'
+                  updated_at: '2026-03-13T12:00:00+00:00'
+            empty_list:
+              summary: Response with no webhook endpoints configured
+              value:
+                count: 0
+                page: 1
+                limit: 25
+                results: []
+    WebhookResponse_2:
+      description: Successful response with webhook endpoint subscriptions
+      content:
+        application/json:
+          schema:
+            type: array
+            description: Array of webhook endpoint objects. Each object represents one endpoint-topic subscription created or updated.
+            items:
+              $ref: '#/components/schemas/WebhookEndpoint_2'
+          examples:
+            created:
+              summary: Newly created webhook endpoint subscriptions
+              value:
+              - id: whe_abc123def456
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: invoice.created
+                  description: Triggered when a new invoice record is created
+                created_at: '2021-05-20T09:23:53+00:00'
+                updated_at: '2021-05-20T09:23:53+00:00'
+              - id: whe_def456ghi789
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: invoice.balance_updated
+                  description: Triggered when the outstanding balance of an invoice changes
+                created_at: '2021-05-20T09:23:53+00:00'
+                updated_at: '2021-05-20T09:23:53+00:00'
+              - id: whe_ghi789jkl012
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: customer.created
+                  description: Triggered when a new customer record is created
+                created_at: '2021-05-20T09:23:53+00:00'
+                updated_at: '2021-05-20T09:23:53+00:00'
+            updated:
+              summary: Updated webhook endpoint with new event subscriptions
+              value:
+              - id: whe_abc123def456
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: invoice.created
+                  description: Triggered when a new invoice record is created
+                created_at: '2021-05-20T09:23:53+00:00'
+                updated_at: '2021-05-25T14:30:00+00:00'
+              - id: whe_mno123pqr456
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: payment.created
+                  description: Triggered when a new payment is created
+                created_at: '2021-05-25T14:30:00+00:00'
+                updated_at: '2021-05-25T14:30:00+00:00'
+              - id: whe_stu789vwx012
+                merchant_id: mer_xyz789
+                endpoint_url: https://example.com/webhooks/resolve
+                topic:
+                  name: merchant.underwriting_completed
+                  description: Triggered when a merchant underwriting decision is completed.
+                created_at: '2021-05-25T14:30:00+00:00'
+                updated_at: '2021-05-25T14:30:00+00:00'
   schemas:
-    UnauthorizedError:
+    InvalidRequestError:
       type: object
-      title: Unauthorized error
+      title: Invalid request error
       properties:
         error:
           type: object
@@ -96,43 +534,13 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: Invalid merchant credentials
+              example: '[Invalid request message]'
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - authentication_error
-              example: authentication_error
-    ValidationError:
-      type: object
-      title: Validation error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Validation error
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - validation_error
-              example: validation_error
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    example: path.to.field
-                    description: Path to the field failed validation
-                  message:
-                    type: string
-                    example: '`[field]` is required'
-                    description: Detailed description of the error
+              - invalid_request
+              example: invalid_request
     WebhookEventSubscriptions:
       type: object
       description: Object containing boolean flags for each available webhook event topic. Set to true to subscribe to that event, or false to unsubscribe.
@@ -190,6 +598,53 @@ components:
           description: Subscribe to payout status change events
           example: false
       additionalProperties: false
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     RateLimitError:
       type: object
       title: Rate limit error
@@ -245,23 +700,6 @@ components:
           format: date-time
           description: When this webhook endpoint subscription was last updated
           example: '2021-05-20T09:23:53+00:00'
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
     WebhookEventSubscriptions_2:
       type: object
       description: Object containing boolean flags for each available webhook event topic. Set to true to subscribe to that event, or false to unsubscribe.
@@ -365,444 +803,6 @@ components:
           format: date-time
           description: When this webhook endpoint subscription was last updated
           example: '2021-05-20T09:23:53+00:00'
-  responses:
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    WebhookResponse:
-      description: Successful response with webhook endpoint subscriptions
-      content:
-        application/json:
-          schema:
-            type: array
-            description: Array of webhook endpoint objects. Each object represents one endpoint-topic subscription created or updated.
-            items:
-              $ref: '#/components/schemas/WebhookEndpoint'
-          examples:
-            created:
-              summary: Newly created webhook endpoint subscriptions
-              value:
-              - id: whe_abc123def456
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: invoice.created
-                  description: Triggered when a new invoice record is created
-                created_at: '2021-05-20T09:23:53+00:00'
-                updated_at: '2021-05-20T09:23:53+00:00'
-              - id: whe_def456ghi789
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: invoice.balance_updated
-                  description: Triggered when the outstanding balance of an invoice changes
-                created_at: '2021-05-20T09:23:53+00:00'
-                updated_at: '2021-05-20T09:23:53+00:00'
-              - id: whe_ghi789jkl012
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: customer.created
-                  description: Triggered when a new customer record is created
-                created_at: '2021-05-20T09:23:53+00:00'
-                updated_at: '2021-05-20T09:23:53+00:00'
-            updated:
-              summary: Updated webhook endpoint with new event subscriptions
-              value:
-              - id: whe_abc123def456
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: invoice.created
-                  description: Triggered when a new invoice record is created
-                created_at: '2021-05-20T09:23:53+00:00'
-                updated_at: '2021-05-25T14:30:00+00:00'
-              - id: whe_mno123pqr456
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: payment.created
-                  description: Triggered when a new payment is created
-                created_at: '2021-05-25T14:30:00+00:00'
-                updated_at: '2021-05-25T14:30:00+00:00'
-              - id: whe_stu789vwx012
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: payment.status_changed
-                  description: Triggered when the status of a payment changes
-                created_at: '2021-05-25T14:30:00+00:00'
-                updated_at: '2021-05-25T14:30:00+00:00'
-    InvalidRequestOrValidationResponse:
-      description: Bad request error
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - $ref: '#/components/schemas/ValidationError'
-            - $ref: '#/components/schemas/InvalidRequestError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    WebhookListResponse:
-      description: An object with an array of results containing up to the limit. If no subscriptions are found, the results array will be empty.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              count:
-                type: integer
-                description: Total number of webhook endpoint subscriptions
-                example: 3
-              page:
-                type: integer
-                description: Current page number
-                example: 1
-              limit:
-                type: integer
-                description: Number of results per page
-                example: 25
-              results:
-                type: array
-                description: Array of webhook endpoint objects. Each object represents one endpoint-topic subscription. If an endpoint is subscribed to multiple topics, it will appear multiple times in the array.
-                items:
-                  $ref: '#/components/schemas/WebhookEndpoint'
-          examples:
-            multiple_endpoints:
-              summary: Response with multiple webhook endpoint subscriptions
-              value:
-                count: 3
-                page: 1
-                limit: 25
-                results:
-                - id: whe_abc123def456
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://example.com/webhooks/resolve
-                  topic:
-                    name: invoice.created
-                    description: Triggered when a new invoice record is created
-                  created_at: '2021-05-20T09:23:53+00:00'
-                  updated_at: '2021-05-20T09:23:53+00:00'
-                - id: whe_def456ghi789
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://example.com/webhooks/resolve
-                  topic:
-                    name: customer.created
-                    description: Triggered when a new customer record is created
-                  created_at: '2021-05-20T09:23:53+00:00'
-                  updated_at: '2021-05-20T09:23:53+00:00'
-                - id: whe_ghi789jkl012
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://api.example.com/resolve-events
-                  topic:
-                    name: payout.created
-                    description: Triggered when a new payout record is created
-                  created_at: '2021-05-21T10:30:00+00:00'
-                  updated_at: '2021-05-21T10:30:00+00:00'
-            empty_list:
-              summary: Response with no webhook endpoints configured
-              value:
-                count: 0
-                page: 1
-                limit: 25
-                results: []
-    WebhookResponse_2:
-      description: Successful response with webhook endpoint subscriptions
-      content:
-        application/json:
-          schema:
-            type: array
-            description: Array of webhook endpoint objects. Each object represents one endpoint-topic subscription created or updated.
-            items:
-              $ref: '#/components/schemas/WebhookEndpoint_2'
-          examples:
-            created:
-              summary: Newly created webhook endpoint subscriptions
-              value:
-              - id: whe_abc123def456
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: invoice.created
-                  description: Triggered when a new invoice record is created
-                created_at: '2021-05-20T09:23:53+00:00'
-                updated_at: '2021-05-20T09:23:53+00:00'
-              - id: whe_def456ghi789
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: invoice.balance_updated
-                  description: Triggered when the outstanding balance of an invoice changes
-                created_at: '2021-05-20T09:23:53+00:00'
-                updated_at: '2021-05-20T09:23:53+00:00'
-              - id: whe_ghi789jkl012
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: customer.created
-                  description: Triggered when a new customer record is created
-                created_at: '2021-05-20T09:23:53+00:00'
-                updated_at: '2021-05-20T09:23:53+00:00'
-            updated:
-              summary: Updated webhook endpoint with new event subscriptions
-              value:
-              - id: whe_abc123def456
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: invoice.created
-                  description: Triggered when a new invoice record is created
-                created_at: '2021-05-20T09:23:53+00:00'
-                updated_at: '2021-05-25T14:30:00+00:00'
-              - id: whe_mno123pqr456
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: payment.created
-                  description: Triggered when a new payment is created
-                created_at: '2021-05-25T14:30:00+00:00'
-                updated_at: '2021-05-25T14:30:00+00:00'
-              - id: whe_stu789vwx012
-                merchant_id: mer_xyz789
-                endpoint_url: https://example.com/webhooks/resolve
-                topic:
-                  name: merchant.underwriting_completed
-                  description: Triggered when a merchant underwriting decision is completed.
-                created_at: '2021-05-25T14:30:00+00:00'
-                updated_at: '2021-05-25T14:30:00+00:00'
-    WebhookListResponse_2:
-      description: An object with an array of results containing up to the limit. If no subscriptions are found, the results array will be empty.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              count:
-                type: integer
-                description: Total number of webhook endpoint subscriptions
-                example: 3
-              page:
-                type: integer
-                description: Current page number
-                example: 1
-              limit:
-                type: integer
-                description: Number of results per page
-                example: 25
-              results:
-                type: array
-                description: Array of webhook endpoint objects. Each object represents one endpoint-topic subscription. If an endpoint is subscribed to multiple topics, it will appear multiple times in the array.
-                items:
-                  $ref: '#/components/schemas/WebhookEndpoint_2'
-          examples:
-            multiple_endpoints:
-              summary: Response with multiple webhook endpoint subscriptions
-              value:
-                count: 3
-                page: 1
-                limit: 25
-                results:
-                - id: whe_abc123def456
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://example.com/webhooks/resolve
-                  topic:
-                    name: invoice.created
-                    description: Triggered when a new invoice record is created
-                  created_at: '2021-05-20T09:23:53+00:00'
-                  updated_at: '2021-05-20T09:23:53+00:00'
-                - id: whe_def456ghi789
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://example.com/webhooks/resolve
-                  topic:
-                    name: customer.created
-                    description: Triggered when a new customer record is created
-                  created_at: '2021-05-20T09:23:53+00:00'
-                  updated_at: '2021-05-20T09:23:53+00:00'
-                - id: whe_ghi789jkl012
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://api.example.com/resolve-events
-                  topic:
-                    name: payout.created
-                    description: Triggered when a new payout record is created
-                  created_at: '2021-05-21T10:30:00+00:00'
-                  updated_at: '2021-05-21T10:30:00+00:00'
-            partner_merchant_events:
-              summary: Response with partner merchant webhook subscriptions
-              value:
-                count: 4
-                page: 1
-                limit: 25
-                results:
-                - id: whe_mer123abc456
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://example.com/webhooks/resolve
-                  topic:
-                    name: merchant.created
-                    description: Triggered when a partner creates a new merchant record.
-                  created_at: '2026-03-13T12:00:00+00:00'
-                  updated_at: '2026-03-13T12:00:00+00:00'
-                - id: whe_mer123abc457
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://example.com/webhooks/resolve
-                  topic:
-                    name: merchant.underwriting_completed
-                    description: Triggered when a merchant underwriting decision is completed.
-                  created_at: '2026-03-13T12:00:00+00:00'
-                  updated_at: '2026-03-13T12:00:00+00:00'
-                - id: whe_mer123abc458
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://example.com/webhooks/resolve
-                  topic:
-                    name: merchant.more_info_needed
-                    description: Triggered when merchant underwriting status changes to needs info.
-                  created_at: '2026-03-13T12:00:00+00:00'
-                  updated_at: '2026-03-13T12:00:00+00:00'
-                - id: whe_mer123abc459
-                  merchant_id: mer_xyz789
-                  endpoint_url: https://example.com/webhooks/resolve
-                  topic:
-                    name: merchant.mal_updated
-                    description: Triggered when a merchant approved limit (MAL) changes.
-                  created_at: '2026-03-13T12:00:00+00:00'
-                  updated_at: '2026-03-13T12:00:00+00:00'
-            empty_list:
-              summary: Response with no webhook endpoints configured
-              value:
-                count: 0
-                page: 1
-                limit: 25
-                results: []
-  requestBodies:
-    WebhookUpsertRequestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - endpoint_url
-            - events
-            properties:
-              endpoint_url:
-                type: string
-                format: uri
-                pattern: ^https://
-                description: The HTTPS URL where webhook events will be sent. Must use HTTPS protocol.
-                example: https://example.com/webhooks/resolve
-              events:
-                $ref: '#/components/schemas/WebhookEventSubscriptions'
-          examples:
-            basic:
-              summary: Subscribe to specific events
-              value:
-                endpoint_url: https://example.com/webhooks/resolve
-                events:
-                  invoice.created: true
-                  invoice.balance_updated: true
-                  customer.created: true
-                  customer.credit_decision_created: true
-            unsubscribe:
-              summary: Unsubscribe from specific events
-              description: Update an existing endpoint to unsubscribe from certain event types by setting them to false. Only events set to true will remain active.
-              value:
-                endpoint_url: https://example.com/webhooks/resolve
-                events:
-                  invoice.created: true
-                  invoice.balance_updated: false
-                  customer.created: true
-                  customer.status_updated: false
-                  customer.line_amount_updated: false
-                  customer.advance_rate_updated: false
-                  customer.credit_decision_created: false
-                  payment.created: false
-                  payment.status_changed: false
-                  payout.created: false
-                  payout.status_changed: false
-    WebhookDeleteRequestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - endpoint_url
-            properties:
-              endpoint_url:
-                type: string
-                format: uri
-                pattern: ^https://
-                description: The HTTPS URL of the webhook endpoint to delete
-                example: https://example.com/webhooks/resolve
-          examples:
-            basic:
-              summary: Delete a webhook endpoint
-              value:
-                endpoint_url: https://example.com/webhooks/resolve
-    WebhookUpsertRequestBody_2:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-            - endpoint_url
-            - events
-            properties:
-              endpoint_url:
-                type: string
-                format: uri
-                pattern: ^https://
-                description: The HTTPS URL where webhook events will be sent. Must use HTTPS protocol.
-                example: https://example.com/webhooks/resolve
-              events:
-                $ref: '#/components/schemas/WebhookEventSubscriptions_2'
-          examples:
-            basic:
-              summary: Subscribe to specific events
-              value:
-                endpoint_url: https://example.com/webhooks/resolve
-                events:
-                  invoice.created: true
-                  invoice.balance_updated: true
-                  customer.created: true
-                  customer.credit_decision_created: true
-            partner_merchant_events:
-              summary: Subscribe to partner merchant lifecycle events
-              value:
-                endpoint_url: https://example.com/webhooks/resolve
-                events:
-                  merchant.created: true
-                  merchant.underwriting_completed: true
-                  merchant.more_info_needed: true
-                  merchant.mal_updated: true
-            unsubscribe:
-              summary: Unsubscribe from specific events
-              description: Update an existing endpoint to unsubscribe from certain event types by setting them to false. Only events set to true will remain active.
-              value:
-                endpoint_url: https://example.com/webhooks/resolve
-                events:
-                  invoice.created: true
-                  invoice.balance_updated: false
-                  customer.created: true
-                  customer.status_updated: false
-                  customer.line_amount_updated: false
-                  customer.advance_rate_updated: false
-                  customer.credit_decision_created: false
-                  payment.created: false
-                  payment.status_changed: false
-                  payout.created: false
-                  payout.status_changed: false
-                  merchant.created: false
-                  merchant.underwriting_completed: false
-                  merchant.more_info_needed: false
-                  merchant.mal_updated: false
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.

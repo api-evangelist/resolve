@@ -267,122 +267,7 @@ paths:
       tags:
       - Orders
 components:
-  responses:
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    OrderResponse:
-      description: An object representing an order.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Order'
-    InvalidRequestOrValidationResponse:
-      description: Bad request error
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - $ref: '#/components/schemas/ValidationError'
-            - $ref: '#/components/schemas/InvalidRequestError'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
-    OrderListResponse:
-      description: A paginated list of orders.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/OrderListResponse'
   schemas:
-    OrderCreateRequest:
-      type: object
-      required:
-      - amount
-      - customer_id
-      - line_items
-      properties:
-        amount:
-          type: number
-          format: double
-          minimum: 0
-          example: 1000
-          description: Amount to authorize for the order in USD.
-        customer_id:
-          type: string
-          example: X50sgfRd
-          description: Unique identifier of the customer placing the order.
-        line_items:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OrderLineItem'
-          description: Line items for the order. At least one item is required.
-        order_number:
-          type: string
-          example: '5055'
-          description: Your internal order number.
-        po_number:
-          type: string
-          example: PO-555
-          description: Purchase order number.
-        advance_requested:
-          type: boolean
-          example: false
-          description: Whether to request an advance on this order.
-        source:
-          type: string
-          example: checkout
-          description: Source channel creating the order.
-        metadata:
-          type: object
-          additionalProperties: true
-          example:
-            internal_ref: ref-001
-          description: Custom metadata to attach to the order.
-    OrderCaptureRequest:
-      type: object
-      required:
-      - amount
-      - idempotency_key
-      properties:
-        amount:
-          type: number
-          format: double
-          minimum: 0
-          example: 500
-          description: Amount to capture in USD. Must not exceed the remaining authorized amount.
-        idempotency_key:
-          type: string
-          example: capture-2024-001
-          description: Unique key to ensure idempotent capture requests.
-        number:
-          type: string
-          example: inv_100001
-          description: Invoice or shipment number for this capture.
-        merchant_invoice_url:
-          type: string
-          format: uri
-          example: https://example.com/invoice.pdf
-          description: URL of the merchant invoice PDF. Provide either this or `line_items`, not both.
-        line_items:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OrderLineItem'
-          description: Line items for this capture. Provide either this or `merchant_invoice_url`, not both.
     OrderListItem:
       type: object
       properties:
@@ -467,6 +352,60 @@ components:
           description: Timestamp when the order was last updated.
         customer:
           $ref: '#/components/schemas/OrderCustomer'
+    OrderCustomer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: X50sgfRd
+          description: Unique identifier of the customer.
+        name:
+          type: string
+          example: Acme Corp
+          description: Business name of the customer.
+        remaining_credit:
+          type: number
+          format: double
+          example: 5000
+          description: Remaining available credit for the customer in USD.
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    OrderCaptureEvent:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          example: 500
+          description: Amount captured in this capture event in USD.
+        idempotency_key:
+          type: string
+          example: capture-2024-001
+          description: Idempotency key used for this capture.
+        processed_at:
+          type: string
+          format: date-time
+          example: '2024-01-15T10:00:00.000Z'
+          description: Timestamp when this capture was processed.
+        invoice_id:
+          type: string
+          example: INabc123
+          description: ID of the merchant invoice associated with this capture.
     ValidationError:
       type: object
       title: Validation error
@@ -497,55 +436,6 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    OrderCustomer:
-      type: object
-      properties:
-        id:
-          type: string
-          example: X50sgfRd
-          description: Unique identifier of the customer.
-        name:
-          type: string
-          example: Acme Corp
-          description: Business name of the customer.
-        remaining_credit:
-          type: number
-          format: double
-          example: 5000
-          description: Remaining available credit for the customer in USD.
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
-    OrderListResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 100
-        page:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderListItem'
     UnauthorizedError:
       type: object
       title: Unauthorized error
@@ -563,30 +453,6 @@ components:
               enum:
               - authentication_error
               example: authentication_error
-    OrderUpdateRequest:
-      type: object
-      minProperties: 1
-      properties:
-        amount:
-          type: number
-          format: double
-          minimum: 0
-          example: 1200
-          description: Updated authorization amount in USD.
-        order_number:
-          type: string
-          example: '5055'
-          description: Updated internal order number.
-        po_number:
-          type: string
-          example: PO-555
-          description: Updated purchase order number.
-        line_items:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/OrderLineItem'
-          description: Updated line items for the order.
     OrderLineItem:
       type: object
       additionalProperties: true
@@ -622,27 +488,30 @@ components:
           format: double
           example: 8.5
           description: Tax amount for this line item in USD.
-    OrderCaptureEvent:
+    OrderUpdateRequest:
       type: object
+      minProperties: 1
       properties:
         amount:
           type: number
           format: double
-          example: 500
-          description: Amount captured in this capture event in USD.
-        idempotency_key:
+          minimum: 0
+          example: 1200
+          description: Updated authorization amount in USD.
+        order_number:
           type: string
-          example: capture-2024-001
-          description: Idempotency key used for this capture.
-        processed_at:
+          example: '5055'
+          description: Updated internal order number.
+        po_number:
           type: string
-          format: date-time
-          example: '2024-01-15T10:00:00.000Z'
-          description: Timestamp when this capture was processed.
-        invoice_id:
-          type: string
-          example: INabc123
-          description: ID of the merchant invoice associated with this capture.
+          example: PO-555
+          description: Updated purchase order number.
+        line_items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+          description: Updated line items for the order.
     Order:
       type: object
       properties:
@@ -732,23 +601,37 @@ components:
           description: Timestamp when the order was last updated.
         customer:
           $ref: '#/components/schemas/OrderCustomer'
-    RateLimitError:
+    OrderCaptureRequest:
       type: object
-      title: Rate limit error
+      required:
+      - amount
+      - idempotency_key
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          example: 500
+          description: Amount to capture in USD. Must not exceed the remaining authorized amount.
+        idempotency_key:
+          type: string
+          example: capture-2024-001
+          description: Unique key to ensure idempotent capture requests.
+        number:
+          type: string
+          example: inv_100001
+          description: Invoice or shipment number for this capture.
+        merchant_invoice_url:
+          type: string
+          format: uri
+          example: https://example.com/invoice.pdf
+          description: URL of the merchant invoice PDF. Provide either this or `line_items`, not both.
+        line_items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+          description: Line items for this capture. Provide either this or `merchant_invoice_url`, not both.
     InvalidRequestError:
       type: object
       title: Invalid request error
@@ -766,6 +649,123 @@ components:
               enum:
               - invalid_request
               example: invalid_request
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    OrderListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 100
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderListItem'
+    OrderCreateRequest:
+      type: object
+      required:
+      - amount
+      - customer_id
+      - line_items
+      properties:
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          example: 1000
+          description: Amount to authorize for the order in USD.
+        customer_id:
+          type: string
+          example: X50sgfRd
+          description: Unique identifier of the customer placing the order.
+        line_items:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/OrderLineItem'
+          description: Line items for the order. At least one item is required.
+        order_number:
+          type: string
+          example: '5055'
+          description: Your internal order number.
+        po_number:
+          type: string
+          example: PO-555
+          description: Purchase order number.
+        advance_requested:
+          type: boolean
+          example: false
+          description: Whether to request an advance on this order.
+        source:
+          type: string
+          example: checkout
+          description: Source channel creating the order.
+        metadata:
+          type: object
+          additionalProperties: true
+          example:
+            internal_ref: ref-001
+          description: Custom metadata to attach to the order.
+  responses:
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    OrderResponse:
+      description: An object representing an order.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Order'
+    OrderListResponse:
+      description: A paginated list of orders.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OrderListResponse'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
   requestBodies:
     OrderUpdateRequestBody:
       description: Fields to update on an authorized order. At least one field must be provided.

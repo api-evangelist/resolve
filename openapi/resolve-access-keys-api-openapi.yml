@@ -47,23 +47,6 @@ paths:
       description: Sandbox server
 components:
   schemas:
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
     ForbiddenError:
       type: object
       title: Forbidden error
@@ -79,6 +62,23 @@ components:
               type: string
               description: A short string, describing error type
               example: forbidden_error
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
     ValidationError:
       type: object
       title: Validation error
@@ -109,6 +109,53 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
+    IssueAccessKeyTokenRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - client_id
+      - client_secret
+      properties:
+        client_id:
+          type: string
+          description: OAuth access key client ID returned when the access key was created.
+        client_secret:
+          type: string
+          description: OAuth access key client secret returned when the access key was created or rotated.
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     RateLimitError:
       type: object
       title: Rate limit error
@@ -147,54 +194,19 @@ components:
           type: string
           description: Space-delimited scopes granted to the token.
           example: merchant:read merchant:write
-    IssueAccessKeyTokenRequest:
-      type: object
-      additionalProperties: false
-      required:
-      - client_id
-      - client_secret
-      properties:
-        client_id:
-          type: string
-          description: OAuth access key client ID returned when the access key was created.
-        client_secret:
-          type: string
-          description: OAuth access key client secret returned when the access key was created or rotated.
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
   responses:
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
     AccessKeyTokenResponse:
       description: Successfully minted bearer token
       content:
@@ -208,18 +220,18 @@ components:
                 token_type: Bearer
                 expires_in: 86400
                 scope: merchant:read merchant:write
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
     ForbiddenResponse:
       description: Forbidden error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ForbiddenError'
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -228,18 +240,6 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
   requestBodies:
     IssueAccessKeyTokenRequestBody:
       required: true

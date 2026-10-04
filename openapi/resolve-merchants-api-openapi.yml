@@ -573,62 +573,80 @@ paths:
       - Merchants
 components:
   responses:
+    MerchantListResponse:
+      description: Paginated list of merchants.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MerchantList'
+          examples:
+            merchantList:
+              summary: List merchant response with pagination metadata
+              value:
+                count: 2
+                page: 1
+                limit: 25
+                results:
+                - id: mrc_alpha123456789
+                  legal_business_name: Alpha Supply LLC
+                  dba_name: Alpha DBA
+                  business_address:
+                    line1: 100 Main St
+                    city: Austin
+                    state: TX
+                    postal_code: '78701'
+                    country: US
+                  business_email: ops@alpha.example.com
+                  business_phone: '+15125550100'
+                  entity_type: llc
+                  formation_state: TX
+                  industry: Manufacturing
+                  website: https://alpha.example.com
+                  underwriting_status: completed
+                  seller_amount_approved: 12500
+                  active_subscription:
+                    id: sub_alpha123456789
+                    tier: free
+                  metadata:
+                    partner_ref: alpha-001
+                  created_at: '2026-03-11T10:00:00.000Z'
+                  updated_at: '2026-03-11T10:00:00.000Z'
+                - id: mrc_beta1234567890
+                  legal_business_name: Beta Goods Inc
+                  dba_name: null
+                  business_address:
+                    line1: 200 Beta Blvd
+                    city: Denver
+                    state: CO
+                    postal_code: '80202'
+                    country: US
+                  business_email: ops@beta.example.com
+                  business_phone: '+13035550100'
+                  entity_type: corporation
+                  formation_state: DE
+                  industry: Distribution
+                  website: https://beta.example.com
+                  underwriting_status: pending
+                  seller_amount_approved: 0
+                  active_subscription:
+                    id: sub_beta1234567890
+                    tier: free
+                  metadata:
+                    partner_ref: beta-001
+                  created_at: '2026-03-11T11:00:00.000Z'
+                  updated_at: '2026-03-11T11:00:00.000Z'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
     UnauthorizedResponse:
       description: Unauthorized error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
-    CreateMerchantDocumentResponse:
-      description: Successful response with merchant document upload/download initiation details.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MerchantDocumentUploadRequestObject'
-          examples:
-            presignedUpload:
-              summary: Presigned upload response
-              value:
-                id: md_1234567890abcdef
-                document_id: md_1234567890abcdef
-                document_type: bank_statements
-                status: pending_upload
-                upload_url: https://resolve-document-validation-uploads-dev.s3.amazonaws.com/merchant/mrc_123/document/md_123/bank_statement_2026_01.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&...
-                upload_expires_at: '2026-02-26T18:35:00.000Z'
-                object_key: merchant/mrc_123/document/md_1234567890abcdef/bank_statement_2026_01.pdf
-                transfer_method: presigned_upload
-                queue_dispatch_status: null
-                upload_headers:
-                  x-amz-meta-validation_profile: merchant_underwriting_document_default
-                  x-amz-meta-callback_domain: overcommunicative-unriotously-alaina.ngrok-free.dev
-                  x-amz-meta-callback_url: https://overcommunicative-unriotously-alaina.ngrok-free.dev/api/internal/document-validation/completed
-                validation_profile: merchant_underwriting_document_default
-            downloadUrl:
-              summary: Queued download response
-              value:
-                id: md_1234567890abcdef
-                document_id: md_1234567890abcdef
-                document_type: financial_statements
-                status: pending_upload
-                upload_url: null
-                upload_expires_at: null
-                object_key: merchant/mrc_123/document/md_1234567890abcdef/financials_q4_2025.pdf
-                transfer_method: download_url
-                queue_dispatch_status: queued
-                validation_profile: merchant_underwriting_document_default
-            failedDownloadDispatch:
-              summary: Download URL dispatch failed after persistence
-              value:
-                id: md_1234567890abcdef
-                document_id: md_1234567890abcdef
-                document_type: financial_statements
-                status: failed
-                upload_url: null
-                upload_expires_at: null
-                object_key: merchant/mrc_123/document/md_1234567890abcdef/financials_q4_2025.pdf
-                transfer_method: download_url
-                queue_dispatch_status: failed
-                validation_profile: merchant_underwriting_document_default
     MerchantResponse:
       description: A merchant object.
       content:
@@ -700,68 +718,6 @@ components:
                     status: failed
                     error_code: DOCUMENT_DISPATCH_FAILED
                     error_message: queue unavailable
-    MerchantListResponse:
-      description: Paginated list of merchants.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/MerchantList'
-          examples:
-            merchantList:
-              summary: List merchant response with pagination metadata
-              value:
-                count: 2
-                page: 1
-                limit: 25
-                results:
-                - id: mrc_alpha123456789
-                  legal_business_name: Alpha Supply LLC
-                  dba_name: Alpha DBA
-                  business_address:
-                    line1: 100 Main St
-                    city: Austin
-                    state: TX
-                    postal_code: '78701'
-                    country: US
-                  business_email: ops@alpha.example.com
-                  business_phone: '+15125550100'
-                  entity_type: llc
-                  formation_state: TX
-                  industry: Manufacturing
-                  website: https://alpha.example.com
-                  underwriting_status: completed
-                  seller_amount_approved: 12500
-                  active_subscription:
-                    id: sub_alpha123456789
-                    tier: free
-                  metadata:
-                    partner_ref: alpha-001
-                  created_at: '2026-03-11T10:00:00.000Z'
-                  updated_at: '2026-03-11T10:00:00.000Z'
-                - id: mrc_beta1234567890
-                  legal_business_name: Beta Goods Inc
-                  dba_name: null
-                  business_address:
-                    line1: 200 Beta Blvd
-                    city: Denver
-                    state: CO
-                    postal_code: '80202'
-                    country: US
-                  business_email: ops@beta.example.com
-                  business_phone: '+13035550100'
-                  entity_type: corporation
-                  formation_state: DE
-                  industry: Distribution
-                  website: https://beta.example.com
-                  underwriting_status: pending
-                  seller_amount_approved: 0
-                  active_subscription:
-                    id: sub_beta1234567890
-                    tier: free
-                  metadata:
-                    partner_ref: beta-001
-                  created_at: '2026-03-11T11:00:00.000Z'
-                  updated_at: '2026-03-11T11:00:00.000Z'
     RateLimitResponse:
       description: Rate limit error
       content:
@@ -803,6 +759,56 @@ components:
                   object_key: merchant/mrc_123/document/md_abcdef1234567890/financials_q4_2025.pdf
                   created_at: '2026-02-26T10:01:00.000Z'
                   updated_at: '2026-02-26T10:06:40.000Z'
+    CreateMerchantDocumentResponse:
+      description: Successful response with merchant document upload/download initiation details.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MerchantDocumentUploadRequestObject'
+          examples:
+            presignedUpload:
+              summary: Presigned upload response
+              value:
+                id: md_1234567890abcdef
+                document_id: md_1234567890abcdef
+                document_type: bank_statements
+                status: pending_upload
+                upload_url: https://resolve-document-validation-uploads-dev.s3.amazonaws.com/merchant/mrc_123/document/md_123/bank_statement_2026_01.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&...
+                upload_expires_at: '2026-02-26T18:35:00.000Z'
+                object_key: merchant/mrc_123/document/md_1234567890abcdef/bank_statement_2026_01.pdf
+                transfer_method: presigned_upload
+                queue_dispatch_status: null
+                upload_headers:
+                  x-amz-meta-validation_profile: merchant_underwriting_document_default
+                  x-amz-meta-callback_domain: overcommunicative-unriotously-alaina.ngrok-free.dev
+                  x-amz-meta-callback_url: https://overcommunicative-unriotously-alaina.ngrok-free.dev/api/internal/document-validation/completed
+                validation_profile: merchant_underwriting_document_default
+            downloadUrl:
+              summary: Queued download response
+              value:
+                id: md_1234567890abcdef
+                document_id: md_1234567890abcdef
+                document_type: financial_statements
+                status: pending_upload
+                upload_url: null
+                upload_expires_at: null
+                object_key: merchant/mrc_123/document/md_1234567890abcdef/financials_q4_2025.pdf
+                transfer_method: download_url
+                queue_dispatch_status: queued
+                validation_profile: merchant_underwriting_document_default
+            failedDownloadDispatch:
+              summary: Download URL dispatch failed after persistence
+              value:
+                id: md_1234567890abcdef
+                document_id: md_1234567890abcdef
+                document_type: financial_statements
+                status: failed
+                upload_url: null
+                upload_expires_at: null
+                object_key: merchant/mrc_123/document/md_1234567890abcdef/financials_q4_2025.pdf
+                transfer_method: download_url
+                queue_dispatch_status: failed
+                validation_profile: merchant_underwriting_document_default
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -811,84 +817,7 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
   schemas:
-    DocumentIngestionResult:
-      type: object
-      description: 'Inline document dispatch result for merchant create/update responses.
-
-        Post-commit queue dispatch failures are surfaced here as `failed` items without rolling back the merchant write.
-
-        '
-      properties:
-        document_id:
-          type:
-          - string
-          - 'null'
-          example: md_1234567890abcdef
-        document_type:
-          type: string
-          enum:
-          - bank_statements
-          - financial_statements
-          - credit_references
-          - personal_guarantee
-          - other
-        filename:
-          type: string
-        download_url:
-          type: string
-          format: uri
-        status:
-          type: string
-          enum:
-          - queued
-          - failed
-        error_code:
-          type:
-          - string
-          - 'null'
-        error_message:
-          type:
-          - string
-          - 'null'
-    DocumentIngestionSummary:
-      type: object
-      properties:
-        requested_count:
-          type: integer
-          example: 2
-        queued_count:
-          type: integer
-          example: 1
-        failed_count:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentIngestionResult'
-    MerchantList:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 2
-        page:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Merchant'
     MerchantDocumentUploadRequestObject:
       type: object
       properties:
@@ -983,6 +912,141 @@ components:
           enum:
           - merchant_underwriting_document_default
           example: merchant_underwriting_document_default
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    InlineDocumentDownloadRequest:
+      type: object
+      required:
+      - filename
+      - filetype
+      - download_url
+      properties:
+        filename:
+          type: string
+          description: 'Original filename for the remote file.
+
+            The filename must include an extension, and that extension must match `filetype`.
+
+            '
+          example: bank_statement_2026_01.pdf
+        filetype:
+          type: string
+          description: 'MIME type for the remote file.
+
+            Must be a supported MIME type for the merchant underwriting document validation profile.
+
+            '
+          example: application/pdf
+        download_url:
+          type: string
+          format: uri
+          description: Remote file URL. Only `http` and `https` URLs are accepted.
+          example: https://partner-files.example.com/bank_statement_2026_01.pdf
+    Merchant:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 'Resolve merchant identifier (lowercase alphanumeric).
+
+
+            For partner API create flows, ID assignment behavior is:
+
+            - Resolve may derive a human-friendly alphanumeric candidate from merchant naming fields.
+
+            - If the candidate collides with an existing merchant ID, Resolve generates a random lowercase alphanumeric ID.
+
+            '
+          example: mrc_1234567890abcdef
+        legal_business_name:
+          type: string
+          example: Acme Supply LLC
+        dba_name:
+          type:
+          - string
+          - 'null'
+          example: Acme Industrial
+        business_address:
+          $ref: '#/components/schemas/Address'
+        business_email:
+          type: string
+          format: email
+          example: ops@acmesupply.com
+        business_phone:
+          type: string
+          example: '+15125550123'
+        entity_type:
+          type: string
+          enum:
+          - corporation
+          - llc
+          - sole_proprietorship
+          - partnership
+          - non_profit
+          example: llc
+        formation_state:
+          type: string
+          example: TX
+        industry:
+          type:
+          - string
+          - 'null'
+          example: Manufacturing
+        website:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: https://acmesupply.com
+        underwriting_status:
+          type: string
+          description: Current underwriting lifecycle status for the merchant.
+          example: pending
+        seller_amount_approved:
+          type:
+          - integer
+          - 'null'
+          description: Merchant approved limit (MAL), when available.
+          example: 50000
+        active_subscription:
+          type:
+          - object
+          - 'null'
+          properties:
+            id:
+              type: string
+              example: sub_1234567890abcdef
+            tier:
+              type: string
+              example: trial
+        metadata:
+          type: object
+          additionalProperties: true
+        document_ingestion:
+          $ref: '#/components/schemas/DocumentIngestionSummary'
+        created_at:
+          type: string
+          format: date-time
+          example: '2026-02-26T10:00:00.000Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2026-02-26T10:05:00.000Z'
     ValidationError:
       type: object
       title: Validation error
@@ -1013,6 +1077,81 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+    DocumentIngestionResult:
+      type: object
+      description: 'Inline document dispatch result for merchant create/update responses.
+
+        Post-commit queue dispatch failures are surfaced here as `failed` items without rolling back the merchant write.
+
+        '
+      properties:
+        document_id:
+          type:
+          - string
+          - 'null'
+          example: md_1234567890abcdef
+        document_type:
+          type: string
+          enum:
+          - bank_statements
+          - financial_statements
+          - credit_references
+          - personal_guarantee
+          - other
+        filename:
+          type: string
+        download_url:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum:
+          - queued
+          - failed
+        error_code:
+          type:
+          - string
+          - 'null'
+        error_message:
+          type:
+          - string
+          - 'null'
+    AuthorizedSigner:
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: Jane
+        last_name:
+          type: string
+          example: Doe
+        email:
+          type: string
+          format: email
+          example: jane.doe@acmesupply.com
+        title:
+          type: string
+          example: Controller
+        phone:
+          type: string
+          example: '+15125550123'
     BeneficialOwner:
       type: object
       required:
@@ -1045,114 +1184,7 @@ components:
           minimum: 0
           maximum: 100
           example: 35
-    UpdateMerchantRequest:
-      type: object
-      description: 'All fields are optional for update requests.
-
-
-        For merchants whose latest underwriting decision has been finalized, updates to core legal/identity/banking
-
-        fields may be blocked.
-
-        '
-      properties:
-        legal_business_name:
-          type: string
-        business_address:
-          $ref: '#/components/schemas/Address'
-        business_email:
-          type: string
-          format: email
-        business_phone:
-          type: string
-          description: Business phone number. Must be a valid US phone number and is normalized to E.164.
-        entity_type:
-          type: string
-          enum:
-          - corporation
-          - llc
-          - sole_proprietorship
-          - partnership
-          - non_profit
-        formation_state:
-          type: string
-          description: Business formation state. Must map to a valid US state and is normalized to the state code.
-        ein:
-          type: string
-          description: Employer Identification Number. Must be a valid EIN format.
-        dba_name:
-          type: string
-        annual_revenue:
-          type: integer
-        years_in_business:
-          type: integer
-          minimum: 0
-        industry:
-          type: string
-        business_description:
-          type: string
-        website:
-          type: string
-          format: uri
-        estimated_monthly_net_terms_volume:
-          type: integer
-        existing_net_terms_info:
-          type: object
-          additionalProperties: true
-        beneficial_owners:
-          type: array
-          description: Beneficial owner records. Existing owner records are not editable after underwriting is complete.
-          items:
-            $ref: '#/components/schemas/BeneficialOwner'
-        additional_beneficial_owners:
-          type: array
-          description: Add-only beneficial owner records for post-underwriting updates.
-          items:
-            $ref: '#/components/schemas/BeneficialOwner'
-        authorized_signer:
-          $ref: '#/components/schemas/AuthorizedSigner'
-        plaid_access_token:
-          type: string
-          description: Plaid access token for connected banking data.
-        bank_account_number:
-          type: string
-          description: Bank account number. Must satisfy Resolve account-number validation.
-        bank_routing_number:
-          type: string
-          description: ABA routing number. Must be a valid routing number.
-        metadata:
-          type: object
-          additionalProperties: true
-        bank_statements:
-          type: array
-          description: 'Optional document ingestion on merchant update.
-
-            Each item queues a background download job (equivalent to calling the document endpoint with `download_url`).
-
-            '
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-        financial_statements:
-          type: array
-          description: Optional inline `financial_statements` document ingestion requests.
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-        credit_references:
-          type: array
-          description: Optional inline `credit_references` document ingestion requests.
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-        personal_guarantee:
-          type: array
-          description: Optional inline `personal_guarantee` document ingestion requests.
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-        other_documents:
-          type: array
-          description: Optional inline `other` document ingestion requests.
-          items:
-            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-    MerchantDocumentList:
+    MerchantList:
       type: object
       properties:
         count:
@@ -1167,24 +1199,52 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/MerchantDocument'
-    NotFoundError:
+            $ref: '#/components/schemas/Merchant'
+    Address:
       type: object
-      title: Not found error
+      required:
+      - line1
+      - city
+      - state
+      - postal_code
+      - country
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
+        line1:
+          type: string
+          example: 100 Main St
+        line2:
+          type:
+          - string
+          - 'null'
+          example: Suite 200
+        city:
+          type: string
+          example: Austin
+        state:
+          type: string
+          example: TX
+        postal_code:
+          type: string
+          example: '78701'
+        country:
+          type: string
+          example: US
+    DocumentIngestionSummary:
+      type: object
+      properties:
+        requested_count:
+          type: integer
+          example: 2
+        queued_count:
+          type: integer
+          example: 1
+        failed_count:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentIngestionResult'
     CreateMerchantDocumentRequest:
       type: object
       required:
@@ -1227,52 +1287,6 @@ components:
 
             '
           example: https://partner-files.example.com/bank_statement_2026_01.pdf
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
-    Address:
-      type: object
-      required:
-      - line1
-      - city
-      - state
-      - postal_code
-      - country
-      properties:
-        line1:
-          type: string
-          example: 100 Main St
-        line2:
-          type:
-          - string
-          - 'null'
-          example: Suite 200
-        city:
-          type: string
-          example: Austin
-        state:
-          type: string
-          example: TX
-        postal_code:
-          type: string
-          example: '78701'
-        country:
-          type: string
-          example: US
     CreateMerchantRequest:
       type: object
       required:
@@ -1400,25 +1414,39 @@ components:
           description: Optional inline `other` document ingestion requests.
           items:
             $ref: '#/components/schemas/InlineDocumentDownloadRequest'
-    AuthorizedSigner:
+    MerchantDocumentList:
       type: object
       properties:
-        first_name:
-          type: string
-          example: Jane
-        last_name:
-          type: string
-          example: Doe
-        email:
-          type: string
-          format: email
-          example: jane.doe@acmesupply.com
-        title:
-          type: string
-          example: Controller
-        phone:
-          type: string
-          example: '+15125550123'
+        count:
+          type: integer
+          example: 2
+        page:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MerchantDocument'
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
     MerchantDocument:
       type: object
       description: Merchant document metadata and validation lifecycle status.
@@ -1480,37 +1508,9 @@ components:
           type: string
           format: date-time
           example: '2026-02-26T10:06:40.000Z'
-    InlineDocumentDownloadRequest:
+    NotFoundError:
       type: object
-      required:
-      - filename
-      - filetype
-      - download_url
-      properties:
-        filename:
-          type: string
-          description: 'Original filename for the remote file.
-
-            The filename must include an extension, and that extension must match `filetype`.
-
-            '
-          example: bank_statement_2026_01.pdf
-        filetype:
-          type: string
-          description: 'MIME type for the remote file.
-
-            Must be a supported MIME type for the merchant underwriting document validation profile.
-
-            '
-          example: application/pdf
-        download_url:
-          type: string
-          format: uri
-          description: Remote file URL. Only `http` and `https` URLs are accepted.
-          example: https://partner-files.example.com/bank_statement_2026_01.pdf
-    RateLimitError:
-      type: object
-      title: Rate limit error
+      title: Not found error
       properties:
         error:
           type: object
@@ -1518,46 +1518,34 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: Too many requests
+              example: '[entity] not found'
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - rate_limit_error
-              example: rate_limit_error
-    Merchant:
+              - not_found_error
+              example: not_found_error
+    UpdateMerchantRequest:
       type: object
+      description: 'All fields are optional for update requests.
+
+
+        For merchants whose latest underwriting decision has been finalized, updates to core legal/identity/banking
+
+        fields may be blocked.
+
+        '
       properties:
-        id:
-          type: string
-          description: 'Resolve merchant identifier (lowercase alphanumeric).
-
-
-            For partner API create flows, ID assignment behavior is:
-
-            - Resolve may derive a human-friendly alphanumeric candidate from merchant naming fields.
-
-            - If the candidate collides with an existing merchant ID, Resolve generates a random lowercase alphanumeric ID.
-
-            '
-          example: mrc_1234567890abcdef
         legal_business_name:
           type: string
-          example: Acme Supply LLC
-        dba_name:
-          type:
-          - string
-          - 'null'
-          example: Acme Industrial
         business_address:
           $ref: '#/components/schemas/Address'
         business_email:
           type: string
           format: email
-          example: ops@acmesupply.com
         business_phone:
           type: string
-          example: '+15125550123'
+          description: Business phone number. Must be a valid US phone number and is normalized to E.164.
         entity_type:
           type: string
           enum:
@@ -1566,73 +1554,113 @@ components:
           - sole_proprietorship
           - partnership
           - non_profit
-          example: llc
         formation_state:
           type: string
-          example: TX
-        industry:
-          type:
-          - string
-          - 'null'
-          example: Manufacturing
-        website:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: https://acmesupply.com
-        underwriting_status:
+          description: Business formation state. Must map to a valid US state and is normalized to the state code.
+        ein:
           type: string
-          description: Current underwriting lifecycle status for the merchant.
-          example: pending
-        seller_amount_approved:
-          type:
-          - integer
-          - 'null'
-          description: Merchant approved limit (MAL), when available.
-          example: 50000
-        active_subscription:
-          type:
-          - object
-          - 'null'
-          properties:
-            id:
-              type: string
-              example: sub_1234567890abcdef
-            tier:
-              type: string
-              example: trial
+          description: Employer Identification Number. Must be a valid EIN format.
+        dba_name:
+          type: string
+        annual_revenue:
+          type: integer
+        years_in_business:
+          type: integer
+          minimum: 0
+        industry:
+          type: string
+        business_description:
+          type: string
+        website:
+          type: string
+          format: uri
+        estimated_monthly_net_terms_volume:
+          type: integer
+        existing_net_terms_info:
+          type: object
+          additionalProperties: true
+        beneficial_owners:
+          type: array
+          description: Beneficial owner records. Existing owner records are not editable after underwriting is complete.
+          items:
+            $ref: '#/components/schemas/BeneficialOwner'
+        additional_beneficial_owners:
+          type: array
+          description: Add-only beneficial owner records for post-underwriting updates.
+          items:
+            $ref: '#/components/schemas/BeneficialOwner'
+        authorized_signer:
+          $ref: '#/components/schemas/AuthorizedSigner'
+        plaid_access_token:
+          type: string
+          description: Plaid access token for connected banking data.
+        bank_account_number:
+          type: string
+          description: Bank account number. Must satisfy Resolve account-number validation.
+        bank_routing_number:
+          type: string
+          description: ABA routing number. Must be a valid routing number.
         metadata:
           type: object
           additionalProperties: true
-        document_ingestion:
-          $ref: '#/components/schemas/DocumentIngestionSummary'
-        created_at:
-          type: string
-          format: date-time
-          example: '2026-02-26T10:00:00.000Z'
-        updated_at:
-          type: string
-          format: date-time
-          example: '2026-02-26T10:05:00.000Z'
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
+        bank_statements:
+          type: array
+          description: 'Optional document ingestion on merchant update.
+
+            Each item queues a background download job (equivalent to calling the document endpoint with `download_url`).
+
+            '
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
+        financial_statements:
+          type: array
+          description: Optional inline `financial_statements` document ingestion requests.
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
+        credit_references:
+          type: array
+          description: Optional inline `credit_references` document ingestion requests.
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
+        personal_guarantee:
+          type: array
+          description: Optional inline `personal_guarantee` document ingestion requests.
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
+        other_documents:
+          type: array
+          description: Optional inline `other` document ingestion requests.
+          items:
+            $ref: '#/components/schemas/InlineDocumentDownloadRequest'
   requestBodies:
+    UpdateMerchantRequest:
+      description: Request body for updating a partner sub-merchant.
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateMerchantRequest'
+          examples:
+            updateAllowedFields:
+              summary: Update merchant fields
+              value:
+                dba_name: Acme Industrial
+                business_description: Industrial hardware distributor
+                estimated_monthly_net_terms_volume: 350000
+                metadata:
+                  account_owner: partnerships-team
+            withInlineDocuments:
+              summary: Update merchant with inline document URL ingestion
+              value:
+                dba_name: Acme Industrial
+                bank_statements:
+                - filename: bank_statement_2026_02.pdf
+                  filetype: application/pdf
+                  download_url: https://partner-files.example.com/bank_statement_2026_02.pdf
+                other_documents:
+                - filename: updated_customer_reference.pdf
+                  filetype: application/pdf
+                  download_url: https://partner-files.example.com/updated_customer_reference.pdf
     CreateMerchantRequest:
       description: Request body for creating a partner sub-merchant.
       required: true
@@ -1716,34 +1744,6 @@ components:
                 filename: financials_q4_2025.pdf
                 filetype: application/pdf
                 download_url: https://partner-files.example.com/financials_q4_2025.pdf
-    UpdateMerchantRequest:
-      description: Request body for updating a partner sub-merchant.
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateMerchantRequest'
-          examples:
-            updateAllowedFields:
-              summary: Update merchant fields
-              value:
-                dba_name: Acme Industrial
-                business_description: Industrial hardware distributor
-                estimated_monthly_net_terms_volume: 350000
-                metadata:
-                  account_owner: partnerships-team
-            withInlineDocuments:
-              summary: Update merchant with inline document URL ingestion
-              value:
-                dba_name: Acme Industrial
-                bank_statements:
-                - filename: bank_statement_2026_02.pdf
-                  filetype: application/pdf
-                  download_url: https://partner-files.example.com/bank_statement_2026_02.pdf
-                other_documents:
-                - filename: updated_customer_reference.pdf
-                  filetype: application/pdf
-                  download_url: https://partner-files.example.com/updated_customer_reference.pdf
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.

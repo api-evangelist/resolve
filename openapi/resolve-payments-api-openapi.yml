@@ -157,10 +157,49 @@ paths:
     - url: https://app-sandbox.resolvepay.com/api
       description: Sandbox server
 components:
+  responses:
+    PaymentResponse:
+      description: An object representing a payment.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Payment'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    PaymentListResponse:
+      description: A paginated list of payments.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentListResponse'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
   schemas:
-    UnauthorizedError:
+    InvalidRequestError:
       type: object
-      title: Unauthorized error
+      title: Invalid request error
       properties:
         error:
           type: object
@@ -168,29 +207,13 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: Invalid merchant credentials
+              example: '[Invalid request message]'
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - authentication_error
-              example: authentication_error
-    PaymentListResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Payment'
+              - invalid_request
+              example: invalid_request
     ValidationError:
       type: object
       title: Validation error
@@ -357,9 +380,9 @@ components:
           type: string
           example: null
           description: ID of the user who created the payment, if applicable.
-    RateLimitError:
+    UnauthorizedError:
       type: object
-      title: Rate limit error
+      title: Unauthorized error
       properties:
         error:
           type: object
@@ -367,30 +390,13 @@ components:
             message:
               type: string
               description: A short string, describing error details
-              example: Too many requests
+              example: Invalid merchant credentials
             type:
               type: string
               description: A short string, describing error type
               enum:
-              - rate_limit_error
-              example: rate_limit_error
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
+              - authentication_error
+              example: authentication_error
     NotFoundError:
       type: object
       title: Not found error
@@ -408,22 +414,39 @@ components:
               enum:
               - not_found_error
               example: not_found_error
-    PaymentCreateRequest:
+    RateLimitError:
       type: object
-      required:
-      - invoice_id
-      - amount
+      title: Rate limit error
       properties:
-        invoice_id:
-          type: string
-          example: PMMlaE5wbg0
-          description: ID of the invoice to create a payment for. The invoice must belong to one of your sub-merchants and must be sent.
-        amount:
-          type: number
-          format: double
-          example: 1000.5
-          description: Payment amount in dollars. Must be greater than zero and must not exceed the invoice's outstanding balance.
-          exclusiveMinimum: 0
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    PaymentListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
     Payment_2:
       type: object
       properties:
@@ -564,45 +587,22 @@ components:
           type: string
           example: null
           description: ID of the user who created the payment, if applicable.
-  responses:
-    PaymentListResponse:
-      description: A paginated list of payments.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentListResponse'
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    InvalidRequestOrValidationResponse:
-      description: Bad request error
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - $ref: '#/components/schemas/ValidationError'
-            - $ref: '#/components/schemas/InvalidRequestError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
-    PaymentResponse:
-      description: An object representing a payment.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Payment'
+    PaymentCreateRequest:
+      type: object
+      required:
+      - invoice_id
+      - amount
+      properties:
+        invoice_id:
+          type: string
+          example: PMMlaE5wbg0
+          description: ID of the invoice to create a payment for. The invoice must belong to one of your sub-merchants and must be sent.
+        amount:
+          type: number
+          format: double
+          example: 1000.5
+          description: Payment amount in dollars. Must be greater than zero and must not exceed the invoice's outstanding balance.
+          exclusiveMinimum: 0
   requestBodies:
     PaymentCreateRequestBody:
       description: Create a forwarded payment for a sub-merchant's invoice.

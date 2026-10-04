@@ -253,6 +253,53 @@ paths:
       description: Sandbox server
 components:
   schemas:
+    InvalidRequestError:
+      type: object
+      title: Invalid request error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[Invalid request message]'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - invalid_request
+              example: invalid_request
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
     UnauthorizedError:
       type: object
       title: Unauthorized error
@@ -270,31 +317,93 @@ components:
               enum:
               - authentication_error
               example: authentication_error
-    ShipmentFile:
+    ShipmentCreateRequest:
       type: object
       required:
-      - url
-      - size
+      - merchant_invoice_id
       properties:
-        url:
+        merchant_invoice_id:
           type: string
-          format: uri
-          description: S3 URL of the uploaded file obtained after uploading to the signed URL from `/shipments/sign-upload`.
-          example: https://bucket.s3.amazonaws.com/1234567890-document.pdf
-        size:
-          type: integer
-          description: File size in bytes.
-          example: 204800
-        metadata:
-          type: object
-          description: Optional metadata about the file.
-          properties:
-            original_filename:
-              type: string
-              description: Original filename before upload.
-              example: proof_of_delivery.pdf
+          description: ID of the merchant invoice this shipment belongs to.
+          example: inv_1234567890abcdef
+        fulfillment_method:
+          type: string
+          description: 'Method of fulfillment for the shipment. Determines what additional fields are required:
+
+            - `shipping_provider`: Requires `shipment_tracking_number` and `shipment_courier`. File is not allowed.
+
+            - `self_delivery`, `customer_pickup`, `services_only`: Require a `file`. Tracking number and courier are optional.
+
+            '
+          enum:
+          - shipping_provider
+          - self_delivery
+          - customer_pickup
+          - services_only
+          default: shipping_provider
+          example: shipping_provider
+        shipment_tracking_number:
+          type: string
+          description: Tracking number (required when fulfillment_method is shipping_provider, optional otherwise).
+          example: 1Z123E45678901234
+        shipment_courier:
+          type: string
+          description: 'Shipping courier (required when fulfillment_method is shipping_provider, optional otherwise). While any value can be accepted, instant verification is supported for specific couriers.
+
+
+            See the [Shipments API documentation](#tag/Shipments) for the complete list of supported couriers.
+
+            '
+          example: ups
+        file:
+          $ref: '#/components/schemas/ShipmentFile'
+          description: 'Proof of delivery file. Required for `self_delivery`, `customer_pickup`, and `services_only` fulfillment methods.
+
+            Forbidden for `shipping_provider` fulfillment method.
+
+
+            Use the `/shipments/sign-upload` endpoint to obtain a signed URL for uploading the file to S3, then include the uploaded file details here.
+
+            '
           example:
-            original_filename: proof_of_delivery.pdf
+            url: https://bucket.s3.amazonaws.com/1234567890-document.pdf
+            size: 204800
+            metadata:
+              original_filename: proof_of_delivery.pdf
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
     ShipmentObject:
       type: object
       properties:
@@ -364,125 +473,31 @@ components:
           format: date-time
           description: Expected delivery date and time provided by the shipping courier.
           example: '2024-01-20T18:00:00Z'
-    ShipmentsList:
-      type: object
-      properties:
-        limit:
-          type: integer
-          description: Number of results returned per page.
-          example: 10
-        page:
-          type: integer
-          description: Current page number.
-          example: 1
-        count:
-          type: integer
-          description: Total number of shipments matching the query.
-          example: 25
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ShipmentObject'
-    ValidationError:
-      type: object
-      title: Validation error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Validation error
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - validation_error
-              example: validation_error
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    example: path.to.field
-                    description: Path to the field failed validation
-                  message:
-                    type: string
-                    example: '`[field]` is required'
-                    description: Detailed description of the error
-    ShipmentCreateRequest:
+    ShipmentFile:
       type: object
       required:
-      - merchant_invoice_id
+      - url
+      - size
       properties:
-        merchant_invoice_id:
+        url:
           type: string
-          description: ID of the merchant invoice this shipment belongs to.
-          example: inv_1234567890abcdef
-        fulfillment_method:
-          type: string
-          description: 'Method of fulfillment for the shipment. Determines what additional fields are required:
-
-            - `shipping_provider`: Requires `shipment_tracking_number` and `shipment_courier`. File is not allowed.
-
-            - `self_delivery`, `customer_pickup`, `services_only`: Require a `file`. Tracking number and courier are optional.
-
-            '
-          enum:
-          - shipping_provider
-          - self_delivery
-          - customer_pickup
-          - services_only
-          default: shipping_provider
-          example: shipping_provider
-        shipment_tracking_number:
-          type: string
-          description: Tracking number (required when fulfillment_method is shipping_provider, optional otherwise).
-          example: 1Z123E45678901234
-        shipment_courier:
-          type: string
-          description: 'Shipping courier (required when fulfillment_method is shipping_provider, optional otherwise). While any value can be accepted, instant verification is supported for specific couriers.
-
-
-            See the [Shipments API documentation](#tag/Shipments) for the complete list of supported couriers.
-
-            '
-          example: ups
-        file:
-          $ref: '#/components/schemas/ShipmentFile'
-          description: 'Proof of delivery file. Required for `self_delivery`, `customer_pickup`, and `services_only` fulfillment methods.
-
-            Forbidden for `shipping_provider` fulfillment method.
-
-
-            Use the `/shipments/sign-upload` endpoint to obtain a signed URL for uploading the file to S3, then include the uploaded file details here.
-
-            '
-          example:
-            url: https://bucket.s3.amazonaws.com/1234567890-document.pdf
-            size: 204800
-            metadata:
-              original_filename: proof_of_delivery.pdf
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
+          format: uri
+          description: S3 URL of the uploaded file obtained after uploading to the signed URL from `/shipments/sign-upload`.
+          example: https://bucket.s3.amazonaws.com/1234567890-document.pdf
+        size:
+          type: integer
+          description: File size in bytes.
+          example: 204800
+        metadata:
           type: object
+          description: Optional metadata about the file.
           properties:
-            message:
+            original_filename:
               type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
+              description: Original filename before upload.
+              example: proof_of_delivery.pdf
+          example:
+            original_filename: proof_of_delivery.pdf
     ShipmentUpdateRequest:
       type: object
       properties:
@@ -516,40 +531,25 @@ components:
             size: 204800
             metadata:
               original_filename: proof_of_delivery.pdf
-    NotFoundError:
+    ShipmentsList:
       type: object
-      title: Not found error
       properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
-    InvalidRequestError:
-      type: object
-      title: Invalid request error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[Invalid request message]'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - invalid_request
-              example: invalid_request
+        limit:
+          type: integer
+          description: Number of results returned per page.
+          example: 10
+        page:
+          type: integer
+          description: Current page number.
+          example: 1
+        count:
+          type: integer
+          description: Total number of shipments matching the query.
+          example: 25
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShipmentObject'
     ShipmentCreateRequest_2:
       type: object
       required:
@@ -637,12 +637,36 @@ components:
             metadata:
               original_filename: proof_of_delivery.pdf
   responses:
+    ShipmentResponse:
+      description: An object representing the Shipment.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentObject'
     UnauthorizedResponse:
       description: Unauthorized error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/UnauthorizedError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
+    ShipmentListResponse:
+      description: An object with an array of Shipments up to the specified limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentsList'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -651,38 +675,7 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    ShipmentResponse:
-      description: An object representing the Shipment.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ShipmentObject'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
-    ShipmentListResponse:
-      description: An object with an array of Shipments up to the specified limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ShipmentsList'
   requestBodies:
-    UpdateShipmentRequest:
-      description: Request body for updating an existing shipment.
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ShipmentUpdateRequest'
     CreateShipmentRequest:
       description: Request body for creating a new shipment.
       required: true
@@ -690,6 +683,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ShipmentCreateRequest'
+    UpdateShipmentRequest:
+      description: Request body for updating an existing shipment.
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentUpdateRequest'
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.
