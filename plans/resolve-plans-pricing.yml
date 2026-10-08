@@ -26,3 +26,17 @@ plans:
   included_quota: 'Unified online and offline net terms; Ecommerce integration; Accounting/ERP integration;
     Net terms checkout extension; API access; Max buyer credit line: Customized'
   overage: 'Advance invoice fees Net 30: risk based Net 60: risk based'
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  units: []
+  plans:
+  - name: Custom plan
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - none
