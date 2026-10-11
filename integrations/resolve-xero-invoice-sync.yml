@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: 'Resolve + Xero: sync a Resolve invoice into Xero'
+  version: 1.0.0
+  description: Fetch a Resolve invoice and create the matching sales invoice in Xero
+    accounting.
+x-integration:
+  partner: xero
+  template: null
+  edge_evidence: https://resolvepay.com/integrations
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: pipeline step 25b (payments-integration-arazzo)
+sourceDescriptions:
+- name: resolveInvoices
+  url: https://raw.githubusercontent.com/api-evangelist/resolve/refs/heads/main/openapi/resolve-invoices-api-openapi.yml
+  type: openapi
+- name: xeroAccounting
+  url: https://raw.githubusercontent.com/api-evangelist/xero/refs/heads/main/openapi/xero-accounting-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: resolve-invoice-to-xero
+  summary: Resolve invoice to Xero sales invoice
+  inputs:
+    type: object
+    required:
+    - invoiceId
+    - xeroTenantId
+    - xeroContactId
+    properties:
+      invoiceId:
+        type: string
+      xeroTenantId:
+        type: string
+      xeroContactId:
+        type: string
+  steps:
+  - stepId: fetchResolveInvoice
+    operationId: $sourceDescriptions.resolveInvoices.fetchInvoice
+    parameters:
+    - name: invoice_id
+      in: path
+      value: $inputs.invoiceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      number: $response.body#/number
+      amount: $response.body#/amount
+  - stepId: createXeroInvoice
+    operationId: $sourceDescriptions.xeroAccounting.createInvoices
+    parameters:
+    - name: xero-tenant-id
+      in: header
+      value: $inputs.xeroTenantId
+    requestBody:
+      contentType: application/json
+      payload:
+        Invoices:
+        - Type: ACCREC
+          Contact:
+            ContactID: $inputs.xeroContactId
+          InvoiceNumber: $steps.fetchResolveInvoice.outputs.number
+          LineItems:
+          - Description: Resolve net terms invoice
+            Quantity: 1
+            UnitAmount: $steps.fetchResolveInvoice.outputs.amount
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      xeroInvoiceId: $response.body#/Invoices/0/InvoiceID
+  outputs:
+    resolveInvoiceNumber: $steps.fetchResolveInvoice.outputs.number
+    xeroInvoiceId: $steps.createXeroInvoice.outputs.xeroInvoiceId

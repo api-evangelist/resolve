@@ -1,0 +1,82 @@
+arazzo: 1.0.1
+info:
+  title: 'Resolve + Magento 2: net terms on a storefront order'
+  version: 1.0.0
+  description: Read a Magento 2 order, authorize it on Resolve net terms for an enrolled
+    B2B customer, then capture it.
+x-integration:
+  partner: magento
+  template: null
+  edge_evidence: https://resolvepay.com/integrations
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: pipeline step 25b (payments-integration-arazzo)
+sourceDescriptions:
+- name: magento
+  url: https://raw.githubusercontent.com/api-evangelist/magento/refs/heads/main/openapi/magento-orders-api-openapi.yml
+  type: openapi
+- name: resolveOrders
+  url: https://raw.githubusercontent.com/api-evangelist/resolve/refs/heads/main/openapi/resolve-orders-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: magento-order-to-resolve-net-terms
+  summary: Magento 2 order to Resolve authorized and captured order
+  inputs:
+    type: object
+    required:
+    - orderId
+    - resolveCustomerId
+    - lineItems
+    properties:
+      orderId:
+        type: string
+      resolveCustomerId:
+        type: string
+      lineItems:
+        type: array
+      idempotencyKey:
+        type: string
+  steps:
+  - stepId: getStoreOrder
+    operationId: $sourceDescriptions.magento.getOrder
+    parameters:
+    - name: orderId
+      in: path
+      value: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      orderTotal: $response.body#/grand_total
+  - stepId: authorizeOnResolve
+    operationId: $sourceDescriptions.resolveOrders.createOrder
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $steps.getStoreOrder.outputs.orderTotal
+        customer_id: $inputs.resolveCustomerId
+        line_items: $inputs.lineItems
+        order_number: $inputs.orderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      resolveOrderId: $response.body#/id
+  - stepId: captureOnResolve
+    operationId: $sourceDescriptions.resolveOrders.captureOrder
+    parameters:
+    - name: order_id
+      in: path
+      value: $steps.authorizeOnResolve.outputs.resolveOrderId
+    requestBody:
+      contentType: application/json
+      payload:
+        amount: $steps.getStoreOrder.outputs.orderTotal
+        idempotency_key: $inputs.idempotencyKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      capturedOrder: $response.body
+  outputs:
+    orderTotal: $steps.getStoreOrder.outputs.orderTotal
+    resolveOrderId: $steps.authorizeOnResolve.outputs.resolveOrderId
+    capturedOrder: $steps.captureOnResolve.outputs.capturedOrder

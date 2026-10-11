@@ -34,8 +34,8 @@
   type: claimed
   evidence: https://resolvepay.com/integrations
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: resolve-magento-net-terms-order.yml
+  status: arazzo
 - slug: resolve-bigcommerce
   label: BigCommerce
   partner: bigcommerce
@@ -45,8 +45,8 @@
   type: claimed
   evidence: https://resolvepay.com/integrations
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: resolve-bigcommerce-net-terms-order.yml
+  status: arazzo
 - slug: resolve-shopify
   label: Shopify
   partner: shopify
@@ -56,8 +56,8 @@
   type: claimed
   evidence: https://resolvepay.com/integrations
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: resolve-shopify-net-terms-order.yml
+  status: arazzo
 - slug: resolve-woocommerce
   label: WooCommerce
   partner: woocommerce
@@ -67,8 +67,8 @@
   type: claimed
   evidence: https://resolvepay.com/integrations
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: resolve-woocommerce-net-terms-order.yml
+  status: arazzo
 - slug: resolve-xero
   label: Xero
   partner: xero
@@ -78,8 +78,8 @@
   type: claimed
   evidence: https://resolvepay.com/integrations
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: resolve-xero-invoice-sync.yml
+  status: arazzo
 - slug: resolve-sage-intacct
   label: Sage Intacct
   partner: sage-intacct
