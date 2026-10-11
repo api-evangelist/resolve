@@ -1,13 +1,16 @@
 generated: '2026-07-20'
 method: searched
 source: https://docs.resolvepay.com/api-reference
+name: Resolve API Rate Limits
 algorithm: sliding window
 limits:
-  - scope: global
-    limit_count: 100
-    window: 1 minute
-    status_on_exceed: 429
+- scope: global
+  limit_count: 100
+  window: 1 minute
+  status_on_exceed: 429
+  name: Global API rate limit
+  max: 100
 headers:
-  - X-Ratelimit-Limit
-  - X-Ratelimit-Remaining
-  - X-Ratelimit-Reset
+- X-Ratelimit-Limit
+- X-Ratelimit-Remaining
+- X-Ratelimit-Reset

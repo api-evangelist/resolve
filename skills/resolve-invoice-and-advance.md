@@ -1,5 +1,5 @@
 ---
-name: Create, send, and advance an invoice
+name: invoice-and-advance
 description: Create an invoice for an enrolled customer, send it, and capture payment/advance.
 api: openapi/resolve-merchant-api-openapi.yaml
 operations: [createInvoice, updateInvoice, sendInvoice, fetchInvoice, createShipment]

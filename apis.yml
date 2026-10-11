@@ -1,5 +1,7 @@
 aid: resolve
+
 name: Resolve
+
 description: >-
   Resolve is a B2B commerce and payments platform that lets businesses offer
   flexible net terms (typically NET 30-60) to their buyers without carrying the
@@ -11,7 +13,9 @@ description: >-
   sub-merchant management, a browser Checkout SDK, and an official MCP server
   with full Merchant-API parity for AI assistants. Backed by Insight Partners,
   QED Investors, and Y Combinator.
+
 url: https://raw.githubusercontent.com/api-evangelist/resolve/refs/heads/main/apis.yml
+
 deliveryModel:
   model: saas
   open_source: false
@@ -24,6 +28,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: unknown
@@ -40,18 +45,28 @@ accessModel:
   - sandbox
   generated: '2026-09-03'
   method: derived
+
 image: https://resolvepay.com/favicon-32x32.png
+
 x-type: company
+
 x-source: vc-portfolio
+
 x-backed-by:
 - insight-partners
 - qed-investors
 - y-combinator
-x-tier: stub
-x-tier-reason: portfolio-lead
+
+x-tier: profiled
+
+x-tier-reason: enrichment pass 2026-10-12 (local-v5; was portfolio-lead)
+
 specificationVersion: '0.23'
+
 created: '2026-07-17'
+
 modified: '2026-10-06'
+
 tags:
 - Company
 - Payments
@@ -61,11 +76,108 @@ tags:
 - Invoicing
 - Financing
 - Embedded Finance
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
+common:
+- type: AgenticAccess
+  url: agentic-access/resolve-agentic-access.yml
+- type: Spectral
+  url: rules/resolve-rules.yml
+- type: JSONLD
+  url: json-ld/resolve-context.jsonld
+- type: Vocabulary
+  url: vocabulary/resolve-vocabulary.yml
+- type: WellKnown
+  url: well-known/resolve-well-known.yml
+- type: Hosts
+  url: hosts/resolve-hosts.yml
+- type: IntegrationEdges
+  url: integrations/resolve-integration-edges.yml
+- type: Vendors
+  url: vendors/resolve-vendors.yml
+- url: https://resolvepay.com/blog/rss.xml
+  type: BlogRSS
+- type: Plans
+  url: plans/resolve-plans-pricing.yml
+- type: CapabilityMap
+  url: capabilities/resolve-capability-edges.yml
+  name: Resolve Business Capability Map
+- type: Overlay
+  url: overlays/resolve-merchant-api-overlay.yaml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/resolve/overview
+- type: Website
+  url: https://resolvepay.com/
+- type: DeveloperPortal
+  url: https://docs.resolvepay.com
+- type: Documentation
+  url: https://docs.resolvepay.com
+- type: APIReference
+  url: https://docs.resolvepay.com/api-reference
+- type: GettingStarted
+  url: https://docs.resolvepay.com/guides
+- type: Integrations
+  url: https://resolvepay.com/integrations/
+- type: Support
+  url: https://help.resolvepay.com/
+- type: Blog
+  url: https://resolvepay.com/blog
+- type: GitHubOrganization
+  url: https://github.com/resolvepay
+- type: Pricing
+  url: https://resolvepay.com/pricing/
+- type: SignUp
+  url: https://resolvepay.com/signup/
+- type: Login
+  url: https://app.resolvepay.com/
+- type: TermsOfService
+  url: https://resolvepay.com/terms/
+- type: PrivacyPolicy
+  url: https://resolvepay.com/privacy/
+- type: TrustCenter
+  url: https://trust.resolvepay.com
+- type: StatusPage
+  url: https://status.resolvepay.com
+- type: Deprecation
+  url: https://app.resolvepay.com/docs/api/v2
+- type: MCPServer
+  url: mcp/resolve-mcp.yml
+- type: Authentication
+  url: authentication/resolve-authentication.yml
+- type: OAuthScopes
+  url: scopes/resolve-scopes.yml
+- type: Conventions
+  url: conventions/resolve-conventions.yml
+- type: Idempotency
+  url: conventions/resolve-conventions.yml
+- type: ErrorCatalog
+  url: errors/resolve-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/resolve-lifecycle.yml
+- type: RateLimits
+  url: rate-limits/resolve-rate-limits.yml
+- type: Webhooks
+  url: asyncapi/resolve-webhooks.yml
+- type: Conformance
+  url: conformance/resolve-conformance.yml
+- type: Components
+  url: components/resolve-components.yml
+- type: DataModel
+  url: data-model/resolve-data-model.yml
+- type: Sandbox
+  url: sandbox/resolve-sandbox.yml
+- type: DomainSecurity
+  url: security/resolve-domain-security.yml
+- type: LLMsTxt
+  url: llms/resolve-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+
 apis:
 - aid: resolve:resolve-access-keys-api
   name: Resolve Access Keys API
@@ -607,86 +719,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/resolve-webhooks-api-openapi.yml
-common:
-- url: https://resolvepay.com/blog/rss.xml
-  type: BlogRSS
-- type: Plans
-  url: plans/resolve-plans-pricing.yml
-- type: CapabilityMap
-  url: capabilities/resolve-capability-edges.yml
-  name: Resolve Business Capability Map
-- type: Overlay
-  url: overlays/resolve-merchant-api-overlay.yaml
-- type: PostmanWorkspace
-  url: https://www.postman.com/kinlaneapi/resolve/overview
-- type: Website
-  url: https://resolvepay.com/
-- type: DeveloperPortal
-  url: https://docs.resolvepay.com
-- type: Documentation
-  url: https://docs.resolvepay.com
-- type: APIReference
-  url: https://docs.resolvepay.com/api-reference
-- type: GettingStarted
-  url: https://docs.resolvepay.com/guides
-- type: Integrations
-  url: https://resolvepay.com/integrations/
-- type: Support
-  url: https://help.resolvepay.com/
-- type: Blog
-  url: https://resolvepay.com/blog
-- type: GitHubOrganization
-  url: https://github.com/resolvepay
-- type: Pricing
-  url: https://resolvepay.com/pricing/
-- type: SignUp
-  url: https://resolvepay.com/signup/
-- type: Login
-  url: https://app.resolvepay.com/
-- type: TermsOfService
-  url: https://resolvepay.com/terms/
-- type: PrivacyPolicy
-  url: https://resolvepay.com/privacy/
-- type: TrustCenter
-  url: https://trust.resolvepay.com
-- type: StatusPage
-  url: https://status.resolvepay.com
-- type: Deprecation
-  url: https://app.resolvepay.com/docs/api/v2
-- type: MCPServer
-  url: mcp/resolve-mcp.yml
-- type: Authentication
-  url: authentication/resolve-authentication.yml
-- type: OAuthScopes
-  url: scopes/resolve-scopes.yml
-- type: Conventions
-  url: conventions/resolve-conventions.yml
-- type: Idempotency
-  url: conventions/resolve-conventions.yml
-- type: ErrorCatalog
-  url: errors/resolve-problem-types.yml
-- type: Lifecycle
-  url: lifecycle/resolve-lifecycle.yml
-- type: RateLimits
-  url: rate-limits/resolve-rate-limits.yml
-- type: Webhooks
-  url: asyncapi/resolve-webhooks.yml
-- type: Conformance
-  url: conformance/resolve-conformance.yml
-- type: Components
-  url: components/resolve-components.yml
-- type: DataModel
-  url: data-model/resolve-data-model.yml
-- type: Sandbox
-  url: sandbox/resolve-sandbox.yml
-- type: DomainSecurity
-  url: security/resolve-domain-security.yml
-- type: LLMsTxt
-  url: llms/resolve-llms.txt
-- type: AgentSkill
-  url: skills/_index.yml
 x-enrichment:
-  date: '2026-07-20'
+  date: '2026-10-12'
   status: enriched
-  artifacts_added: 21
-  pass: local-v1
+  artifacts_added: 0
+  pass: local-v5

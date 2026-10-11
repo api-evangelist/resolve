@@ -1,0 +1,122 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 9
+  own: 7
+  other_domain: 0
+  platform: 2
+  roles:
+  - identity
+  - other
+  - portal
+  - source
+  - status
+  - support
+  - website
+hosts:
+- host: app.resolvepay.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - Login
+  - Deprecation
+  serves:
+  - api
+  registrable_domain: resolvepay.com
+  role: identity
+  relation: own
+- host: docs.resolvepay.com
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - DeveloperPortal
+  - Documentation
+  - APIReference
+  - GettingStarted
+  serves:
+  - docs
+  - cdn
+  vendor: cloudfront
+  registrable_domain: resolvepay.com
+  role: portal
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: help.resolvepay.com
+  found_by:
+  - pointer
+  types:
+  - Support
+  serves: []
+  registrable_domain: resolvepay.com
+  role: support
+  relation: own
+- host: login.resolvepay.com
+  found_by:
+  - vendor-detect
+  types: []
+  serves:
+  - identity
+  vendor: auth0
+  registrable_domain: resolvepay.com
+  role: identity
+  relation: own
+- host: resolvepay.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - BlogRSS
+  - Website
+  - Integrations
+  - Blog
+  - Pricing
+  - SignUp
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - cdn
+  - hosting
+  vendor: cloudflare
+  registrable_domain: resolvepay.com
+  role: website
+  relation: own
+- host: status.resolvepay.com
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: resolvepay.com
+  role: status
+  relation: own
+- host: trust.resolvepay.com
+  found_by:
+  - pointer
+  types:
+  - TrustCenter
+  serves: []
+  registrable_domain: resolvepay.com
+  role: other
+  relation: own
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - PostmanWorkspace
+  serves: []
+  registrable_domain: postman.com
+  role: other
+  relation: platform

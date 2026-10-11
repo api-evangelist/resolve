@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/resolve/integrations
 - https://n8n.io/integrations/resolve/
@@ -7,10 +7,69 @@ source:
 - https://monid.ai/tools/resolve
 checked:
 - https://composio.dev/toolkits/resolve
+- https://docs.resolvepay.com/llms.txt
 - https://monid.ai/tools/resolve
 - https://n8n.io/integrations/resolve/
+- https://resolvepay.com/integrations
 - https://zapier.com/apps/resolve/integrations
-summary: null
+summary: Resolve names 8 accounting/ERP/ecommerce integrations on its own integrations page; Shopify and BigCommerce
+  have dedicated Resolve-built guides in its docs. No marketplace listings found (Zapier 404).
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: QuickBooks Online
+  partner: quickbooks
+  type: claimed
+  evidence: https://resolvepay.com/integrations
+  direction: unknown
+  category: accounting
+  use_case: Auto-sync invoices, payments, and reconciliation with your QBO account.
+- partner_name: NetSuite
+  partner: netsuite
+  type: claimed
+  evidence: https://resolvepay.com/integrations
+  direction: unknown
+  category: erp
+  use_case: Enterprise-grade ERP integration for order management and AR automation.
+- partner_name: Magento 2
+  partner: magento
+  type: claimed
+  evidence: https://resolvepay.com/integrations
+  direction: unknown
+  category: ecommerce
+  use_case: Embed net terms checkout natively into your Magento storefront.
+- partner_name: BigCommerce
+  partner: bigcommerce
+  type: claimed
+  evidence: https://resolvepay.com/integrations
+  direction: provider-built
+  category: ecommerce
+  use_case: Let B2B buyers apply for net terms at checkout without leaving your store.
+- partner_name: Shopify
+  partner: shopify
+  type: claimed
+  evidence: https://resolvepay.com/integrations
+  direction: provider-built
+  category: ecommerce
+  use_case: Add net terms to your Shopify checkout flow with a frictionless B2B experience.
+- partner_name: WooCommerce
+  partner: woocommerce
+  type: claimed
+  evidence: https://resolvepay.com/integrations
+  direction: unknown
+  category: ecommerce
+  use_case: Extend net terms to your WordPress store with flexible B2B checkout.
+- partner_name: Xero
+  partner: xero
+  type: claimed
+  evidence: https://resolvepay.com/integrations
+  direction: unknown
+  category: accounting
+  use_case: 'Named in the integrations FAQ: QuickBooks Online, Xero, Sage Intacct, NetSuite, Magento 2, BigCommerce.'
+- partner_name: Sage Intacct
+  partner: sage-intacct
+  type: claimed
+  evidence: https://resolvepay.com/integrations
+  direction: unknown
+  category: accounting
+  use_case: 'Named in the integrations FAQ: QuickBooks Online, Xero, Sage Intacct, NetSuite, Magento 2, BigCommerce.'
 templates: []

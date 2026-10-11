@@ -1,5 +1,5 @@
 ---
-name: Onboard a customer for net terms
+name: onboard-customer
 description: Create a buyer, run a credit check, and enroll them in Resolve net terms.
 api: openapi/resolve-merchant-api-openapi.yaml
 operations: [createCustomer, requestCustomerCreditCheck, fetchCustomer, enroll-a-customer]

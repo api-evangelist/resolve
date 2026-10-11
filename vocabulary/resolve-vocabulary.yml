@@ -1,0 +1,456 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/resolve-access-keys-api-openapi.yml
+- openapi/resolve-charges-api-openapi.yml
+- openapi/resolve-credit-notes-api-openapi.yml
+- openapi/resolve-customers-api-openapi.yml
+- openapi/resolve-invoices-api-openapi.yml
+vocabulary:
+  name: Resolve Domain Vocabulary
+  description: 'Terms declared by Resolve''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-12'
+  terms:
+  - term: Access Keys
+    definition: OAuth access keys are created in Merchant Dashboard and can be exchanged for bearer tokens. Use the `/access-keys/token` endpoint
+      to mint a bearer token from a valid `client_id` and `client_secret`.
+    tags:
+    - Resource Group
+    source: openapi/resolve-access-keys-api-openapi.yml
+  - term: Charges
+    definition: A charge represents an agreement by the customer to accept credit terms for a transaction. It consists of a charge amount, term
+      length (i.e. 30, 60, 90), and reference to the merchant's original order or purchase order numbers. These endpoints are intended for merchants
+      using the Checkout SDK. If you are not using the Checkout SDK flow, these endpoints are generally not needed.
+    tags:
+    - Resource Group
+    source: openapi/resolve-charges-api-openapi.yml
+  - term: Credit Notes
+    definition: Credit Notes are issued to customers to reduce the amount they owe.
+    tags:
+    - Resource Group
+    source: openapi/resolve-credit-notes-api-openapi.yml
+  - term: Customers
+    definition: A customer represents a company that you do business with. For larger companies, there may be several users with access to the
+      customer account that can make purchases with their credit line. For smaller companies, a customer may represent a single individual. Retrieve
+      a customer to get a summary of their total credit line and available credit balance.
+    tags:
+    - Resource Group
+    source: openapi/resolve-customers-api-openapi.yml
+  - term: Invoices
+    definition: The invoice represents the business transaction between you and your customer. In Resolve, an invoice must be tied to a customer
+      and an advance can be taken on the invoice. For an advance to be taken on the invoice, a PDF of the invoice must be uploaded and the associated
+      customer must be approved and have available credit for the amount of the invoice.
+    tags:
+    - Resource Group
+    source: openapi/resolve-invoices-api-openapi.yml
+  - term: Merchants
+    definition: Merchant-scoped operations for managing sub-merchant resources. The merchant document upload endpoint creates a document record
+      and starts transfer into Resolve-managed storage for validation.
+    tags:
+    - Resource Group
+    source: openapi/resolve-merchants-api-openapi.yml
+  - term: Orders
+    definition: An order represents an authorization of credit for a customer transaction. Once authorized, an order can be partially or fully
+      captured as goods or services are fulfilled, or canceled if the transaction does not proceed.
+    tags:
+    - Resource Group
+    source: openapi/resolve-orders-api-openapi.yml
+  - term: Payments
+    definition: A payment represents a transaction where a customer pays towards their invoices. When a payment is made to Resolve, the customer's
+      available credit balance is increased by the amount of the payment. Payments can be made via various methods including ACH, credit card,
+      check, or wire transfer. Each payment can be applied to one or more invoices.
+    tags:
+    - Resource Group
+    source: openapi/resolve-payments-api-openapi.yml
+  - term: Payout Transactions
+    definition: 'Payout Transactions are the individual transactions like customer payments, Resolve advances, forwarded payments, etc. that are
+      rolled into a Payout. Each Payout is the sum of one or more transactions. Note that certain fields are only relevant to certain transaction
+      types - e.g.: a Payout Transaction of type `monthly_fee` will have both `customer_id` and `invoice_id` set to `null`.'
+    tags:
+    - Resource Group
+    source: openapi/resolve-payout-transactions-api-openapi.yml
+  - term: Payouts
+    definition: A Payout is a transfer of money between the Merchant and Resolve.
+    tags:
+    - Resource Group
+    source: openapi/resolve-payouts-api-openapi.yml
+  - term: Shipments
+    definition: A shipment represents the fulfillment of goods or services for an invoice.
+    tags:
+    - Resource Group
+    source: openapi/resolve-shipments-api-openapi.yml
+  - term: Webhooks
+    definition: Webhooks allow you to receive real-time notifications about events in your Resolve account.
+    tags:
+    - Resource Group
+    source: openapi/resolve-webhooks-api-openapi.yml
+  - term: Forbidden error
+    definition: 'Object declared by the contract with fields: error.'
+    tags:
+    - Object
+    source: openapi/resolve-access-keys-api-openapi.yml#/components/schemas/ForbiddenError
+  - term: Invalid request error
+    definition: 'Object declared by the contract with fields: error.'
+    tags:
+    - Object
+    source: openapi/resolve-access-keys-api-openapi.yml#/components/schemas/InvalidRequestError
+  - term: Validation error
+    definition: 'Object declared by the contract with fields: error.'
+    tags:
+    - Object
+    source: openapi/resolve-access-keys-api-openapi.yml#/components/schemas/ValidationError
+  - term: IssueAccessKeyTokenRequest
+    definition: 'Object declared by the contract with fields: client_id, client_secret.'
+    tags:
+    - Object
+    source: openapi/resolve-access-keys-api-openapi.yml#/components/schemas/IssueAccessKeyTokenRequest
+  - term: Not found error
+    definition: 'Object declared by the contract with fields: error.'
+    tags:
+    - Object
+    source: openapi/resolve-access-keys-api-openapi.yml#/components/schemas/NotFoundError
+  - term: Unauthorized error
+    definition: 'Object declared by the contract with fields: error.'
+    tags:
+    - Object
+    source: openapi/resolve-access-keys-api-openapi.yml#/components/schemas/UnauthorizedError
+  - term: Rate limit error
+    definition: 'Object declared by the contract with fields: error.'
+    tags:
+    - Object
+    source: openapi/resolve-access-keys-api-openapi.yml#/components/schemas/RateLimitError
+  - term: AccessKeyTokenResponse
+    definition: 'Object declared by the contract with fields: access_token, token_type, expires_in, scope.'
+    tags:
+    - Object
+    source: openapi/resolve-access-keys-api-openapi.yml#/components/schemas/AccessKeyTokenResponse
+  - term: ChargeListResponse
+    definition: 'Object declared by the contract with fields: count, limit, page, results.'
+    tags:
+    - Object
+    source: openapi/resolve-charges-api-openapi.yml#/components/schemas/ChargeListResponse
+  - term: ChargeUpdateRequest
+    definition: 'Object declared by the contract with fields: amount, invoice_url, order_number, po_number, metadata, user_id, captured, canceled.'
+    tags:
+    - Object
+    source: openapi/resolve-charges-api-openapi.yml#/components/schemas/ChargeUpdateRequest
+  - term: Charge
+    definition: 'Object declared by the contract with fields: id, amount, customer_id, amount_refunded, canceled, canceled_at, captured, captured_at,
+      created_at, invoice_url, metadata, number. (7 more)'
+    tags:
+    - Object
+    source: openapi/resolve-charges-api-openapi.yml#/components/schemas/Charge
+  - term: ChargeCaptureRequest
+    definition: 'Object declared by the contract with fields: amount, order_number, po_number.'
+    tags:
+    - Object
+    source: openapi/resolve-charges-api-openapi.yml#/components/schemas/ChargeCaptureRequest
+  - term: CreditNoteAction
+    definition: 'Object declared by the contract with fields: status.'
+    tags:
+    - Object
+    source: openapi/resolve-credit-notes-api-openapi.yml#/components/schemas/CreditNoteAction
+  - term: CreditNoteListResponse
+    definition: 'Object declared by the contract with fields: count, limit, page, results.'
+    tags:
+    - Object
+    source: openapi/resolve-credit-notes-api-openapi.yml#/components/schemas/CreditNoteListResponse
+  - term: CreditNote
+    definition: 'Object declared by the contract with fields: id, source, customer_id, merchant_id, invoice_id, created_by_user_id, number, amount,
+      amount_balance, amount_paid, amount_voided, amount_payout. (8 more)'
+    tags:
+    - Object
+    source: openapi/resolve-credit-notes-api-openapi.yml#/components/schemas/CreditNote
+  - term: CreditNoteCreateRequest
+    definition: 'Object declared by the contract with fields: invoice_id, amount, number, reason_code, reason_message, credit_note_url.'
+    tags:
+    - Object
+    source: openapi/resolve-credit-notes-api-openapi.yml#/components/schemas/CreditNoteCreateRequest
+  - term: CreditNote_2
+    definition: 'Object declared by the contract with fields: id, source, customer_id, merchant_id, invoice_id, created_by_user_id, number, amount,
+      amount_balance, amount_paid, amount_voided, amount_payout. (8 more)'
+    tags:
+    - Object
+    source: openapi/resolve-credit-notes-api-openapi.yml#/components/schemas/CreditNote_2
+  - term: CustomerList
+    definition: 'Object declared by the contract with fields: count, limit, page, results.'
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/CustomerList
+  - term: CustomerCreditCheckRequest
+    definition: 'Object declared by the contract with fields: amount_requested, business_description, has_purchase_history, has_purchase_terms_history.'
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/CustomerCreditCheckRequest
+  - term: Customer
+    definition: The customer object represents a company that you do business with. Retrieve a customer to get a summary of their total credit
+      line and available credit balance.
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/Customer
+  - term: CustomerPostRequest
+    definition: 'Object declared by the contract with fields: business_address, business_city, business_state, business_zip, business_country,
+      business_ap_email, business_ap_phone, business_ap_phone_extension, business_name, email, default_terms.'
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/CustomerPostRequest
+  - term: Credit check exists error
+    definition: 'Object declared by the contract with fields: error.'
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/CreditCheckExistsError
+  - term: CustomerPutRequest
+    definition: 'Object declared by the contract with fields: business_address, business_city, business_state, business_zip, business_country,
+      business_ap_email, business_ap_phone, business_ap_phone_extension, business_name, email, default_terms.'
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/CustomerPutRequest
+  - term: CustomerCreditCheckRequest_2
+    definition: 'Object declared by the contract with fields: amount_requested, business_description, has_purchase_history, has_purchase_terms_history.'
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/CustomerCreditCheckRequest_2
+  - term: Customer_2
+    definition: The customer object represents a company that does business with your sub-merchants. Retrieve a customer to get a summary of their
+      total credit line and available credit balance. For single-merchant partners, the response includes a `merchant_id` field. For marketplace
+      partners, the `merchant_id` field is not present — customers belong to the marketplace itself.
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/Customer_2
+  - term: CustomerPostRequest_2
+    definition: 'Object declared by the contract with fields: merchant_id, external_id, business_address, business_city, business_state, business_zip,
+      business_country, business_ap_email, business_ap_phone, business_ap_phone_extension, business_name, email. (1 more)'
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/CustomerPostRequest_2
+  - term: CustomerPutRequest_2
+    definition: 'Object declared by the contract with fields: external_id, business_address, business_city, business_state, business_zip, business_country,
+      business_ap_email, business_ap_phone, business_ap_phone_extension, business_name, email, default_terms.'
+    tags:
+    - Object
+    source: openapi/resolve-customers-api-openapi.yml#/components/schemas/CustomerPutRequest_2
+  - term: Invoice
+    definition: 'Object declared by the contract with fields: id, source, customer_id, order_number, number, po_number, notes, line_items, merchant_invoice_url,
+      resolve_invoice_url, resolve_invoice_status, fully_paid. (39 more)'
+    tags:
+    - Object
+    source: openapi/resolve-invoices-api-openapi.yml#/components/schemas/Invoice
+  - term: InvoiceListResponse
+    definition: 'Object declared by the contract with fields: count, limit, page, results.'
+    tags:
+    - Object
+    source: openapi/resolve-invoices-api-openapi.yml#/components/schemas/InvoiceListResponse
+  - term: InvoiceRequestBeforeSentBase
+    definition: 'Object declared by the contract with fields: customer_id, advance_requested.'
+    tags:
+    - Object
+    source: openapi/resolve-invoices-api-openapi.yml#/components/schemas/InvoiceRequestBeforeSentBase
+  - term: InvoiceRequestAfterSentBase
+    definition: 'Object declared by the contract with fields: terms, merchant_invoice_url, number, order_number, po_number, notes.'
+    tags:
+    - Object
+    source: openapi/resolve-invoices-api-openapi.yml#/components/schemas/InvoiceRequestAfterSentBase
+  - term: InvoiceRequestAmountBase
+    definition: 'Object declared by the contract with fields: amount.'
+    tags:
+    - Object
+    source: openapi/resolve-invoices-api-openapi.yml#/components/schemas/InvoiceRequestAmountBase
+  - term: Invoice_2
+    definition: 'Object declared by the contract with fields: id, merchant_id, source, customer_id, order_number, number, po_number, notes, line_items,
+      merchant_invoice_url, resolve_invoice_url, resolve_invoice_status. (43 more)'
+    tags:
+    - Object
+    source: openapi/resolve-invoices-api-openapi.yml#/components/schemas/Invoice_2
+  - term: MerchantDocumentUploadRequestObject
+    definition: 'Object declared by the contract with fields: id, document_id, document_type, status, upload_url, upload_expires_at, object_key,
+      transfer_method, queue_dispatch_status, upload_headers, validation_profile.'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/MerchantDocumentUploadRequestObject
+  - term: InlineDocumentDownloadRequest
+    definition: 'Object declared by the contract with fields: filename, filetype, download_url.'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/InlineDocumentDownloadRequest
+  - term: Merchant
+    definition: 'Object declared by the contract with fields: id, legal_business_name, dba_name, business_address, business_email, business_phone,
+      entity_type, formation_state, industry, website, underwriting_status, seller_amount_approved. (5 more)'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/Merchant
+  - term: DocumentIngestionResult
+    definition: Inline document dispatch result for merchant create/update responses. Post-commit queue dispatch failures are surfaced here as
+      `failed` items without rolling back the merchant write.
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/DocumentIngestionResult
+  - term: AuthorizedSigner
+    definition: 'Object declared by the contract with fields: first_name, last_name, email, title, phone.'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/AuthorizedSigner
+  - term: BeneficialOwner
+    definition: 'Object declared by the contract with fields: first_name, last_name, date_of_birth, address, ssn_last_4, ownership_percentage.'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/BeneficialOwner
+  - term: MerchantList
+    definition: 'Object declared by the contract with fields: count, page, limit, results.'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/MerchantList
+  - term: Address
+    definition: 'Object declared by the contract with fields: line1, line2, city, state, postal_code, country.'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/Address
+  - term: DocumentIngestionSummary
+    definition: 'Object declared by the contract with fields: requested_count, queued_count, failed_count, results.'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/DocumentIngestionSummary
+  - term: CreateMerchantDocumentRequest
+    definition: 'Object declared by the contract with fields: document_type, filename, filetype, download_url.'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/CreateMerchantDocumentRequest
+  - term: CreateMerchantRequest
+    definition: 'Object declared by the contract with fields: legal_business_name, business_address, business_email, business_phone, entity_type,
+      formation_state, ein, dba_name, annual_revenue, years_in_business, industry, business_description. (14 more)'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/CreateMerchantRequest
+  - term: MerchantDocumentList
+    definition: 'Object declared by the contract with fields: count, page, limit, results.'
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/MerchantDocumentList
+  - term: MerchantDocument
+    definition: Merchant document metadata and validation lifecycle status.
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/MerchantDocument
+  - term: UpdateMerchantRequest
+    definition: All fields are optional for update requests. For merchants whose latest underwriting decision has been finalized, updates to core
+      legal/identity/banking fields may be blocked.
+    tags:
+    - Object
+    source: openapi/resolve-merchants-api-openapi.yml#/components/schemas/UpdateMerchantRequest
+  - term: OrderListItem
+    definition: 'Object declared by the contract with fields: id, checkout_id, number, po_number, advance_requested, source, status, amount_authorized,
+      amount_captured, amount_canceled, amount_remaining, first_captured_at. (6 more)'
+    tags:
+    - Object
+    source: openapi/resolve-orders-api-openapi.yml#/components/schemas/OrderListItem
+  - term: OrderCustomer
+    definition: 'Object declared by the contract with fields: id, name, remaining_credit.'
+    tags:
+    - Object
+    source: openapi/resolve-orders-api-openapi.yml#/components/schemas/OrderCustomer
+  - term: OrderCaptureEvent
+    definition: 'Object declared by the contract with fields: amount, idempotency_key, processed_at, invoice_id.'
+    tags:
+    - Object
+    source: openapi/resolve-orders-api-openapi.yml#/components/schemas/OrderCaptureEvent
+  - term: OrderLineItem
+    definition: 'Object declared by the contract with fields: name, quantity, unit_price, sku, total_price, type, tax_amount.'
+    tags:
+    - Object
+    source: openapi/resolve-orders-api-openapi.yml#/components/schemas/OrderLineItem
+  - term: OrderUpdateRequest
+    definition: 'Object declared by the contract with fields: amount, order_number, po_number, line_items.'
+    tags:
+    - Object
+    source: openapi/resolve-orders-api-openapi.yml#/components/schemas/OrderUpdateRequest
+  - term: Order
+    definition: 'Object declared by the contract with fields: id, checkout_id, number, po_number, advance_requested, source, status, amount_authorized,
+      amount_captured, amount_canceled, amount_remaining, first_captured_at. (7 more)'
+    tags:
+    - Object
+    source: openapi/resolve-orders-api-openapi.yml#/components/schemas/Order
+  - term: OrderCaptureRequest
+    definition: 'Object declared by the contract with fields: amount, idempotency_key, number, merchant_invoice_url, line_items.'
+    tags:
+    - Object
+    source: openapi/resolve-orders-api-openapi.yml#/components/schemas/OrderCaptureRequest
+  - term: OrderListResponse
+    definition: 'Object declared by the contract with fields: count, limit, page, results.'
+    tags:
+    - Object
+    source: openapi/resolve-orders-api-openapi.yml#/components/schemas/OrderListResponse
+  - term: OrderCreateRequest
+    definition: 'Object declared by the contract with fields: amount, customer_id, line_items, order_number, po_number, advance_requested, source,
+      metadata.'
+    tags:
+    - Object
+    source: openapi/resolve-orders-api-openapi.yml#/components/schemas/OrderCreateRequest
+  - term: Payment
+    definition: 'Object declared by the contract with fields: id, customer_id, source, amount, method, status, created_at, paid_at, canceled_at,
+      failed_at, processed_at, scheduled_at. (5 more)'
+    tags:
+    - Object
+    source: openapi/resolve-payments-api-openapi.yml#/components/schemas/Payment
+  - term: PaymentListResponse
+    definition: 'Object declared by the contract with fields: count, limit, page, results.'
+    tags:
+    - Object
+    source: openapi/resolve-payments-api-openapi.yml#/components/schemas/PaymentListResponse
+  - term: Payment_2
+    definition: 'Object declared by the contract with fields: id, customer_id, source, amount, method, status, created_at, paid_at, canceled_at,
+      failed_at, processed_at, scheduled_at. (6 more)'
+    tags:
+    - Object
+    source: openapi/resolve-payments-api-openapi.yml#/components/schemas/Payment_2
+  - term: PaymentCreateRequest
+    definition: 'Object declared by the contract with fields: invoice_id, amount.'
+    tags:
+    - Object
+    source: openapi/resolve-payments-api-openapi.yml#/components/schemas/PaymentCreateRequest
+  - term: PayoutTransactionObject
+    definition: 'Object declared by the contract with fields: id, payout_id, type, customer_id, customer_name, invoice_id, invoice_number, order_id,
+      po_number, amount_gross, amount_fee, amount_net. (2 more)'
+    tags:
+    - Object
+    source: openapi/resolve-payout-transactions-api-openapi.yml#/components/schemas/PayoutTransactionObject
+  - term: PayoutTransactionsLists
+    definition: 'Object declared by the contract with fields: limit, page, results.'
+    tags:
+    - Object
+    source: openapi/resolve-payout-transactions-api-openapi.yml#/components/schemas/PayoutTransactionsLists
+  - term: PayoutTransactionObject_2
+    definition: 'Object declared by the contract with fields: id, merchant_id, payout_id, type, customer_id, customer_name, invoice_id, invoice_number,
+      order_id, po_number, amount_gross, amount_fee. (3 more)'
+    tags:
+    - Object
+    source: openapi/resolve-payout-transactions-api-openapi.yml#/components/schemas/PayoutTransactionObject_2
+  - term: PayoutObject
+    definition: 'Object declared by the contract with fields: id, amount_gross, amount_fee, amount_net, status, retry_payout_id, failed_at, expected_by,
+      transactions_starting_at, transactions_ending_at, canceled_at, created_at. (1 more)'
+    tags:
+    - Object
+    source: openapi/resolve-payouts-api-openapi.yml#/components/schemas/PayoutObject
+  - term: PayoutsLists
+    definition: 'Object declared by the contract with fields: limit, page, results.'
+    tags:
+    - Object
+    source: openapi/resolve-payouts-api-openapi.yml#/components/schemas/PayoutsLists
+  - term: PayoutObject_2
+    definition: 'Object declared by the contract with fields: id, merchant_id, amount_gross, amount_fee, amount_net, status, retry_payout_id,
+      failed_at, expected_by, transactions_starting_at, transactions_ending_at, canceled_at. (2 more)'
+    tags:
+    - Object
+    source: openapi/resolve-payouts-api-openapi.yml#/components/schemas/PayoutObject_2
+  - term: ShipmentCreateRequest
+    definition: 'Object declared by the contract with fields: merchant_invoice_id, fulfillment_method, shipment_tracking_number, shipment_courier,
+      file.'
+    tags:
+    - Object
+    source: openapi/resolve-shipments-api-openapi.yml#/components/schemas/ShipmentCreateRequest
+  - term: ShipmentObject
+    definition: 'Object declared by the contract with fields: id, merchant_invoice_id, fulfillment_method, shipment_tracking_number, shipment_courier,
+      verification_status, created_at, updated_at, tracking_status, tracking_substatus, expected_delivery.'
+    tags:
+    - Object
+    source: openapi/resolve-shipments-api-openapi.yml#/components/schemas/ShipmentObject
