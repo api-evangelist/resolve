@@ -1,0 +1,253 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: resolve
+workflows:
+- file: resolve-bigcommerce-net-terms-order.yml
+  title: 'Resolve + BigCommerce: net terms on a storefront order'
+  partner: bigcommerce
+  template: null
+  repos:
+  - bigcommerce
+  - resolve
+  steps:
+  - step: getStoreOrder
+    repo: bigcommerce
+    spec_file: bigcommerce-order-api-openapi.yml
+    operationId: getOrder
+    tag: Order
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: authorizeOnResolve
+    repo: resolve
+    spec_file: resolve-orders-api-openapi.yml
+    operationId: createOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: captureOnResolve
+    repo: resolve
+    spec_file: resolve-orders-api-openapi.yml
+    operationId: captureOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    bigcommerce:
+      capabilities: []
+      tags:
+      - Order
+    resolve:
+      capabilities: []
+      tags:
+      - Orders
+  intents: []
+- file: resolve-magento-net-terms-order.yml
+  title: 'Resolve + Magento 2: net terms on a storefront order'
+  partner: magento
+  template: null
+  repos:
+  - magento
+  - resolve
+  steps:
+  - step: getStoreOrder
+    repo: magento
+    spec_file: magento-orders-api-openapi.yml
+    operationId: getOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: authorizeOnResolve
+    repo: resolve
+    spec_file: resolve-orders-api-openapi.yml
+    operationId: createOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: captureOnResolve
+    repo: resolve
+    spec_file: resolve-orders-api-openapi.yml
+    operationId: captureOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    magento:
+      capabilities: []
+      tags:
+      - Orders
+    resolve:
+      capabilities: []
+      tags:
+      - Orders
+  intents: []
+- file: resolve-shopify-net-terms-order.yml
+  title: 'Resolve + Shopify: net terms on a storefront order'
+  partner: shopify
+  template: null
+  repos:
+  - shopify
+  - resolve
+  steps:
+  - step: getStoreOrder
+    repo: shopify
+    spec_file: shopify-orders-api-openapi.yml
+    operationId: getOrder
+    tag: Orders
+    capability_id: BC-520.40
+    capability: Order Fulfilment Management
+    capability_l1: BC-520
+    intent: Get one order's details
+    effect: read
+    unmapped: null
+  - step: authorizeOnResolve
+    repo: resolve
+    spec_file: resolve-orders-api-openapi.yml
+    operationId: createOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: captureOnResolve
+    repo: resolve
+    spec_file: resolve-orders-api-openapi.yml
+    operationId: captureOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    shopify:
+      capabilities:
+      - BC-520.40
+      tags:
+      - Orders
+    resolve:
+      capabilities: []
+      tags:
+      - Orders
+  intents:
+  - Get one order's details
+- file: resolve-woocommerce-net-terms-order.yml
+  title: 'Resolve + WooCommerce: net terms on a storefront order'
+  partner: woocommerce
+  template: null
+  repos:
+  - woocommerce
+  - resolve
+  steps:
+  - step: getStoreOrder
+    repo: woocommerce
+    spec_file: woocommerce-orders-api-openapi.yml
+    operationId: getOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: authorizeOnResolve
+    repo: resolve
+    spec_file: resolve-orders-api-openapi.yml
+    operationId: createOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: captureOnResolve
+    repo: resolve
+    spec_file: resolve-orders-api-openapi.yml
+    operationId: captureOrder
+    tag: Orders
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  connects:
+    woocommerce:
+      capabilities: []
+      tags:
+      - Orders
+    resolve:
+      capabilities: []
+      tags:
+      - Orders
+  intents: []
+- file: resolve-xero-invoice-sync.yml
+  title: 'Resolve + Xero: sync a Resolve invoice into Xero'
+  partner: xero
+  template: null
+  repos:
+  - resolve
+  - xero
+  steps:
+  - step: fetchResolveInvoice
+    repo: resolve
+    spec_file: resolve-invoices-api-openapi.yml
+    operationId: fetchInvoice
+    tag: Invoices
+    capability_id: BC-200.30
+    capability: Accounts Receivable Management
+    capability_l1: BC-200
+    intent: null
+    effect: null
+    unmapped: null
+  - step: createXeroInvoice
+    repo: xero
+    spec_file: xero-accounting-api-openapi.yml
+    operationId: createInvoices
+    tag: Accounting
+    capability_id: BC-200
+    capability: Financial Management
+    capability_l1: BC-200
+    intent: null
+    effect: null
+    unmapped: null
+  connects:
+    resolve:
+      capabilities:
+      - BC-200.30
+      tags:
+      - Invoices
+    xero:
+      capabilities:
+      - BC-200
+      tags:
+      - Accounting
+  intents: []
