@@ -13,6 +13,7 @@ checked:
 - https://resolvepay.com/integrations
 - https://zapier.com/apps/resolve/integrations
 - shopify/integrations/shopify-integration-edges.yml
+- wordpress/integrations/wordpress-integration-edges.yml
 summary: Resolve names 8 accounting/ERP/ecommerce integrations on its own integrations page; Shopify and BigCommerce
   have dedicated Resolve-built guides in its docs. No marketplace listings found (Zapier 404).
 marketplace_apps: []
@@ -89,4 +90,21 @@ edges:
   listing_count: 1
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
+- partner_name: WordPress (own)
+  partner: wordpress
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://wordpress.org/plugins/resolve-for-woocommerce/
+  mirror_of: wordpress/integrations/wordpress-integration-edges.yml
+  apps:
+  - Resolve for WooCommerce
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: WordPress plugin
 templates: []
