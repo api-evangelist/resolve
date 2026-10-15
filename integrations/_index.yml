@@ -91,3 +91,15 @@
   source: edge
   status: pending-partner-spec
   arazzo: null
+- slug: resolve-shopify-own
+  label: Shopify (own)
+  partner: shopify
+  partner_name: Shopify (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.shopify.com/resolve-pay-sync
+  source: edge
+  relationship: platform-app
+  arazzo: resolve-shopify-net-terms-order.yml
+  status: arazzo

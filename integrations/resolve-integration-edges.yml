@@ -12,6 +12,7 @@ checked:
 - https://n8n.io/integrations/resolve/
 - https://resolvepay.com/integrations
 - https://zapier.com/apps/resolve/integrations
+- shopify/integrations/shopify-integration-edges.yml
 summary: Resolve names 8 accounting/ERP/ecommerce integrations on its own integrations page; Shopify and BigCommerce
   have dedicated Resolve-built guides in its docs. No marketplace listings found (Zapier 404).
 marketplace_apps: []
@@ -72,4 +73,20 @@ edges:
   direction: unknown
   category: accounting
   use_case: 'Named in the integrations FAQ: QuickBooks Online, Xero, Sage Intacct, NetSuite, Magento 2, BigCommerce.'
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/resolve-pay-sync
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - Resolve Sync
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
 templates: []
