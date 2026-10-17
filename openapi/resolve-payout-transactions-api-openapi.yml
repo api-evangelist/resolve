@@ -121,70 +121,6 @@ components:
               enum:
               - invalid_request
               example: invalid_request
-    ValidationError:
-      type: object
-      title: Validation error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Validation error
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - validation_error
-              example: validation_error
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    example: path.to.field
-                    description: Path to the field failed validation
-                  message:
-                    type: string
-                    example: '`[field]` is required'
-                    description: Detailed description of the error
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
     PayoutTransactionObject:
       type: object
       properties:
@@ -257,6 +193,82 @@ components:
           type: string
           description: Date time of when the payout transaction was last updated.
           example: '2022-09-06T03:08:37.508Z'
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    PayoutTransactionsLists:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          items:
+            $ref: '#/components/schemas/PayoutTransactionObject'
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     RateLimitError:
       type: object
       title: Rate limit error
@@ -274,18 +286,6 @@ components:
               enum:
               - rate_limit_error
               example: rate_limit_error
-    PayoutTransactionsLists:
-      type: object
-      properties:
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          items:
-            $ref: '#/components/schemas/PayoutTransactionObject'
     PayoutTransactionObject_2:
       type: object
       properties:
@@ -363,36 +363,24 @@ components:
           description: Date time of when the payout transaction was last updated.
           example: '2022-09-06T03:08:37.508Z'
   responses:
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    PayoutTransactionResponse:
-      description: An object representing the created Payout Transaction.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PayoutTransactionObject'
-    NotFoundResponse:
-      description: Not found error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundError'
     ListPayoutTransactionsResponse:
       description: An object with an array of results containing up to the limit. If no payout transactions are found, the results array will be empty.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/PayoutTransactionsLists'
+    NotFoundResponse:
+      description: Not found error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -401,6 +389,18 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
+    PayoutTransactionResponse:
+      description: An object representing the created Payout Transaction.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PayoutTransactionObject'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.

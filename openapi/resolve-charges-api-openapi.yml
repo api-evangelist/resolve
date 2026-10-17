@@ -199,6 +199,23 @@ paths:
       - Charges
 components:
   schemas:
+    ChargeCaptureRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+          minimum: 0
+          example: 1000
+          description: Amount to capture. If omitted, full charge amount is captured.
+        order_number:
+          type: string
+          example: '5055'
+          description: Optional order number override applied during capture.
+        po_number:
+          type: string
+          example: PO-555
+          description: Optional PO number override applied during capture.
     InvalidRequestError:
       type: object
       title: Invalid request error
@@ -216,143 +233,6 @@ components:
               enum:
               - invalid_request
               example: invalid_request
-    ValidationError:
-      type: object
-      title: Validation error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Validation error
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - validation_error
-              example: validation_error
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    example: path.to.field
-                    description: Path to the field failed validation
-                  message:
-                    type: string
-                    example: '`[field]` is required'
-                    description: Detailed description of the error
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
-    NotFoundError:
-      type: object
-      title: Not found error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: '[entity] not found'
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - not_found_error
-              example: not_found_error
-    ChargeListResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          example: 1
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Charge'
-    ChargeUpdateRequest:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: double
-          minimum: 0
-          example: 1000
-          description: Updated amount for the charge.
-        invoice_url:
-          type: string
-          format: uri
-          example: https://example.com/invoice.pdf
-          description: Updated invoice URL.
-        order_number:
-          type: string
-          example: '5055'
-          description: Updated order number.
-        po_number:
-          type: string
-          example: PO-555
-          description: Updated PO number.
-        metadata:
-          type: object
-          additionalProperties: true
-          example:
-            source: checkout
-          description: Metadata to store on the charge.
-        user_id:
-          type: string
-          example: usr_123
-          description: Associated customer user ID.
-        captured:
-          type: boolean
-          example: true
-          description: Capture this charge.
-        canceled:
-          type: boolean
-          example: false
-          description: Cancel this charge.
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
     Charge:
       type: object
       properties:
@@ -457,7 +337,104 @@ components:
           format: double
           example: 0
           description: Refunded fee amount for the charge in USD.
-    ChargeCaptureRequest:
+    ValidationError:
+      type: object
+      title: Validation error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Validation error
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - validation_error
+              example: validation_error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                    example: path.to.field
+                    description: Path to the field failed validation
+                  message:
+                    type: string
+                    example: '`[field]` is required'
+                    description: Detailed description of the error
+    NotFoundError:
+      type: object
+      title: Not found error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: '[entity] not found'
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - not_found_error
+              example: not_found_error
+    ChargeListResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 1
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Charge'
+    UnauthorizedError:
+      type: object
+      title: Unauthorized error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
+    ChargeUpdateRequest:
       type: object
       properties:
         amount:
@@ -465,15 +442,38 @@ components:
           format: double
           minimum: 0
           example: 1000
-          description: Amount to capture. If omitted, full charge amount is captured.
+          description: Updated amount for the charge.
+        invoice_url:
+          type: string
+          format: uri
+          example: https://example.com/invoice.pdf
+          description: Updated invoice URL.
         order_number:
           type: string
           example: '5055'
-          description: Optional order number override applied during capture.
+          description: Updated order number.
         po_number:
           type: string
           example: PO-555
-          description: Optional PO number override applied during capture.
+          description: Updated PO number.
+        metadata:
+          type: object
+          additionalProperties: true
+          example:
+            source: checkout
+          description: Metadata to store on the charge.
+        user_id:
+          type: string
+          example: usr_123
+          description: Associated customer user ID.
+        captured:
+          type: boolean
+          example: true
+          description: Capture this charge.
+        canceled:
+          type: boolean
+          example: false
+          description: Cancel this charge.
   requestBodies:
     ChargeUpdateRequestBody:
       description: Fields to update on a charge.
@@ -488,24 +488,6 @@ components:
           schema:
             $ref: '#/components/schemas/ChargeCaptureRequest'
   responses:
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    ChargeListResponse:
-      description: A paginated list of charges.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ChargeListResponse'
     NotFoundResponse:
       description: Not found error
       content:
@@ -518,6 +500,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Charge'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -526,6 +514,18 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
+    ChargeListResponse:
+      description: A paginated list of charges.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ChargeListResponse'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.

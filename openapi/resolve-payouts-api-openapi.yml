@@ -166,6 +166,18 @@ components:
           type: string
           description: Date time of when the Payout was last updated.
           example: '2022-09-06T03:08:37.508Z'
+    PayoutsLists:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 25
+        page:
+          type: integer
+          example: 1
+        results:
+          items:
+            $ref: '#/components/schemas/PayoutObject'
     ValidationError:
       type: object
       title: Validation error
@@ -196,23 +208,6 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    UnauthorizedError:
-      type: object
-      title: Unauthorized error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Invalid merchant credentials
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - authentication_error
-              example: authentication_error
     NotFoundError:
       type: object
       title: Not found error
@@ -230,18 +225,23 @@ components:
               enum:
               - not_found_error
               example: not_found_error
-    PayoutsLists:
+    UnauthorizedError:
       type: object
+      title: Unauthorized error
       properties:
-        limit:
-          type: integer
-          example: 25
-        page:
-          type: integer
-          example: 1
-        results:
-          items:
-            $ref: '#/components/schemas/PayoutObject'
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Invalid merchant credentials
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - authentication_error
+              example: authentication_error
     RateLimitError:
       type: object
       title: Rate limit error
@@ -323,36 +323,30 @@ components:
           description: Date time of when the Payout was last updated.
           example: '2022-09-06T03:08:37.508Z'
   responses:
-    UnauthorizedResponse:
-      description: Unauthorized error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedError'
-    RateLimitResponse:
-      description: Rate limit error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/RateLimitError'
-    PayoutListResponse:
-      description: An object with an array of Payouts up to the specified limit.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PayoutsLists'
     NotFoundResponse:
       description: Not found error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/NotFoundError'
+    PayoutListResponse:
+      description: An object with an array of Payouts up to the specified limit.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PayoutsLists'
     PayoutResponse:
       description: An object representing the created Payout.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/PayoutObject'
+    RateLimitResponse:
+      description: Rate limit error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RateLimitError'
     InvalidRequestOrValidationResponse:
       description: Bad request error
       content:
@@ -361,6 +355,12 @@ components:
             oneOf:
             - $ref: '#/components/schemas/ValidationError'
             - $ref: '#/components/schemas/InvalidRequestError'
+    UnauthorizedResponse:
+      description: Unauthorized error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
   securitySchemes:
     basicAuth:
       description: HTTP Basic Auth using `merchant_id` as username and the merchant secret key as password.

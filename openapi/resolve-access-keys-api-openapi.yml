@@ -47,21 +47,6 @@ paths:
       description: Sandbox server
 components:
   schemas:
-    ForbiddenError:
-      type: object
-      title: Forbidden error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: API access key expired
-            type:
-              type: string
-              description: A short string, describing error type
-              example: forbidden_error
     InvalidRequestError:
       type: object
       title: Invalid request error
@@ -79,6 +64,34 @@ components:
               enum:
               - invalid_request
               example: invalid_request
+    IssueAccessKeyTokenRequest:
+      type: object
+      additionalProperties: false
+      required:
+      - client_id
+      - client_secret
+      properties:
+        client_id:
+          type: string
+          description: OAuth access key client ID returned when the access key was created.
+        client_secret:
+          type: string
+          description: OAuth access key client secret returned when the access key was created or rotated.
+    ForbiddenError:
+      type: object
+      title: Forbidden error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: API access key expired
+            type:
+              type: string
+              description: A short string, describing error type
+              example: forbidden_error
     ValidationError:
       type: object
       title: Validation error
@@ -109,19 +122,6 @@ components:
                     type: string
                     example: '`[field]` is required'
                     description: Detailed description of the error
-    IssueAccessKeyTokenRequest:
-      type: object
-      additionalProperties: false
-      required:
-      - client_id
-      - client_secret
-      properties:
-        client_id:
-          type: string
-          description: OAuth access key client ID returned when the access key was created.
-        client_secret:
-          type: string
-          description: OAuth access key client secret returned when the access key was created or rotated.
     NotFoundError:
       type: object
       title: Not found error
@@ -156,23 +156,6 @@ components:
               enum:
               - authentication_error
               example: authentication_error
-    RateLimitError:
-      type: object
-      title: Rate limit error
-      properties:
-        error:
-          type: object
-          properties:
-            message:
-              type: string
-              description: A short string, describing error details
-              example: Too many requests
-            type:
-              type: string
-              description: A short string, describing error type
-              enum:
-              - rate_limit_error
-              example: rate_limit_error
     AccessKeyTokenResponse:
       type: object
       required:
@@ -194,19 +177,50 @@ components:
           type: string
           description: Space-delimited scopes granted to the token.
           example: merchant:read merchant:write
+    RateLimitError:
+      type: object
+      title: Rate limit error
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: A short string, describing error details
+              example: Too many requests
+            type:
+              type: string
+              description: A short string, describing error type
+              enum:
+              - rate_limit_error
+              example: rate_limit_error
   responses:
-    UnauthorizedResponse:
-      description: Unauthorized error
+    NotFoundResponse:
+      description: Not found error
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/UnauthorizedError'
+            $ref: '#/components/schemas/NotFoundError'
+    ForbiddenResponse:
+      description: Forbidden error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
     RateLimitResponse:
       description: Rate limit error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/RateLimitError'
+    InvalidRequestOrValidationResponse:
+      description: Bad request error
+      content:
+        application/json:
+          schema:
+            oneOf:
+            - $ref: '#/components/schemas/ValidationError'
+            - $ref: '#/components/schemas/InvalidRequestError'
     AccessKeyTokenResponse:
       description: Successfully minted bearer token
       content:
@@ -220,26 +234,12 @@ components:
                 token_type: Bearer
                 expires_in: 86400
                 scope: merchant:read merchant:write
-    NotFoundResponse:
-      description: Not found error
+    UnauthorizedResponse:
+      description: Unauthorized error
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/NotFoundError'
-    ForbiddenResponse:
-      description: Forbidden error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ForbiddenError'
-    InvalidRequestOrValidationResponse:
-      description: Bad request error
-      content:
-        application/json:
-          schema:
-            oneOf:
-            - $ref: '#/components/schemas/ValidationError'
-            - $ref: '#/components/schemas/InvalidRequestError'
+            $ref: '#/components/schemas/UnauthorizedError'
   requestBodies:
     IssueAccessKeyTokenRequestBody:
       required: true
