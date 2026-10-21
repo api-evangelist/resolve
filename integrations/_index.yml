@@ -116,3 +116,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: resolve-bigcommerce-own
+  label: BigCommerce (own)
+  partner: bigcommerce
+  partner_name: BigCommerce (own)
+  category: Payments & Security, Payment Processors & Gateways, Financing, Consumer Financing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.bigcommerce.com/apps/resolvepay/
+  source: edge
+  relationship: platform-app
+  arazzo: resolve-bigcommerce-net-terms-order.yml
+  status: arazzo
